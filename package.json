@@ -23,5 +23,8 @@
     "cz-customizable": {
       "config": ".cz-config.js"
     }
+  },
+  "dependencies": {
+    "tailwindcss": "^1.2.0"
   }
 }
