@@ -4,17 +4,33 @@
   "description": "Mobius UI based on TailWind CSS.",
   "main": "index.js",
   "scripts": {
-    "cz-commit": "npx git-cz"
+    "cz-commit": "npx git-cz",
+    "start": "npx webpack-dev-server --mode=development",
+    "build": "npx webpack --mode=development",
+    "dist": "npx webpack --mode=production"
   },
   "repository": "https://github.com/we-mobius/mobius-ui.git",
   "author": "kongxiangyan <kcigaret@outlook.com>",
   "license": "GPL v3.0",
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
+    "clean-webpack-plugin": "^3.0.0",
     "commitizen": "^4.0.3",
     "commitlint-config-cz": "^0.13.0",
+    "css-loader": "^3.4.2",
     "cz-customizable": "^6.2.0",
-    "husky": "^4.2.1"
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^4.2.1",
+    "mini-css-extract-plugin": "^0.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss": "^7.0.27",
+    "postcss-loader": "^3.0.0",
+    "purgecss-webpack-plugin": "^2.0.6",
+    "tailwindcss": "^1.2.0",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2"
   },
   "config": {
     "commitizen": {
@@ -24,7 +40,5 @@
       "config": ".cz-config.js"
     }
   },
-  "dependencies": {
-    "tailwindcss": "^1.2.0"
-  }
+  "dependencies": {}
 }
