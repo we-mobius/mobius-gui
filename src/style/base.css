@@ -1,0 +1,5 @@
+html * {
+  background-color: var(--bg-color-normal);
+  color: var(--text-color-normal);
+  transition: var(--transition-normal);
+}

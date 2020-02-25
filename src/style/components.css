@@ -4,6 +4,15 @@
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: var(--transition-normal);
+
+  background-color: var(--bg-color-normal);
+  color: var(--text-color-normal);
+  --box-shadow-normal: 8px 8px 20px var(--bg-color-darker), -8px -8px 20px var(--bg-color-lighter);
+  --box-shadow-inset: inset 8px 8px 20px var(--bg-color-darker), inset -8px -8px 20px var(--bg-color-lighter);
+  &:hover {
+    color: var(--text-color-hover);
+  }
+
   &::before, &::after {
     content: "";
     position: absolute;
@@ -29,23 +38,5 @@
     &::after {
       opacity: 1;
     }
-  }
-}
-.mobius-flat-dark {
-  background-color: var(--dark-color-normal);
-  color: var(--light-color-normal);
-  --box-shadow-normal: 8px 8px 20px var(--dark-color-darker), -8px -8px 20px var(--dark-color-lighter);
-  --box-shadow-inset: inset 8px 8px 20px var(--dark-color-darker), inset -8px -8px 20px var(--dark-color-lighter);
-  &:hover {
-    color: var(--cigaret-color-lighter);
-  }
-}
-.mobius-flat-light {
-  background-color: var(--light-color-normal);
-  color: var(--dark-color-normal);
-  --box-shadow-normal: 8px 8px 20px var(--light-color-darker), -8px -8px 20px var(--light-color-lighter);
-  --box-shadow-inset: inset 8px 8px 20px var(--light-color-darker), inset -8px -8px 20px var(--light-color-lighter);
-  &:hover {
-    color: var(--cigaret-color-darker);
   }
 }

@@ -43,5 +43,9 @@
       "config": ".cz-config.js"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "@cycle/dom": "^22.4.0",
+    "@cycle/rxjs-run": "^10.4.0",
+    "rxjs": "^6.5.4"
+  }
 }

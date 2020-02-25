@@ -1,4 +1,5 @@
 @import "vars.css";
+@import "base.css";
 @import "elements.css";
 @import "components.css";
 @import "layout.css";
