@@ -28,7 +28,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "style/main.css"
+      filename: "style/mobius.[name].css"
     }),
     new OptimizeCssAssetsWebpackPlugin({}),
     new PurgecssPlugin({

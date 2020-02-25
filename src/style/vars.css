@@ -1,0 +1,12 @@
+:root {
+  --dark-color-normal: hsla(264, 0%, 17%, 100%);
+  --dark-color-darker: hsla(264, 0%, 7%, 50%);
+  --dark-color-lighter: hsla(264, 0%, 27%, 50%);
+  --light-color-normal: hsla(264, 0%, 83%, 100%);
+  --light-color-darker: hsla(264, 0%, 68%, 100%);
+  --light-color-lighter: hsla(264, 0%, 98%, 100%);
+  --cigaret-color-normal: hsla(264, 100%, 50%, 100%);
+  --cigaret-color-lighter: hsla(264, 100%, 83%, 100%);
+  --cigaret-color-darker: hsla(264, 100%, 17%, 100%);
+  --transition-normal: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
