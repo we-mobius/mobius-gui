@@ -1,5 +1,5 @@
 import run from "@cycle/rxjs-run";
-import { makeDOMDriver, div } from "@cycle/dom";
+import { makeDOMDriver, div, img } from "@cycle/dom";
 import { from } from "rxjs";
 import { map } from "rxjs/operators";
 
@@ -8,9 +8,12 @@ function main(sources) {
     DOM: from([1, 2, 3]).pipe(
       map(() => {
         return div(".w-full.box-border.flex.p-16", {},
-          [1, 2, 3, 4 ].map(index => div(".mobius-flat.p-8.m-8", {}, `${index} Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt nesciunt numquam
+          [
+            ...([1, 2, 3, 4].map(index => div(".mobius-flat.p-8.m-8", {}, `${index} Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt nesciunt numquam
         iusto rerum minus quisquam, eum labore, rem delectus aliquid enim! Sint dignissimos quasi necessitatibus laboriosam a ex
-        architecto. Adipisci.`))
+        architecto. Adipisci.`))),
+            img(".img", { attrs: { src: "https://gitee.com/shidenggui/assets/raw/master/uPic/RrpwmE.png", width: "300px" } }),
+          ]
         )
       })
     )

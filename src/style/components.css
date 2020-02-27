@@ -1,17 +1,17 @@
 .mobius-flat {
-  position: relative;
-  --border-radius: 0.25rem;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: var(--transition-normal);
-
-  background-color: var(--bg-color-normal);
-  color: var(--text-color-normal);
+  /* --border-radius: 0.25rem;
+  --bg-color-normal: var(--bg-color-normal);
+  --text-color-normal: var(--text-color-normal);
+  --text-color-hover: var(--text-color-hover);
+  --transition-normal: var(--transition-normal); */
   --box-shadow-normal: 8px 8px 20px var(--bg-color-darker), -8px -8px 20px var(--bg-color-lighter);
   --box-shadow-inset: inset 8px 8px 20px var(--bg-color-darker), inset -8px -8px 20px var(--bg-color-lighter);
-  &:hover {
-    color: var(--text-color-hover);
-  }
+
+  position: relative;
+  border-radius: var(--border-radius);
+  background-color: var(--bg-color-normal);
+  color: var(--text-color-normal);
+  cursor: pointer;
 
   &::before, &::after {
     content: "";
@@ -32,6 +32,7 @@
     opacity: 0;
   }
   &:hover {
+    color: var(--text-color-hover);
     &::before {
       opacity: 0;
     }
