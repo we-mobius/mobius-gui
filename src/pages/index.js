@@ -1,7 +1,7 @@
 import run from '@cycle/rxjs-run'
 import { makeDOMDriver, div, img } from '@cycle/dom'
 import { from } from 'rxjs'
-import { map } from 'rxjs/operators';
+import { map } from 'rxjs/operators'
 
 function main (sources) {
   const sinks = {
