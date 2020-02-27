@@ -4,7 +4,7 @@
   "description": "Mobius UI based on TailWind CSS.",
   "main": "index.js",
   "scripts": {
-    "cz-commit": "git-cz",
+    "cz-commit": "yarn lint && git-cz",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "start": "webpack-dev-server --mode=development",
