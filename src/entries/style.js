@@ -1,2 +1,2 @@
-import "../style/tailwind.css";
-import "../style/mobius.css";
+import '../style/tailwind.css'
+import '../style/mobius.css'

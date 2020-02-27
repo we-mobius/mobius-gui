@@ -2,6 +2,7 @@
  * 以下是全局变量
  */
 
+
 /* page 用于兼容小程序端 */
 :root,
 html,
@@ -54,6 +55,7 @@ html[data-theme="dark"] {
   }
 }
 
+/* purgecss start ignore */
 html[data-theme="high-contrast"] {
   --bg-color-normal: black;
   --bg-color-lighter: black;
@@ -66,7 +68,6 @@ html[data-theme="high-contrast"] {
     mix-blend-mode: screen;
   }
 }
-
 html[data-theme="custom"] {
   --custom-seed: 728;
   --vice-seed: calc(var(--custom-seed) + 180);
@@ -83,11 +84,14 @@ html[data-theme="custom"] {
     mix-blend-mode: screen;
   }
 }
+/* purgecss end ignore */
+
 
 /*
  * 以下是 CSS -> JavaScript 传参设置
  * ！！！仅支持 Web 端
  */
+
 
 :root {
   --mode: "unknown";

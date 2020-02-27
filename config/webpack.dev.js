@@ -1,11 +1,11 @@
-const path = require("path");
+const path = require('path')
 
 const PATHS = {
-  build: path.resolve(process.cwd(), "build")
+  build: path.resolve(process.cwd(), 'build')
 }
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   output: {
     path: PATHS.build
   },
@@ -14,18 +14,18 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          "style-loader",
-          "css-loader",
-          "postcss-loader"
+          'style-loader',
+          'css-loader',
+          'postcss-loader'
         ]
       }
     ]
   },
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
   devServer: {
-    contentBase: "./build",
+    contentBase: './build',
     port: 3000,
     open: true,
     hot: true
   }
-};
+}

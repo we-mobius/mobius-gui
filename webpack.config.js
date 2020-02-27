@@ -1,13 +1,13 @@
 
-const commonConfig = require("./config/webpack.common");
-const developmentConfig = require("./config/webpack.dev");
-const productionConfig = require("./config/webpack.prod");
-const merge = require("webpack-merge");
+const commonConfig = require('./config/webpack.common')
+const developmentConfig = require('./config/webpack.dev')
+const productionConfig = require('./config/webpack.prod')
+const merge = require('webpack-merge')
 
 module.exports = (env, args) => {
-  let { mode } = args;
+  const { mode } = args
 
-  let specificConfig = mode === "production" ? productionConfig : developmentConfig;
+  const specificConfig = mode === 'production' ? productionConfig : developmentConfig
 
-  return merge(commonConfig, specificConfig, {});
+  return merge(commonConfig, specificConfig, {})
 }
