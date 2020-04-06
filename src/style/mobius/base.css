@@ -1,0 +1,28 @@
+html, page {
+  font-family: system-ui;
+  /* %mobius-theme start */
+  color: var(--text-color-normal);
+  background-color: var(--bg-color-normal);
+  /* %mobius-theme end */
+  transition-property: var(--transition-property-common);
+  transition-duration: var(--transition-duration-normal);
+  transition-timing-function: var(--transition-timing-function-normal);
+  transition-delay: var(--transition-delay-none);
+}
+
+body, page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+img {
+  mix-blend-mode: multiply;
+}
+
+svg {
+  color: var(--text-color-normal)
+}

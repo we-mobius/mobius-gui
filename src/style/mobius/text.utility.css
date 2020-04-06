@@ -1,0 +1,63 @@
+/* purgecss start ignore*/
+/*********************************************************
+ *              Mobius Text Utility
+ *
+ * - with css    houdini: none,
+ * - with global control: none,
+ * - use  global params : --dark-color-normal, --light-color-normal, --cigaret-color-normal, --mobius-color-normal,
+ * - set  global params : none,
+ * - use  theme  props  : %theme-light-vars, %theme-dark-vars,
+ * - release     props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-text-normal(hover), .mobius-text-cigaret(hover), .mobius-text-mobius,
+ *
+ * - TODO: todo example,
+ *
+ * - 1. other comment,
+ * - 2. another comment,
+ * - 3. ...,
+ *
+ * !important
+ *
+ *********************************************************/
+
+.mobius-text-normal {
+  color: var(--text-color-normal);
+}
+.hover\:mobius-text-normal:hover {
+  color: var(--text-color-normal);
+}
+
+.mobius-text-hover,
+.hover\:mobius-text-hover:hover {
+  color: var(--text-color-hover);
+}
+
+.mobius-text-selected,
+.hover\:mobius-text-selected:hover {
+  color: var(--text-color-selected);
+}
+
+.mobius-text-dark,
+.hover\:mobius-text-dark:hover {
+  color: var(--dark-color-normal);
+}
+
+.mobius-text-light,
+.hover\:mobius-text-light:hover {
+  color: var(--light-color-normal);
+}
+
+.mobius-text-cigaret,
+.hover\:mobius-text-cigaret:hover {
+  color: var(--cigaret-color-normal);
+}
+
+.mobius-text-mobius,
+.hover\:mobius-text-mobius:hover {
+  color: var(--mobius-color-normal);
+}
+
+/* purgecss end ignore*/

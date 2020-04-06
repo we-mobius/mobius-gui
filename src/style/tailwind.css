@@ -1,0 +1,19 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+@import "tailwindcss/screens";
+
+/* purgecss start ignore */
+/* Example of use tailwincss with mobius or other custom css classes */
+/* @variants hover {
+  .mobius-bg-concave {
+    @apply mobius-bg-concave_pre;
+  }
+  .mobius-bg-convex {
+    @apply mobius-bg-convex_pre;
+  }
+} */
+/* purgecss end ignore */
