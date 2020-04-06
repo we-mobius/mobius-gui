@@ -1,0 +1,36 @@
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+.mobius-layout-portal {
+  display: grid;
+  grid-template-columns: auto minmax(50%, 100%) auto;
+  grid-template-rows: 4rem minmax(50%, 100%) auto;
+  grid-template-areas:
+    'header header header'
+    'left main right'
+    'left footer right';
+  place-items: stretch stretch;
+  place-content: stretch stretch;
+
+  & .header {
+    grid-area: header;
+  }
+
+  & .left {
+    grid-area: left;
+  }
+
+  & .main {
+    grid-area: main;
+  }
+
+  & .right {
+    grid-area: right;
+  }
+
+  & .footer {
+    grid-area: footer;
+  }
+}

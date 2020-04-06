@@ -1,0 +1,55 @@
+@import "theme.utility.css";
+@import "text.utility.css";
+@import "background.utility.css";
+@import "shadow.utility.css";
+/* purgecss start ignore */
+
+/*********************************************************
+ *              Mobius Comment Utility
+ *
+ * - with css    houdini: ... | none,
+ * - with global control: ... | none,
+ * - use  global params : ... | none,
+ * - set  global params : ... | none,
+ * - use  ...    props  : ... | none,
+ * - release     props  : ... | none,
+ *
+ * - usage: [param](set|use)(modulename.moduletype) | none,
+ *
+ * - classes: .mobius-{utility}-style
+ *
+ * - TODO: todo example,
+ *
+ * - 1. other comment,
+ * - 2. another comment,
+ * - 3. ...,
+ *
+ * !important ...
+ *
+ *********************************************************/
+
+/*********************************************************
+ *              Mobius ScrollBar Utility
+ *********************************************************/
+
+.mobius-scrollbar-hidden {
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/*********************************************************
+ *             Mobius Transition Utility
+ *********************************************************/
+
+.mobius-transition-all *,
+.mobius-transition-all *::before,
+.mobius-transition-all *::after {
+  transition-property: var(--transition-property-all);
+  transition-duration: var(--transition-duration-normal);
+  transition-timing-function: var(--transition-timing-function-normal);
+  transition-delay: var(--transition-delay-none);
+}
+/* purgecss end ignore */

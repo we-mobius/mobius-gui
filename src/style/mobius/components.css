@@ -1,0 +1,71 @@
+/* purgecss start ignore */
+/*********************************************************
+ *              Mobius Toggle Component
+ *
+ * - with css    houdini: none,
+ * - with global control: none,
+ * - use  global params : none,
+ * - set  global params : none,
+ * - use  theme  props  : --bg-color-normal, --text-color-hover,
+ * - release     props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-toggle,
+ *
+ * - TODO: todo example,
+ *
+ * - 1. other comment,
+ * - 2. another comment,
+ * - 3. ...,
+ *
+ * !important ...
+ *
+ *********************************************************/
+
+.mobius-toggle {
+  --toggle-size: 4rem;
+  position: relative;
+  width: var(--toggle-size);
+  height: calc(var(--toggle-size) / 2);
+  & input {
+    display: none;
+  }
+  & label {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 50%;
+      background: var(--bg-color-normal);
+    }
+    &::before {
+      height: 80%;
+      width: 40%;
+      margin: 5% 5%;
+      border: 2px solid var(--text-color-hover);
+    }
+    &::after {
+      height: 20%;
+      width: 10%;
+      margin: 20%;
+    }
+    &:hover::after {
+      background: var(--text-color-hover);
+    }
+  }
+  & input:checked + label {
+    &::before,
+    &::after {
+      left: 50%;
+    }
+  }
+}
+/* purgecss end ignore */

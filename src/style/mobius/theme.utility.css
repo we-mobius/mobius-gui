@@ -1,0 +1,102 @@
+/* purgecss start ignore */
+/*********************************************************
+ *                Mobius Theme Utility
+ *
+ * - with css    houdini: none,
+ * - with global control: [data-theme]
+ * - use  global params : %var-color,
+ * - set  global params : none,
+ * - use  ...    props  : none,
+ * - release     props  : %theme-light-vars, %theme-dark-vars,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-theme-dark(hover), .mobius-theme-light(hover)
+ *
+ * - TODO: high-contrast theme,
+ *
+ *********************************************************/
+
+ %theme-light-vars {
+  --bg-color-normal: var(--light-color-normal);
+  --bg-color-lighter-m: var(--light-color-lighter-m);
+  --bg-color-lighter: var(--light-color-lighter);
+  --bg-color-darker-m: var(--light-color-darker-m);
+  --bg-color-darker: var(--light-color-darker);
+
+  --text-color-normal: var(--dark-color-normal);
+  --text-color-lighter-m: var(--dark-color-lighter-m);
+  --text-color-darker-m: var(--dark-color-darker-m);
+  --text-color-lighter: var(--dark-color-lighter);
+  --text-color-darker: var(--dark-color-darker);
+
+  --text-color-hover: var(--cigaret-color-normal); /* --cigaret-color-darker too dark to light theme */
+  --text-color-selected: var(--cigaret-color-normal); /* --cigaret-color-darker too dark to light theme */
+
+  --text-color-cigaret: var(--cigaret-color-normal);
+  --text-color-mobius: var(--mobius-color-normal);
+}
+%theme-dark-vars {
+  --bg-color-normal: var(--dark-color-normal);
+  --bg-color-lighter-m: var(--dark-color-lighter-m);
+  --bg-color-lighter: var(--dark-color-lighter);
+  --bg-color-darker-m: var(--dark-color-darker-m);
+  --bg-color-darker: var(--dark-color-darker);
+
+  --text-color-normal: var(--light-color-normal);
+  --text-color-lighter-m: var(--light-color-lighter-m);
+  --text-color-lighter: var(--light-color-lighter);
+  --text-color-darker-m: var(--light-color-darker-m);
+  --text-color-darker: var(--light-color-darker);
+
+  --text-color-hover: var(--cigaret-color-lighter);
+  --text-color-selected: var(--cigaret-color-lighter);
+
+  --text-color-cigaret: var(--cigaret-color-normal);
+  --text-color-mobius: var(--mobius-color-normal);
+}
+%mobius-theme {
+  color: var(--text-color-normal);
+  background-color: var(--bg-color-normal);
+}
+.mobius-theme-light,
+.hover\:mobius-theme-light:hover {
+  @extend %mobius-theme, %theme-light-vars;
+}
+.mobius-theme-dark,
+.hover\:mobius-theme-dark:hover {
+  @extend %mobius-theme, %theme-dark-vars;
+}
+
+:root,
+html,
+page {
+  /* default use light mode */
+  @extend %theme-light-vars;
+  /* global control */
+  &[data-theme="light"] {
+    @extend %theme-light-vars;
+  }
+  &[data-theme="dark"] {
+    @extend %theme-dark-vars;
+
+    & img:not([src*=".svg"]) {
+      filter: brightness(0.8) contrast(1.2) invert(100%) hue-rotate(180deg);
+      mix-blend-mode: screen;
+    }
+  }
+  /* TODO: high-contrast theme */
+  &[data-theme="high-contrast"] {
+    --bg-color-normal: black;
+    --bg-color-lighter: black;
+    --bg-color-darker: black;
+    --text-color-normal: white;
+    --text-color-hover: white;
+
+    & img:not([src*=".svg"]) {
+      filter: brightness(0.8) contrast(1.2) invert(100%) hue-rotate(180deg);
+      mix-blend-mode: screen;
+    }
+  }
+}
+/* purgecss end ignore */
