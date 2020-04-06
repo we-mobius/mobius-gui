@@ -1,0 +1,103 @@
+/* purgecss start ignore */
+/*********************************************************
+ *           Mobius Background Utility
+ *
+ * - with css    houdini: registerProperty(--start-color, --end-color),
+ * - with global control: none,
+ * - use  global params : --light-source-angle-current,
+ *                        --transition-property-common, --transition-duration-normal,
+ *                        --dark-color-normal, --light-color-normal, --cigaret-color-normal, --mobius-color-normal,
+ * - set  global params : none,
+ * - use  theme  props  : --bg-color-darker-m, --bg-color-lighter-m,
+ * - release     props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-bg-transparent(hover),
+ *            .mobius-bg-concave(hover), .mobius-bg-convex(hover),
+ *            .mobius-bg-dark(hover), .mobius-bg-light(hover), .mobius-bg-cigaret(hover), .mobius-bg-mobius(hover),
+ *
+ * !important transition-property
+ *
+ *********************************************************/
+
+/* srase bg utility */
+.mobius-bg-transparent,
+.hover\:mobius-bg-transparent:hover {
+  background: transparent;
+}
+/* adjust to theme */
+%bglinear-color {
+  --bglinear-color-dark: var(--bg-color-darker-m);
+  --bglinear-color-light: var(--bg-color-lighter-m);
+}
+%bg-linear {
+  background: linear-gradient(
+    var(--lightsource-angle-current),
+    var(--start-color),
+    var(--end-color)
+  );
+}
+%bg-transition {
+  transition-property: var(--transition-property-common), --start-color,
+    --end-color !important;
+  transition-duration: var(--transition-duration-normal);
+}
+.mobius-bg-concave,
+.hover\:mobius-bg-concave:hover {
+  @extend %bg-linear, %bglinear-color, %bg-transition;
+  --start-color: var(--bglinear-color-dark);
+  --end-color: var(--bglinear-color-light);
+}
+.mobius-bg-convex,
+.hover\:mobius-bg-convex:hover {
+  @extend %bg-linear, %bglinear-color, %bg-transition;
+  --start-color: var(--bglinear-color-light);
+  --end-color: var(--bglinear-color-dark);
+}
+/* normal bg utility */
+.mobius-bg-dark,
+.hover\:mobius-bg-dark:hover {
+  background-color: var(--dark-color-normal);
+  &.mobius-bg-concave,
+  &.hover\:mobius-bg-concave:hover,
+  &.mobius-bg-convex,
+  &.hover\:mobius-bg-convex:hover {
+    --bglinear-color-dark: var(--dark-color-darker-m);
+    --bglinear-color-light: var(--dark-color-lighter-m);
+  }
+}
+.mobius-bg-light,
+.hover\:mobius-bg-light:hover {
+  background-color: var(--light-color-normal);
+  &.mobius-bg-concave,
+  &.hover\:mobius-bg-concave:hover,
+  &.mobius-bg-convex,
+  &.hover\:mobius-bg-convex:hover {
+    --bglinear-color-dark: var(--light-color-darker-m);
+    --bglinear-color-light: var(--light-color-lighter-m);
+  }
+}
+.mobius-bg-cigaret,
+.hover\:mobius-bg-cigaret:hover {
+  background-color: var(--cigaret-color-normal);
+  &.mobius-bg-concave,
+  &.hover\:mobius-bg-concave:hover,
+  &.mobius-bg-convex,
+  &.hover\:mobius-bg-convex:hover {
+    --bglinear-color-dark: var(--cigaret-color-darker-m);
+    --bglinear-color-light: var(--cigaret-color-lighter-m);
+  }
+}
+.mobius-bg-mobius,
+.hover\:mobius-bg-mobius:hover {
+  background-color: var(--mobius-color-normal);
+  &.mobius-bg-concave,
+  &.hover\:mobius-bg-concave:hover,
+  &.mobius-bg-convex,
+  &.hover\:mobius-bg-convex:hover {
+    --bglinear-color-dark: var(--mobius-color-darker-m);
+    --bglinear-color-light: var(--mobius-color-lighter-m);
+  }
+}
+/* purgecss end ignore */

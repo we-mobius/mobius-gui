@@ -9,6 +9,25 @@
 
 <body>
   <div id="app"></div>
+  <script>
+    let customProps = {
+      "color": ["--start-color", "--end-color"]
+    };
+    if (window.CSS) {
+      Object.keys(customProps).forEach(key => {
+        if (customProps[key]) {
+          customProps[key].forEach(prop => {
+            CSS.registerProperty({
+              name: prop,
+              syntax: "<" + key + ">",
+              inherits: false,
+              initialValue: 'transparent'
+            })
+          })
+        }
+      })
+    }
+  </script>
 </body>
 
 </html>

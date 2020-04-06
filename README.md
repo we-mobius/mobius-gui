@@ -12,3 +12,10 @@
 <h1 align="center">Mobius UI</h1>
 
 🎨 Mobius UI based on TailWind CSS.
+
+- 换开源协议
+- 预览图
+- 完善文档
+- 工作流整理
+- 上传 GitHub
+- 公开访问链接

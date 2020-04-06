@@ -45,4 +45,31 @@ function initTheme () {
   })
 }
 
-export { initTheme }
+const lightsource = {
+  lt2rb: false, rt2lb: false, rb2lt: false, lb2rt: false
+}
+
+const Light = {
+  list: [],
+  listen: function (fn) {
+    this.list.push(fn)
+  },
+  publish: function () {
+    this.list.forEach(fn => {
+      fn.apply(this, arguments)
+    })
+  }
+}
+
+function setLightsource (dir) {
+  if (lightsource[dir] === true) { return false }
+  Object.keys(lightsource).forEach(key => {
+    lightsource[key] = false
+  })
+  lightsource[dir] = true
+  document.documentElement.setAttribute('data-source', dir.substr(0, 2))
+  Light.publish(lightsource)
+  return true
+}
+
+export { initTheme, setThemeTo, setLightsource, Light }
