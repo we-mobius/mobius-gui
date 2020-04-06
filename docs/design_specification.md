@@ -19,5 +19,7 @@ All of the style divided into 6 categories in terms of its special function in U
   - ScrollBar: mobius-scrollbar-hidden,
   - Transition: mobius-transition-all,
 - elements
+  - Icon: mobius-icon, mobius-icon-light-lt2rb, mobius-icon-light-rt2lb, mobius-icon-light-rb2lt, mobius-icon-light-lb2rt
 - components
+  - Toggle: mobius-toggle(with specific dom structure)
 - layouts
