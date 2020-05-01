@@ -2,13 +2,13 @@ import { div, span } from '@cycle/dom'
 import { map } from 'rxjs/operators'
 
 const normalBtn = (iconName, dir) => div(
-  '.button.w-12.h-12.m-2.rounded.mobius-shadow-normal.hover:mobius-bg-convex.cursor-pointer.hover:mobius-text-hover.flex.items-center.justify-center',
+  '.button.w-12.h-12.m-2.rounded.mobius-shadow-normal.hover_mobius-bg-convex.cursor-pointer.flex.items-center.justify-center.hover_mobius-text-primary',
   { attrs: { 'data-dir': dir } },
   [span(`.mobius-icon.mobius-icon-${iconName}.text-2xl`)]
 )
 
 const selectedBtn = (iconName, dir) => div(
-  '.button.w-12.h-12.m-2.rounded.mobius-shadow-inset.hover:mobius-bg-concave.cursor-pointer.mobius-text-selected.hover:mobius-text-hover.flex.items-center.justify-center',
+  '.button.w-12.h-12.m-2.rounded.mobius-shadow-inset.hover_mobius-bg-concave.cursor-pointer.flex.items-center.justify-center.mobius-text-primary',
   { attrs: { 'data-dir': dir } },
   [span(`.mobius-icon.mobius-icon-${iconName}.text-2xl`)]
 )

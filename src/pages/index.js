@@ -7,6 +7,8 @@ import { Toggle } from '../components/toggle'
 import { Button } from '../components/button'
 import { makeLightDriver } from '../components/light.driver'
 
+const LOREM = 'Lorem, ipsum dolor sit amet neasd consectetur adipisicing elit. Explicabo dicta reiciendis blanditiis tempora ipsum consequatur reprehenderit temporibus nisi culpa voluptatem, unde dolores esse incidunt minima quos repellendus? Beatae, molestiae sunt.'
+
 function makeButton (source, props$, dir) {
   const btn = isolate(Button, dir)({
     DOM: source.DOM,
@@ -50,8 +52,65 @@ function main (source) {
           lbButtonDOM
         ]),
         div('.main.mobius-shadow-inset.rounded', [
-          div('.mobius-scrollbar-hidden.w-full.h-full.overflow-y-scroll.flex.justify-center.items-center.rounded.text-6xl.font-mono', [
-            span('Mobius UI')
+          div('.mobius-scrollbar-hidden.w-full.h-full.overflow-y-scroll.flex.flex-wrap.justify-around.items-start.rounded', [
+            div('.w-full.h-48.flex.justify-center.items-center.text-6xl.font-mono', [
+              span('Mobius UI')
+            ]),
+            div('.w-full.h-auto.py-4.px-8.text-justify.hover_mobius-text-primary', LOREM + LOREM),
+            div('.w-full.h-auto.py-4.px-8.text-justify.hover_mobius-text-primary', LOREM + LOREM),
+            div('.w-full.h-auto.flex.justify-between.m-8', [
+              div('.mobius-shadow-normal.w-1/5.h-auto.p-4.rounded.cursor-pointer.text-justify.hover_mobius-text-primary', LOREM),
+              div('.mobius-shadow-inset.w-1/5.h-auto.p-4.rounded.cursor-pointer.text-justify.hover_mobius-text-primary', LOREM),
+              div('.mobius-shadow-normal.w-1/5.h-auto.p-4.rounded.cursor-pointer.text-justify.hover_mobius-text-primary', LOREM),
+              div('.mobius-shadow-inset.w-1/5.h-auto.p-4.rounded.cursor-pointer.text-justify.hover_mobius-text-primary', LOREM)
+            ]),
+            div('.w-full.h-auto.flex.justify-between.m-8', [
+              div('.w-1/5.h-auto.p-4.rounded.cursor-pointer.text-justify', LOREM),
+              div('.w-1/5.h-auto.p-4.rounded.cursor-pointer.text-justify', LOREM),
+              div('.w-1/5.h-auto.p-4.rounded.cursor-pointer.text-justify', LOREM),
+              div('.w-1/5.h-auto.p-4.rounded.cursor-pointer.text-justify', LOREM)
+            ]),
+            // 无边框按钮
+            div('.w-full.h-auto.flex.justify-around.m-8', [
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.rounded.cursor-pointer.hover_mobius-text-primary', 'Mock Button Normal'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.rounded.cursor-pointer.mobius-text-primary', 'Mock Button Primary'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.rounded-full.cursor-pointer.hover_mobius-text-primary', 'Mock Button Rounded'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.rounded-full.cursor-pointer.mobius-text-primary', 'Mock Button Rounded')
+            ]),
+            // 全边框按钮
+            div('.w-full.h-auto.flex.justify-around.m-8', [
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-all.rounded.cursor-pointer.hover_mobius-text-primary', 'Mock Button Normal'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-all.rounded.cursor-pointer.mobius-text-primary', 'Mock Button Primary'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-all.rounded-full.cursor-pointer.hover_mobius-text-primary', 'Mock Button Rounded'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-all.rounded-full.cursor-pointer.mobius-text-primary', 'Mock Button Rounded')
+            ]),
+            // 单边按钮
+            div('.w-full.h-auto.flex.justify-around.m-8', [
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-top.rounded.cursor-pointer.hover_mobius-text-primary', 'Mock Button Normal'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-bottom.rounded.cursor-pointer.mobius-text-primary', 'Mock Button Primary'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-left.rounded-full.cursor-pointer.hover_mobius-text-primary', 'Mock Button Rounded'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-right.rounded-full.cursor-pointer.mobius-text-primary', 'Mock Button Rounded')
+            ]),
+            // 横向按钮
+            div('.w-full.h-auto.flex.justify-around.m-8', [
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-x.rounded.cursor-pointer.hover_mobius-text-primary', 'Mock Button Normal'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-x.rounded.cursor-pointer.mobius-text-primary', 'Mock Button Primary'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-x.rounded-full.cursor-pointer.hover_mobius-text-primary', 'Mock Button Rounded'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-x.rounded-full.cursor-pointer.mobius-text-primary', 'Mock Button Rounded')
+            ]),
+            // 纵向按钮
+            div('.w-full.h-auto.flex.justify-around.m-8', [
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-y.rounded.cursor-pointer.hover_mobius-text-primary', 'Mock Button Normal'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-y.rounded.cursor-pointer.mobius-text-primary', 'Mock Button Primary'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-y.rounded-full.cursor-pointer.hover_mobius-text-primary', 'Mock Button Rounded'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-border-y.rounded-full.cursor-pointer.mobius-text-primary', 'Mock Button Rounded')
+            ]),
+            div('.w-full.h-auto.flex.justify-around.m-8', [
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-bg-primary.rounded.cursor-pointer', 'Mock Button Normal'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-bg-primary.rounded.cursor-pointer', 'Mock Button Primary'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-bg-primary.rounded-full.cursor-pointer', 'Mock Button Rounded'),
+              div('.mobius-shadow-normal.w-auto.h-auto.my-8.p-4.active_mobius-shadow-thin.mobius-bg-primary.rounded-full.cursor-pointer', 'Mock Button Rounded')
+            ])
           ])
         ]),
         div('.footer.h-16'),
