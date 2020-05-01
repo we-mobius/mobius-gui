@@ -17,54 +17,51 @@
  *
  *********************************************************/
 
- %theme-light-vars {
+%theme-light-vars {
+  --bg-color-darker: var(--light-color-darker);
+  --bg-color-darker-m: var(--light-color-darker-m);
   --bg-color-normal: var(--light-color-normal);
   --bg-color-lighter-m: var(--light-color-lighter-m);
   --bg-color-lighter: var(--light-color-lighter);
-  --bg-color-darker-m: var(--light-color-darker-m);
-  --bg-color-darker: var(--light-color-darker);
 
+  --bg-color-primary: var(--cigaret-color-lighter);
+
+  --text-color-darker: var(--dark-color-darker);
+  --text-color-darker-m: var(--dark-color-darker-m);
   --text-color-normal: var(--dark-color-normal);
   --text-color-lighter-m: var(--dark-color-lighter-m);
-  --text-color-darker-m: var(--dark-color-darker-m);
   --text-color-lighter: var(--dark-color-lighter);
-  --text-color-darker: var(--dark-color-darker);
 
-  --text-color-hover: var(--cigaret-color-normal); /* --cigaret-color-darker too dark to light theme */
-  --text-color-selected: var(--cigaret-color-normal); /* --cigaret-color-darker too dark to light theme */
-
-  --text-color-cigaret: var(--cigaret-color-normal);
-  --text-color-mobius: var(--mobius-color-normal);
+  /* --cigaret-color-darker too dark to light theme */
+  --text-color-primary: var(--cigaret-color-normal);
 }
 %theme-dark-vars {
+  --bg-color-darker: var(--dark-color-darker);
+  --bg-color-darker-m: var(--dark-color-darker-m);
   --bg-color-normal: var(--dark-color-normal);
   --bg-color-lighter-m: var(--dark-color-lighter-m);
   --bg-color-lighter: var(--dark-color-lighter);
-  --bg-color-darker-m: var(--dark-color-darker-m);
-  --bg-color-darker: var(--dark-color-darker);
 
+  --bg-color-primary: var(--cigaret-color-darker);
+
+  --text-color-darker: var(--light-color-darker);
+  --text-color-darker-m: var(--light-color-darker-m);
   --text-color-normal: var(--light-color-normal);
   --text-color-lighter-m: var(--light-color-lighter-m);
   --text-color-lighter: var(--light-color-lighter);
-  --text-color-darker-m: var(--light-color-darker-m);
-  --text-color-darker: var(--light-color-darker);
 
-  --text-color-hover: var(--cigaret-color-lighter);
-  --text-color-selected: var(--cigaret-color-lighter);
-
-  --text-color-cigaret: var(--cigaret-color-normal);
-  --text-color-mobius: var(--mobius-color-normal);
+  --text-color-primary: var(--cigaret-color-lighter);
 }
 %mobius-theme {
   color: var(--text-color-normal);
   background-color: var(--bg-color-normal);
 }
 .mobius-theme-light,
-.hover\:mobius-theme-light:hover {
+.hover_mobius-theme-light:hover {
   @extend %mobius-theme, %theme-light-vars;
 }
 .mobius-theme-dark,
-.hover\:mobius-theme-dark:hover {
+.hover_mobius-theme-dark:hover {
   @extend %mobius-theme, %theme-dark-vars;
 }
 

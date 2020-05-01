@@ -11,13 +11,14 @@
  *
  * - usage: none,
  *
- * - classes: .mobius-shadow-normal(hover), .mobius-shadow-inset(hover),
- *            .mobius-shadow-lt2rb(hover), .mobius-shadow-rt2lb(hover), .mobius-shadow-rb2lt(hover), .mobius-shadow-lb2rt(hover)
+ * - classes: .mobius-shadow-normal(hover, active), .mobius-shadow-inset(hover, active),
+ *            .mobius-shadow-half(hover, active), .mobius-shadow-thin(hover, active)
+ *            .mobius-shadow-lt2rb(hover, active), .mobius-shadow-rt2lb(hover, active), .mobius-shadow-rb2lt(hover, active), .mobius-shadow-lb2rt(hover, active)
  *
  * - 1. bg-color -> shadow-color -> side-color -> shadow
  * - 2. 两个对角合并组成的整体阴影比 4 个方向合并组成的阴影更好
  *
- * !important %shadow-pos-half
+ * !important none
  *
  *********************************************************/
 
@@ -34,8 +35,12 @@
   --shadow-offset-negtive: -8px;
 }
 %shadow-pos-half {
-  --shadow-offset-positive: 4px !important;
-  --shadow-offset-negtive: -4px !important;
+  --shadow-offset-positive: 4px;
+  --shadow-offset-negtive: -4px;
+}
+%shadow-pos-thin {
+  --shadow-offset-positive: 2px;
+  --shadow-offset-negtive: -2px;
 }
 /* modify the shadow's lightness correspond to shadow's position (which position the light shed on) */
 %shadow-source-lt {
@@ -125,7 +130,8 @@
 }
 /* light source is in the left top corner by default */
 .mobius-shadow-normal,
-.hover\:mobius-shadow-normal:hover {
+.hover_mobius-shadow-normal:hover,
+.active_mobius-shadow-normal:active {
   @extend %shadow-ltrb-normal,
     %shadow-details,
     %shadow-source-lt,
@@ -134,7 +140,8 @@
     %shadow-config;
 }
 .mobius-shadow-inset,
-.hover\:mobius-shadow-inset:hover {
+.hover_mobius-shadow-inset:hover,
+.active_mobius-shadow-inset:active {
   @extend %shadow-ltrb-inset,
     %shadow-details,
     %shadow-source-lt,
@@ -142,10 +149,7 @@
     %shadow-pos,
     %shadow-config;
 }
-.mobius-shadow-half,
-.hover\:mobius-shadow-half {
-  @extend %shadow-pos-half;
-}
+
 :root,
 html,
 page {
@@ -154,75 +158,107 @@ page {
 
   &[data-source="lt"],
   & .mobius-shadow-lt2rb,
-  & .hover\:mobius-shadow-lt2rb:hover {
+  & .hover_mobius-shadow-lt2rb:hover,
+  & .active_mobius-shadow-lt2rb:active {
     --lightsource-angle-current: 315deg;
 
     &.mobius-shadow-normal,
-    &.hover\:mobius-shadow-normal:hover,
+    &.hover_mobius-shadow-normal:hover,
+    &.active_mobius-shadow-normal:active,
     & .mobius-shadow-normal,
-    & .hover\:mobius-shadow-normal:hover {
+    & .hover_mobius-shadow-normal:hover,
+    & .active_mobius-shadow-normal:active {
       @extend %shadow-ltrb-normal, %shadow-source-lt;
     }
     &.mobius-shadow-inset,
-    &.hover\:mobius-shadow-inset:hover,
+    &.hover_mobius-shadow-inset:hover,
+    &.active_mobius-shadow-inset:active,
     & .mobius-shadow-inset,
-    & .hover\:mobius-shadow-inset:hover {
+    & .hover_mobius-shadow-inset:hover,
+    & .active_mobius-shadow-inset:active {
       @extend %shadow-ltrb-inset, %shadow-source-lt;
     }
   }
   &[data-source="rt"],
   & .mobius-shadow-rt2lb,
-  & .hover\:mobius-shadow-rt2lb:hover {
+  & .hover_mobius-shadow-rt2lb:hover,
+  & .active_mobius-shadow-rt2lb:active {
     --lightsource-angle-current: 45deg;
 
     &.mobius-shadow-normal,
-    &.hover\:mobius-shadow-normal:hover,
+    &.hover_mobius-shadow-normal:hover,
+    &.active_mobius-shadow-normal:active,
     & .mobius-shadow-normal,
-    & .hover\:mobius-shadow-normal:hover {
+    & .hover_mobius-shadow-normal:hover,
+    & .active_mobius-shadow-normal:active {
       @extend %shadow-rtlb-normal, %shadow-source-rt;
     }
     &.mobius-shadow-inset,
-    &.hover\:mobius-shadow-inset:hover,
+    &.hover_mobius-shadow-inset:hover,
+    &.active_mobius-shadow-inset:active,
     & .mobius-shadow-inset,
-    & .hover\:mobius-shadow-inset:hover {
+    & .hover_mobius-shadow-inset:hover,
+    & .active_mobius-shadow-inset:active {
       @extend %shadow-rtlb-inset, %shadow-source-rt;
     }
   }
   &[data-source="rb"],
   & .mobius-shadow-rb2lt,
-  & .hover\:mobius-shadow-rb2lt:hover {
+  & .hover_mobius-shadow-rb2lt:hover,
+  & .active_mobius-shadow-rb2lt:active {
     --lightsource-angle-current: 135deg;
 
     &.mobius-shadow-normal,
-    &.hover\:mobius-shadow-normal:hover,
+    &.hover_mobius-shadow-normal:hover,
+    &.active_mobius-shadow-normal:active,
     & .mobius-shadow-normal,
-    & .hover\:mobius-shadow-normal:hover {
+    & .hover_mobius-shadow-normal:hover,
+    & .active_mobius-shadow-normal:active {
       @extend %shadow-ltrb-normal, %shadow-source-rb;
     }
     &.mobius-shadow-inset,
-    &.hover\:mobius-shadow-inset:hover,
+    &.hover_mobius-shadow-inset:hover,
+    &.active_mobius-shadow-inset:active,
     & .mobius-shadow-inset,
-    & .hover\:mobius-shadow-inset:hover {
+    & .hover_mobius-shadow-inset:hover,
+    & .active_mobius-shadow-inset:active {
       @extend %shadow-ltrb-inset, %shadow-source-rb;
     }
   }
   &[data-source="lb"],
   & .mobius-shadow-lb2rt,
-  & .hover\:mobius-shadow-lb2rt:hover {
+  & .hover_mobius-shadow-lb2rt:hover,
+  & .active_mobius-shadow-lb2rt:active {
     --lightsource-angle-current: 225deg;
 
     &.mobius-shadow-normal,
-    &.hover\:mobius-shadow-normal:hover,
+    &.hover_mobius-shadow-normal:hover,
+    &.active_mobius-shadow-normal:active,
     & .mobius-shadow-normal,
-    & .hover\:mobius-shadow-normal:hover {
+    & .hover_mobius-shadow-normal:hover,
+    & .active_mobius-shadow-normal:active {
       @extend %shadow-rtlb-normal, %shadow-source-lb;
     }
     &.mobius-shadow-inset,
-    &.hover\:mobius-shadow-inset:hover,
+    &.hover_mobius-shadow-inset:hover,
+    &.active_mobius-shadow-inset:active,
     & .mobius-shadow-inset,
-    & .hover\:mobius-shadow-inset:hover {
+    & .hover_mobius-shadow-inset:hover,
+    & .active_mobius-shadow-inset:active {
       @extend %shadow-rtlb-inset, %shadow-source-lb;
     }
   }
+}
+
+.mobius-shadow-half,
+.hover_mobius-shadow-half:hover,
+.active_mobius-shadow-half:active {
+  @extend %shadow-pos-half;
+}
+
+.mobius-shadow-thin,
+.hover_mobius-shadow-thin:hover,
+.active_mobius-shadow-thin:active {
+  @extend %shadow-pos-thin;
 }
 /* purgecss end ignore */
