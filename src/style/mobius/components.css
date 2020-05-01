@@ -6,20 +6,18 @@
  * - with global control: none,
  * - use  global params : none,
  * - set  global params : none,
- * - use  theme  props  : --bg-color-normal, --text-color-hover,
+ * - use  theme  props  : --bg-color-normal, --text-color-primary,
  * - release     props  : none,
  *
  * - usage: none,
  *
- * - classes: .mobius-toggle,
+ * - classes: .mobius-toggle, .mobius-toggle-checked
  *
- * - TODO: todo example,
+ * - TODO: none,
  *
- * - 1. other comment,
- * - 2. another comment,
- * - 3. ...,
+ * - 1. none comment,
  *
- * !important ...
+ * !important none
  *
  *********************************************************/
 
@@ -28,7 +26,9 @@
   position: relative;
   width: var(--toggle-size);
   height: calc(var(--toggle-size) / 2);
-  & input {
+  & input,
+  & checkbox-group,
+  & checkbox {
     display: none;
   }
   & label {
@@ -45,23 +45,26 @@
       top: 0;
       border-radius: 50%;
       background: var(--bg-color-normal);
+      box-sizing: border-box;
     }
     &::before {
       height: 80%;
       width: 40%;
       margin: 5% 5%;
-      border: 2px solid var(--text-color-hover);
+      border: 2px solid var(--text-color-primary);
     }
     &::after {
       height: 20%;
       width: 10%;
       margin: 20%;
     }
-    &:hover::after {
-      background: var(--text-color-hover);
+    &:hover::after,
+    &:active::after {
+      background: var(--text-color-primary);
     }
   }
-  & input:checked + label {
+  & input:checked + label,
+  &.mobius-toggle-checked label {
     &::before,
     &::after {
       left: 50%;

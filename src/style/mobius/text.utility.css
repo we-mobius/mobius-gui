@@ -11,52 +11,50 @@
  *
  * - usage: none,
  *
- * - classes: .mobius-text-normal(hover), .mobius-text-cigaret(hover), .mobius-text-mobius,
+ * - classes: .mobius-text-normal(hover, active), .mobius-text-primary(hover, active),
+ *            .mobius-text-dark(hover, active), .mobius-text-light(hover, active), .mobius-text-cigaret(hover, active), .mobius-text-mobius(hover, active),
  *
- * - TODO: todo example,
+ * - TODO: none,
  *
- * - 1. other comment,
- * - 2. another comment,
- * - 3. ...,
+ * - 1. no comment,
  *
  * !important
  *
  *********************************************************/
 
-.mobius-text-normal {
-  color: var(--text-color-normal);
-}
-.hover\:mobius-text-normal:hover {
+.mobius-text-normal,
+.hover_mobius-text-normal:hover,
+.active_mobius-text-normal:active {
   color: var(--text-color-normal);
 }
 
-.mobius-text-hover,
-.hover\:mobius-text-hover:hover {
-  color: var(--text-color-hover);
-}
-
-.mobius-text-selected,
-.hover\:mobius-text-selected:hover {
-  color: var(--text-color-selected);
+.mobius-text-primary,
+.hover_mobius-text-primary:hover,
+.active_mobius-text-primary:active {
+  color: var(--text-color-primary);
 }
 
 .mobius-text-dark,
-.hover\:mobius-text-dark:hover {
+.hover_mobius-text-dark:hover,
+.active_mobius-text-dark:active {
   color: var(--dark-color-normal);
 }
 
 .mobius-text-light,
-.hover\:mobius-text-light:hover {
+.hover_mobius-text-light:hover,
+.active_mobius-text-light:active {
   color: var(--light-color-normal);
 }
 
 .mobius-text-cigaret,
-.hover\:mobius-text-cigaret:hover {
+.hover_mobius-text-cigaret:hover,
+.active_mobius-text-cigaret:active {
   color: var(--cigaret-color-normal);
 }
 
 .mobius-text-mobius,
-.hover\:mobius-text-mobius:hover {
+.hover_mobius-text-mobius:hover,
+.active_mobius-text-mobius:active {
   color: var(--mobius-color-normal);
 }
 
