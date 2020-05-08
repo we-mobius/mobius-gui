@@ -1,0 +1,131 @@
+/*! purgecss start ignore */
+/*********************************************************
+ *                       全局变量
+ * - 1. page 用于兼容小程序端
+ *********************************************************/
+
+/*********************************************************
+ *                  主题 (theme: color)
+ *
+ * - release     props  : %var-color,
+ *
+ * - usage: [%var-color](use)(theme.utility)
+ *
+ *********************************************************/
+
+%var-color {
+  /* --seed: 624;
+  --cigaret: calc(var(--seed) - 360);
+  --mobius: calc(360 - 264); */
+
+  --dark-color-darker: hsla(264, 0%, 7%, 50%);
+  --dark-color-darker-m: hsla(264, 0%, 12%, 50%);
+  --dark-color-normal: hsla(264, 0%, 17%, 100%);
+  --dark-color-lighter-m: hsla(264, 0%, 22%, 50%);
+  --dark-color-lighter: hsla(264, 0%, 27%, 50%);
+
+  --light-color-darker: hsla(264, 0%, 68%, 100%);
+  --light-color-darker-m: hsla(264, 0%, 73%, 100%);
+  --light-color-normal: hsla(264, 0%, 83%, 100%);
+  --light-color-lighter-m: hsla(264, 0%, 93%, 100%);
+  --light-color-lighter: hsla(264, 0%, 98%, 100%);
+
+  --cigaret-color-darker: hsla(264, 100%, 17%, 100%);
+  --cigaret-color-darker-m: hsla(264, 100%, 30%, 100%);
+  --cigaret-color-normal: hsla(264, 100%, 50%, 100%);
+  --cigaret-color-lighter-m: hsla(264, 100%, 70%, 100%);
+  --cigaret-color-lighter: hsla(264, 100%, 83%, 100%);
+
+  --mobius-color-darker: hsla(96, 100%, 17%, 100%);
+  --mobius-color-darker-m: hsla(96, 100%, 30%, 100%);
+  --mobius-color-normal: hsla(96, 100%, 50%, 100%);
+  --mobius-color-lighter-m: hsla(96, 100%, 70%, 100%);
+  --mobius-color-lighter: hsla(96, 100%, 83%, 100%);
+}
+:root,
+html,
+page {
+  @extend %var-color;
+}
+
+/*********************************************************
+ *                主题 (theme: light source)
+ *
+ * - release     props  : %var-lightsource-angle,
+ *                        ----lightsource-angle-current,
+ *
+ * - usage: [%var-lightsource-angle](use)(shadow.utility),
+ *          [--lightsource-angle-current](set)(shadow.utility),
+ *                                       (use)(background.utility),
+ *
+ *********************************************************/
+
+ %var-lightsource-angle {
+  --lightsource-angle-lt: 315deg;
+  --lightsource-angle-rt: 45deg;
+  --lightsource-angle-rb: 135deg;
+  --lightsource-angle-lb: 225deg;
+}
+:root,
+html,
+page {
+  @extend %var-lightsource-angle;
+  --lightsource-angle-current: var(--lightsource-angle-lt);
+
+  &[data-source="lt"] {
+    --lightsource-angle-current: 315deg;
+  }
+  &[data-source="rt"] {
+    --lightsource-angle-current: 45deg;
+  }
+  &[data-source="rb"] {
+    --lightsource-angle-current: 135deg;
+  }
+  &[data-source="lb"] {
+    --lightsource-angle-current: 225deg;
+  }
+}
+
+/*********************************************************
+ *                主题 (theme: transition)
+ *********************************************************/
+
+:root,
+html,
+page {
+  --transition-property-common: color, background-color, box-shadow;
+  --transition-property-all: all;
+  --transition-duration-normal: 0.624s;
+  --transition-timing-function-normal: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --transition-delay-none: 0s;
+}
+
+/*********************************************************
+ *           以下是 CSS -> JavaScript 传参设置
+ *                ！！！仅支持 Web 端
+ *********************************************************/
+
+:root {
+  --mode: "unknown";
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mode: "dark";
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --mode: "light";
+  }
+}
+
+@media (any-hover: none) {
+  body::before {
+    content: "hoverNone";
+    display: none;
+  }
+}
+
+/*! purgecss end ignore */
