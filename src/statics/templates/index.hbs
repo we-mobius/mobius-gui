@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{!-- 渲染 favicon --}}
+  <link rel="apple-touch-icon" type="image/png" href="{{mobiusConfig.favicon}}">
+  <link rel="apple-touch-startup-image" type="image/png" href="{{mobiusConfig.favicon}}">
+  <link rel="icon" type="image/png" href="{{mobiusConfig.favicon}}">
+  <title>{{mobiusConfig.title}}</title>
+
+  {{!-- 渲染单独定义的外部样式表 --}}
+  {{#each mobiusConfig.css as |outer-css|}}
+  <link rel='preload' as="style" href="{{outer-css}}" />
+  {{/each}}
+  {{!-- 渲染 webpack 打包完成的 CSS --}}
+  {{#each htmlWebpackPlugin.css as |inner-css|}}
+  <link rel="stylesheet" href="{{inner-css}}">
+  {{/each}}
+  {{!-- 渲染单独定义的脚本文件 --}}
+  {{#each mobiusConfig.scripts as |outer-js|}}
+  <link rel='preload' as='script' herf="{{outer-js}}" />
+  {{/each}}
+  {{!-- 渲染 webpack 打包完成的 JavaScript --}}
+  {{#each htmlWebpackPlugin.js as |inner-js|}}
+  <script defer src="{{inner-js}}"></script>
+  {{/each}}
+
+  {{!-- 渲染额外的 head 标签 --}}
+  {{{mobiusConfig.headHtmlSnippet}}}
+</head>
+
+<body>
+  {{!-- 渲染额外的 body 内容 --}}
+  {{{mobiusConfig.bodyHtmlSnippet}}}
+
+  {{!-- 渲染百度统计代码 --}}
+  {{#if mobiusConfig.baiduAnalytics.trackingId}}
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?{{mobiusConfig.baiduAnalytics.trackingId}}";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  {{/if}}
+
+  {{!-- 渲染额外引入的字体资源 --}}
+  {{#each mobiusConfig.fonts as |extra-font|}}
+  <link rel='preload' as="font" href="{{extra-font}}" />
+  {{/each}}
+
+  {{!-- 渲染 Google Analytics 代码 --}}
+  {{#if mobiusConfig.googleAnalytics.trackingId}}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{mobiusConfig.googleAnalytics.trackingId}}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '{{mobiusConfig.googleAnalytics.trackingId}}');
+  </script>
+  {{/if}}
+</body>
+
+</html>

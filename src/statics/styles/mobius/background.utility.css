@@ -1,0 +1,151 @@
+/*! purgecss start ignore */
+/*********************************************************
+ *           Mobius Background Utility
+ *
+ * - with css    houdini: registerProperty(--start-color, --end-color),
+ * - with global control: none,
+ * - use  global params : --light-source-angle-current,
+ *                        --transition-property-common, --transition-duration-normal,
+ *                        --dark-color-normal, --light-color-normal, --cigaret-color-normal, --mobius-color-normal,
+ * - set  global params : none,
+ * - use  theme  props  : --bg-color-darker-m, --bg-color-lighter-m,
+ * - release     props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-bg-transparent(hover, active),
+ *            .mobius-bg-concave(hover, active), .mobius-bg-convex(hover, active),
+ *            .mobius-bg-normal(hover, active), .mobius-bg-primary(hover, active),
+ *            .mobius-bg-light(hover, active), .mobius-bg-dark(hover, active), .mobius-bg-cigaret(hover, active), .mobius-bg-mobius(hover, active),
+ *
+ * !important transition-property
+ *
+ *********************************************************/
+
+/* erase bg utility */
+.mobius-bg-transparent,
+.hover_mobius-bg-transparent:hover,
+.active_mobius-bg-transparent:active {
+  background: transparent;
+}
+
+/* adjust to theme */
+%bglinear-color {
+  --bglinear-color-dark: var(--bg-color-darker-m);
+  --bglinear-color-light: var(--bg-color-lighter-m);
+}
+%bg-linear {
+  background: linear-gradient(
+    var(--lightsource-angle-current),
+    var(--start-color),
+    var(--end-color)
+  );
+}
+%bg-transition {
+  transition-property: var(--transition-property-common), --start-color,
+    --end-color !important;
+  transition-duration: var(--transition-duration-normal);
+}
+.mobius-bg-concave,
+.hover_mobius-bg-concave:hover,
+.active_mobius-bg-concave:active {
+  @extend %bg-linear, %bglinear-color, %bg-transition;
+  --start-color: var(--bglinear-color-dark);
+  --end-color: var(--bglinear-color-light);
+}
+.mobius-bg-convex,
+.hover_mobius-bg-convex:hover,
+.active_mobius-bg-convex:active {
+  @extend %bg-linear, %bglinear-color, %bg-transition;
+  --start-color: var(--bglinear-color-light);
+  --end-color: var(--bglinear-color-dark);
+}
+
+.mobius-bg-normal,
+.hover_mobius-bg-normal:hover,
+.active_mobius-bg-normal:active {
+  background-color: var(--bg-color-normal);
+  &.mobius-bg-concave,
+  &.hover_mobius-bg-concave:hover,
+  &.active_mobius-bg-concave:active,
+  &.mobius-bg-convex,
+  &.hover_mobius-bg-convex:hover,
+  &.active_mobius-bg-convex:active {
+    --bglinear-color-dark: var(--bg-color-darker-m);
+    --bglinear-color-light: var(--bg-color-lighter-m);
+  }
+}
+
+.mobius-bg-primary,
+.hover_mobius-bg-primary:hover,
+.active_mobius-bg-primary:active {
+  background-color: var(--bg-color-primary);
+  &.mobius-bg-concave,
+  &.hover_mobius-bg-concave:hover,
+  &.active_mobius-bg-concave:active,
+  &.mobius-bg-convex,
+  &.hover_mobius-bg-convex:hover,
+  &.active_mobius-bg-convex:active {
+    --bglinear-color-dark: var(--bg-color-primary);
+    --bglinear-color-light: var(--bg-color-primary);
+  }
+}
+
+/* normal bg utility */
+.mobius-bg-light,
+.hover_mobius-bg-light:hover,
+.active_mobius-bg-light:active {
+  background-color: var(--light-color-normal);
+  &.mobius-bg-concave,
+  &.hover_mobius-bg-concave:hover,
+  &.active_mobius-bg-concave:active,
+  &.mobius-bg-convex,
+  &.hover_mobius-bg-convex:hover,
+  &.active_mobius-bg-convex:active {
+    --bglinear-color-dark: var(--light-color-darker-m);
+    --bglinear-color-light: var(--light-color-lighter-m);
+  }
+}
+.mobius-bg-dark,
+.hover_mobius-bg-dark:hover,
+.active_mobius-bg-dark:active {
+  background-color: var(--dark-color-normal);
+  &.mobius-bg-concave,
+  &.hover_mobius-bg-concave:hover,
+  &.active_mobius-bg-concave:active,
+  &.mobius-bg-convex,
+  &.hover_mobius-bg-convex:hover,
+  &.active_mobius-bg-convex:active {
+    --bglinear-color-dark: var(--dark-color-darker-m);
+    --bglinear-color-light: var(--dark-color-lighter-m);
+  }
+}
+.mobius-bg-cigaret,
+.hover_mobius-bg-cigaret:hover,
+.active_mobius-bg-cigaret:active {
+  background-color: var(--cigaret-color-normal);
+  &.mobius-bg-concave,
+  &.hover_mobius-bg-concave:hover,
+  &.active_mobius-bg-concave:active,
+  &.mobius-bg-convex,
+  &.hover_mobius-bg-convex:hover,
+  &.active_mobius-bg-convex:active {
+    --bglinear-color-dark: var(--cigaret-color-darker-m);
+    --bglinear-color-light: var(--cigaret-color-lighter-m);
+  }
+}
+.mobius-bg-mobius,
+.hover_mobius-bg-mobius:hover,
+.active_mobius-bg-mobius:active {
+  background-color: var(--mobius-color-normal);
+  &.mobius-bg-concave,
+  &.hover_mobius-bg-concave:hover,
+  &.active_mobius-bg-concave:active,
+  &.mobius-bg-convex,
+  &.hover_mobius-bg-convex:hover,
+  &.active_mobius-bg-convex:active {
+    --bglinear-color-dark: var(--mobius-color-darker-m);
+    --bglinear-color-light: var(--mobius-color-lighter-m);
+  }
+}
+/*! purgecss end ignore */

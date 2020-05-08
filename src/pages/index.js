@@ -53,7 +53,7 @@ function main (source) {
         ]),
         div('.main.mobius-shadow-inset.rounded', [
           div('.mobius-scrollbar-hidden.w-full.h-full.overflow-y-scroll.flex.flex-wrap.justify-around.items-start.rounded', [
-            div('.w-full.h-48.flex.justify-center.items-center.text-6xl.font-mono', [
+            div('.w-full.h-48.flex.justify-center.items-center.text-6xl.font-mono.mobius-font-noto', [
               span('Mobius UI')
             ]),
             div('.w-full.h-auto.py-4.px-8.text-justify.hover_mobius-text-primary', LOREM + LOREM),
