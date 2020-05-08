@@ -16,7 +16,7 @@
 
 And goes far from UI level. This repo will shows preview of Mobius UI before I surely complete the first stable version.
 
-For a quickest preview: visit [Mobius UI preview]().
+For a quickest preview: visit [Mobius UI preview](https://we-mobius.github.io/mobius-ui/dist/).
 
 ## Details
 
@@ -27,7 +27,7 @@ For a quickest preview: visit [Mobius UI preview]().
 Currently mobius is just a preview version, but you can still try it in toy projects. Here are some tips for that case:
 
 - Check **Design Spec.** and visit **Preview Site** to know how to use. In the short term, there won't be a User Guide to show you how to use it exactly.
-- Don't be scared by its size (42 KB for current), although the size after minify is 41 KB. Due to the large number of verbose variables, you can enable gzip to reduce it to only 7 KB (80% compressed). Later I will build a public CDN with Gzip opend, you can use it with a simple `<link>` tag in your pages instead of local build.
+- Don't be scared by its size (42 KB for current), although the size after minify is 41 KB. Due to the large number of verbose variables, you can enable gzip to reduce it to only 7 KB (80% compressed). Later I will build a public CDN with Gzip opened, you can use it with a simple `<link>` tag in your pages instead of local build.
 - Star & Watch to follow the latest work I've done. Don't be shy to open a ISSUE 🤗
 
 All the relative documentations of detail, pls check `./docs`，which contains:
@@ -39,7 +39,7 @@ All the relative documentations of detail, pls check `./docs`，which contains:
 ## Built With
 
 - [cyclejs](https://github.com/cyclejs/cyclejs) - Great Jobs for handle DOMs functionally and reactively 🤞
-- [rxjs](https://github.com/ReactiveX/rxjs) - Reactive programming for JavaScript
+- [rxjs](https://github.com/ReactiveX/rxjs) - Reactive programming library for JavaScript
 - [tailwindcss](https://github.com/tailwindcss/tailwindcss) - Utility-first CSS framework
 
 ## Author

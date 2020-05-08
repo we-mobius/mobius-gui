@@ -1,25 +1,29 @@
 const path = require('path')
-const glob = require('glob')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const PurgecssPlugin = require('purgecss-webpack-plugin')
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 const PATHS = {
-  src: path.join(process.cwd(), 'src'),
-  dist: path.resolve(process.cwd(), 'dist')
+  src: path.resolve(process.cwd(), 'src'),
+  output: path.resolve(process.cwd(), 'dist')
 }
 
 module.exports = {
   mode: 'production',
   output: {
-    path: PATHS.dist
+    path: PATHS.output
   },
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // 添加在 CSS 文件中引用的其它资源路径的前面，可用于配置 CDN，不如 file-loader 设置的 publicPath 优先
+              // publicPath: 'https://cdn.cigaret.world/'
+            }
+          },
           'css-loader',
           'postcss-loader'
         ]
@@ -28,19 +32,25 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style/mobius.css'
+      filename: 'styles/[name].[contenthash:10].css',
+      chunkFilename: 'styles/[id].[contenthash:10].css'
     }),
-    new PurgecssPlugin({
-      verbose: true,
-      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-      // Problem: "At the moment purgecss only works with basic selectors like id, class and tag because of limitations in the extractors."
-      // Refer to: https://github.com/FullHuman/purgecss/issues/110
-      // Solution: Use comment approach to whitelist attribute selectors
-      // whitelistPatterns: [/[a-zA-Z]+\[.+?\]/],
-      // whitelistPatternsChildren: [/[a-zA-Z]+\[.+?\]/],
-      rejected: true
-    }),
-    new OptimizeCssAssetsWebpackPlugin({})
+    // CopyPlugin configurations: https://github.com/webpack-contrib/copy-webpack-plugin
+    new CopyPlugin([
+      {
+        from: './src/statics/favicons/',
+        // to 可以写相对 webpack.config.output.path 的路径，比如 './statics/favicons/'
+        // 但 CopyPlugin 插件的文档中没有明确说明 to 最终路径的计算规则
+        // 所以我个人推荐手动计算绝对路径，如下
+        to: path.resolve(PATHS.output, './statics/favicons/'),
+        toType: 'dir'
+      },
+      {
+        from: './src/statics/styles/fonts/',
+        to: path.resolve(PATHS.output, './styles/fonts/'),
+        toType: 'dir'
+      }
+    ])
   ],
   devtool: 'hidden-nosources-source-map'
 }

@@ -3,23 +3,35 @@
   "version": "0.0.1",
   "description": "Mobius UI based on TailWind CSS.",
   "main": "index.js",
+  "keywords": [
+    ""
+  ],
   "scripts": {
-    "cz-commit": "yarn lint && git-cz",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "start": "webpack-dev-server --mode=development",
+    "cz-commit": "npm run lint && npx git-cz",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "dev": "webpack-dev-server --mode=development",
     "build": "webpack --mode=development",
-    "dist": "webpack --mode=production"
+    "dist": "webpack --mode=production",
+    "serve": "live-server ./dist --port=0624"
   },
   "repository": "https://github.com/we-mobius/mobius-ui.git",
-  "author": "kongxiangyan <kcigaret@outlook.com>",
+  "author": {
+    "name": "kongxiangyan",
+    "email": "kcigaret@outlook.com",
+    "url": "https://cigaret.world/"
+  },
   "license": "GPL v3.0",
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
+    "@fullhuman/postcss-purgecss": "^2.1.2",
+    "autoprefixer": "^9.7.6",
     "clean-webpack-plugin": "^3.0.0",
     "commitizen": "^4.0.3",
     "commitlint-config-cz": "^0.13.0",
+    "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
+    "cssnano": "^4.1.10",
     "cz-customizable": "^6.2.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
@@ -27,22 +39,24 @@
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "file-loader": "^6.0.0",
+    "handlebars": "^4.7.6",
+    "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^4.2.1",
     "lint-staged": "^10.0.8",
     "mini-css-extract-plugin": "^0.9.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "mini-svg-data-uri": "^1.1.3",
     "postcss": "^7.0.27",
     "postcss-advanced-variables": "^3.0.1",
     "postcss-extend-rule": "^3.0.0",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
-    "precss": "^4.0.0",
-    "purgecss-webpack-plugin": "^2.0.6",
     "standard": "^14.3.1",
     "style-loader": "^1.1.3",
     "tailwindcss": "^1.2.0",
+    "url-loader": "^4.1.0",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
@@ -61,5 +75,6 @@
     "@cycle/isolate": "^5.2.0",
     "@cycle/rxjs-run": "^10.4.0",
     "rxjs": "^6.5.4"
-  }
+  },
+  "jsdelivr": "./dist/style/mobius.css"
 }
