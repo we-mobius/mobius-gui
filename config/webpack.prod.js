@@ -47,7 +47,7 @@ module.exports = {
       },
       {
         from: './src/statics/styles/fonts/',
-        to: path.resolve(PATHS.output, './styles/fonts/'),
+        to: path.resolve(PATHS.output, './statics/styles/fonts/'),
         toType: 'dir'
       }
     ])

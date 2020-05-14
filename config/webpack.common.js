@@ -56,7 +56,7 @@ module.exports = {
               {
                 loader: 'file-loader',
                 options: {
-                  name: '[name].[contenthash:10].[ext]',
+                  name: '[name].[ext]',
                   outputPath: 'statics/fonts/'
                 }
               }

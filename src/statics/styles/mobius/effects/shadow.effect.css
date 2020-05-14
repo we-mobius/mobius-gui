@@ -1,0 +1,264 @@
+/*! purgecss start ignore */
+/*********************************************************
+ *               Mobius Shadow Utility
+ *
+ * - with css    houdini: none,
+ * - with global control: [shadow-source],
+ * - use  global params : %var-lightsource-angle,
+ * - set  global params : --lightsource-angle-current,
+ * - use  theme  props  : --bg-color-darker, --bg-color-lighter,
+ * - release     props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-shadow--normal(hover, active), .mobius-shadow--inset(hover, active),
+ *            .mobius-shadow--half(hover, active), .mobius-shadow--thin(hover, active)
+ *            .mobius-shadow--lt2rb(hover, active), .mobius-shadow--rt2lb(hover, active), .mobius-shadow--rb2lt(hover, active), .mobius-shadow--lb2rt(hover, active)
+ *
+ * - 1. bg-color -> shadow-color -> side-color -> shadow
+ * - 2. 两个对角合并组成的整体阴影比 4 个方向合并组成的阴影更好
+ *
+ * !important none
+ *
+ *********************************************************/
+
+%shadow-config {
+  --shadow-blur-radius: 1rem;
+}
+/* modify shadow's color, but do not change the dark & light */
+%shadow-color {
+  --shadow-color-dark: var(--bg-color-darker);
+  --shadow-color-light: var(--bg-color-lighter);
+}
+%shadow-pos {
+  --shadow-offset-positive: 0.5rem;
+  --shadow-offset-negtive: -0.5rem;
+}
+%shadow-pos-half {
+  --shadow-offset-positive: 0.25rem;
+  --shadow-offset-negtive: -0.25rem;
+}
+%shadow-pos-thin {
+  --shadow-offset-positive: 0rem;
+  --shadow-offset-negtive: 0rem;
+}
+/* modify the shadow's lightness correspond to shadow's position (which position the light shed on) */
+%shadow-source-lt {
+  --shadow-light-angle: var(--lightsource-angle-lt);
+  --shadow-top-color: var(--shadow-color-light);
+  --shadow-right-color: var(--shadow-color-dark);
+  --shadow-bottom-color: var(--shadow-color-dark);
+  --shadow-left-color: var(--shadow-color-light);
+}
+%shadow-source-rt {
+  --shadow-light-angle: var(--lightsource-angle-rt);
+  --shadow-top-color: var(--shadow-color-light);
+  --shadow-right-color: var(--shadow-color-light);
+  --shadow-bottom-color: var(--shadow-color-dark);
+  --shadow-left-color: var(--shadow-color-dark);
+}
+%shadow-source-rb {
+  --shadow-light-angle: var(--lightsource-angle-rb);
+  --shadow-top-color: var(--shadow-color-dark);
+  --shadow-right-color: var(--shadow-color-light);
+  --shadow-bottom-color: var(--shadow-color-light);
+  --shadow-left-color: var(--shadow-color-dark);
+}
+%shadow-source-lb {
+  --shadow-light-angle: var(--lightsource-angle-lb);
+  --shadow-top-color: var(--shadow-color-dark);
+  --shadow-right-color: var(--shadow-color-dark);
+  --shadow-bottom-color: var(--shadow-color-light);
+  --shadow-left-color: var(--shadow-color-light);
+}
+%shadow-details {
+  --shadow-top-normal: 0 var(--shadow-offset-negtive) var(--shadow-blur-radius)
+    var(--shadow-top-color);
+  --shadow-right-normal: var(--shadow-offset-positive) 0
+    var(--shadow-blur-radius) var(--shadow-right-color);
+  --shadow-bottom-normal: 0 var(--shadow-offset-positive)
+    var(--shadow-blur-radius) var(--shadow-bottom-color);
+  --shadow-left-normal: var(--shadow-offset-negtive) 0 var(--shadow-blur-radius)
+    var(--shadow-left-color);
+
+  --shadow-righttop-normal: var(--shadow-offset-positive)
+    var(--shadow-offset-negtive) var(--shadow-blur-radius)
+    var(--shadow-right-color);
+  --shadow-rightbottom-normal: var(--shadow-offset-positive)
+    var(--shadow-offset-positive) var(--shadow-blur-radius)
+    var(--shadow-right-color);
+  --shadow-leftbottom-normal: var(--shadow-offset-negtive)
+    var(--shadow-offset-positive) var(--shadow-blur-radius)
+    var(--shadow-left-color);
+  --shadow-lefttop-normal: var(--shadow-offset-negtive)
+    var(--shadow-offset-negtive) var(--shadow-blur-radius)
+    var(--shadow-left-color);
+
+  --shadow-top-inset: inset 0 var(--shadow-offset-positive)
+    var(--shadow-blur-radius) var(--shadow-bottom-color);
+  --shadow-right-inset: inset var(--shadow-offset-negtive) 0
+    var(--shadow-blur-radius) var(--shadow-left-color);
+  --shadow-bottom-inset: inset 0 var(--shadow-offset-negtive)
+    var(--shadow-blur-radius) var(--shadow-top-color);
+  --shadow-left-inset: inset var(--shadow-offset-positive) 0
+    var(--shadow-blur-radius) var(--shadow-right-color);
+
+  --shadow-righttop-inset: inset var(--shadow-offset-negtive)
+    var(--shadow-offset-positive) var(--shadow-blur-radius)
+    var(--shadow-left-color);
+  --shadow-rightbottom-inset: inset var(--shadow-offset-negtive)
+    var(--shadow-offset-negtive) var(--shadow-blur-radius)
+    var(--shadow-left-color);
+  --shadow-leftbottom-inset: inset var(--shadow-offset-positive)
+    var(--shadow-offset-negtive) var(--shadow-blur-radius)
+    var(--shadow-right-color);
+  --shadow-lefttop-inset: inset var(--shadow-offset-positive)
+    var(--shadow-offset-positive) var(--shadow-blur-radius)
+    var(--shadow-right-color);
+}
+%shadow-ltrb-normal {
+  box-shadow: var(--shadow-lefttop-normal), var(--shadow-rightbottom-normal);
+}
+%shadow-ltrb-inset {
+  box-shadow: 0 0 0 transparent, 0 0 0 transparent, var(--shadow-lefttop-inset), var(--shadow-rightbottom-inset);
+}
+%shadow-rtlb-normal {
+  box-shadow: var(--shadow-righttop-normal), var(--shadow-leftbottom-normal);
+}
+%shadow-rtlb-inset {
+  box-shadow: 0 0 0 transparent, 0 0 0 transparent, var(--shadow-righttop-inset), var(--shadow-leftbottom-inset);
+}
+/* light source is in the left top corner by default */
+.mobius-shadow--normal,
+.hover_mobius-shadow--normal:hover,
+.active_mobius-shadow--normal:active {
+  @extend %shadow-ltrb-normal,
+    %shadow-details,
+    %shadow-source-lt,
+    %shadow-color,
+    %shadow-pos,
+    %shadow-config;
+}
+.mobius-shadow--inset,
+.hover_mobius-shadow--inset:hover,
+.active_mobius-shadow--inset:active {
+  @extend %shadow-ltrb-inset,
+    %shadow-details,
+    %shadow-source-lt,
+    %shadow-color,
+    %shadow-pos,
+    %shadow-config;
+}
+
+:root,
+html,
+page {
+  @extend %shadow-pos, %shadow-config;
+  /* release custom variables of shadow config to global */
+
+  &[data-source="lt"],
+  & .mobius-shadow--lt2rb,
+  & .hover_mobius-shadow--lt2rb:hover,
+  & .active_mobius-shadow--lt2rb:active {
+    --lightsource-angle-current: 315deg;
+
+    &.mobius-shadow--normal,
+    &.hover_mobius-shadow--normal:hover,
+    &.active_mobius-shadow--normal:active,
+    & .mobius-shadow--normal,
+    & .hover_mobius-shadow--normal:hover,
+    & .active_mobius-shadow--normal:active {
+      @extend %shadow-ltrb-normal, %shadow-source-lt;
+    }
+    &.mobius-shadow--inset,
+    &.hover_mobius-shadow--inset:hover,
+    &.active_mobius-shadow--inset:active,
+    & .mobius-shadow--inset,
+    & .hover_mobius-shadow--inset:hover,
+    & .active_mobius-shadow--inset:active {
+      @extend %shadow-ltrb-inset, %shadow-source-lt;
+    }
+  }
+  &[data-source="rt"],
+  & .mobius-shadow--rt2lb,
+  & .hover_mobius-shadow--rt2lb:hover,
+  & .active_mobius-shadow--rt2lb:active {
+    --lightsource-angle-current: 45deg;
+
+    &.mobius-shadow--normal,
+    &.hover_mobius-shadow--normal:hover,
+    &.active_mobius-shadow--normal:active,
+    & .mobius-shadow--normal,
+    & .hover_mobius-shadow--normal:hover,
+    & .active_mobius-shadow--normal:active {
+      @extend %shadow-rtlb-normal, %shadow-source-rt;
+    }
+    &.mobius-shadow--inset,
+    &.hover_mobius-shadow--inset:hover,
+    &.active_mobius-shadow--inset:active,
+    & .mobius-shadow--inset,
+    & .hover_mobius-shadow--inset:hover,
+    & .active_mobius-shadow--inset:active {
+      @extend %shadow-rtlb-inset, %shadow-source-rt;
+    }
+  }
+  &[data-source="rb"],
+  & .mobius-shadow--rb2lt,
+  & .hover_mobius-shadow--rb2lt:hover,
+  & .active_mobius-shadow--rb2lt:active {
+    --lightsource-angle-current: 135deg;
+
+    &.mobius-shadow--normal,
+    &.hover_mobius-shadow--normal:hover,
+    &.active_mobius-shadow--normal:active,
+    & .mobius-shadow--normal,
+    & .hover_mobius-shadow--normal:hover,
+    & .active_mobius-shadow--normal:active {
+      @extend %shadow-ltrb-normal, %shadow-source-rb;
+    }
+    &.mobius-shadow--inset,
+    &.hover_mobius-shadow--inset:hover,
+    &.active_mobius-shadow--inset:active,
+    & .mobius-shadow--inset,
+    & .hover_mobius-shadow--inset:hover,
+    & .active_mobius-shadow--inset:active {
+      @extend %shadow-ltrb-inset, %shadow-source-rb;
+    }
+  }
+  &[data-source="lb"],
+  & .mobius-shadow--lb2rt,
+  & .hover_mobius-shadow--lb2rt:hover,
+  & .active_mobius-shadow--lb2rt:active {
+    --lightsource-angle-current: 225deg;
+
+    &.mobius-shadow--normal,
+    &.hover_mobius-shadow--normal:hover,
+    &.active_mobius-shadow--normal:active,
+    & .mobius-shadow--normal,
+    & .hover_mobius-shadow--normal:hover,
+    & .active_mobius-shadow--normal:active {
+      @extend %shadow-rtlb-normal, %shadow-source-lb;
+    }
+    &.mobius-shadow--inset,
+    &.hover_mobius-shadow--inset:hover,
+    &.active_mobius-shadow--inset:active,
+    & .mobius-shadow--inset,
+    & .hover_mobius-shadow--inset:hover,
+    & .active_mobius-shadow--inset:active {
+      @extend %shadow-rtlb-inset, %shadow-source-lb;
+    }
+  }
+}
+
+.mobius-shadow--half,
+.hover_mobius-shadow--half:hover,
+.active_mobius-shadow--half:active {
+  @extend %shadow-pos-half;
+}
+
+.mobius-shadow--thin,
+.hover_mobius-shadow--thin:hover,
+.active_mobius-shadow--thin:active {
+  @extend %shadow-pos-thin;
+}
+/*! purgecss end ignore */

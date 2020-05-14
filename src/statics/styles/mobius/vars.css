@@ -87,20 +87,6 @@ page {
 }
 
 /*********************************************************
- *                主题 (theme: transition)
- *********************************************************/
-
-:root,
-html,
-page {
-  --transition-property-common: color, background-color, box-shadow;
-  --transition-property-all: all;
-  --transition-duration-normal: 0.624s;
-  --transition-timing-function-normal: cubic-bezier(0.165, 0.84, 0.44, 1);
-  --transition-delay-none: 0s;
-}
-
-/*********************************************************
  *           以下是 CSS -> JavaScript 传参设置
  *                ！！！仅支持 Web 端
  *********************************************************/

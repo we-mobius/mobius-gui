@@ -1,0 +1,152 @@
+/*! purgecss start ignore */
+
+/*********************************************************
+ *              Mobius Box-Wrapper Layouts
+ *
+ * - with css        houdini: none,
+ * - with global     control: none,
+ * - use  global     params : none,
+ * - set  global     params : none,
+ * - use  ...        props  : none,
+ * - release         props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-{dding|margin}-{x|top|right|bottom|left}(?)--{ne|xs|small|base|large|xl},
+ *            .mobius-margin-{x|top|right|bottom|left}(?)--auto,
+ *
+ * - TODO: none,
+ *
+ * - 1. no comment,
+ *
+ * !important none
+ *
+ *********************************************************/
+
+%box-space-size {
+  --box-space-size-none: 0em;
+  --box-space-size-xs: 0.5em;
+  --box-space-size-small: 0.75em;
+  --box-space-size-base: 1em;
+  --box-space-size-large: 1.25em;
+  --box-space-size-xl: 1.5em;
+}
+
+:root,
+html,
+page { @extend %box-space-size; }
+
+/*********************************************************
+ *                         Padding
+ *********************************************************/
+
+.mobius-padding--none { padding: var(--box-space-size-none); }
+.mobius-padding--xs { padding: var(--box-space-size-xs); }
+.mobius-padding--small { padding: var(--box-space-size-small); }
+.mobius-padding--base { padding: var(--box-space-size-base); }
+.mobius-padding--large { padding: var(--box-space-size-large); }
+.mobius-padding--xl { padding: var(--box-space-size-xl); }
+
+.mobius-padding-y--none { padding-top: var(--box-space-size-none); padding-bottom: var(--box-space-size-none); }
+.mobius-padding-y--xs { padding-top: var(--box-space-size-xs); padding-bottom: var(--box-space-size-xs); }
+.mobius-padding-y--small { padding-top: var(--box-space-size-small); padding-bottom: var(--box-space-size-small); }
+.mobius-padding-y--base { padding-top: var(--box-space-size-base); padding-bottom: var(--box-space-size-base); }
+.mobius-padding-y--large { padding-top: var(--box-space-size-large); padding-bottom: var(--box-space-size-large); }
+.mobius-padding-y--xl { padding-top: var(--box-space-size-xl); padding-bottom: var(--box-space-size-xl); }
+
+.mobius-padding-x--none { padding-right: var(--box-space-size-none); padding-left: var(--box-space-size-none); }
+.mobius-padding-x--xs { padding-right: var(--box-space-size-xs); padding-left: var(--box-space-size-xs); }
+.mobius-padding-x--small { padding-right: var(--box-space-size-small); padding-left: var(--box-space-size-small); }
+.mobius-padding-x--base { padding-right: var(--box-space-size-base); padding-left: var(--box-space-size-base); }
+.mobius-padding-x--large { padding-right: var(--box-space-size-large); padding-left: var(--box-space-size-large); }
+.mobius-padding-x--xl { padding-right: var(--box-space-size-xl); padding-left: var(--box-space-size-xl); }
+
+.mobius-padding-top--none { padding-top: var(--box-space-size-none); }
+.mobius-padding-top--xs { padding-top: var(--box-space-size-xs); }
+.mobius-padding-top--small { padding-top: var(--box-space-size-small); }
+.mobius-padding-top--base { padding-top: var(--box-space-size-base); }
+.mobius-padding-top--large { padding-top: var(--box-space-size-large); }
+.mobius-padding-top--xl { padding-top: var(--box-space-size-xl); }
+
+.mobius-padding-right--none { padding-right: var(--box-space-size-none); }
+.mobius-padding-right--xs { padding-right: var(--box-space-size-xs); }
+.mobius-padding-right--small { padding-right: var(--box-space-size-small); }
+.mobius-padding-right--base { padding-right: var(--box-space-size-base); }
+.mobius-padding-right--large { padding-right: var(--box-space-size-large); }
+.mobius-padding-right--xl { padding-right: var(--box-space-size-xl); }
+
+.mobius-padding-bottom--none { padding-bottom: var(--box-space-size-none); }
+.mobius-padding-bottom--xs { padding-bottom: var(--box-space-size-xs); }
+.mobius-padding-bottom--small { padding-bottom: var(--box-space-size-small); }
+.mobius-padding-bottom--base { padding-bottom: var(--box-space-size-base); }
+.mobius-padding-bottom--large { padding-bottom: var(--box-space-size-large); }
+.mobius-padding-bottom--xl { padding-bottom: var(--box-space-size-xl); }
+
+.mobius-padding-left--none { padding-left: var(--box-space-size-none); }
+.mobius-padding-left--xs { padding-left: var(--box-space-size-xs); }
+.mobius-padding-left--small { padding-left: var(--box-space-size-small); }
+.mobius-padding-left--base { padding-left: var(--box-space-size-base); }
+.mobius-padding-left--large { padding-left: var(--box-space-size-large); }
+.mobius-padding-left--xl { padding-left: var(--box-space-size-xl); }
+
+/*********************************************************
+ *                         Margin
+ *********************************************************/
+
+.mobius-margin--none { margin: var(--box-space-size-none); }
+.mobius-margin--xs { margin: var(--box-space-size-xs); }
+.mobius-margin--small { margin: var(--box-space-size-small); }
+.mobius-margin--base { margin: var(--box-space-size-base); }
+.mobius-margin--large { margin: var(--box-space-size-large); }
+.mobius-margin--xl { margin: var(--box-space-size-xl); }
+.mobius-margin--auto { margin: auto; }
+
+.mobius-margin-y--none { margin-top: var(--box-space-size-none); margin-bottom: var(--box-space-size-none); }
+.mobius-margin-y--xs { margin-top: var(--box-space-size-xs); margin-bottom: var(--box-space-size-xs); }
+.mobius-margin-y--small { margin-top: var(--box-space-size-small); margin-bottom: var(--box-space-size-small); }
+.mobius-margin-y--base { margin-top: var(--box-space-size-base); margin-bottom: var(--box-space-size-base); }
+.mobius-margin-y--large { margin-top: var(--box-space-size-large); margin-bottom: var(--box-space-size-large); }
+.mobius-margin-y--xl { margin-top: var(--box-space-size-xl); margin-bottom: var(--box-space-size-xl); }
+.mobius-margin-y--auto { margin-top: auto; margin-bottom: auto; }
+
+.mobius-margin-x--none { margin-right: var(--box-space-size-none); margin-left: var(--box-space-size-none); }
+.mobius-margin-x--xs { margin-right: var(--box-space-size-xs); margin-left: var(--box-space-size-xs); }
+.mobius-margin-x--small { margin-right: var(--box-space-size-small); margin-left: var(--box-space-size-small); }
+.mobius-margin-x--base { margin-right: var(--box-space-size-base); margin-left: var(--box-space-size-base); }
+.mobius-margin-x--large { margin-right: var(--box-space-size-large); margin-left: var(--box-space-size-large); }
+.mobius-margin-x--xl { margin-right: var(--box-space-size-xl); margin-left: var(--box-space-size-xl); }
+.mobius-margin-x--auto { margin-right: auto; margin-left: auto; }
+
+.mobius-margin-top--none { margin-top: var(--box-space-size-none); }
+.mobius-margin-top--xs { margin-top: var(--box-space-size-xs); }
+.mobius-margin-top--small { margin-top: var(--box-space-size-small); }
+.mobius-margin-top--base { margin-top: var(--box-space-size-base); }
+.mobius-margin-top--large { margin-top: var(--box-space-size-large); }
+.mobius-margin-top--xl { margin-top: var(--box-space-size-xl); }
+.mobius-margin-top--auto { margin-top: auto; }
+
+.mobius-margin-right--none { margin-right: var(--box-space-size-none); }
+.mobius-margin-right--xs { margin-right: var(--box-space-size-xs); }
+.mobius-margin-right--small { margin-right: var(--box-space-size-small); }
+.mobius-margin-right--base { margin-right: var(--box-space-size-base); }
+.mobius-margin-right--large { margin-right: var(--box-space-size-large); }
+.mobius-margin-right--xl { margin-right: var(--box-space-size-xl); }
+.mobius-margin-right--auto { margin-right: auto; }
+
+.mobius-margin-bottom--none { margin-bottom: var(--box-space-size-none); }
+.mobius-margin-bottom--xs { margin-bottom: var(--box-space-size-xs); }
+.mobius-margin-bottom--small { margin-bottom: var(--box-space-size-small); }
+.mobius-margin-bottom--base { margin-bottom: var(--box-space-size-base); }
+.mobius-margin-bottom--large { margin-bottom: var(--box-space-size-large); }
+.mobius-margin-bottom--xl { margin-bottom: var(--box-space-size-xl); }
+.mobius-margin-bottom--auto { margin-bottom: auto; }
+
+.mobius-margin-left--none { margin-left: var(--box-space-size-none); }
+.mobius-margin-left--xs { margin-left: var(--box-space-size-xs); }
+.mobius-margin-left--small { margin-left: var(--box-space-size-small); }
+.mobius-margin-left--base { margin-left: var(--box-space-size-base); }
+.mobius-margin-left--large { margin-left: var(--box-space-size-large); }
+.mobius-margin-left--xl { margin-left: var(--box-space-size-xl); }
+.mobius-margin-left--auto { margin-left: auto; }
+
+/*! purgecss end ignore */

@@ -1,0 +1,57 @@
+/*! purgecss start ignore */
+
+/*********************************************************
+ *              Mobius Font Size Utility
+ *
+ * - with css    houdini: none,
+ * - with global control: none,
+ * - use  global params : none,
+ * - set  global params : none,
+ * - use  theme  props  : none,
+ * - release     props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-text--xs, .mobius-text--small, .mobius-text--base, .mobius-text--large, .mobius-text--xl,
+ *            .mobius-text--xxl, .mobius-text--xxxl, .mobius-text--xxxxl, .mobius-text--sl, .mobius-text--ssl, .mobius-text--sssl,
+ *
+ * - TODO: none,
+ *
+ * - 1. no comment,
+ *
+ * !important
+ *
+ *********************************************************/
+
+%text-size {
+  --text-size-base-web: 16;
+  --text-size-base-mobile: 14;
+}
+
+:root,
+html,
+page {
+  @extend %text-size;
+  font-size: var(
+    --text-size-base,
+    calc(
+      var(--text-size-base-mobile) * 1px +
+        (var(--text-size-base-web) - var(--text-size-base-mobile)) *
+        (100vw - 375px) / (1920 - 375)
+    )
+  );
+}
+
+.mobius-text--xs { font-size: 0.75rem; }
+.mobius-text--small { font-size: 0.875rem; }
+.mobius-text--base { font-size: 1rem; }
+.mobius-text--large { font-size: 1.125rem; }
+.mobius-text--xl { font-size: 1.25rem; }
+.mobius-text--xxl, .mobius-text--2xl { font-size: 1.5rem; }
+.mobius-text--xxxl, .mobius-text--3xl { font-size: 1.75rem; }
+.mobius-text--xxxxl, .mobius-text--4xl { font-size: 2rem; }
+.mobius-text--sl { font-size: 2.5rem; }
+.mobius-text--ssl, .mobius-text--2sl { font-size: 3rem; }
+.mobius-text--sssl, .mobius-text--3sl { font-size: 3.5rem; }
+
+/*! purgecss end ignore */

@@ -1,0 +1,119 @@
+/*! purgecss start ignore */
+
+/*********************************************************
+ *              Mobius Flex Layouts
+ *
+ * - with css        houdini: none,
+ * - with global     control: none,
+ * - use  global     params : none,
+ * - set  global     params : none,
+ * - use  ...        props  : none,
+ * - release         props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-layout-horizontal, .mobius-layout-vertical,
+ *            .mobius-flex-dir_row, .mobius-flex-dir_rowreverse, .mobius-flex-dir_column, .mobius-flex-dir_columnreverse,
+ *            .mobius-flex-wrap, .mobius-flex-wrap_no, .mobius-flex-wrap_reverse,
+ *            .mobius-flex-justify_start, .mobius-flex-justify_center, .mobius-flex-justify_end,
+ *            .mobius-flex-justify_between, .mobius-flex-justify_around, .mobius-flex-justify_evenly,
+ *            .mobius-flex-align_start, .mobius-flex-align_center, .mobius-flex-align_end,
+ *            .mobius-flex-align_between, .mobius-flex-align_around, .mobius-flex-align_evenly,
+ *            .mobius-flex-items_start, .mobius-flex-items_center, .mobius-flex-items_end,
+ *            .mobius-flex-items_stretch, .mobius-flex-items_baseline,
+ *            .mobius-flex-item_auto, .mobius-flex-item_start, .mobius-flex-item_center, .mobius-flex-item_end,
+ *            .mobius-flex-item_stretch, .mobius-flex-item_baseline,
+ *            .mobius-flex-grow_0, mobius-flex-grow_1,
+ *            .mobius-flex-shrink_0, .mobius-flex-shrink_1,
+ *
+ * - TODO: none,
+ *
+ * - 1. no comment,
+ *
+ * !important none
+ *
+ *********************************************************/
+
+.mobius-layout__horizontal {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.mobius-layout__vertical {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+/* .mobius-layout__zuma {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: stretch;
+
+  & > div {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 20vw;
+    min-width: min-content;
+  }
+}
+.mobius-layout__radiator {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-items: stretch;
+} */
+
+/* 流动方向 */
+.mobius-flex-dir--row { flex-direction: row; }
+.mobius-flex-dir--rowreverse { flex-direction: row-reverse; }
+.mobius-flex-dir--column { flex-direction: column; }
+.mobius-flex-dir--columnreverse { flex-direction: column-reverse; }
+
+/* 换行 */
+.mobius-flex-wrap--normal { flex-wrap: wrap; }
+.mobius-flex-wrap--nowrap { flex-wrap: nowrap; }
+.mobius-flex-wrap--reverse { flex-wrap: wrap-reverse; }
+
+/* 主轴对齐 */
+.mobius-flex-justify--start { justify-content: flex-start; }
+.mobius-flex-justify--center { justify-content: center; }
+.mobius-flex-justify--end { justify-content: flex-end; }
+.mobius-flex-justify--between { justify-content: space-between; }
+.mobius-flex-justify--around { justify-content: space-around; }
+.mobius-flex-justify--evenly { justify-content: space-evenly; }
+
+.mobius-flex-align--start { align-content: start; }
+.mobius-flex-align--center { align-content: center; }
+.mobius-flex-align--end { align-content: end; }
+.mobius-flex-align--between { align-content: space-between; }
+.mobius-flex-align--around { align-content: space-around; }
+.mobius-flex-align--evenly { align-content: space-evenly; }
+
+.mobius-flex-items--start { align-items: start; }
+.mobius-flex-items--center { align-items: center; }
+.mobius-flex-items--end { align-items: end; }
+.mobius-flex-items--stretch { align-items: stretch; }
+.mobius-flex-items--baseline { align-items: baseline; }
+
+.mobius-flex-item--auto { align-self: auto; }
+.mobius-flex-item--start { align-self: start; }
+.mobius-flex-item--center { align-self: center; }
+.mobius-flex-item--end { align-self: end; }
+.mobius-flex-item--stretch { align-self: stretch; }
+.mobius-flex-item--baseline { align-self: baseline; }
+
+/* 大小 */
+
+.mobius-flex-grow--0 { flex-grow: 0; }
+.mobius-flex-grow--1 { flex-grow: 1; }
+
+.mobius-flex-shrink--0 { flex-shrink: 0; }
+.mobius-flex-shrink--1 { flex-shrink: 1; }
+
+.mobius-flex-basis--auto { flex-basis: auto; }
+
+/*! purgecss end ignore */

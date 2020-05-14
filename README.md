@@ -10,6 +10,12 @@
   <a href="https://www.jsdelivr.com/package/gh/we-mobius/mobius-ui"><img src="https://data.jsdelivr.com/v1/package/gh/we-mobius/mobius-ui/badge" alt="Commitizen friendly"></a>
 </p>
 
+<p align="center">
+  <span style="font-weight: bold; color: hsla(96, 100%, 50%, 100%);">📜 English Doc </span>
+  &nbsp;|&nbsp;
+  <a href="./docs/readme_zh.md" style="color: hsla(264, 100%, 50%, 100%);">📜 中文文档</a>
+</p>
+
 <h1 align="center">Mobius UI</h1>
 
 🎨 Mobius UI is a uitility-frist UI framework which inspired by Michal Malewicz's work on [Neumorphism](https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6).
