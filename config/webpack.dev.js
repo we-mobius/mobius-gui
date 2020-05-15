@@ -1,4 +1,6 @@
 const path = require('path')
+const { development: developmentLoaders } = require('./loaders.config')
+const { development: developmentPlugins } = require('./plugins.config')
 const CopyPlugin = require('copy-webpack-plugin')
 
 const PATHS = {
@@ -7,6 +9,11 @@ const PATHS = {
 
 module.exports = {
   mode: 'development',
+  // NOTE: entry sort matters style cascading
+  entry: {
+    static: './src/static.js',
+    main: './src/main.js'
+  },
   output: {
     path: PATHS.output
   },
@@ -19,10 +26,14 @@ module.exports = {
           'css-loader',
           'postcss-loader'
         ]
+      },
+      {
+        oneOf: [...developmentLoaders]
       }
     ]
   },
   plugins: [
+    ...developmentPlugins,
     // CopyPlugin configurations: https://github.com/webpack-contrib/copy-webpack-plugin
     new CopyPlugin([
       {

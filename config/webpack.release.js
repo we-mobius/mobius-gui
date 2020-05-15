@@ -1,20 +1,19 @@
 const path = require('path')
-const { production: productionPlugins } = require('./plugins.config')
-const { production: productionLoaders } = require('./loaders.config')
+const { release: releasePlugins } = require('./plugins.config')
+const { release: releaseLoaders } = require('./loaders.config')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
 const PATHS = {
   src: path.resolve(process.cwd(), 'src'),
-  output: path.resolve(process.cwd(), 'dist')
+  output: path.resolve(process.cwd(), 'release')
 }
 
 module.exports = {
   mode: 'production',
-  // NOTE: entry sort matters style cascading
   entry: {
-    static: './src/static.js',
-    main: './src/main.js'
+    mobius: './src/mobius.release.entry.js',
+    addons: './src/addons.release.entry.js'
   },
   output: {
     path: PATHS.output
@@ -36,15 +35,15 @@ module.exports = {
         ]
       },
       {
-        oneOf: [...productionLoaders]
+        oneOf: [...releaseLoaders]
       }
     ]
   },
   plugins: [
-    ...productionPlugins,
+    ...releasePlugins,
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].[contenthash:10].css',
-      chunkFilename: 'styles/[id].[contenthash:10].css'
+      filename: 'styles/[name].css',
+      chunkFilename: 'styles/[id].css'
     }),
     // CopyPlugin configurations: https://github.com/webpack-contrib/copy-webpack-plugin
     new CopyPlugin([
@@ -59,6 +58,11 @@ module.exports = {
       {
         from: './src/statics/styles/fonts/',
         to: path.resolve(PATHS.output, './statics/styles/fonts/'),
+        toType: 'dir'
+      },
+      {
+        from: './src/statics/fonts/',
+        to: path.resolve(PATHS.output, './statics/fonts/'),
         toType: 'dir'
       }
     ])

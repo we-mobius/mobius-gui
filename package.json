@@ -10,10 +10,11 @@
     "cz-commit": "npm run lint && npx git-cz",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
-    "dev": "webpack-dev-server --mode=development",
-    "build": "webpack --mode=development",
-    "dist": "webpack --mode=production",
-    "serve": "live-server ./dist --port=0624"
+    "dev": "webpack-dev-server --env.mode=development",
+    "build": "webpack --env.mode=development",
+    "dist": "webpack --env.mode=production",
+    "serve": "live-server ./dist --port=0624",
+    "bundle": "webpack --env.mode=release && node ./bin/release"
   },
   "repository": "https://github.com/we-mobius/mobius-ui.git",
   "author": {
@@ -76,5 +77,5 @@
     "@cycle/rxjs-run": "^10.4.0",
     "rxjs": "^6.5.4"
   },
-  "jsdelivr": "./dist/style/mobius.css"
+  "jsdelivr": "./release/styles/mobius.css"
 }

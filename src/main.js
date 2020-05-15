@@ -1,6 +1,6 @@
 import './pages/index'
 import initMobiusUI from './statics/js/mobius-ui'
-import './main.css'
+import './statics/styles/style.css'
 // import * as ThemeService from './services/theme.service'
 
 document.addEventListener('DOMContentLoaded', () => {
