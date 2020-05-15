@@ -1,5 +1,5 @@
 {
-  "name": "mobius-ui",
+  "name": "@mobius-ui/mobius-ui",
   "version": "0.0.1",
   "description": "Mobius UI based on TailWind CSS.",
   "main": "index.js",
@@ -77,5 +77,10 @@
     "@cycle/rxjs-run": "^10.4.0",
     "rxjs": "^6.5.4"
   },
-  "jsdelivr": "./release/styles/mobius.css"
+  "jsdelivr": "./release/styles/mobius.css",
+  "files": ["/release/*", "/public/*", "/dist/*", "/docs/*"],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  }
 }
