@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="../readme.md" style="color: hsla(264, 100%, 50%, 100%);">📜 English Doc</a>
+  <a href="../README.md" style="color: hsla(264, 100%, 50%, 100%);">📜 English Doc</a>
   &nbsp;|&nbsp;
   <span style="font-weight: bold; color: hsla(96, 100%, 50%, 100%);">📜 中文文档</span>
 </p>

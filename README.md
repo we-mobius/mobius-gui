@@ -13,7 +13,7 @@
 <p align="center">
   <span style="font-weight: bold; color: hsla(96, 100%, 50%, 100%);">📜 English Doc </span>
   &nbsp;|&nbsp;
-  <a href="./docs/readme_zh.md" style="color: hsla(264, 100%, 50%, 100%);">📜 中文文档</a>
+  <a href="./docs/README_ZH.md" style="color: hsla(264, 100%, 50%, 100%);">📜 中文文档</a>
 </p>
 
 <h1 align="center">Mobius UI</h1>
@@ -39,7 +39,8 @@ Currently mobius is just a preview version, but you can still try it in toy proj
 All the relative documentations of detail, pls check `./docs`，which contains:
 
 - [Getting Started](./docs/getting_started.md) - How to Build & How to Use
-- [Design Specification](./docs/design_specification.md) - Instruction & Design Specification
+- [Instructions](./docs/instructions.md) - Instructions
+- [Design Specification](./docs/design_specification.md) - Design Specification
 - [Todos](./docs/todos.md) - Todos & Roadmaps
 
 ## Built With
