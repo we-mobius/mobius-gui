@@ -34,8 +34,6 @@ Mobius UI 应用示例快速预览，请访问：[Mobius UI preview](https://mob
 
 ## 实例
 
-## Instance
-
 <table>
   <tbody>
     <tr>
