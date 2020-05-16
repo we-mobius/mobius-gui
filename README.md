@@ -63,22 +63,39 @@ For a quickest preview: visit [Mobius UI preview](https://mobius-ui.21yunbox.com
 
 ## Documentation
 
-Minimum Use Example:
+Simple Use Example:
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mobius CSS</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@we-mobius/mobius-ui@0.1.0/release/styles/mobius.css">
 </head>
-<body>
 
+<body>
+  <div class="mobius-width--100vw mobius-height--100vh mobius-layout__vertical">
+    <div class="mobius-padding--xl mobius-margin--auto mobius-shadow--normal mobius-rounded--base">
+      <div class="mobius-layout__vertical mobius-flex-items--center mobius-select--none">
+        <img width="200px" src="./assets/mobius-ui-preview-site-qr.jpg" alt="Scan to preview full feature of Mobius UI">
+        <p class="mobius-text--center mobius-text--xl mobius-font--fantasy">
+          <span class="mobius-text--3xl">Hi</span>, developers !
+        </p>
+        <p>
+          Scan to meet full features of Mobius UI.
+        </p>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
 ```
+
+Visit 🔗[Simple Use Example](https://mobius-ui-example.21yunbox.com/example.html) to see what it looks like.
 
 Since it's just a **pure CSS library**, you can use it in your own projects with confidence.
 
