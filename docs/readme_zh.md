@@ -36,26 +36,30 @@ Mobius UI 应用示例快速预览，请访问：[Mobius UI preview](https://mob
 
 ## Instance
 
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <div style="margin: 0.5em auto; width: 30%; display: flex;flex-flow: column wrap; align-items: center;">
-    <a href="#Instance" target="_blank">
-      <img src="../public/assets/thoughts-avatar-minaqr-258-circle-8cm.jpg"/>
-    </a>
-    <p>头像中心小程序</p>
-  </div>
-  <div style="margin: 0.5em auto; width: 30%; display: flex;flex-flow: column wrap; align-items: center;">
-    <a href="#Instance" target="_blank">
-      <img width="auto" src="../public/assets/mobius-ui-preview-site-qr.jpg"/>
-    </a>
-    <p>Preview Site</p>
-  </div>
-  <div style="margin: 0.5em auto; width: 30%; display: flex;flex-flow: column wrap; align-items: center;">
-    <a href="#Instance" target="_blank">
-      <img width="auto" src="../public/assets/empty-seat.png"/>
-    </a>
-    <p>虚位以待...</p>
-  </div>
-</div>
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="#Instance" target="_blank">
+          <img width='1000px' src="../public/assets/thoughts-avatar-minaqr-258-circle-8cm.jpg"/>
+        </a>
+        <p style="width: 100%; text-align: center;">头像中心小程序</p>
+      </td>
+      <td align="center" valign="middle">
+        <a href="#Instance" target="_blank">
+          <img width="1000px" src="../public/assets/mobius-ui-preview-site-qr.jpg"/>
+        </a>
+        <p style="width: 100%; text-align: center;">Preview Site</p>
+      </td>
+      <td align="center" valign="middle">
+        <a href="#Instance" target="_blank">
+          <img width="1000px" src="../public/assets/empty-seat.png"/>
+        </a>
+        <p style="width: 100%; text-align: center;">虚位以待...</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## 文档
 

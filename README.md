@@ -36,26 +36,30 @@ For a quickest preview: visit [Mobius UI preview](https://mobius-ui.21yunbox.com
 
 ## Instance
 
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <div style="margin: 0.5em auto; width: 30%; display: flex; flex-flow: column wrap; align-items: center;">
-    <a href="#Instance" target="_blank">
-      <img src="./public/assets/thoughts-avatar-minaqr-258-circle-8cm.jpg"/>
-    </a>
-    <p>Avatar Center</p>
-  </div>
-  <div style="margin: 0.5em auto; width: 30%; display: flex; flex-flow: column wrap; align-items: center;">
-    <a href="#Instance" target="_blank">
-      <img width="auto" src="./public/assets/mobius-ui-preview-site-qr.jpg"/>
-    </a>
-    <p>Preview Site</p>
-  </div>
-  <div style="margin: 0.5em auto; width: 30%; display: flex; flex-flow: column wrap; align-items: center;">
-    <a href="#Instance" target="_blank">
-      <img width="auto" src="./public/assets/empty-seat.png"/>
-    </a>
-    <p>Empty Seat...</p>
-  </div>
-</div>
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="#Instance" target="_blank">
+          <img width='1000px' src="./public/assets/thoughts-avatar-minaqr-258-circle-8cm.jpg"/>
+        </a>
+        <p style="width: 100%; text-align: center;">Avatar Center</p>
+      </td>
+      <td align="center" valign="middle">
+        <a href="#Instance" target="_blank">
+          <img width="1000px" src="./public/assets/mobius-ui-preview-site-qr.jpg"/>
+        </a>
+        <p style="width: 100%; text-align: center;">Preview Site</p>
+      </td>
+      <td align="center" valign="middle">
+        <a href="#Instance" target="_blank">
+          <img width="1000px" src="./public/assets/empty-seat.png"/>
+        </a>
+        <p style="width: 100%; text-align: center;">Empty Seat...</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## Documentation
 
