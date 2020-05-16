@@ -1,0 +1,134 @@
+/*! purgecss start ignore*/
+
+/*********************************************************
+ *              Mobius Text Style Utility
+ *
+ * - with css    houdini: none,
+ * - with global control: none,
+ * - use  global params : none,
+ * - set  global params : none,
+ * - use  theme  props  : none,
+ * - release     props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-text-normal(hover, active), .mobius-text-primary(hover, active),
+ *            .mobius-text-dark(hover, active), .mobius-text-light(hover, active), .mobius-text-cigaret(hover, active), .mobius-text-mobius(hover, active),
+ *            .mobius-text-indent(hover, active),
+ *
+ * - TODO: none,
+ *
+ * - 1. no comment,
+ *
+ * !important
+ *
+ *********************************************************/
+
+/*********************************************************
+ *                       Text Color
+ *********************************************************/
+
+.mobius-text--normal,
+.hover_mobius-text--normal:hover,
+.active_mobius-text--normal:active { color: var(--text-color-normal); }
+
+.mobius-text--primary,
+.hover_mobius-text--primary:hover,
+.active_mobius-text--primary:active { color: var(--text-color-primary); }
+
+.mobius-text--dark,
+.hover_mobius-text--dark:hover,
+.active_mobius-text--dark:active { color: var(--dark-color-normal); }
+
+.mobius-text--light,
+.hover_mobius-text--light:hover,
+.active_mobius-text--light:active { color: var(--light-color-normal); }
+
+.mobius-text--cigaret,
+.hover_mobius-text--cigaret:hover,
+.active_mobius-text--cigaret:active { color: var(--cigaret-color-normal); }
+
+.mobius-text--mobius,
+.hover_mobius-text--mobius:hover,
+.active_mobius-text--mobius:active { color: var(--mobius-color-normal); }
+
+/*********************************************************
+ *                       Font Style
+ *********************************************************/
+
+.mobius-text--unstyled,
+.hover_mobius-text--unstyled:hover,
+.active_mobius-text--unstyled:active {
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
+  text-decoration-line: none;
+  text-transform: none;
+}
+
+.mobius-text--italic,
+.hover_mobius-text--italic:hover,
+.active_mobius-text--italic:active { font-style: italic; }
+
+/* Ref to: https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-weight */
+.mobius-text--lighter,
+.hover_mobius-text--lighter:hover,
+.active_mobius-text--lighter:active { font-weight: lighter; }
+.mobius-text--bolder,
+.hover_mobius-text--bolder:hover,
+.active_mobius-text--bolder:active { font-weight: bolder; }
+.mobius-text--thin,
+.hover_mobius-text--thin:hover,
+.active_mobius-text--thin:active { font-weight: 100; }
+.mobius-text--extralight,
+.hover_mobius-text--extralight:hover,
+.active_mobius-text--extralight:active { font-weight: 200; }
+.mobius-text--light,
+.hover_mobius-text--light:hover,
+.active_mobius-text--light:active { font-weight: 300; }
+/* .mobius-text--normal { font-weight: 400; } */
+.mobius-text--medium,
+.hover_mobius-text--medium:hover,
+.active_mobius-text--medium:active { font-weight: 500; }
+.mobius-text--semibold,
+.hover_mobius-text--semibold:hover,
+.active_mobius-text--semibold:active { font-weight: 600; }
+.mobius-text--bold,
+.hover_mobius-text--bold:hover,
+.active_mobius-text--bold:active { font-weight: 700; }
+.mobius-text--extrabold,
+.hover_mobius-text--extrabold:hover,
+.active_mobius-text--extrabold:active { font-weight: 800; }
+.mobius-text--black,
+.hover_mobius-text--black:hover,
+.active_mobius-text--black:active { font-weight: 900; }
+
+/*********************************************************
+ *                      Text Decoration
+ *********************************************************/
+
+.mobius-text--underline,
+.hover_mobius-text--underline:hover,
+.active_mobius-text--underline:active { text-decoration: underline; }
+.mobius-text--linethrough,
+.hover_mobius-text--linethrough:hover,
+.active_mobius-text--linethrough:active { text-decoration: line-through; }
+.mobius-text--overline,
+.hover_mobius-text--overline:hover,
+.active_mobius-text--overline:active { text-decoration: overline; }
+
+/*********************************************************
+ *                      Text Tranform
+ *********************************************************/
+
+.mobius-text--uppercase,
+.hover_mobius-text--uppercase:hover,
+.active_mobius-text--uppercase:active { text-transform: uppercase; }
+.mobius-text--lowercase,
+.hover_mobius-text--lowercase:hover,
+.active_mobius-text--lowercase:active { text-transform: lowercase; }
+.mobius-text--capitalize,
+.hover_mobius-text--capitalize:hover,
+.active_mobius-text--capitalize:active { text-transform: capitalize; }
+
+/*! purgecss end ignore*/

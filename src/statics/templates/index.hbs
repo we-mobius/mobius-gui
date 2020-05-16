@@ -10,9 +10,13 @@
   <link rel="icon" type="image/png" href="{{mobiusConfig.favicon}}">
   <title>{{mobiusConfig.title}}</title>
 
-  {{!-- 渲染单独定义的外部样式表 --}}
+  {{!-- 渲染单独定义的 异步加载 外部样式表 --}}
+  {{#each mobiusConfig.asyncCss as |outer-async-css|}}
+  <link rel="stylesheet" href="{{outer-async-css}}" media="print" onload="this.media='all'; this.onload=null;" />
+  {{/each}}
+  {{!-- 渲染单独定义的 同步加载 外部样式表 --}}
   {{#each mobiusConfig.css as |outer-css|}}
-  <link rel='preload' as="style" href="{{outer-css}}" />
+  <link rel='stylesheet' href="{{outer-css}}" />
   {{/each}}
   {{!-- 渲染 webpack 打包完成的 CSS --}}
   {{#each htmlWebpackPlugin.css as |inner-css|}}

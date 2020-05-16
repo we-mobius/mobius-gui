@@ -1,19 +1,41 @@
 /*! purgecss start ignore */
+
+/*********************************************************
+ *              Mobius Base Styles
+ *
+ * - with css        houdini: none,
+ * - with global     control: none,
+ * - use  global     params : none,
+ * - set  global     params : none,
+ * - use  theme      props  : --text-color-normal, --bg-color-normal,
+ * - use  transition props  : --transition-property-common, --transition-duration-normal, --transition-timing-function-normal, --transition-delay-none,
+ * - use  font       props  : --font-family-normal,
+ * - release         props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-{utility}-style
+ *
+ * - TODO: todo example,
+ *
+ * - 1. other comment,
+ * - 2. another comment,
+ * - 3. ...,
+ *
+ * !important ...
+ *
+ *********************************************************/
+
 %base-common {
   box-sizing: border-box;
 }
 
 html,
 page {
-  @extend %base-common;
-  font-family: "SYSTEM", "BASE", "EMOJI";
-  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
-  /* %mobius-theme start */
+  @extend %base-common, %font-family-vars;
+  font-family: var(--font-family-normal);
   color: var(--text-color-normal);
   background-color: var(--bg-color-normal);
-  /* %mobius-theme end */
   transition-property: var(--transition-property-common);
   transition-duration: var(--transition-duration-normal);
   transition-timing-function: var(--transition-timing-function-normal);
@@ -32,6 +54,12 @@ page {
   right: 0;
   bottom: 0;
   overflow: hidden;
+  line-height: 1.5;
+}
+
+div,
+view {
+  box-sizing: border-box;
 }
 
 img {
@@ -39,6 +67,6 @@ img {
 }
 
 svg {
-  color: var(--text-color-normal);
+  color: currentColor;
 }
 /*! purgecss end ignore*/

@@ -1,20 +1,17 @@
-@import "theme.utility.css";
-@import "font.utility.css";
-@import "text.utility.css";
-@import "background.utility.css";
-@import "border.utility.css";
-@import "shadow.utility.css";
+@import "./typography/typography.css";
+@import "./effects/effects.css";
+@import "./layouts/layouts.css";
 /*! purgecss start ignore */
 
 /*********************************************************
  *              Mobius Comment Utility
  *
- * - with css    houdini: ... | none,
- * - with global control: ... | none,
- * - use  global params : ... | none,
- * - set  global params : ... | none,
- * - use  ...    props  : ... | none,
- * - release     props  : ... | none,
+ * - with css        houdini: ... | none,
+ * - with global     control: ... | none,
+ * - use  global     params : ... | none,
+ * - set  global     params : ... | none,
+ * - use  ...        props  : ... | none,
+ * - release         props  : ... | none,
  *
  * - usage: [param](set|use)(modulename.moduletype) | none,
  *
@@ -26,7 +23,7 @@
  * - 2. another comment,
  * - 3. ...,
  *
- * !important ...
+ * !important ... | none
  *
  *********************************************************/
 
@@ -34,7 +31,7 @@
  *              Mobius ScrollBar Utility
  *********************************************************/
 
-.mobius-scrollbar-hidden {
+.mobius-scrollbar--hidden {
   -ms-overflow-style: none;
 
   &::-webkit-scrollbar {
@@ -42,32 +39,8 @@
   }
 }
 
-/*********************************************************
- *             Mobius Transition Utility
- *********************************************************/
-
-.mobius-transition-all *,
-.mobius-transition-all ::before,
-.mobius-transition-all ::after,
-.mobius-transition-all div,
-.mobius-transition-all div::before,
-.mobius-transition-all div::after,
-.mobius-transition-all view,
-.mobius-transition-all view::before,
-.mobius-transition-all view::after {
-  transition-property: var(--transition-property-all);
-  transition-duration: var(--transition-duration-normal);
-  transition-timing-function: var(--transition-timing-function-normal);
-  transition-delay: var(--transition-delay-none);
-}
-
-.mobius-transition-normal,
-.mobius-transition-normal::before,
-.mobius-transition-normal::after {
-  transition-property: var(--transition-property-all);
-  transition-duration: var(--transition-duration-normal);
-  transition-timing-function: var(--transition-timing-function-normal);
-  transition-delay: var(--transition-delay-none);
+.mobius-cursor--pointer {
+  cursor: pointer;
 }
 
 /*! purgecss end ignore */

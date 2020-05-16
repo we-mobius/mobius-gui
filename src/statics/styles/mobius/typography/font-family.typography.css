@@ -1,0 +1,120 @@
+/*! purgecss start ignore*/
+
+/*********************************************************
+ *              Mobius Font Family Utility
+ *
+ * - with css    houdini: none,
+ * - with global control: none,
+ * - use  global params : none,
+ * - set  global params : none,
+ * - use  ...    props  : none,
+ * - release     props  : %font-family-types,
+ *
+ * - usage: [%font-family-types](use)(base),
+ *
+ * - classes: .mobius-font--sans(hover, active), mobius-font--serif(hover, active),
+              .mobius-font--cursive(hover, active), .mobius-font--fantasy(hover, active), .mobius-font--mono(hover, active),
+              .mobius-font--commodore(hover, active), .mobius-font--amiga(hover, active),
+ *
+ * - TODO: none,
+ *
+ * - 1. no comment,
+ *
+ * !important none
+ *
+ *********************************************************/
+
+%font-family-types {
+  --font-family-system: "SYSTEM";
+  --font-family-normal: "BASE", "EMOJI";
+  --font-family-sans: "Noto Sans", "source-sans-pro", "Noto Sans SC",
+    "Noto Sans CJK SC", "Noto Sans CJK", "Source Han Sans", "Source Han Sans SC",
+    "source-han-sans-cjk-sc", "source-han-sans-simplified-c", "sans-serif";
+  --font-family-serif: "Noto Serif", "source-serif-pro", "Noto Serif SC",
+    "Noto Serif CJK SC", "Noto Serif CJK", "Source Han Serif",
+    "Source Han Serif SC", "source-han-serif-cjk-sc",
+    "source-han-serif-simplified-c", "serif";
+  --font-family-cursive: cursive;
+  --font-family-fantasy: fantasy;
+  --font-family-mono: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
+  --font-family-commodore: "Commodore64";
+  --font-family-amiga: "AmigaWorkbench";
+}
+
+@font-face {
+  font-family: "SYSTEM";
+  src: local("system-ui"), local("-apple-system"), local("BlinkMacSystemFont"),
+    local("segoe ui"), local("Roboto");
+}
+@font-face {
+  font-family: "BASE";
+  src: local("San Francisco"), local("Helvetica Neue"), local("Helvetica"),
+    local("Tahoma"), local("Arial"), local("PingFang SC"),
+    local("Hiragino Sans GB"), local("Heiti SC"), local("Microsoft YaHei"),
+    local("WenQuanYi Micro Hei"), local("sans-serif");
+}
+@font-face {
+  font-family: "EMOJI";
+  src: local("Apple Color Emoji"), local("Segoe UI Emoji"),
+    local("Segoe UI Symbol"), local("Noto Color Emoji");
+}
+
+:root,
+html,
+page {
+  @extend %font-family-types;
+}
+
+
+.mobius-font--system,
+.hover_mobius-font--system:hover,
+.active_mobius-font--system:active {
+  font-family: var(--font-family-system), var(--font-family-normal);
+}
+
+.mobius-font--sans,
+.hover_mobius-font--sans:hover,
+.active_mobius-font--sans:active {
+  font-family: var(--font-family-sans), var(--font-family-normal);
+}
+
+.mobius-font--serif,
+.hover_mobius-font--serif:hover,
+.active_mobius-font--serif:active {
+  font-family: var(--font-family-serif), var(--font-family-normal);
+}
+
+.mobius-font--cursive,
+.hover_mobius-font--cursive:hover,
+.active_mobius-font--cursive:active {
+  font-family: var(--font-family-cursive), var(--font-family-normal);
+}
+
+.mobius-font--fantasy,
+.hover_mobius-font--fantasy:hover,
+.active_mobius-font--fantasy:active {
+  font-family: var(--font-family-fantasy), var(--font-family-normal);
+}
+
+.mobius-font--mono,
+.hover_mobius-font--mono:hover,
+.active_mobius-font--mono:active {
+  font-family: var(--font-family-mono), var(--font-family-normal);
+}
+
+.mobius-font--commodore,
+.hover_mobius-font--commodore:hover,
+.active_mobius-font--commodore:active {
+  font-family: var(--font-family-commodore), var(--font-family-normal);
+  font-variation-settings: "wdth" var(--bleed, 100), "wght" var(--scan, 400);
+}
+
+.mobius-font--amiga,
+.hover_mobius-font--amiga:hover,
+.active_mobius-font--amiga:active {
+  font-family: var(--font-family-amiga), var(--font-family-normal);
+  font-variation-settings: "wdth" var(--bleed, 100), "wght" var(--scan, 400);
+}
+
+/*! purgecss end ignore*/
