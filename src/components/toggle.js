@@ -11,12 +11,13 @@ function Toggle (source) {
         setThemeTo(val.target.checked ? 'dark' : 'light')
       }
     }),
-    map(() => div('.mobius-toggle.rounded-full.mobius-shadow-inset',
-      [
-        input({ attrs: { type: 'checkbox', id: 'toggle' } }),
-        label('.cursor-pointer.rounded', { attrs: { for: 'toggle' } })
-      ]
-    )
+    map(() =>
+      div('.mobius-toggle.mobius-rounded--full.mobius-shadow--inset',
+        [
+          input({ attrs: { type: 'checkbox', id: 'toggle' } }),
+          label('.mobius-cursor--pointer.mobius-rounded--full', { attrs: { for: 'toggle' } })
+        ]
+      )
     )
   )
   return {

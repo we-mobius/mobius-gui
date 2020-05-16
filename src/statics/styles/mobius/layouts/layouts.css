@@ -1,0 +1,33 @@
+@import "./box-size.layout.css";
+@import "./box-space.layout.css";
+@import "./flex.layout.css";
+@import "./grid.layout.css";
+@import "./position.layout.css";
+/*! purgecss start ignore*/
+
+/*********************************************************
+ *              Mobius Layouts
+ *
+ * - with css        houdini: none,
+ * - with global     control: none,
+ * - use  global     params : none,
+ * - set  global     params : none,
+ * - use  ...        props  : none,
+ * - release         props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-{}-style
+ *
+ * - TODO: none,
+ *
+ * - 1. no comment,
+ *
+ * !important none
+ *
+ *********************************************************/
+
+.mobius-box--border { box-sizing: border-box; }
+.mobius-box--content { box-sizing: content-box; }
+
+/*! purgecss end ignore*/

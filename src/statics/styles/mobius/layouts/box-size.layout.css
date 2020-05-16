@@ -1,0 +1,225 @@
+/*! purgecss start ignore */
+
+/*********************************************************
+ *              Mobius Box-Size Layouts
+ *
+ * - with css        houdini: none,
+ * - with global     control: none,
+ * - use  global     params : none,
+ * - set  global     params : none,
+ * - use  ...        props  : none,
+ * - release         props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: ...,
+ *
+ * - TODO: none,
+ *
+ * - 1. no comment,
+ *
+ * !important none
+ *
+ *********************************************************/
+
+/*********************************************************
+ *                         Width
+ *********************************************************/
+
+ /* em */
+.mobius-width--em, .hover_mobius-width--em:hover { width: 1em; }
+.mobius-width--1em, .hover_mobius-width--1em:hover { width: 1em; }
+.mobius-width--2em, .hover_mobius-width--2em:hover { width: 2em; }
+.mobius-width--3em, .hover_mobius-width--3em:hover { width: 3em; }
+.mobius-width--4em, .hover_mobius-width--4em:hover { width: 4em; }
+.mobius-width--5em, .hover_mobius-width--5em:hover { width: 5em; }
+.mobius-width--6em, .hover_mobius-width--6em:hover { width: 6em; }
+.mobius-width--7em, .hover_mobius-width--7em:hover { width: 7em; }
+.mobius-width--8em, .hover_mobius-width--8em:hover { width: 8em; }
+.mobius-width--9em, .hover_mobius-width--9em:hover { width: 9em; }
+.mobius-width--10em, .hover_mobius-width--10em:hover { width: 10em; }
+.mobius-width--12em, .hover_mobius-width--12em:hover { width: 12em; }
+.mobius-width--14em, .hover_mobius-width--14em:hover { width: 14em; }
+.mobius-width--16em, .hover_mobius-width--16em:hover { width: 16em; }
+.mobius-width--18em, .hover_mobius-width--18em:hover { width: 18em; }
+.mobius-width--20em, .hover_mobius-width--20em:hover { width: 20em; }
+.mobius-width--24em, .hover_mobius-width--24em:hover { width: 24em; }
+.mobius-width--28em, .hover_mobius-width--28em:hover { width: 28em; }
+.mobius-width--32em, .hover_mobius-width--32em:hover { width: 32em; }
+.mobius-width--36em, .hover_mobius-width--36em:hover { width: 36em; }
+.mobius-width--40em, .hover_mobius-width--40em:hover { width: 40em; }
+.mobius-width--44em, .hover_mobius-width--44em:hover { width: 44em; }
+.mobius-width--48em, .hover_mobius-width--48em:hover { width: 48em; }
+.mobius-width--56em, .hover_mobius-width--56em:hover { width: 56em; }
+.mobius-width--64em, .hover_mobius-width--64em:hover { width: 64em; }
+.mobius-width--72em, .hover_mobius-width--72em:hover { width: 72em; }
+.mobius-width--80em, .hover_mobius-width--80em:hover { width: 80em; }
+.mobius-width--88em, .hover_mobius-width--88em:hover { width: 88em; }
+.mobius-width--96em, .hover_mobius-width--96em:hover { width: 96em; }
+.mobius-width--104em, .hover_mobius-width--104em:hover { width: 104em; }
+.mobius-width--112em, .hover_mobius-width--112em:hover { width: 112em; }
+.mobius-width--120em, .hover_mobius-width--120em:hover { width: 120em; }
+.mobius-width--128em, .hover_mobius-width--128em:hover { width: 128em; }
+/* rem */
+.mobius-width--rem, .hover_mobius-width--rem:hover { width: 1rem; }
+.mobius-width--1rem, .hover_mobius-width--1rem:hover { width: 1rem; }
+.mobius-width--2rem, .hover_mobius-width--2rem:hover { width: 2rem; }
+.mobius-width--3rem, .hover_mobius-width--3rem:hover { width: 3rem; }
+.mobius-width--4rem, .hover_mobius-width--4rem:hover { width: 4rem; }
+.mobius-width--5rem, .hover_mobius-width--5rem:hover { width: 5rem; }
+.mobius-width--6rem, .hover_mobius-width--6rem:hover { width: 6rem; }
+.mobius-width--7rem, .hover_mobius-width--7rem:hover { width: 7rem; }
+.mobius-width--8rem, .hover_mobius-width--8rem:hover { width: 8rem; }
+.mobius-width--9rem, .hover_mobius-width--9rem:hover { width: 9rem; }
+.mobius-width--10rem, .hover_mobius-width--10rem:hover { width: 10rem; }
+.mobius-width--12rem, .hover_mobius-width--12rem:hover { width: 12rem; }
+.mobius-width--14rem, .hover_mobius-width--14rem:hover { width: 14rem; }
+.mobius-width--16rem, .hover_mobius-width--16rem:hover { width: 16rem; }
+.mobius-width--18rem, .hover_mobius-width--18rem:hover { width: 18rem; }
+.mobius-width--20rem, .hover_mobius-width--20rem:hover { width: 20rem; }
+.mobius-width--24rem, .hover_mobius-width--24rem:hover { width: 24rem; }
+.mobius-width--28rem, .hover_mobius-width--28rem:hover { width: 28rem; }
+.mobius-width--32rem, .hover_mobius-width--32rem:hover { width: 32rem; }
+.mobius-width--36rem, .hover_mobius-width--36rem:hover { width: 36rem; }
+.mobius-width--40rem, .hover_mobius-width--40rem:hover { width: 40rem; }
+.mobius-width--44rem, .hover_mobius-width--44rem:hover { width: 44rem; }
+.mobius-width--48rem, .hover_mobius-width--48rem:hover { width: 48rem; }
+.mobius-width--56rem, .hover_mobius-width--56rem:hover { width: 56rem; }
+.mobius-width--64rem, .hover_mobius-width--64rem:hover { width: 64rem; }
+.mobius-width--72rem, .hover_mobius-width--72rem:hover { width: 72rem; }
+.mobius-width--80rem, .hover_mobius-width--80rem:hover { width: 80rem; }
+.mobius-width--88rem, .hover_mobius-width--88rem:hover { width: 88rem; }
+.mobius-width--96rem, .hover_mobius-width--96rem:hover { width: 96rem; }
+.mobius-width--104rem, .hover_mobius-width--104rem:hover { width: 104rem; }
+.mobius-width--112rem, .hover_mobius-width--112rem:hover { width: 112rem; }
+.mobius-width--120rem, .hover_mobius-width--120rem:hover { width: 120rem; }
+.mobius-width--128rem, .hover_mobius-width--128rem:hover { width: 128rem; }
+/* view-width */
+.mobius-width--auto, .hover_mobius-width--auto:hover { width: auto; }
+.mobius-width--10vw, .hover_mobius-width--10vw:hover { width: 10vw; }
+.mobius-width--20vw, .hover_mobius-width--20vw:hover { width: 20vw; }
+.mobius-width--25vw, .hover_mobius-width--25vw:hover { width: 25vw; }
+.mobius-width--30vw, .hover_mobius-width--30vw:hover { width: 30vw; }
+.mobius-width--33vw, .hover_mobius-width--33vw:hover { width: 33vw; }
+.mobius-width--40vw, .hover_mobius-width--40vw:hover { width: 40vw; }
+.mobius-width--50vw, .hover_mobius-width--50vw:hover { width: 50vw; }
+.mobius-width--60vw, .hover_mobius-width--60vw:hover { width: 60vw; }
+.mobius-width--66vw, .hover_mobius-width--66vw:hover { width: 66vw; }
+.mobius-width--75vw, .hover_mobius-width--75vw:hover { width: 75vw; }
+.mobius-width--80vw, .hover_mobius-width--80vw:hover { width: 80vw; }
+.mobius-width--100vw, .hover_mobius-width--100vw:hover { width: 100vw; }
+/* percent */
+.mobius-width--10, .hover_mobius-width--10:hover { width: 10%; }
+.mobius-width--20, .hover_mobius-width--20:hover { width: 20%; }
+.mobius-width--25, .hover_mobius-width--25:hover { width: 25%; }
+.mobius-width--30, .hover_mobius-width--30:hover { width: 30%; }
+.mobius-width--33, .hover_mobius-width--33:hover { width: 33.3%; }
+.mobius-width--40, .hover_mobius-width--40:hover { width: 40%; }
+.mobius-width--50, .hover_mobius-width--50:hover { width: 50%; }
+.mobius-width--60, .hover_mobius-width--60:hover { width: 60%; }
+.mobius-width--66, .hover_mobius-width--66:hover { width: 66.6%; }
+.mobius-width--75, .hover_mobius-width--75:hover { width: 75%; }
+.mobius-width--80, .hover_mobius-width--80:hover { width: 80%; }
+.mobius-width--100, .hover_mobius-width--100:hover { width: 100%; }
+
+/*********************************************************
+ *                         Height
+ *********************************************************/
+
+ /* em */
+.mobius-height--em, .hover_mobius-height--em:hover { height: 1em; }
+.mobius-height--1em, .hover_mobius-height--1em:hover { height: 1em; }
+.mobius-height--2em, .hover_mobius-height--2em:hover { height: 2em; }
+.mobius-height--3em, .hover_mobius-height--3em:hover { height: 3em; }
+.mobius-height--4em, .hover_mobius-height--4em:hover { height: 4em; }
+.mobius-height--5em, .hover_mobius-height--5em:hover { height: 5em; }
+.mobius-height--6em, .hover_mobius-height--6em:hover { height: 6em; }
+.mobius-height--7em, .hover_mobius-height--7em:hover { height: 7em; }
+.mobius-height--8em, .hover_mobius-height--8em:hover { height: 8em; }
+.mobius-height--9em, .hover_mobius-height--9em:hover { height: 9em; }
+.mobius-height--10em, .hover_mobius-height--10em:hover { height: 10em; }
+.mobius-height--12em, .hover_mobius-height--12em:hover { height: 12em; }
+.mobius-height--14em, .hover_mobius-height--14em:hover { height: 14em; }
+.mobius-height--16em, .hover_mobius-height--16em:hover { height: 16em; }
+.mobius-height--18em, .hover_mobius-height--18em:hover { height: 18em; }
+.mobius-height--20em, .hover_mobius-height--20em:hover { height: 20em; }
+.mobius-height--24em, .hover_mobius-height--24em:hover { height: 24em; }
+.mobius-height--28em, .hover_mobius-height--28em:hover { height: 28em; }
+.mobius-height--32em, .hover_mobius-height--32em:hover { height: 32em; }
+.mobius-height--36em, .hover_mobius-height--36em:hover { height: 36em; }
+.mobius-height--40em, .hover_mobius-height--40em:hover { height: 40em; }
+.mobius-height--44em, .hover_mobius-height--44em:hover { height: 44em; }
+.mobius-height--48em, .hover_mobius-height--48em:hover { height: 48em; }
+.mobius-height--56em, .hover_mobius-height--56em:hover { height: 56em; }
+.mobius-height--64em, .hover_mobius-height--64em:hover { height: 64em; }
+.mobius-height--72em, .hover_mobius-height--72em:hover { height: 72em; }
+.mobius-height--80em, .hover_mobius-height--80em:hover { height: 80em; }
+.mobius-height--88em, .hover_mobius-height--88em:hover { height: 88em; }
+.mobius-height--96em, .hover_mobius-height--96em:hover { height: 96em; }
+.mobius-height--104em, .hover_mobius-height--104em:hover { height: 104em; }
+.mobius-height--112em, .hover_mobius-height--112em:hover { height: 112em; }
+.mobius-height--120em, .hover_mobius-height--120em:hover { height: 120em; }
+.mobius-height--128em, .hover_mobius-height--128em:hover { height: 128em; }
+/* rem */
+.mobius-height--rem, .hover_mobius-height--rem:hover { height: 1rem; }
+.mobius-height--1rem, .hover_mobius-height--1rem:hover { height: 1rem; }
+.mobius-height--2rem, .hover_mobius-height--2rem:hover { height: 2rem; }
+.mobius-height--3rem, .hover_mobius-height--3rem:hover { height: 3rem; }
+.mobius-height--4rem, .hover_mobius-height--4rem:hover { height: 4rem; }
+.mobius-height--5rem, .hover_mobius-height--5rem:hover { height: 5rem; }
+.mobius-height--6rem, .hover_mobius-height--6rem:hover { height: 6rem; }
+.mobius-height--7rem, .hover_mobius-height--7rem:hover { height: 7rem; }
+.mobius-height--8rem, .hover_mobius-height--8rem:hover { height: 8rem; }
+.mobius-height--9rem, .hover_mobius-height--9rem:hover { height: 9rem; }
+.mobius-height--10rem, .hover_mobius-height--10rem:hover { height: 10rem; }
+.mobius-height--12rem, .hover_mobius-height--12rem:hover { height: 12rem; }
+.mobius-height--14rem, .hover_mobius-height--14rem:hover { height: 14rem; }
+.mobius-height--16rem, .hover_mobius-height--16rem:hover { height: 16rem; }
+.mobius-height--18rem, .hover_mobius-height--18rem:hover { height: 18rem; }
+.mobius-height--20rem, .hover_mobius-height--20rem:hover { height: 20rem; }
+.mobius-height--24rem, .hover_mobius-height--24rem:hover { height: 24rem; }
+.mobius-height--28rem, .hover_mobius-height--28rem:hover { height: 28rem; }
+.mobius-height--32rem, .hover_mobius-height--32rem:hover { height: 32rem; }
+.mobius-height--36rem, .hover_mobius-height--36rem:hover { height: 36rem; }
+.mobius-height--40rem, .hover_mobius-height--40rem:hover { height: 40rem; }
+.mobius-height--44rem, .hover_mobius-height--44rem:hover { height: 44rem; }
+.mobius-height--48rem, .hover_mobius-height--48rem:hover { height: 48rem; }
+.mobius-height--56rem, .hover_mobius-height--56rem:hover { height: 56rem; }
+.mobius-height--64rem, .hover_mobius-height--64rem:hover { height: 64rem; }
+.mobius-height--72rem, .hover_mobius-height--72rem:hover { height: 72rem; }
+.mobius-height--80rem, .hover_mobius-height--80rem:hover { height: 80rem; }
+.mobius-height--88rem, .hover_mobius-height--88rem:hover { height: 88rem; }
+.mobius-height--96rem, .hover_mobius-height--96rem:hover { height: 96rem; }
+.mobius-height--104rem, .hover_mobius-height--104rem:hover { height: 104rem; }
+.mobius-height--112rem, .hover_mobius-height--112rem:hover { height: 112rem; }
+.mobius-height--120rem, .hover_mobius-height--120rem:hover { height: 120rem; }
+.mobius-height--128rem, .hover_mobius-height--128rem:hover { height: 128rem; }
+/* view-height */
+.mobius-height--auto, .hover_mobius-height--auto:hover { height: auto; }
+.mobius-height--10vh, .hover_mobius-height--10vh:hover { height: 10vh; }
+.mobius-height--20vh, .hover_mobius-height--20vh:hover { height: 20vh; }
+.mobius-height--25vh, .hover_mobius-height--25vh:hover { height: 25vh; }
+.mobius-height--30vh, .hover_mobius-height--30vh:hover { height: 30vh; }
+.mobius-height--33vh, .hover_mobius-height--33vh:hover { height: 33vh; }
+.mobius-height--40vh, .hover_mobius-height--40vh:hover { height: 40vh; }
+.mobius-height--50vh, .hover_mobius-height--50vh:hover { height: 50vh; }
+.mobius-height--60vh, .hover_mobius-height--60vh:hover { height: 60vh; }
+.mobius-height--66vh, .hover_mobius-height--66vh:hover { height: 66vh; }
+.mobius-height--75vh, .hover_mobius-height--75vh:hover { height: 75vh; }
+.mobius-height--80vh, .hover_mobius-height--80vh:hover { height: 80vh; }
+.mobius-height--100vh, .hover_mobius-height--100vh:hover { height: 100vh; }
+/* percent */
+.mobius-height--10, .hover_mobius-height--10:hover { height: 10%; }
+.mobius-height--20, .hover_mobius-height--20:hover { height: 20%; }
+.mobius-height--25, .hover_mobius-height--25:hover { height: 25%; }
+.mobius-height--30, .hover_mobius-height--30:hover { height: 30%; }
+.mobius-height--33, .hover_mobius-height--33:hover { height: 33.3%; }
+.mobius-height--40, .hover_mobius-height--40:hover { height: 40%; }
+.mobius-height--50, .hover_mobius-height--50:hover { height: 50%; }
+.mobius-height--60, .hover_mobius-height--60:hover { height: 60%; }
+.mobius-height--66, .hover_mobius-height--66:hover { height: 66.6%; }
+.mobius-height--75, .hover_mobius-height--75:hover { height: 75%; }
+.mobius-height--80, .hover_mobius-height--80:hover { height: 80%; }
+.mobius-height--100, .hover_mobius-height--100:hover { height: 100%; }
+
+/*! purgecss end ignore */

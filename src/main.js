@@ -1,9 +1,11 @@
 import './pages/index'
-import './main.css'
-import * as ThemeService from './services/theme.service'
+import initMobiusUI from './statics/js/mobius-ui'
+import './statics/styles/style.css'
+// import * as ThemeService from './services/theme.service'
 
 document.addEventListener('DOMContentLoaded', () => {
-  ThemeService.initTheme()
+  // ThemeService.initTheme()
+  initMobiusUI()
   const hoverSupported =
     getComputedStyle(document.body, '::before').content === 'none'
   console.info('hover_supported:', hoverSupported)

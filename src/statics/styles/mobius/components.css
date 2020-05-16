@@ -21,8 +21,13 @@
  *
  *********************************************************/
 
-.mobius-toggle {
+:root,
+html,
+page {
   --toggle-size: 4rem;
+}
+
+.mobius-toggle {
   position: relative;
   width: var(--toggle-size);
   height: calc(var(--toggle-size) / 2);

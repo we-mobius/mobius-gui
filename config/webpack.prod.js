@@ -1,4 +1,6 @@
 const path = require('path')
+const { production: productionPlugins } = require('./plugins.config')
+const { production: productionLoaders } = require('./loaders.config')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
@@ -9,6 +11,11 @@ const PATHS = {
 
 module.exports = {
   mode: 'production',
+  // NOTE: entry sort matters style cascading
+  entry: {
+    static: './src/static.js',
+    main: './src/main.js'
+  },
   output: {
     path: PATHS.output
   },
@@ -27,10 +34,14 @@ module.exports = {
           'css-loader',
           'postcss-loader'
         ]
+      },
+      {
+        oneOf: [...productionLoaders]
       }
     ]
   },
   plugins: [
+    ...productionPlugins,
     new MiniCssExtractPlugin({
       filename: 'styles/[name].[contenthash:10].css',
       chunkFilename: 'styles/[id].[contenthash:10].css'
@@ -47,7 +58,7 @@ module.exports = {
       },
       {
         from: './src/statics/styles/fonts/',
-        to: path.resolve(PATHS.output, './styles/fonts/'),
+        to: path.resolve(PATHS.output, './statics/styles/fonts/'),
         toType: 'dir'
       }
     ])

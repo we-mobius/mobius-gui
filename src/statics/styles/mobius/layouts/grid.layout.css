@@ -1,0 +1,215 @@
+/*! purgecss start ignore */
+
+/*********************************************************
+ *              Mobius Grid Layouts
+ *
+ * - with css        houdini: none,
+ * - with global     control: none,
+ * - use  global     params : none,
+ * - set  global     params : none,
+ * - use  ...        props  : none,
+ * - release         props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-layout-portal, .mobius-layout-hall, .mobius-layout-grail, .mobius-layout-round,
+ *            .mobius-grid-item_stretch, .mobius-grid-item_center,
+ *
+ * - TODO: none,
+ *
+ * - 1. no comment,
+ *
+ * !important none
+ *
+ *********************************************************/
+
+.mobius-layout__waffle { }
+.mobius-layout__falls { }
+.mobius-layout__masonry { }
+
+/*
+ * header, header, header,
+ * left,   main,   right
+ */
+.mobius-layout__portal {
+  display: grid;
+  grid-template-columns: auto minmax(0, 100%) auto;
+  grid-template-rows: auto minmax(0, 100%);
+  grid-template-areas:
+    "header header header"
+    "left main right";
+  align-items: stretch;
+  justify-items: stretch;
+  align-content: stretch;
+  justify-content: stretch;
+
+  & .header {
+    grid-area: header;
+  }
+
+  & .left {
+    grid-area: left;
+  }
+
+  & .main {
+    grid-area: main;
+  }
+
+  & .right {
+    grid-area: right;
+  }
+}
+
+/*
+ * header, header, header,
+ * left,   main,   right,
+ * corner, footer, corner,
+ */
+.mobius-layout__hall {
+  display: grid;
+  grid-template-columns: auto minmax(auto, 100%) auto;
+  grid-template-rows: auto minmax(0, 100%) auto;
+  grid-template-areas:
+    "header header header"
+    "left main right"
+    "corner-lb footer corner-rb";
+  align-items: stretch;
+  justify-items: stretch;
+  align-content: stretch;
+  justify-content: stretch;
+
+  & .header {
+    grid-area: header;
+  }
+
+  & .left {
+    grid-area: left;
+  }
+
+  & .main {
+    grid-area: main;
+  }
+
+  & .right {
+    grid-area: right;
+  }
+
+  & .corner-lb {
+    grid-area: corner-lb;
+  }
+
+  & .footer {
+    grid-area: footer;
+  }
+
+  & .corner-rb {
+    grid-area: corner-rb;
+  }
+}
+
+/*
+ * header, header, header,
+ * left,   main,   right,
+ * footer, footer, footer,
+ */
+.mobius-layout__grail {
+  display: grid;
+  grid-template-columns: auto minmax(auto, 100%) auto;
+  grid-template-rows: auto minmax(0, 100%) auto;
+  grid-template-areas:
+    "header header header"
+    "left main right"
+    "footer footer footer";
+  align-items: stretch;
+  justify-items: stretch;
+  align-content: stretch;
+  justify-content: stretch;
+
+  & .header {
+    grid-area: header;
+  }
+
+  & .left {
+    grid-area: left;
+  }
+
+  & .main {
+    grid-area: main;
+  }
+
+  & .right {
+    grid-area: right;
+  }
+
+  & .footer {
+    grid-area: footer;
+  }
+}
+
+/*
+ * corner, header, corner,
+ * left,   main,   right,
+ * corner, footer, corner,
+ */
+.mobius-layout__round {
+  display: grid;
+  grid-template-columns: auto minmax(auto, 100%) auto;
+  grid-template-rows: auto minmax(0, 100%) auto;
+  grid-template-areas:
+    "corner-lt header corner-rt"
+    "left main right"
+    "corner-lb footer corner-rb";
+  align-items: stretch;
+  justify-items: stretch;
+  align-content: stretch;
+  justify-content: stretch;
+  /* place-items: stretch stretch; */
+  /* place-content: stretch stretch; */
+
+  & .corner-lt {
+    grid-area: corner-lt;
+  }
+
+  & .header {
+    grid-area: header;
+  }
+
+  & .corner-rt {
+    grid-area: corner-rt;
+  }
+
+  & .left {
+    grid-area: left;
+  }
+
+  & .main {
+    grid-area: main;
+  }
+
+  & .right {
+    grid-area: right;
+  }
+
+  & .corner-lb {
+    grid-area: corner-lb;
+  }
+
+  & .footer {
+    grid-area: footer;
+  }
+
+  & .corner-rb {
+    grid-area: corner-rb;
+  }
+}
+
+.mobius-grid-item--stretch {
+  justify-self: stretch;
+  align-self: stretch;
+}
+.mobius-grid-item--center {
+  justify-self: center;
+  align-self: center;
+}
+
+/*! purgecss end ignore */
