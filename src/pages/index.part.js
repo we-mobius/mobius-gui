@@ -19,6 +19,7 @@ const sectionFull = (innerBlock) =>
 const title = (content) =>
   div(
     joinifyClasses`
+      .mobius-flex-shrink--0
       .mobius-layout__horizontal.mobius-flex-justify--center
       .mobius-margin-top--base
       .mobius-text-leading--xl.mobius-text--sl.mobius-font--fantasy
@@ -67,7 +68,7 @@ const buttonBase = (extraClasses) => {
       .mobius-shadow--normal
       .mobius-text--center
       .active_mobius-shadow--thin.hover_mobius-text--primary
-      .mobius-cursor--pointer
+      .mobius-cursor--pointer.mobius-select--none
     ` + extraClasses
   return (content) =>
     div(

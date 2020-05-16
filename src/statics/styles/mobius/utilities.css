@@ -43,4 +43,11 @@
   cursor: pointer;
 }
 
+.mobius-select--none {
+  user-select: none;
+}
+.mobius-select--all {
+  user-select: all;
+}
+
 /*! purgecss end ignore */

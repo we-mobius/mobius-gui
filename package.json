@@ -1,7 +1,7 @@
 {
   "name": "@mobius-ui/mobius-ui",
   "version": "0.0.1",
-  "description": "Mobius UI based on TailWind CSS.",
+  "description": "Mobius UI is a neumorphism-like, utility-first UI framework.",
   "main": "index.js",
   "keywords": [
     ""
@@ -14,6 +14,7 @@
     "build": "webpack --env.mode=development",
     "dist": "webpack --env.mode=production",
     "serve": "live-server ./dist --port=0624",
+    "expose": "ngrok http 624",
     "bundle": "webpack --env.mode=release && node ./bin/release"
   },
   "repository": "https://github.com/we-mobius/mobius-ui.git",
