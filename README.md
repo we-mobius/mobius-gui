@@ -45,13 +45,13 @@ For a quickest preview: visit [Mobius UI preview](https://mobius-ui.21yunbox.com
   </div>
   <div style="margin: 0.5em auto; width: 30%; display: flex; flex-flow: column wrap; align-items: center;">
     <a href="#Instance" target="_blank">
-      <img width="auto" src="./public/assets/thoughts-avatar-minaqr-258-circle-8cm.jpg"/>
+      <img width="auto" src="./public/assets/mobius-ui-preview-site-qr.jpg"/>
     </a>
-    <p>Empty Seat...</p>
+    <p>Preview Site</p>
   </div>
   <div style="margin: 0.5em auto; width: 30%; display: flex; flex-flow: column wrap; align-items: center;">
     <a href="#Instance" target="_blank">
-      <img width="auto" src="./public/assets/thoughts-avatar-minaqr-258-circle-8cm.jpg"/>
+      <img width="auto" src="./public/assets/empty-seat.png"/>
     </a>
     <p>Empty Seat...</p>
   </div>
@@ -101,6 +101,7 @@ Priview Site is build with:
 - [rxjs](https://github.com/ReactiveX/rxjs) - Reactive programming library for JavaScript
 - [tailwindcss](https://github.com/tailwindcss/tailwindcss) - Utility-first CSS framework
 - [21yunbox](https://www.21yunbox.com/) - Static pages host service provider
+- [QRBTF](https://qrbtf.com/) - QR Code Generator
 
 ## Author
 

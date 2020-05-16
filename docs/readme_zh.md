@@ -24,7 +24,7 @@
 
 > 关于 Neumorphism 风格相关的信息，请查阅：[Neumorphism](https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6) - Michal Malewicz。
 
-目前，Mobius UI 处于 Alpha 阶段，七成以上的主要样式开发工作都已经完成，虽然在样式类命名、模块分割等方面还存在不确定性，但与 preview 阶段相比已经好太多了。这一阶段预计历时 6 个月左右，主要的任务是**完善基础示例**、**开发复杂组件**以及**撰写风格应用指南和使用文档**，你随时可以查看 `docs` 目录下的 `todos` 文件查看最新最近的任务安排和进展。
+目前，Mobius UI 处于 Alpha 阶段，七成以上的主要样式开发工作都已经完成，虽然在样式类命名、模块分割等方面还存在不确定性，但与 preview 阶段相比已经好太多太多了。这一阶段预计历时 6 个月左右，主要的任务是**完善基础示例**、**开发复杂组件**以及**撰写风格应用指南和使用文档**，你随时可以查看 `docs` 目录下的 `todos` 文件获知最新最近的任务安排和进展。
 
 Mobius UI 应用示例快速预览，请访问：[Mobius UI preview](https://mobius-ui.21yunbox.com/).
 
@@ -45,15 +45,15 @@ Mobius UI 应用示例快速预览，请访问：[Mobius UI preview](https://mob
   </div>
   <div style="margin: 0.5em auto; width: 30%; display: flex;flex-flow: column wrap; align-items: center;">
     <a href="#Instance" target="_blank">
-      <img width="auto" src="../public/assets/thoughts-avatar-minaqr-258-circle-8cm.jpg"/>
+      <img width="auto" src="../public/assets/mobius-ui-preview-site-qr.jpg"/>
     </a>
-    <p>虚位以待</p>
+    <p>Preview Site</p>
   </div>
   <div style="margin: 0.5em auto; width: 30%; display: flex;flex-flow: column wrap; align-items: center;">
     <a href="#Instance" target="_blank">
-      <img width="auto" src="../public/assets/thoughts-avatar-minaqr-258-circle-8cm.jpg"/>
+      <img width="auto" src="../public/assets/empty-seat.png"/>
     </a>
-    <p>虚位以待</p>
+    <p>虚位以待...</p>
   </div>
 </div>
 
@@ -76,7 +76,7 @@ Mobius UI 应用示例快速预览，请访问：[Mobius UI preview](https://mob
 </html>
 ```
 
-Mobius CSS 是一个纯 CSS 的样式库，当前阶段你完全可以放心地将它应用在自己的项目中! 需要注意的是，如果你或者你的团队对 Utility-first 的 CSS 组织方式并不是很熟悉的话，建议你们先在业余项目中引进，待熟悉之后再做理性的权衡。
+Mobius CSS 是一个纯 CSS 的样式库，当前阶段你完全可以放心地将它应用在自己的项目中! 需要注意的是，如果你或者你的团队对 Utility-first 的 CSS 组织方式并不是很熟悉的话，建议你们先在业余项目中引进，待熟悉之后再对是否引入正式项目做理性的权衡。
 
 以下是一些使用建议：
 
@@ -97,7 +97,7 @@ Mobius CSS 是一个纯 CSS 的样式库，当前阶段你完全可以放心地�
 - [rxjs](https://github.com/ReactiveX/rxjs) - 响应式的 JavaScript 工具库
 - [tailwindcss](https://github.com/tailwindcss/tailwindcss) - 样式类优先的 CSS 样式框架，Mobius CSS 在实现的过程中多有借鉴 Tailwind CSS 的样式类切割方案
 - [21 云盒子](https://www.21yunbox.com/) - 本项目展示页面使用 21 云盒子提供的静态页面部署服务
-- 其它...
+- [QRBTF](https://qrbtf.com/) - 参数化二维码生成器
 
 ## 作者
 
