@@ -1,6 +1,6 @@
 import { div, label, input } from '@cycle/dom'
 import { map, startWith, tap } from 'rxjs/operators'
-import { setThemeTo } from '../services/theme.service'
+// import { setThemeTo } from '../services/theme.service'
 
 function Toggle (source) {
   const toggleChange$ = source.DOM.select('input').events('change')
@@ -8,7 +8,7 @@ function Toggle (source) {
     startWith(null),
     tap(val => {
       if (val) {
-        setThemeTo(val.target.checked ? 'dark' : 'light')
+        // setThemeTo(val.target.checked ? 'dark' : 'light')
       }
     }),
     map(() =>

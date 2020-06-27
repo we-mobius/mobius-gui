@@ -1,56 +1,33 @@
-import run from '@cycle/rxjs-run'
-import { makeDOMDriver, div, span, a } from '@cycle/dom'
-import isolate from '@cycle/isolate'
-import { combineLatest, merge } from 'rxjs'
-import { map, share, startWith } from 'rxjs/operators'
-import { Toggle } from '../components/toggle'
-import { Button } from '../components/button'
-import { makeLightDriver } from '../components/light.driver'
+import { div, span, a } from '@cycle/dom'
+import { combineLatest } from 'rxjs'
+import { map } from 'rxjs/operators'
+import { makeModeToggle } from '../parts/mode.part'
+import { makeLightSourceButton } from '../parts/lightsource.part'
 import {
   title, paragraph, card, footer,
   section, sectionFull, terrace, zuma, zumaCenter,
   mockButtonGroup, mockButtonGroupSingle, mockButtonGroupBorderX, mockButtonGroupBorderY, mockButtonGroupBorderAll
 } from './index.part'
+import { THEME } from '../libs/mobius.js'
 
 const LOREM = 'Lorem, ipsum dolor sit amet neasd consectetur adipisicing elit. Explicabo dicta reiciendis blanditiis tempora ipsum consequatur reprehenderit temporibus nisi culpa voluptatem, unde dolores esse incidunt minima quos repellendus? Beatae, molestiae sunt.'
 
-function makeButton (source, props$, dir) {
-  const btn = isolate(Button, dir)({
-    DOM: source.DOM,
-    props: props$.pipe(map(prop => {
-      return { iconname: 'light--' + dir, dir: dir, selected: prop[dir] }
-    }))
-  })
-  return {
-    btn: btn,
-    DOM: btn.DOM,
-    message: btn.message
-  }
-}
-
 function main (source) {
-  const toggle = Toggle(source)
-  const toggleVNode$ = toggle.DOM
+  const toggle = makeModeToggle({ source })
+  const toggle2 = makeModeToggle({ source })
 
-  const props$ = source.mes.pipe(
-    share()
-  )
+  const ltBtn = makeLightSourceButton({ source, lightSource: THEME.LIGHTSOURCE.LT_RB })
+  const rtBtn = makeLightSourceButton({ source, lightSource: THEME.LIGHTSOURCE.RT_LB })
+  const rbBtn = makeLightSourceButton({ source, lightSource: THEME.LIGHTSOURCE.RB_LT })
+  const lbBtn = makeLightSourceButton({ source, lightSource: THEME.LIGHTSOURCE.LB_RT })
 
-  const ltBtn = makeButton(source, props$, 'lt2rb')
-  const rtBtn = makeButton(source, props$, 'rt2lb')
-  const rbBtn = makeButton(source, props$, 'rb2lt')
-  const lbBtn = makeButton(source, props$, 'lb2rt')
-
-  const message$ = merge(ltBtn.message, rtBtn.message, rbBtn.message, lbBtn.message).pipe(
-    startWith('lt2rb')
-  )
-
-  const vnode$ = combineLatest(toggleVNode$, ltBtn.DOM, rtBtn.DOM, rbBtn.DOM, lbBtn.DOM).pipe(
-    map(([toggleDOM, ltButtonDOM, rtButtonDOM, rbButtonDOM, lbButtonDOM]) => {
+  const vnode$ = combineLatest(toggle.DOM, toggle2.DOM, ltBtn.DOM, rtBtn.DOM, rbBtn.DOM, lbBtn.DOM).pipe(
+    map(([toggleDOM, toggle2DOM, ltButtonDOM, rtButtonDOM, rbButtonDOM, lbButtonDOM]) => {
       return div('.w-full.h-full.mobius-layout__portal.mobius-transition--all', [
         div('.header.mobius-layout__horizontal.mobius-flex-justify--between', [
           ltButtonDOM,
           toggleDOM,
+          toggle2DOM,
           rtButtonDOM
         ]),
         div('.left.mobius-width--4rem.mobius-layout__vertical.mobius-flex-justify--end', [
@@ -106,14 +83,8 @@ function main (source) {
   )
 
   return {
-    DOM: vnode$,
-    mes: message$
+    DOM: vnode$
   }
 }
 
-const drivers = {
-  DOM: makeDOMDriver('#app'),
-  mes: makeLightDriver()
-}
-
-run(main, drivers)
+export { main }
