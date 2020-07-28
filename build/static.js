@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "84c124bc4571a87e76e5";
+/******/ 	var hotCurrentHash = "d49ed81591393131e9e0";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1232,7 +1232,7 @@ eval("var logLevel = \"info\";\n\nfunction dummy() {}\n\nfunction shouldLog(leve
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _statics_styles_static_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./statics/styles/static.css */ \"./src/statics/styles/static.css\");\n/* harmony import */ var _statics_styles_static_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_statics_styles_static_css__WEBPACK_IMPORTED_MODULE_0__);\n\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvc3RhdGljLmpzPzFlYzIiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQW9DIiwiZmlsZSI6Ii4vc3JjL3N0YXRpYy5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAnLi9zdGF0aWNzL3N0eWxlcy9zdGF0aWMuY3NzJ1xyXG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/static.js\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _statics_styles_static_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./statics/styles/static.css */ \"./src/statics/styles/static.css\");\n/* harmony import */ var _statics_styles_static_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_statics_styles_static_css__WEBPACK_IMPORTED_MODULE_0__);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvc3RhdGljLmpzPzFlYzIiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBIiwiZmlsZSI6Ii4vc3JjL3N0YXRpYy5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAnLi9zdGF0aWNzL3N0eWxlcy9zdGF0aWMuY3NzJ1xyXG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/static.js\n");
 
 /***/ }),
 
@@ -1244,7 +1244,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sta
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"statics/fonts/Sixtyfour[wdth,wght].woff2\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvc3RhdGljcy9mb250cy9TaXh0eWZvdXJbd2R0aCx3Z2h0XS53b2ZmMj9iMjNlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQWUsb0ZBQXVCLDZDQUE2QyIsImZpbGUiOiIuL3NyYy9zdGF0aWNzL2ZvbnRzL1NpeHR5Zm91clt3ZHRoLHdnaHRdLndvZmYyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgX193ZWJwYWNrX3B1YmxpY19wYXRoX18gKyBcInN0YXRpY3MvZm9udHMvU2l4dHlmb3VyW3dkdGgsd2dodF0ud29mZjJcIjsiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/statics/fonts/Sixtyfour[wdth,wght].woff2\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"statics/fonts/Sixtyfour[wdth,wght].woff2\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvc3RhdGljcy9mb250cy9TaXh0eWZvdXJbd2R0aCx3Z2h0XS53b2ZmMj84MmRhIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQWUsb0ZBQXVCLDZDQUE2QyIsImZpbGUiOiIuL3NyYy9zdGF0aWNzL2ZvbnRzL1NpeHR5Zm91clt3ZHRoLHdnaHRdLndvZmYyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgX193ZWJwYWNrX3B1YmxpY19wYXRoX18gKyBcInN0YXRpY3MvZm9udHMvU2l4dHlmb3VyW3dkdGgsd2dodF0ud29mZjJcIjsiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/statics/fonts/Sixtyfour[wdth,wght].woff2\n");
 
 /***/ }),
 
@@ -1256,7 +1256,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"statics/fonts/Workbench[wdth,wght].woff2\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvc3RhdGljcy9mb250cy9Xb3JrYmVuY2hbd2R0aCx3Z2h0XS53b2ZmMj9mOTM5Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQWUsb0ZBQXVCLDZDQUE2QyIsImZpbGUiOiIuL3NyYy9zdGF0aWNzL2ZvbnRzL1dvcmtiZW5jaFt3ZHRoLHdnaHRdLndvZmYyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgX193ZWJwYWNrX3B1YmxpY19wYXRoX18gKyBcInN0YXRpY3MvZm9udHMvV29ya2JlbmNoW3dkdGgsd2dodF0ud29mZjJcIjsiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/statics/fonts/Workbench[wdth,wght].woff2\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"statics/fonts/Workbench[wdth,wght].woff2\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvc3RhdGljcy9mb250cy9Xb3JrYmVuY2hbd2R0aCx3Z2h0XS53b2ZmMj8yMDUxIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQWUsb0ZBQXVCLDZDQUE2QyIsImZpbGUiOiIuL3NyYy9zdGF0aWNzL2ZvbnRzL1dvcmtiZW5jaFt3ZHRoLHdnaHRdLndvZmYyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgX193ZWJwYWNrX3B1YmxpY19wYXRoX18gKyBcInN0YXRpY3MvZm9udHMvV29ya2JlbmNoW3dkdGgsd2dodF0ud29mZjJcIjsiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/statics/fonts/Workbench[wdth,wght].woff2\n");
 
 /***/ }),
 
@@ -1278,8 +1278,8 @@ eval("var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\cigaret\Desktop\GitLocal\mobius-ui\node_modules\webpack-dev-server\client\index.js?http://localhost:3000 */"./node_modules/webpack-dev-server/client/index.js?http://localhost:3000");
-__webpack_require__(/*! C:\Users\cigaret\Desktop\GitLocal\mobius-ui\node_modules\webpack\hot\dev-server.js */"./node_modules/webpack/hot/dev-server.js");
+__webpack_require__(/*! E:\Desktop\GitLocal\mobius-ui\node_modules\webpack-dev-server\client\index.js?http://localhost:3000 */"./node_modules/webpack-dev-server/client/index.js?http://localhost:3000");
+__webpack_require__(/*! E:\Desktop\GitLocal\mobius-ui\node_modules\webpack\hot\dev-server.js */"./node_modules/webpack/hot/dev-server.js");
 module.exports = __webpack_require__(/*! ./src/static.js */"./src/static.js");
 
 

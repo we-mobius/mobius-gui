@@ -9,6 +9,7 @@ function toggleChangeToModeInput (e) {
 
 function modeOutputToToggle (modeCurrency) {
   const { value } = modeCurrency
+  console.warn('part receives: ', value)
   return {
     checked: value === THEME.MODE.DARK
   }
