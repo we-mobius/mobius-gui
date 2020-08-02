@@ -1,8 +1,8 @@
 export {
   // utils
-
+  isArray, isObject, isString, hardDeepMerge,
   // common
-  makeUniqueId, whenContentLoaded,
+  makeUniqueId, whenContentLoaded, adaptMultiPlatform,
   // const
   THEME, makeThemeModeCurrency, makeThemeLightSourceCurrency,
   // config
@@ -28,4 +28,4 @@ export {
 
   // enhancements
 
-} from 'E:\\Desktop\\GitLocal\\mobius-js/src/index.js'
+} from '@we-mobius/mobius-js'

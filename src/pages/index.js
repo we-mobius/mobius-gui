@@ -1,84 +1,129 @@
 import { div, span, a } from '@cycle/dom'
-import { combineLatest } from 'rxjs'
-import { map } from 'rxjs/operators'
-import { makeModeToggle } from '../parts/mode.part'
-import { makeLightSourceButton } from '../parts/lightsource.part'
+import { combineLatest, map } from '../libs/rx.js'
+import { makeContainerE } from '../elements/container.element.js'
+import { makePortalLayoutE } from '../elements/portal.element.js'
+import { makeModeToggleP } from '../parts/mode.part.js'
+import { makeLightSourceButtonP } from '../parts/lightsource.part.js'
+import { makeAdaptiveContainerP } from '../parts/adaptiveContainer.part.js'
+import {
+  equiped, asNoShrinkItem, withFullPctWidth,
+  withYScroll, withScrollbarHidden
+} from '../stylizers/index.js'
 import {
   title, paragraph, card, footer,
   section, sectionFull, terrace, zuma, zumaCenter,
   mockButtonGroup, mockButtonGroupSingle, mockButtonGroupBorderX, mockButtonGroupBorderY, mockButtonGroupBorderAll
-} from './index.part'
+} from './index.part.js'
 import { THEME } from '../libs/mobius.js'
 
 const LOREM = 'Lorem, ipsum dolor sit amet neasd consectetur adipisicing elit. Explicabo dicta reiciendis blanditiis tempora ipsum consequatur reprehenderit temporibus nisi culpa voluptatem, unde dolores esse incidunt minima quos repellendus? Beatae, molestiae sunt.'
 
 function main (source) {
-  const toggle = makeModeToggle({ source })
-  const toggle2 = makeModeToggle({ source })
+  const toggle = makeModeToggleP({ source })
+  const toggle2 = makeModeToggleP({ source })
 
-  const ltBtn = makeLightSourceButton({ source, lightSource: THEME.LIGHTSOURCE.LT_RB })
-  const rtBtn = makeLightSourceButton({ source, lightSource: THEME.LIGHTSOURCE.RT_LB })
-  const rbBtn = makeLightSourceButton({ source, lightSource: THEME.LIGHTSOURCE.RB_LT })
-  const lbBtn = makeLightSourceButton({ source, lightSource: THEME.LIGHTSOURCE.LB_RT })
+  const ltBtn = makeLightSourceButtonP({ source, lightSource: THEME.LIGHTSOURCE.LT_RB })
+  const rtBtn = makeLightSourceButtonP({ source, lightSource: THEME.LIGHTSOURCE.RT_LB })
+  const rbBtn = makeLightSourceButtonP({ source, lightSource: THEME.LIGHTSOURCE.RB_LT })
+  const lbBtn = makeLightSourceButtonP({ source, lightSource: THEME.LIGHTSOURCE.LB_RT })
 
-  const vnode$ = combineLatest(toggle.DOM, toggle2.DOM, ltBtn.DOM, rtBtn.DOM, rbBtn.DOM, lbBtn.DOM).pipe(
-    map(([toggleDOM, toggle2DOM, ltButtonDOM, rtButtonDOM, rbButtonDOM, lbButtonDOM]) => {
-      return div('.w-full.h-full.mobius-layout__portal.mobius-transition--all', [
-        div('.header.mobius-layout__horizontal.mobius-flex-justify--between', [
-          ltButtonDOM,
-          toggleDOM,
-          toggle2DOM,
-          rtButtonDOM
-        ]),
-        div('.left.mobius-width--4rem.mobius-layout__vertical.mobius-flex-justify--end', [
-          lbButtonDOM
-        ]),
-        div('.main.mobius-shadow--inset.mobius-rounded--xs', [
-          div('.mobius-scrollbar--hidden.mobius-width--100.mobius-height--100.mobius-layout__vertical.mobius-flex-wrap--nowrap.mobius-padding-y--base.overflow-y-scroll.mobius-rounded--xs', [
-            title('Mobius UI'),
-            section(paragraph('.mobius-font--sans')),
-            section(paragraph('.mobius-font--serif')),
-            section(zuma([
-              terrace(LOREM),
-              terrace(LOREM),
-              terrace(LOREM),
-              terrace(LOREM)
-            ])),
-            section(zuma([
-              card(LOREM),
-              card(LOREM),
-              card(LOREM)
-            ])),
-            sectionFull(zumaCenter([
-              ...mockButtonGroup
-            ])),
-            sectionFull(zumaCenter([
-              ...mockButtonGroupSingle
-            ])),
-            sectionFull(zumaCenter([
-              ...mockButtonGroupBorderX
-            ])),
-            sectionFull(zumaCenter([
-              ...mockButtonGroupBorderY
-            ])),
-            sectionFull(zumaCenter([
-              ...mockButtonGroupBorderAll
-            ])),
-            footer([
-              span('.mobius-icon.mobius-icon-logo-github'),
-              a(
-                '.mobius-text--underline.mobius-text--primary',
-                { attrs: { href: 'https://github.com/we-mobius/mobius-ui' } },
-                ' Made with ♥ by Cigaret.'
-              )
-            ])
-          ])
-        ]),
-        // div('.footer.h-16'),
-        div('.right.mobius-width--4rem.mobius-layout__vertical.mobius-flex-justify--end', [
-          rbButtonDOM
-        ])
-      ])
+  const gt1000ContainerP = makeAdaptiveContainerP({
+    source,
+    conditions: {
+      width: width => width >= 1000
+    }
+  })
+
+  const vnode$ = combineLatest(toggle.DOM, toggle2.DOM, ltBtn.DOM, rtBtn.DOM, rbBtn.DOM, lbBtn.DOM, gt1000ContainerP.hyper).pipe(
+    map(([toggleDOM, toggle2DOM, ltButtonDOM, rtButtonDOM, rbButtonDOM, lbButtonDOM, gt1000ContainerDOM]) => {
+      return makePortalLayoutE({
+        config: {
+          type: 'flex'
+        },
+        children: {
+          header: [ltButtonDOM, toggleDOM, toggle2DOM, rtButtonDOM],
+          left: [gt1000ContainerDOM([lbButtonDOM])],
+          main: [
+            makeContainerE(equiped(withYScroll, withScrollbarHidden, asNoShrinkItem, withFullPctWidth)({
+              selector: '.mobius-padding--base',
+              config: {
+                // width: '300px',
+                height: '500px'
+              },
+              children: [
+                div('.mobius-border--.mobius-margin--base', [
+                  div(['【寻物】下午 5 点左右，途径西府街、南大街、正东街、东一环至菜市场口丢失一把现代车钥匙，捡到者请联系！必有重谢！']),
+                  a('.mobius-font--system', { props: { href: 'tel:15935197966' } }, ['联系方式：15935197966'])
+                ]),
+                div('.mobius-border--.mobius-margin--base', [
+                  div(['【寻物】下午 5 点左右，途径西府街、南大街、正东街、东一环至菜市场口丢失一把现代车钥匙，捡到者请联系！必有重谢！']),
+                  div(['联系方式：15935197966'])
+                ]),
+                div('.mobius-border--.mobius-margin--base', [
+                  div(['【寻物】下午 5 点左右，途径西府街、南大街、正东街、东一环至菜市场口丢失一把现代车钥匙，捡到者请联系！必有重谢！']),
+                  div(['联系方式：15935197966'])
+                ]),
+                div('.mobius-border--.mobius-margin--base', [
+                  div(['【寻物】下午 5 点左右，途径西府街、南大街、正东街、东一环至菜市场口丢失一把现代车钥匙，捡到者请联系！必有重谢！']),
+                  div(['联系方式：15935197966'])
+                ]),
+                div('.mobius-border--.mobius-margin--base', [
+                  div(['【寻物】下午 5 点左右，途径西府街、南大街、正东街、东一环至菜市场口丢失一把现代车钥匙，捡到者请联系！必有重谢！']),
+                  div(['联系方式：15935197966'])
+                ])
+                // makeContainerE({
+                //   config: {
+                //     width: '300px',
+                //     height: '600px'
+                //   },
+                //   children: [
+                //     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+                //   ]
+                // })
+              ]
+            })),
+            div('.mobius-scrollbar--hidden.mobius-size--fullpct.mobius-layout__vertical.mobius-flex-wrap--nowrap.mobius-padding-y--base.overflow-y-scroll.mobius-rounded--xs', [
+              title('Mobius UI'),
+              section(paragraph('.mobius-font--sans')),
+              section(paragraph('.mobius-font--serif')),
+              section(zuma([
+                terrace(LOREM),
+                terrace(LOREM),
+                terrace(LOREM),
+                terrace(LOREM)
+              ])),
+              section(zuma([
+                card(LOREM),
+                card(LOREM),
+                card(LOREM)
+              ])),
+              sectionFull(zumaCenter([
+                ...mockButtonGroup
+              ])),
+              sectionFull(zumaCenter([
+                ...mockButtonGroupSingle
+              ])),
+              sectionFull(zumaCenter([
+                ...mockButtonGroupBorderX
+              ])),
+              sectionFull(zumaCenter([
+                ...mockButtonGroupBorderY
+              ])),
+              sectionFull(zumaCenter([
+                ...mockButtonGroupBorderAll
+              ])),
+              footer([
+                span('.mobius-icon.mobius-icon-logo-github'),
+                a(
+                  '.mobius-text--underline.mobius-text--primary',
+                  { attrs: { href: 'https://github.com/we-mobius/mobius-ui' } },
+                  ' Made with ♥ by Cigaret.'
+                )
+              ])
+            ])],
+          right: [gt1000ContainerDOM([rbButtonDOM])]
+        }
+      })
     })
   )
 

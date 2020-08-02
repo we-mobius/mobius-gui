@@ -103,11 +103,13 @@
 .mobius-width--33vw, .hover_mobius-width--33vw:hover { width: 33vw; }
 .mobius-width--40vw, .hover_mobius-width--40vw:hover { width: 40vw; }
 .mobius-width--50vw, .hover_mobius-width--50vw:hover { width: 50vw; }
+.mobius-width--halfview, .hover_mobius-width--halfview:hover { width: 50vw; }
 .mobius-width--60vw, .hover_mobius-width--60vw:hover { width: 60vw; }
 .mobius-width--66vw, .hover_mobius-width--66vw:hover { width: 66vw; }
 .mobius-width--75vw, .hover_mobius-width--75vw:hover { width: 75vw; }
 .mobius-width--80vw, .hover_mobius-width--80vw:hover { width: 80vw; }
 .mobius-width--100vw, .hover_mobius-width--100vw:hover { width: 100vw; }
+.mobius-width--fullview, .hover_mobius-width--fullview:hover { width: 100vw; }
 /* percent */
 .mobius-width--10, .hover_mobius-width--10:hover { width: 10%; }
 .mobius-width--20, .hover_mobius-width--20:hover { width: 20%; }
@@ -116,11 +118,13 @@
 .mobius-width--33, .hover_mobius-width--33:hover { width: 33.3%; }
 .mobius-width--40, .hover_mobius-width--40:hover { width: 40%; }
 .mobius-width--50, .hover_mobius-width--50:hover { width: 50%; }
+.mobius-width--half, .hover_mobius-width--half:hover { width: 50%; }
 .mobius-width--60, .hover_mobius-width--60:hover { width: 60%; }
 .mobius-width--66, .hover_mobius-width--66:hover { width: 66.6%; }
 .mobius-width--75, .hover_mobius-width--75:hover { width: 75%; }
 .mobius-width--80, .hover_mobius-width--80:hover { width: 80%; }
 .mobius-width--100, .hover_mobius-width--100:hover { width: 100%; }
+.mobius-width--full, .hover_mobius-width--full:hover { width: 100%; }
 
 /*********************************************************
  *                         Height
@@ -203,11 +207,13 @@
 .mobius-height--33vh, .hover_mobius-height--33vh:hover { height: 33vh; }
 .mobius-height--40vh, .hover_mobius-height--40vh:hover { height: 40vh; }
 .mobius-height--50vh, .hover_mobius-height--50vh:hover { height: 50vh; }
+.mobius-height--halfview, .hover_mobius-height--halfview:hover { height: 50vh; }
 .mobius-height--60vh, .hover_mobius-height--60vh:hover { height: 60vh; }
 .mobius-height--66vh, .hover_mobius-height--66vh:hover { height: 66vh; }
 .mobius-height--75vh, .hover_mobius-height--75vh:hover { height: 75vh; }
 .mobius-height--80vh, .hover_mobius-height--80vh:hover { height: 80vh; }
 .mobius-height--100vh, .hover_mobius-height--100vh:hover { height: 100vh; }
+.mobius-height--fullview, .hover_mobius-height--fullview:hover { height: 100vh; }
 /* percent */
 .mobius-height--10, .hover_mobius-height--10:hover { height: 10%; }
 .mobius-height--20, .hover_mobius-height--20:hover { height: 20%; }
@@ -216,10 +222,12 @@
 .mobius-height--33, .hover_mobius-height--33:hover { height: 33.3%; }
 .mobius-height--40, .hover_mobius-height--40:hover { height: 40%; }
 .mobius-height--50, .hover_mobius-height--50:hover { height: 50%; }
+.mobius-height--half, .hover_mobius-height--half:hover { height: 50%; }
 .mobius-height--60, .hover_mobius-height--60:hover { height: 60%; }
 .mobius-height--66, .hover_mobius-height--66:hover { height: 66.6%; }
 .mobius-height--75, .hover_mobius-height--75:hover { height: 75%; }
 .mobius-height--80, .hover_mobius-height--80:hover { height: 80%; }
 .mobius-height--100, .hover_mobius-height--100:hover { height: 100%; }
+.mobius-height--full, .hover_mobius-height--full:hover { height: 100%; }
 
 /*! purgecss end ignore */

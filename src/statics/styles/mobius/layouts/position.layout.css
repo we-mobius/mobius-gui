@@ -25,6 +25,7 @@
 .mobius-position--relative { position: relative; }
 .mobius-position--absolute { position: absolute; }
 .mobius-position--fixed { position: fixed; }
+.mobius-position--sticky { position: sticky; }
 
 .mobius-position-horizontal_center {
   width: fit-content;
