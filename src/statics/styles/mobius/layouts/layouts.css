@@ -29,5 +29,10 @@
 
 .mobius-box--border { box-sizing: border-box; }
 .mobius-box--content { box-sizing: content-box; }
+.mobius-size--fullview { width: 100vw; height: 100vh; }
+.mobius-size--fullpct { width: 100%; height: 100%; }
+.mobius-size--fullabs { position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
+.mobius-size--fullheightabs { position: absolute; top: 0; bottom: 0 }
+.mobius-size--fullwidthabs { position: absolute; left: 0; right: 0 }
 
 /*! purgecss end ignore*/

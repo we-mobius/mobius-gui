@@ -67,6 +67,9 @@
   align-items: stretch;
 } */
 
+.mobius-display--flex { display: flex; }
+.mobius-flex--inline { display: inline-flex; }
+
 /* 流动方向 */
 .mobius-flex-dir--row { flex-direction: row; }
 .mobius-flex-dir--rowreverse { flex-direction: row-reverse; }

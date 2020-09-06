@@ -148,4 +148,55 @@
     --bglinear-color-light: var(--mobius-color-lighter-m);
   }
 }
+
+.mobius-bg--red,
+.hover_mobius-bg--red:hover,
+.active_mobius-bg--red:active {
+  background-color: var(--red-color-normal);
+}
+.mobius-bg--orange,
+.hover_mobius-bg--orange:hover,
+.active_mobius-bg--orange:active {
+  background-color: var(--orange-color-normal);
+}
+.mobius-bg--yellow,
+.hover_mobius-bg--yellow:hover,
+.active_mobius-bg--yellow:active {
+  background-color: var(--yellow-color-normal);
+}
+.mobius-bg--green,
+.hover_mobius-bg--green:hover,
+.active_mobius-bg--green:active {
+  background-color: var(--green-color-normal);
+}
+.mobius-bg--cyan,
+.hover_mobius-bg--cyan:hover,
+.active_mobius-bg--cyan:active {
+  background-color: var(--cyan-color-normal);
+}
+.mobius-bg--blue,
+.hover_mobius-bg--blue:hover,
+.active_mobius-bg--blue:active {
+  background-color: var(--blue-color-normal);
+}
+.mobius-bg--purple,
+.hover_mobius-bg--purple:hover,
+.active_mobius-bg--purple:active {
+  background-color: var(--purple-color-normal);
+}
+.mobius-bg--white,
+.hover_mobius-bg--white:hover,
+.active_mobius-bg--white:active {
+  background-color: var(--white-color-normal);
+}
+.mobius-bg--gray,
+.hover_mobius-bg--gray:hover,
+.active_mobius-bg--gray:active {
+  background-color: var(--gray-color-normal);
+}
+.mobius-bg--black,
+.hover_mobius-bg--black:hover,
+.active_mobius-bg--black:active {
+  background-color: var(--black-color-normal);
+}
 /*! purgecss end ignore */

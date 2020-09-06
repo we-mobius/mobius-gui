@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@we-mobius/mobius-js@latest"></script>
+  <script src="./mobiusui.js"></script>
+  <script src="https://unpkg.com/rxjs/bundles/rxjs.umd.min.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    console.info(MobiusJS)
+    console.info(MobiusUI)
+    console.info(rxjs)
+    const { of } = rxjs
+    const { map } = rxjs.operators
+    let { run, makeDOMDriver } = MobiusUI
+    let {
+      makeFullContainerE, makeFlexContainerE,
+      withPresetVertical, withFullView
+    } = MobiusUI
+    const main = (source) => {
+
+      const vnode$ = of(1).pipe(map(() => {
+        makeFlexContainerE(withPresetVertical(withFullView({
+          children: [
+
+          ]
+        })))
+        // return makeFullContainerE({
+        //   children: ['Hello, Mobius UI.']
+        // })
+      }))
+      return {
+        DOM: vnode$
+      }
+    }
+    MobiusJS.whenContentLoaded(() => {
+      run(main, {
+        DOM: makeDOMDriver('#app')
+      })
+
+    })
+  </script>
+</body>
+
+</html>

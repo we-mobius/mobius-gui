@@ -42,16 +42,28 @@ page {
   );
 }
 
-.mobius-text--xs { font-size: 0.75rem; }
-.mobius-text--small { font-size: 0.875rem; }
-.mobius-text--base { font-size: 1rem; }
-.mobius-text--large { font-size: 1.125rem; }
-.mobius-text--xl { font-size: 1.25rem; }
-.mobius-text--xxl, .mobius-text--2xl { font-size: 1.5rem; }
-.mobius-text--xxxl, .mobius-text--3xl { font-size: 1.75rem; }
-.mobius-text--xxxxl, .mobius-text--4xl { font-size: 2rem; }
-.mobius-text--sl { font-size: 2.5rem; }
-.mobius-text--ssl, .mobius-text--2sl { font-size: 3rem; }
-.mobius-text--sssl, .mobius-text--3sl { font-size: 3.5rem; }
+.mobius-text--xs { font-size: 0.75em; }
+.mobius-text--small { font-size: 0.875em; }
+.mobius-text--base { font-size: 1em; }
+.mobius-text--large { font-size: 1.125em; }
+.mobius-text--xl { font-size: 1.25em; }
+.mobius-text--xxl, .mobius-text--2xl { font-size: 1.5em; }
+.mobius-text--xxxl, .mobius-text--3xl { font-size: 1.75em; }
+.mobius-text--xxxxl, .mobius-text--4xl { font-size: 2em; }
+.mobius-text--sl { font-size: 2.5em; }
+.mobius-text--ssl, .mobius-text--2sl { font-size: 3em; }
+.mobius-text--sssl, .mobius-text--3sl { font-size: 3.5em; }
+
+.mobius-text--r-xs { font-size: 0.75rem; }
+.mobius-text--r-small { font-size: 0.875rem; }
+.mobius-text--r-base { font-size: 1rem; }
+.mobius-text--r-large { font-size: 1.125rem; }
+.mobius-text--r-xl { font-size: 1.25rem; }
+.mobius-text--r-xxl, .mobius-text--r-2xl { font-size: 1.5rem; }
+.mobius-text--r-xxxl, .mobius-text--r-3xl { font-size: 1.75rem; }
+.mobius-text--r-xxxxl, .mobius-text--r-4xl { font-size: 2rem; }
+.mobius-text--r-sl { font-size: 2.5rem; }
+.mobius-text--r-ssl, .mobius-text--r-2sl { font-size: 3rem; }
+.mobius-text--r-sssl, .mobius-text--r-3sl { font-size: 3.5rem; }
 
 /*! purgecss end ignore */

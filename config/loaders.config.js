@@ -64,8 +64,16 @@ const fontLoader4Release = {
   ]
 }
 
+const jsLoader = {
+  test: /\.m?js$/,
+  exclude: /(node_modules|bower_components)/,
+  use: [{
+    loader: 'babel-loader'
+  }]
+}
+
 module.exports = {
-  development: [handlebarsLoader, imageLoader, svgLoader, fontLoader],
-  production: [handlebarsLoader, imageLoader, svgLoader, fontLoader],
-  release: [handlebarsLoader, imageLoader, svgLoader, fontLoader4Release]
+  development: [handlebarsLoader, jsLoader, imageLoader, svgLoader, fontLoader],
+  production: [handlebarsLoader, jsLoader, imageLoader, svgLoader, fontLoader],
+  release: [handlebarsLoader, jsLoader, imageLoader, svgLoader, fontLoader4Release]
 }
