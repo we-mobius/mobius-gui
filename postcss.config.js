@@ -8,7 +8,8 @@ module.exports = {
     require('postcss-preset-env')({
       stage: 1,
       features: {
-        'nesting-rules': true
+        'nesting-rules': true,
+        'color-mod-function': { unresolved: 'warn' }
       }
     }),
     require('postcss-extend-rule')({ name: 'extend' }),

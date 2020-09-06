@@ -130,9 +130,61 @@ page {
 .active_mobius-text-break--words:active { overflow-wrap: break-word; }
 .mobius-text-break--all,
 .hover_mobius-text-break--all:hover,
-.active_mobius-text-break--all:active { overflow-wrap: break-all; }
+.active_mobius-text-break--all:active { overflow-wrap: break-all; word-break: break-all; }
+
+%text-truncate {
+  overflow: hidden; text-overflow: ellipsis;
+}
+
+// 涉及到文字换行出路，故需要为文字容器指定宽度
+.mobius-text-break--truncate-simple,
+.hover_mobius-text-break--truncate-simple:hover,
+.active_mobius-text-break--truncate-simple:active { @extend %text-nowrap, %text-truncate;  }
+
+%line-clamp {
+  --line-clamp: 1;
+}
+
 .mobius-text-break--truncate,
 .hover_mobius-text-break--truncate:hover,
-.active_mobius-text-break--truncate:active { @extend %text-nowrap; overflow: hidden; text-overflow: ellipsis; }
+.active_mobius-text-break--truncate:active {
+  @extend %text-truncate;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line-clamp);
+  -webkit-box-orient: vertical;
+}
+
+.mobius-text-break--truncate-1,
+.hover_mobius-text-break--truncate-1:hover,
+.active_mobius-text-break--truncate-1:active {
+  @extend %text-truncate;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line-clamp, 1);
+  -webkit-box-orient: vertical;
+}
+.mobius-text-break--truncate-2,
+.hover_mobius-text-break--truncate-2:hover,
+.active_mobius-text-break--truncate-2:active {
+  @extend %text-truncate;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line-clamp, 2);
+  -webkit-box-orient: vertical;
+}
+.mobius-text-break--truncate-3,
+.hover_mobius-text-break--truncate-3:hover,
+.active_mobius-text-break--truncate-3:active {
+  @extend %text-truncate;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line-clamp, 3);
+  -webkit-box-orient: vertical;
+}
+.mobius-text-break--truncate-4,
+.hover_mobius-text-break--truncate-4:hover,
+.active_mobius-text-break--truncate-4:active {
+  @extend %text-truncate;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line-clamp, 4);
+  -webkit-box-orient: vertical;
+}
 
 /*! purgecss end ignore */

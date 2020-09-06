@@ -48,13 +48,6 @@ page {
 
 body,
 page {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  line-height: 1.5;
 }
 
 div,
@@ -73,4 +66,30 @@ img {
 svg {
   color: currentColor;
 }
+
+input,
+textarea,
+select {
+  outline: none;
+  appearance: none;
+  outline-offset: -2px;
+}
+
+textarea {
+  resize: none;
+}
+
+select {
+  background-color: #ffffff;
+}
+select[value=" "] {
+  color: gray;
+}
+option[value=" "][disabled] {
+  display: none;
+}
+option {
+  color: #000000;
+}
+
 /*! purgecss end ignore*/

@@ -8,7 +8,36 @@
   <link rel="apple-touch-icon" type="image/png" href="{{mobiusConfig.favicon}}">
   <link rel="apple-touch-startup-image" type="image/png" href="{{mobiusConfig.favicon}}">
   <link rel="icon" type="image/png" href="{{mobiusConfig.favicon}}">
+  {{!-- 渲染额外引入的字体资源 --}}
+  {{!-- @see https://developer.mozilla.org/zh-CN/docs/Web/HTML/Preloading_content --}}
+  {{#each mobiusConfig.fonts as |extra-font|}}
+  <link rel='preload' as="font" href="{{extra-font}}" type="font/woff2" crossorigin="anonymous" />
+  {{/each}}
+
   <title>{{mobiusConfig.title}}</title>
+
+  <script>
+    Function.prototype.whisperToStrangers = function () {
+      let l = new String(this)
+      l = l.substring(l.indexOf("/*") + 3, l.lastIndexOf("*/"))
+      return l
+    }
+
+    let words = function () {
+      /*
+           __  __      ____      ____      _____     _    _      _____
+          |  \/  |    / __ \    |  _ \    |_   _|   | |  | |    / ____|
+          | \  / |   | |  | |   | |_) |     | |     | |  | |   | (___
+          | |\/| |   | |  | |   |  _ <      | |     | |  | |    \___ \
+          | |  | |   | |__| |   | |_) |    _| |_    | |__| |    ____) |
+          |_|  |_|    \____/    |____/    |_____|    \____/    |_____/
+       */
+    }
+    console.log(words.whisperToStrangers());
+    console.log("        %c🧿  {{mobiusConfig.whisper}}", "color:hsla(264,100%,50%,100%);line-height: 2;")
+    console.log("        %c             (☞ﾟヮﾟ)☞  Have a nice day  ☜(ﾟヮﾟ☜)", "color:red;")
+    console.log(`        %c                       Copyright (c) ${new Date().getFullYear()}`, "color:hsla(96,100%,50%,100%)")
+  </script>
 
   {{!-- 渲染单独定义的 异步加载 外部样式表 --}}
   {{#each mobiusConfig.asyncCss as |outer-async-css|}}
@@ -45,17 +74,12 @@
     var _hmt = _hmt || [];
     (function () {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?{{mobiusConfig.baiduAnalytics.trackingId}}";
+      hm.src = "https://hm.baidu.com/hm.js?{{ mobiusConfig.baiduAnalytics.trackingId }}";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
   {{/if}}
-
-  {{!-- 渲染额外引入的字体资源 --}}
-  {{#each mobiusConfig.fonts as |extra-font|}}
-  <link rel='preload' as="font" href="{{extra-font}}" />
-  {{/each}}
 
   {{!-- 渲染 Google Analytics 代码 --}}
   {{#if mobiusConfig.googleAnalytics.trackingId}}
@@ -64,7 +88,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', '{{mobiusConfig.googleAnalytics.trackingId}}');
+    gtag('config', '{{ mobiusConfig.googleAnalytics.trackingId }}');
   </script>
   {{/if}}
 </body>

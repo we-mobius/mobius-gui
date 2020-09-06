@@ -1,6 +1,7 @@
 @import "./typography/typography.css";
 @import "./effects/effects.css";
 @import "./layouts/layouts.css";
+@import "./animations/animations.css";
 /*! purgecss start ignore */
 
 /*********************************************************
@@ -28,8 +29,18 @@
  *********************************************************/
 
 /*********************************************************
- *              Mobius ScrollBar Utility
+ *              Mobius Utility
  *********************************************************/
+
+.mobius-display--none { display: none; }
+
+.mobius-visible--none { visibility: hidden; }
+
+.mobius-scroll-auto { overflow: auto; }
+.mobius-scroll-hidden { overflow: hidden; }
+.mobius-scroll--all { overflow: scroll; }
+.mobius-scroll--x { overflow-x: scroll; overflow-y: hidden; }
+.mobius-scroll--y { overflow-x: hidden; overflow-y: scroll; }
 
 .mobius-scrollbar--hidden {
   -ms-overflow-style: none;
@@ -39,15 +50,12 @@
   }
 }
 
-.mobius-cursor--pointer {
-  cursor: pointer;
-}
+.mobius-cursor--pointer { cursor: pointer; }
 
-.mobius-select--none {
-  user-select: none;
-}
-.mobius-select--all {
-  user-select: all;
-}
+.mobius-select--auto { user-select: auto; }
+.mobius-select--none { user-select: none; }
+.mobius-select--all { user-select: all; }
+.mobius-select--text { user-select: text; }
+.mobius-select--contain { user-select: contain; }
 
 /*! purgecss end ignore */

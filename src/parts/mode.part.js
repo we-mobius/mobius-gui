@@ -1,34 +1,31 @@
-import isolate from '@cycle/isolate'
-import { makeToggle } from '../components/toggle.component'
+import { makeBasePart } from '../common/index.js'
+import { makeToggleC } from '../components/toggle.component'
 import { makeModeDriver } from '../drivers/mode.driver'
-import { THEME, makeThemeModeCurrency, makeUniqueId } from '../libs/mobius.js'
+import { THEME, makeThemeModeCurrency } from '../libs/mobius.js'
 
 function toggleChangeToModeInput (e) {
   return makeThemeModeCurrency(e.target.checked ? THEME.MODE.DARK : THEME.MODE.LIGHT)
 }
 
-function modeOutputToToggle (modeCurrency) {
+function modeOutputToToggleConfig (modeCurrency) {
   const { value } = modeCurrency
   return {
     checked: value === THEME.MODE.DARK
   }
 }
 
-function makeModeToggle ({ source }) {
-  const _unique = makeUniqueId('mode-toggle')
-  const toggle = isolate(
-    makeToggle({
-      unique: _unique,
-      attrs: {},
-      driverInputMapper: toggleChangeToModeInput,
+function makeModeToggleP ({ source }) {
+  return makeBasePart({
+    name: 'mode-toggle',
+    source: source,
+    componentMaker: ({ unique }) => makeToggleC({
+      unique: unique,
+      componentToDriverMapper: toggleChangeToModeInput,
       driver: makeModeDriver(),
-      driverOutputMapper: modeOutputToToggle
-    }),
-    _unique
-  )({
-    DOM: source.DOM
+      driverToComponentMapper: modeOutputToToggleConfig,
+      config: {}
+    })
   })
-  return toggle
 }
 
-export { makeModeToggle }
+export { makeModeToggleP }

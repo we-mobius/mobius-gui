@@ -1,38 +1,33 @@
-import { div, input, label } from '@cycle/dom'
-import { map } from 'rxjs/operators'
+import { makeToggleE } from '../elements/toggle.element.js'
+import { makeBaseComponent } from '../common/index.js'
+import { map } from '../libs/rx.js'
+import { asIs } from '../libs/mobius.js'
 
-function _makeToggleVnode (unique, attrs, { checked }) {
-  const _inputId = `${unique}-input`
-  // NOTE: DO not trigger the `change` event!!!
-  // @see https://stackoverflow.com/questions/8206565/check-uncheck-checkbox-with-javascript-jquery-or-vanilla
-  const _inputEle = document.querySelector(`#${_inputId}`)
-  _inputEle && (_inputEle.checked = checked)
-
-  return div(`.js_${unique}.mobius-toggle.mobius-rounded--full.mobius-shadow--inset`,
-    [
-      input({ attrs: { type: 'checkbox', id: _inputId, checked } }),
-      label('.mobius-cursor--pointer.mobius-rounded--full', { attrs: { for: _inputId } })
-    ]
-  )
+function makeToggleVnode ({ unique, config: { checked } }) {
+  return makeToggleE({
+    unique: unique,
+    selector: '',
+    config: { checked }
+  })
 }
 
-function makeToggle ({ unique, attrs, driverInputMapper, driver, driverOutputMapper }) {
-  return (source) => {
-    const toggleChange$ = source.DOM.select('input').events('change').pipe(
-      map(driverInputMapper)
-    )
-
-    const vnode$ = driver(toggleChange$).pipe(
-      map(driverOutputMapper),
-      map((toggleConfig) => {
-        return _makeToggleVnode(unique, attrs, toggleConfig)
-      })
-    )
-
-    return {
-      DOM: vnode$
+function makeToggleC ({ unique, children, componentToDriverMapper = asIs, driver, driverToComponentMapper = asIs, config }) {
+  return makeBaseComponent({
+    intent: source => source.DOM.select('input').events('change').pipe(
+      map(componentToDriverMapper)
+    ),
+    model: intent$ => driver(intent$),
+    view: model$ => {
+      return {
+        DOM: model$.pipe(
+          map(([driverOutput]) => [driverToComponentMapper(driverOutput)]),
+          map(([toggleConfig]) => {
+            return makeToggleVnode({ unique, config: { ...config, ...toggleConfig } })
+          })
+        )
+      }
     }
-  }
+  })
 }
 
-export { makeToggle }
+export { makeToggleC }

@@ -1,40 +1,29 @@
-import isolate from '@cycle/isolate'
-import { makeClickButton } from '../components/clickButton.compontent'
-import { makeLightSourceDriver } from '../drivers/lightsource.driver'
-import { makeThemeLightSourceCurrency, makeUniqueId } from '../libs/mobius.js'
+import { makeBasePart } from '../common/index.js'
+import { makePressButtonC } from '../components/button-press.component.js'
+import { makeLightSourceDriver } from '../drivers/lightsource.driver.js'
+import { makeThemeLightSourceCurrency } from '../libs/mobius.js'
 
-function clickEventToLightSourceInput (e) {
-  return makeThemeLightSourceCurrency(e.currentTarget.dataset.lightsource)
-}
-
-function lightSourceOutputToClickButton (lightSourceCurrency) {
-  const { value } = lightSourceCurrency
+const makeDriverToComponentMapper = lightSource => lightSourceCurrency => {
   return {
-    selected: value
+    pressed: lightSource === lightSourceCurrency.value
   }
 }
 
-function makeLightSourceButton ({ source, lightSource }) {
-  const _unique = makeUniqueId('lightsource-button')
-  const btn = isolate(
-    makeClickButton({
-      unique: _unique,
-      attrs: {
-        name: lightSource,
-        iconname: `light--${lightSource}`,
-        dataset: {
-          lightsource: lightSource
-        }
-      },
-      driverInputMapper: clickEventToLightSourceInput,
+function makeLightSourceButtonP ({ source, lightSource }) {
+  return makeBasePart({
+    name: 'lightsource-button',
+    source: source,
+    componentMaker: ({ unique }) => makePressButtonC({
+      unique: unique,
+      componentToDriverMapper: e => makeThemeLightSourceCurrency(e.currentTarget.dataset.lightsource),
       driver: makeLightSourceDriver(),
-      driverOutputMapper: lightSourceOutputToClickButton
-    }),
-    _unique
-  )({
-    DOM: source.DOM
+      driverToComponentMapper: makeDriverToComponentMapper(lightSource),
+      config: {
+        name: lightSource,
+        icon: `light--${lightSource}`
+      }
+    })
   })
-  return btn
 }
 
-export { makeLightSourceButton }
+export { makeLightSourceButtonP }

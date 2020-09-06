@@ -13,7 +13,8 @@ module.exports = {
   mode: 'production',
   entry: {
     mobius: './src/mobius.release.entry.js',
-    addons: './src/addons.release.entry.js'
+    addons: './src/addons.release.entry.js',
+    mobiusui: './src/mobiusui.release.entry.js'
   },
   output: {
     path: PATHS.output

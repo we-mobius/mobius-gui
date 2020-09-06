@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobius Redirector</title>
+</head>
+
+<body>
+  <script type='module'>
+    const origin = 'https://app.thoughtsdaily.cn'
+    const app = window.location.pathname.split('/').filter(x => !!x)[0] || ''
+    console.info(`Redirect to: ${[origin, app].join('/')}?mobius_redirect=${encodeURIComponent(window.location.href)}`)
+    window.location.replace(`${[origin, app].join('/')}?mobius_redirect=${encodeURIComponent(window.location.href)}`)
+  </script>
+</body>
+
+</html>
