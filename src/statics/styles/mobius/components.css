@@ -27,6 +27,16 @@ page {
   --toggle-size: 4rem;
 }
 
+#mobius-app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
 .mobius-toggle {
   position: relative;
   width: var(--toggle-size);
@@ -75,5 +85,15 @@ page {
       left: 50%;
     }
   }
+}
+
+.mobius-input--invalid {
+  outline: 2px solid var(--red-color-normal);
+}
+.mobius-input--valid {
+  outline: 2px solid var(--green-color-normal);
+}
+.mobius-input--warn {
+  outline: 2px solid var(--orange-color-normal);
 }
 /*! purgecss end ignore */

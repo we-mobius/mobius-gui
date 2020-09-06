@@ -1,6 +1,7 @@
 @import "./typography/typography.css";
 @import "./effects/effects.css";
 @import "./layouts/layouts.css";
+@import "./animations/animations.css";
 /*! purgecss start ignore */
 
 /*********************************************************
@@ -28,8 +29,12 @@
  *********************************************************/
 
 /*********************************************************
- *              Mobius ScrollBar Utility
+ *              Mobius Utility
  *********************************************************/
+
+.mobius-display--none { display: none; }
+
+.mobius-visible--none { visibility: hidden; }
 
 .mobius-scroll-auto { overflow: auto; }
 .mobius-scroll-hidden { overflow: hidden; }

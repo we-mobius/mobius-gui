@@ -1,20 +1,21 @@
 import { makeContainerE } from '../elements/container.element.js'
 import { makeBaseComponent } from '../common/index.js'
 import { map } from '../libs/rx.js'
+import { asIs } from '../libs/mobius.js'
 
-const makeContainerVnode = ({ unique, children, config: { isShow } }) => {
+const makeContainerVnode = ({ unique, children, config }) => {
   return makeContainerE({
     unique: unique,
-    selector: `.js_${unique}`,
+    selector: '',
     children: children,
     props: {},
     config: {
-      isShow
+      ...config
     }
   })
 }
 
-const makeContainerC = ({ unique, children, componentToDriverMapper, driver, driverToComponentMapper }) => {
+const makeContainerC = ({ unique, children, componentToDriverMapper = asIs, driver, driverToComponentMapper = asIs, config }) => {
   return makeBaseComponent({
     children: children,
     intent: source => {
@@ -25,15 +26,13 @@ const makeContainerC = ({ unique, children, componentToDriverMapper, driver, dri
       const renders$ = model$.pipe(map(([driverOutput, childsDOM]) => [driverToComponentMapper(driverOutput), childsDOM]))
       return {
         DOM: renders$.pipe(
-          map(([{ isShow }, childsDOM]) => {
-            console.warn(`[ContainerComponent][${unique}] isShow -> ${isShow}`)
-            return makeContainerVnode({ unique, children: childsDOM, config: { isShow } })
+          map(([childsDOM]) => {
+            return makeContainerVnode({ unique, children: childsDOM, config: { ...config } })
           })
         ),
         hyper: renders$.pipe(
-          map(([{ isShow }]) => {
-            console.warn(`[ContainerComponent][${unique}] isShow -> ${isShow}`)
-            return children => makeContainerVnode({ unique, children: children, config: { isShow } })
+          map(([childsDOM]) => {
+            return children => makeContainerVnode({ unique, children: [...childsDOM, ...children], config: { ...config } })
           })
         )
       }

@@ -27,8 +27,6 @@
  *
  *********************************************************/
 
-.mobius-display--flex { display: flex; }
-
 .mobius-box--border { box-sizing: border-box; }
 .mobius-box--content { box-sizing: content-box; }
 .mobius-size--fullview { width: 100vw; height: 100vh; }

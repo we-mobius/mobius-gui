@@ -1,26 +1,25 @@
-import { div, span } from '@cycle/dom'
+import { div, span } from '../libs/dom.js'
 import { hardDeepMerge } from '../libs/mobius.js'
+import { makeIfB } from '../blocks/if.block.js'
 
-const baseBtnClass = '.js_mobius-button' +
-   '.mobius-width--3rem.mobius-height--3rem.mobius-margin--xs.mobius-rounded--xs' +
-   '.hover_mobius-bg--convex.cursor-pointer.flex.items-center.justify-center'
-const normalBtnClass = '.mobius-shadow--normal.hover_mobius-text--primary'
-const selectedBtnClass = '.mobius-shadow--inset.mobius-text--primary'
+const baseBtnClass = '.mobius-layout__horizontal.mobius-flex--inline.mobius-flex-justify--center' +
+  '.mobius-padding-x--base.mobius-padding-y--xs.mobius-border--all.mobius-rounded--small.mobius-text--bold.mobius-text--primary' +
+  '.active_mobius-bg--convex.cursor-pointer'
 
+// TODO: 监听键盘事件 Enter or Space，并转而触发 click 事件
+//   -> @see: https://developer.mozilla.org/zh-CN/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role
 const makeButtonE = ({
-  unique, selector = '', props = {}, children = undefined, text = undefined, config = {
-    name: '',
-    title: '',
-    icon: '',
-    selected: ''
-  }
+  unique, selector = '', props = {}, children = undefined, text = undefined, config = {}
 } = {}) => {
-  const { name, icon, title, selected } = config
+  const { icon, title } = config
   return div(
-    `${selector}${baseBtnClass}${selected === name ? selectedBtnClass : normalBtnClass}`,
-    hardDeepMerge(props, { dataset: { unique } }),
+    `${unique ? '.js_' + unique : ''}${selector}${baseBtnClass}`,
+    hardDeepMerge(props, { dataset: { unique }, attrs: { role: 'button' } }),
     [
-      span(`.mobius-icon${icon ? '.mobius-icon-' + icon : ''}.mobius-text--2xl`),
+      ...makeIfB({
+        chilren: [span(`.mobius-icon.mobius-icon-${icon}.mobius-text--2xl.mobius-padding-right--xs`)],
+        condition: !!icon
+      }),
       title
     ]
   )

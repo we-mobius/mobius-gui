@@ -1,16 +1,11 @@
 import { makeBasePart } from '../common/index.js'
-import { makeButtonC } from '../components/button.component.js'
+import { makePressButtonC } from '../components/button-press.component.js'
 import { makeLightSourceDriver } from '../drivers/lightsource.driver.js'
 import { makeThemeLightSourceCurrency } from '../libs/mobius.js'
 
-function clickEventToLightSourceInput (e) {
-  return makeThemeLightSourceCurrency(e.currentTarget.dataset.lightsource)
-}
-
-function lightSourceOutputToButtonConfig (lightSourceCurrency) {
-  const { value } = lightSourceCurrency
+const makeDriverToComponentMapper = lightSource => lightSourceCurrency => {
   return {
-    selected: value
+    pressed: lightSource === lightSourceCurrency.value
   }
 }
 
@@ -18,17 +13,14 @@ function makeLightSourceButtonP ({ source, lightSource }) {
   return makeBasePart({
     name: 'lightsource-button',
     source: source,
-    componentMaker: ({ unique }) => makeButtonC({
+    componentMaker: ({ unique }) => makePressButtonC({
       unique: unique,
-      componentToDriverMapper: clickEventToLightSourceInput,
+      componentToDriverMapper: e => makeThemeLightSourceCurrency(e.currentTarget.dataset.lightsource),
       driver: makeLightSourceDriver(),
-      driverToComponentMapper: lightSourceOutputToButtonConfig,
+      driverToComponentMapper: makeDriverToComponentMapper(lightSource),
       config: {
         name: lightSource,
-        iconname: `light--${lightSource}`,
-        dataset: {
-          lightsource: lightSource
-        }
+        icon: `light--${lightSource}`
       }
     })
   })

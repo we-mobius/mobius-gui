@@ -1,4 +1,4 @@
-export default function initMobiusUI () {
+function initMobiusCSS () {
   const customProps = {
     color: ['--start-color', '--end-color']
   }
@@ -20,3 +20,5 @@ export default function initMobiusUI () {
     })
   }
 }
+
+export { initMobiusCSS }

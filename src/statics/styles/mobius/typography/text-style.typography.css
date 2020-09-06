@@ -52,6 +52,37 @@
 .hover_mobius-text--mobius:hover,
 .active_mobius-text--mobius:active { color: var(--mobius-color-normal); }
 
+.mobius-text--red,
+.hover_mobius-text--red:hover,
+.active_mobius-text--red:active { color: var(--red-color-normal); }
+.mobius-text--orange,
+.hover_mobius-text--orange:hover,
+.active_mobius-text--orange:active { color: var(--orange-color-normal); }
+.mobius-text--yellow,
+.hover_mobius-text--yellow:hover,
+.active_mobius-text--yellow:active { color: var(--yellow-color-normal); }
+.mobius-text--green,
+.hover_mobius-text--green:hover,
+.active_mobius-text--green:active { color: var(--green-color-normal); }
+.mobius-text--cyan,
+.hover_mobius-text--cyan:hover,
+.active_mobius-text--cyan:active { color: var(--cyan-color-normal); }
+.mobius-text--blue,
+.hover_mobius-text--blue:hover,
+.active_mobius-text--blue:active { color: var(--blue-color-normal); }
+.mobius-text--purple,
+.hover_mobius-text--purple:hover,
+.active_mobius-text--purple:active { color: var(--purple-color-normal); }
+.mobius-text--white,
+.hover_mobius-text--white:hover,
+.active_mobius-text--white:active { color: var(--white-color-normal); }
+.mobius-text--gray,
+.hover_mobius-text--gray:hover,
+.active_mobius-text--gray:active { color: var(--gray-color-normal); }
+.mobius-text--black,
+.hover_mobius-text--black:hover,
+.active_mobius-text--black:active { color: var(--black-color-normal); }
+
 /*********************************************************
  *                       Font Style
  *********************************************************/
@@ -99,9 +130,9 @@
 .mobius-text--extrabold,
 .hover_mobius-text--extrabold:hover,
 .active_mobius-text--extrabold:active { font-weight: 800; }
-.mobius-text--black,
-.hover_mobius-text--black:hover,
-.active_mobius-text--black:active { font-weight: 900; }
+.mobius-text--boldest,
+.hover_mobius-text--boldest:hover,
+.active_mobius-text--boldest:active { font-weight: 900; }
 
 /*********************************************************
  *                      Text Decoration

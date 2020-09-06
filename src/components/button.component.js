@@ -1,23 +1,20 @@
 import { map } from '../libs/rx.js'
 import { makeBaseComponent } from '../common/index.js'
 import { makeButtonE } from '../elements/button.element.js'
+import { asIs } from '../libs/mobius.js'
 
-function makeButtonVNode ({ unique, config: { name, iconname, dataset, selected } }) {
+function makeButtonVNode ({ unique, config }) {
   return makeButtonE({
     unique: unique,
-    selector: `.js_${unique}`,
-    props: { dataset },
-    config: {
-      name: name,
-      icon: iconname,
-      selected: selected
-    }
+    selector: '',
+    props: { },
+    config: { ...config }
   })
 }
 
-function makeButtonC ({ unique, componentToDriverMapper, driver, driverToComponentMapper, config }) {
+function makeButtonC ({ unique, children, componentToDriverMapper = asIs, driver, driverToComponentMapper = asIs, config }) {
   return makeBaseComponent({
-    intent: source => source.DOM.select('.js_mobius-button').events('click').pipe(
+    intent: source => source.DOM.select(`.js_${unique}`).events('click').pipe(
       map(componentToDriverMapper)
     ),
     model: intent$ => driver(intent$),

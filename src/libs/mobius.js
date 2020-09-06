@@ -1,8 +1,21 @@
 export {
   // utils
-  isArray, isObject, isString, hardDeepMerge,
+  isBoolean, isString, isNumber, isArray, isObject, isFunction, asIs, hasOwnProperty,
+  hardDeepMerge, deepCopy, prop,
+  // -> boolean
+  allPass,
+  // -> string
+  indexOf, randomString, trim, split,
+  // -> array
+  filterTruthy, union, intersection, join, unique,
+  // -> functional
+  argPlaceholder, curry, compose, composeL, equiped,
+  // -> data
+  isTelNum, isPhoneNum, isEmailAddress,
   // common
   makeUniqueId, whenContentLoaded, adaptMultiPlatform,
+  makeBaseRepository, dredge, ofType, withResponseFilter,
+  makeBaseScopeManager,
   // const
   THEME, makeThemeModeCurrency, makeThemeLightSourceCurrency,
   // config
@@ -22,6 +35,7 @@ export {
   initPayment, paymentObservers, paymentObservables,
   startPay,
   initConsole, initVConsole,
+  initRouter, routerObservers, routerObservables,
   // adapters
   makeCycleDriverMaker
   // presenters

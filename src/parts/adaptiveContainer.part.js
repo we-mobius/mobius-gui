@@ -9,7 +9,6 @@ const makeAdaptiveContainerP = ({ source, conditions, children }) => {
     componentMaker: ({ unique }) => {
       return makeContainerC({
         unique: unique,
-        attrs: {},
         children: children,
         componentToDriverMapper: () => {},
         driver: makeAdaptiveDriver(),
@@ -17,7 +16,6 @@ const makeAdaptiveContainerP = ({ source, conditions, children }) => {
           const isShow = Object.keys(conditions).every(key => {
             return conditions[key](vars[key])
           })
-
           return { isShow }
         }
       })

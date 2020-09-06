@@ -1,125 +1,131 @@
-import { isString, isObject } from '../libs/mobius.js'
+import {
+  isString, isObject, hasOwnProperty,
+  indexOf,
+  filterTruthy, unique, join,
+  curry, compose
+} from '../libs/mobius.js'
 
-const isElementOptions = options => Object.prototype.hasOwnProperty.call(options, 'selector')
-const isVNode = options => Object.prototype.hasOwnProperty.call(options, 'sel') && Object.prototype.hasOwnProperty.call(options, 'elm')
+export { equiped } from '../libs/mobius.js'
 
-const curry = (fn, ...args) => {
-  if (args.length >= fn.length) {
-    return fn(...args)
-  } else {
-    return (...args2) => curry(fn, ...args, ...args2)
-  }
+export const isElementOptions = options => hasOwnProperty('selector', options)
+export const isVNode = options => hasOwnProperty('sel', options) && hasOwnProperty('elm', options)
+
+// neatenSelectors :: [a] -> b
+export const neatenSelectors = compose(join(''), unique, filterTruthy)
+export const mergeSelectors = (...args) => {
+  const selectors = args.reduce((acc, cur) => {
+    if (!cur) return acc
+
+    if (!/^[.|#].*/.test(cur)) {
+      acc.tag = acc.tag ? acc.tag : /^([\w\W]*?)(?=\.|#|$)/.exec(cur)[1]
+    }
+    Array.from(cur.matchAll(/([.|#]+[^.^#]*)/g)).forEach(item => {
+      if (indexOf('.', item[1]) > -1) {
+        acc.class.push(item[1])
+      } else if (indexOf('#', item[1]) > -1) {
+        acc.id.push(item[1])
+      }
+    })
+
+    return acc
+  }, { tag: '', id: [], class: [] })
+  return selectors.tag + neatenSelectors(selectors.id) + neatenSelectors(selectors.class)
 }
-const compose = (...fns) => fns.reverse().reduce((g, f) => (...args) => f(g(...args)), fns.shift())
 
-const addSelector = curry((selector, options) => {
+export const addSelector = curry((selector, options) => {
   if (isString(options)) {
-    return options + selector
+    return mergeSelectors(options, selector)
   } else {
     if (isElementOptions(options)) {
-      options.selector += selector
+      options.selector = mergeSelectors(options.selector, selector)
     } else if (isVNode(options)) {
-      options.sel += selector
+      options.sel = mergeSelectors(options.sel, selector)
     } else if (isObject(options)) {
-      options.selector = selector
+      options.selector = mergeSelectors(options.selector, selector)
     }
     return options
   }
 })
-const makeStylizer = extraFn => options => extraFn(options)
 
-const withBorderBox = makeStylizer(addSelector('.mobius-box--border'))
-const withContentBox = makeStylizer(addSelector('.mobius-box--content'))
+/******************************************
+ *               Container
+ ******************************************/
 
-const withFullPctWidth = makeStylizer(addSelector('.mobius-width--100'))
-const withFullPctHeight = makeStylizer(addSelector('.mobius-height--100'))
-const withFullPct = makeStylizer(addSelector('.mobius-size--fullpct'))
-const withFullViewWidth = makeStylizer(addSelector('.mobius-width--100vw'))
-const withFullViewHeight = makeStylizer(addSelector('.mobius-height--100vh'))
-const withFullView = makeStylizer(addSelector('.mobius-size--fullview'))
-const withFullAbsWidth = makeStylizer(addSelector('.mobius-size--fullwidthabs'))
-const withFullAbsHeight = makeStylizer(addSelector('.mobius-size--fullheightabs'))
-const withFullAbs = makeStylizer(addSelector('.mobius-size--fullabs'))
+export const withFullPctWidth = addSelector('.mobius-width--100')
+export const withFullPctHeight = addSelector('.mobius-height--100')
+export const withFullPct = addSelector('.mobius-size--fullpct')
+export const withFullViewWidth = addSelector('.mobius-width--100vw')
+export const withFullViewHeight = addSelector('.mobius-height--100vh')
+export const withFullView = addSelector('.mobius-size--fullview')
+export const withFullAbsWidth = addSelector('.mobius-size--fullwidthabs')
+export const withFullAbsHeight = addSelector('.mobius-size--fullheightabs')
+export const withFullAbs = addSelector('.mobius-size--fullabs')
 
-const withXScroll = makeStylizer(addSelector('.mobius-scroll--x'))
-const withYScroll = makeStylizer(addSelector('.mobius-scroll--y'))
-const withAllScroll = makeStylizer(addSelector('.mobius-scroll--all'))
-const withScrollbarHidden = makeStylizer(addSelector('.mobius-scrollbar--hidden'))
+export const withXScroll = addSelector('.mobius-scroll--x')
+export const withYScroll = addSelector('.mobius-scroll--y')
+export const withAllScroll = addSelector('.mobius-scroll--all')
+export const withScrollbarHidden = addSelector('.mobius-scrollbar--hidden')
 
-const withPositionRelative = makeStylizer(addSelector('.mobius-position--relative'))
-const withPositionAbsolute = makeStylizer(addSelector('.mobius-position--absolute'))
-const withPositionFixed = makeStylizer(addSelector('.mobius-position--fixed'))
-const withPositionSticky = makeStylizer(addSelector('.mobius-position--sticky'))
+export const withPositionRelative = addSelector('.mobius-position--relative')
+export const withPositionAbsolute = addSelector('.mobius-position--absolute')
+export const withPositionFixed = addSelector('.mobius-position--fixed')
+export const withPositionSticky = addSelector('.mobius-position--sticky')
 
-const withSelectAuto = makeStylizer(addSelector('.mobius-select--auto'))
-const withSelectNone = makeStylizer(addSelector('.mobius-select--none'))
-const withSelectAll = makeStylizer(addSelector('.mobius-select--all'))
-const withSelectText = makeStylizer(addSelector('.mobius-select--text'))
-const withSelectContain = makeStylizer(addSelector('.mobius-select--contain'))
+export const asFlexContainer = addSelector('.mobius-display--flex')
 
-const withCursorPointer = makeStylizer(addSelector('.mobius-cursor--pointer'))
+export const withPresetHorizontal = addSelector('.mobius-layout__horizontal')
+export const withPresetVertical = addSelector('.mobius-layout__vertical')
 
-const withTransitionAll = makeStylizer(addSelector('.mobius-transition--all'))
+export const withDirectionRow = addSelector('.mobius-flex-dir--row')
+export const withDirectionRowReverse = addSelector('.mobius-flex-dir--rowreverse')
+export const withDriectionColumn = addSelector('.mobius-flex-dir--column')
+export const withDriectionColumnReverse = addSelector('.mobius-flex-dir--columnreverse')
 
-const asFlexContainer = makeStylizer(addSelector('.mobius-display--flex'))
+export const withWrap = addSelector('.mobius-flex-wrap--normal')
+export const withWrapReverse = addSelector('.mobius-flex-wrap--reverse')
+export const withNoWrap = addSelector('.mobius-flex-wrap--nowrap')
 
-const withPresetHorizontal = makeStylizer(addSelector('.mobius-layout__horizontal'))
-const withPresetVertical = makeStylizer(addSelector('.mobius-layout__vertical'))
+export const withJustifyStart = addSelector('.mobius-flex-justify--start')
+export const withJustifyCenter = addSelector('.mobius-flex-justify--center')
+export const withJustifyEnd = addSelector('.mobius-flex-justify--end')
+export const withJustifyBetween = addSelector('.mobius-flex-justify--between')
+export const withJustifyAround = addSelector('.mobius-flex-justify--around')
+export const withJustifyEvenly = addSelector('.mobius-flex-justify--evenly')
 
-const withDirectionRow = makeStylizer(addSelector('.mobius-flex-dir--row'))
-const withDirectionRowReverse = makeStylizer(addSelector('.mobius-flex-dir--rowreverse'))
-const withDriectionColumn = makeStylizer(addSelector('.mobius-flex-dir--column'))
-const withDriectionColumnReverse = makeStylizer(addSelector('.mobius-flex-dir--columnreverse'))
+export const withItemsStart = addSelector('.mobius-flex-items--start')
+export const withItemsCenter = addSelector('.mobius-flex-items--center')
+export const withItemsEnd = addSelector('.mobius-flex-items--end')
+export const withItemsStretch = addSelector('.mobius-flex-items--stretch')
+export const withItemsBaseline = addSelector('.mobius-flex-items--baseline')
 
-const withWrap = makeStylizer(addSelector('.mobius-flex-wrap--normal'))
-const withWrapReverse = makeStylizer(addSelector('.mobius-flex-wrap--reverse'))
-const withNoWrap = makeStylizer(addSelector('.mobius-flex-wrap--nowrap'))
+export const asStartItem = addSelector('.mobius-flex-item--start')
+export const asCenterItem = addSelector('.mobius-flex-item--center')
+export const asEndItem = addSelector('.mobius-flex-item--end')
+export const asStretchItem = addSelector('.mobius-flex-item--stretch')
+export const asBaselineItem = addSelector('.mobius-flex-items--baseline')
 
-const withJustifyStart = makeStylizer(addSelector('.mobius-flex-justify--start'))
-const withJustifyCenter = makeStylizer(addSelector('.mobius-flex-justify--center'))
-const withJustifyEnd = makeStylizer(addSelector('.mobius-flex-justify--end'))
-const withJustifyBetween = makeStylizer(addSelector('.mobius-flex-justify--between'))
-const withJustifyAround = makeStylizer(addSelector('.mobius-flex-justify--around'))
-const withJustifyEvenly = makeStylizer(addSelector('.mobius-flex-justify--evenly'))
+export const asGrowItem = addSelector('.mobius-flex-grow--1')
+export const asNoGrowItem = addSelector('.mobius-flex-grow--0')
+export const asShrinkItem = addSelector('.mobius-flex-shrink--1')
+export const asNoShrinkItem = addSelector('.mobius-flex-shrink--0')
 
-const withItemsStart = makeStylizer(addSelector('.mobius-flex-items--start'))
-const withItemsCenter = makeStylizer(addSelector('.mobius-flex-items--center'))
-const withItemsEnd = makeStylizer(addSelector('.mobius-flex-items--end'))
-const withItemsStretch = makeStylizer(addSelector('.mobius-flex-items--stretch'))
-const withItemsBaseline = makeStylizer(addSelector('.mobius-flex-items--baseline'))
+/******************************************
+ *                Box Model
+ ******************************************/
 
-const asStartItem = makeStylizer(addSelector('.mobius-flex-item--start'))
-const asCenterItem = makeStylizer(addSelector('.mobius-flex-item--center'))
-const asEndItem = makeStylizer(addSelector('.mobius-flex-item--end'))
-const asStretchItem = makeStylizer(addSelector('.mobius-flex-item--stretch'))
-const asBaselineItem = makeStylizer(addSelector('.mobius-flex-items--baseline'))
+export const withBorderBox = addSelector('.mobius-box--border')
+export const withContentBox = addSelector('.mobius-box--content')
 
-const asGrowItem = makeStylizer(addSelector('.mobius-flex-grow--1'))
-const asNoGrowItem = makeStylizer(addSelector('.mobius-flex-grow--0'))
-const asShrinkItem = makeStylizer(addSelector('.mobius-flex-shrink--1'))
-const asNoShrinkItem = makeStylizer(addSelector('.mobius-flex-shrink--0'))
+/******************************************
+ *                 Others
+ ******************************************/
 
-export {
-  compose as equiped,
+export const withSelectAuto = addSelector('.mobius-select--auto')
+export const withSelectNone = addSelector('.mobius-select--none')
+export const withSelectAll = addSelector('.mobius-select--all')
+export const withSelectText = addSelector('.mobius-select--text')
+export const withSelectContain = addSelector('.mobius-select--contain')
 
-  withBorderBox, withContentBox,
+export const withCursorPointer = addSelector('.mobius-cursor--pointer')
 
-  withFullPctWidth, withFullPctHeight, withFullPct,
-  withFullViewWidth, withFullViewHeight, withFullView,
-  withFullAbsWidth, withFullAbsHeight, withFullAbs,
-
-  withXScroll, withYScroll, withAllScroll, withScrollbarHidden,
-  withPositionRelative, withPositionAbsolute, withPositionFixed, withPositionSticky,
-  withSelectAuto, withSelectNone, withSelectAll, withSelectText, withSelectContain,
-  withCursorPointer,
-  withTransitionAll,
-
-  asFlexContainer,
-  withPresetHorizontal, withPresetVertical,
-  withDirectionRow, withDirectionRowReverse, withDriectionColumn, withDriectionColumnReverse,
-  withWrap, withWrapReverse, withNoWrap,
-  withJustifyStart, withJustifyCenter, withJustifyEnd, withJustifyBetween, withJustifyAround, withJustifyEvenly,
-  withItemsStart, withItemsCenter, withItemsEnd, withItemsStretch, withItemsBaseline,
-  asStartItem, asCenterItem, asEndItem, asStretchItem, asBaselineItem,
-  asGrowItem, asNoGrowItem, asShrinkItem, asNoShrinkItem
-}
+export const withTransitionAll = addSelector('.mobius-transition--all')

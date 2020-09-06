@@ -1,4 +1,4 @@
-import { div, input, label } from '@cycle/dom'
+import { div, input, label } from '../libs/dom.js'
 import { hardDeepMerge } from '../libs/mobius.js'
 
 const makeToggleE = ({
@@ -15,7 +15,7 @@ const makeToggleE = ({
   // const _inputEle = document.querySelector(`#${_inputId}`)
   // _inputEle && (_inputEle.checked = checked)
 
-  return div(`${selector}.mobius-toggle.mobius-rounded--full.mobius-shadow--inset`,
+  return div(`${unique ? '.js_' + unique : ''}${selector}.mobius-toggle.mobius-rounded--full.mobius-shadow--inset`,
     hardDeepMerge(props, { dataset: { unique } }),
     [
       input({ props: { type: 'checkbox', id: _inputId, checked: checked } }),

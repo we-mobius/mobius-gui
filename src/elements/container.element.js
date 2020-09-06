@@ -3,23 +3,11 @@ import { hardDeepMerge } from '../libs/mobius.js'
 import { neatenChildren } from '../common/index.js'
 
 const makeContainerE = ({
-  unique, selector = '', props = {}, children = [], text = undefined, config = {
-    isShow: true,
-    width: '',
-    height: ''
-  }
+  unique, selector = '', props = {}, children = [], text = undefined, config = {}
 }) => {
-  const { isShow = true, width, height } = config
   return div(
-    `${selector}`,
-    hardDeepMerge(props, {
-      dataset: { unique },
-      style: {
-        display: isShow ? 'block' : 'none',
-        width: width || 'auto',
-        height: height || 'auto'
-      }
-    }),
+    `${unique ? '.js_' + unique : ''}${selector}`,
+    hardDeepMerge(props, { dataset: { unique } }),
     [...neatenChildren(children)]
   )
 }
