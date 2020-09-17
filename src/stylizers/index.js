@@ -19,6 +19,7 @@ export const mergeSelectors = (...args) => {
     if (!/^[.|#].*/.test(cur)) {
       acc.tag = acc.tag ? acc.tag : /^([\w\W]*?)(?=\.|#|$)/.exec(cur)[1]
     }
+
     Array.from(cur.matchAll(/([.|#]+[^.^#]*)/g)).forEach(item => {
       if (indexOf('.', item[1]) > -1) {
         acc.class.push(item[1])

@@ -9,10 +9,23 @@
 
 <body>
   <script type='module'>
-    const origin = 'https://app.thoughtsdaily.cn'
-    const app = window.location.pathname.split('/').filter(x => !!x)[0] || ''
-    console.info(`Redirect to: ${[origin, app].join('/')}?mobius_redirect=${encodeURIComponent(window.location.href)}`)
-    window.location.replace(`${[origin, app].join('/')}?mobius_redirect=${encodeURIComponent(window.location.href)}`)
+    console.log(`[Mobius Redirector] current href: ${window.location.href}`)
+    console.log(`[Mobius Redirector] window.location: `, window.location)
+    const origin = window.location.origin
+    let app = window.location.pathname.split('/').filter(x => !!x)[0] || ''
+    app = app.indexOf('.') > -1 ? '' : app
+    const searches = window.location.search.substr(1).split('&').reduce((acc, cur) => {
+      if (!cur) return acc
+      let [key, value] = cur.split('=')
+      acc[key] = value
+      return acc
+    }, {})
+    console.log(`[Mobius Redirector] current origin: ${origin}`)
+    console.log(`[Mobius Redirector] current app: ${app}`)
+    console.log(`[Mobius Redirector] current searches: ${JSON.stringify(searches)}`)
+    const dest = `${[origin, app, ''].join('/')}?mobius_redirect=${searches['mobius_redirect'] || encodeURIComponent(window.location.href)}`
+    console.info(`[Mobius Redirector] Redirect to: ${dest}`)
+    window.location.replace(dest)
   </script>
 </body>
 

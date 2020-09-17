@@ -42,6 +42,8 @@
 .mobius-scroll--x { overflow-x: scroll; overflow-y: hidden; }
 .mobius-scroll--y { overflow-x: hidden; overflow-y: scroll; }
 
+.mobius-scroll--smooth { scroll-behavior: smooth; }
+
 .mobius-scrollbar--hidden {
   -ms-overflow-style: none;
 
