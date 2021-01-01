@@ -1,11 +1,5 @@
-import { makeDOMDriver } from '@cycle/dom'
+import { makeDOMDriver } from '../libs/dom.js'
 
-const inDOM = selector => {
-  return {
-    DOM: makeDOMDriver(selector)
-  }
-}
-
-export {
-  inDOM
-}
+export const inDOM = selector => ({
+  DOM: makeDOMDriver(selector)
+})

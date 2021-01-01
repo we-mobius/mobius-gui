@@ -1,7 +1,7 @@
 import { div, span } from '../libs/dom.js'
 import { makeContainerE } from './container.element.js'
+import { equiped } from '../common/index.js'
 import {
-  equiped,
   asFlexContainer,
   withPresetHorizontal, withJustifyBetween,
   asGrowItem,
@@ -13,8 +13,8 @@ const makeTabVNode = ({ text, icon, selected, dataset }) => {
   return asGrowItem(div(`.js_mobius-tabbar__tab.mobius-padding-y--xs.mobius-text--center.mobius-text-leading--xs${selected ? '.mobius-text--primary' : ''}`,
     { dataset: { ...dataset } },
     [
-      div(`${icon ? '.mobius-icon.mobius-icon-' + icon : ''}.mobius-text--xxxxl`, { style: { 'pointer-events': 'none' } }),
-      span('.mobius-text--xs', { style: { 'pointer-events': 'none' } }, text)
+      div(`${icon ? '.mobius-icon.mobius-icon-' + icon : ''}.mobius-text--xxxxl.mobius-events--none`),
+      span('.mobius-text--xs.mobius-events--none', text)
     ]
   ))
 }

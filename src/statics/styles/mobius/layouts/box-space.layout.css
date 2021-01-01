@@ -262,4 +262,14 @@ page { @extend %box-space-size; }
 .mobius-margin-left--r-xl { margin-left: calc(var(--box-space-size-xl) * 1rem); }
 .mobius-margin-left--r-auto { margin-left: auto; }
 
+/*********************************************************
+ *                     Other Margin Utilities
+ *********************************************************/
+
+.mobius-margin-first--none :first-child { margin: calc(var(--box-space-size-none) * 1em); }
+.mobius-margin-first--r-none :first-child { margin: calc(var(--box-space-size-none) * 1rem); }
+
+.mobius-margin-last--none :last-child { margin: calc(var(--box-space-size-none) * 1em); }
+.mobius-margin-last--r-none :last-child { margin: calc(var(--box-space-size-none) * 1rem); }
+
 /*! purgecss end ignore */

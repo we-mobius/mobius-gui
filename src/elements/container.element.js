@@ -1,5 +1,5 @@
-import { div } from '@cycle/dom'
-import { hardDeepMerge } from '../libs/mobius.js'
+import { div } from '../libs/dom.js'
+import { hardDeepMerge } from '../libs/mobius-utils.js'
 import { neatenChildren } from '../common/index.js'
 
 const makeContainerE = ({

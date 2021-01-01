@@ -1,5 +1,5 @@
 import { div } from '../libs/dom.js'
-import { hardDeepMerge } from '../libs/mobius.js'
+import { hardDeepMerge } from '../libs/mobius-utils.js'
 
 export const defaultMaskElementConfig = { isShow: false, style: 'dark' }
 

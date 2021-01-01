@@ -1,6 +1,7 @@
 import { makeBasePart } from '../common/index.js'
 import { makeTabbarC } from '../components/tabbar.component.js'
 import { routerDriverManager } from '../drivers/router.driver.js'
+import { isPathnameLooseEqual } from '../libs/mobius-utils.js'
 
 const makeBottomTabbarP = ({ source, list }) => {
   return makeBasePart({
@@ -11,19 +12,15 @@ const makeBottomTabbarP = ({ source, list }) => {
         unique: unique,
         children: null,
         componentToDriverMapper: e => {
-          if (e.target.dataset.path) {
-            return { type: 'set', path: e.target.dataset.path }
-          } else {
-            return {}
-          }
+          const { pathname } = e.target.dataset
+          return pathname ? { type: 'set', pathname } : {}
         },
         driver: routerDriverManager.scope('app').driver,
-        driverToComponentMapper: path => {
-          // TODO: smarter path equation determining
-          //   -> '/board/' == '/board'
+        driverToComponentMapper: pathname => {
+          // NOTE: isPathnameLooseEqual -> '/board/' equals '/board'
           return {
             list: list.map(item => {
-              return { ...item, selected: path === item.dataset.path }
+              return { ...item, selected: isPathnameLooseEqual(pathname, item.dataset.pathname) }
             })
           }
         },

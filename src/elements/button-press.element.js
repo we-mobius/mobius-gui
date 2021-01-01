@@ -1,5 +1,5 @@
 import { div, span } from '../libs/dom.js'
-import { hardDeepMerge } from '../libs/mobius.js'
+import { hardDeepMerge } from '../libs/mobius-utils.js'
 
 const baseBtnClass = '.mobius-width--3rem.mobius-height--3rem.mobius-margin--xs.mobius-rounded--xs' +
    '.hover_mobius-bg--convex.cursor-pointer.mobius-layout__horizontal.mobius-flex-justify--center'

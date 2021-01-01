@@ -1,7 +1,7 @@
 import { makeBaseComponent } from '../common/index.js'
 import { makeTabbarE } from '../elements/tabbar.element.js'
 import { map } from '../libs/rx.js'
-import { asIs } from '../libs/mobius.js'
+import { asIs } from 'MobiusUtils'
 
 const makeTabbarVNode = ({ unique, children, config }) => {
   return makeTabbarE({

@@ -1,9 +1,8 @@
 import { div } from '../libs/dom.js'
-import { hardDeepMerge } from '../libs/mobius.js'
-import { neatenChildren } from '../common/index.js'
+import { hardDeepMerge } from '../libs/mobius-utils.js'
+import { neatenChildren, equiped } from '../common/index.js'
 import { makeContainerE } from './container.element.js'
 import {
-  equiped,
   asFlexContainer,
   withFullAbs,
   withYScroll, withScrollbarHidden,

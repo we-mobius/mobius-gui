@@ -1,9 +1,9 @@
 import { makeBasePart } from '../common/index.js'
 import { makeToastC } from '../components/toast.component.js'
 import { toastDriverManager } from '../drivers/toast.driver.js'
-import { asIs } from '../libs/mobius.js'
+import { asIs } from '../libs/mobius-utils.js'
 
-const makeToastP = ({ source, scope }) => {
+export const makeToastP = ({ source, scope }) => {
   return makeBasePart({
     name: 'toast',
     source: source,
@@ -19,5 +19,3 @@ const makeToastP = ({ source, scope }) => {
     }
   })
 }
-
-export { makeToastP }

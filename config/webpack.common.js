@@ -12,11 +12,7 @@ module.exports = {
   plugins: [],
   resolve: {
     extensions: ['.js'],
-    alias: {
-      Libs: resolve('src/libs/'),
-      MobiusJS$: resolve('src/libs/mobius-js.js'),
-      Elements$: resolve('src/elements/index.js')
-    },
+    alias: {},
     symlinks: false
   }
 }

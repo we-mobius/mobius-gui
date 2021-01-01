@@ -5,7 +5,7 @@ import {
   isPhoneNum,
   deepCopy,
   composeL
-} from '../libs/mobius.js'
+} from '../libs/mobius-utils.js'
 import { shareReplay, map, take, partition } from '../libs/rx.js'
 
 // 数据结构判断

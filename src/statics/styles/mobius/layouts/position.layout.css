@@ -27,14 +27,24 @@
 .mobius-position--fixed { position: fixed; }
 .mobius-position--sticky { position: sticky; }
 
+.mobius-position--t-0 { top: 0; }
+.mobius-position--r-0 { right: 0; }
+.mobius-position--b-0 { bottom: 0; }
+.mobius-position--l-0 { left: 0; }
 .mobius-position--lt, .mobius-position--tl { left: 0; top: 0; }
 .mobius-position--rt, .mobius-position--tr { top: 0; right: 0; }
 .mobius-position--rb, .mobius-position--br { right: 0; bottom: 0; }
 .mobius-position--lb, .mobius-position--lb { bottom: 0; left: 0; }
+.mobius-position--rc, .mobius-position--cr { margin-top: auto; margin-bottom: auto; right: 0; }
+.mobius-position--lc, .mobius-position--cl { margin-top: auto; margin-bottom: auto; left: 0; }
 .mobius-position--horizontal_center {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
+}
+
+.mobius-position--z-toppest {
+  z-index: 9999999999999999999;
 }
 
 /*! purgecss end ignore */

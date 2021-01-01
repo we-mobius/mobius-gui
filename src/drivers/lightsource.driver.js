@@ -1,9 +1,7 @@
-import { THEME, themeObservables, makeThemeObserver } from '../libs/mobius.js'
-import { makeBaseDriver } from '../common/index.js'
+import { THEME, themeObservables, makeThemeObserver } from '../libs/mobius-js.js'
+import { makeBaseDriverMaker } from '../common/index.js'
 
-const makeLightSourceDriver = makeBaseDriver(
+export const makeLightSourceDriver = makeBaseDriverMaker(
   makeThemeObserver,
   () => themeObservables.select(THEME.TYPE.LIGHTSOURCE)
 )
-
-export { makeLightSourceDriver }

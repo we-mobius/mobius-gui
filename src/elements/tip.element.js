@@ -1,5 +1,5 @@
 import { div, span } from '../libs/dom.js'
-import { hardDeepMerge, prop, argPlaceholder as _ } from '../libs/mobius.js'
+import { hardDeepMerge, prop, argPlaceholder as _ } from '../libs/mobius-utils.js'
 
 const typeToIconname = prop(_, {
   error: 'error',

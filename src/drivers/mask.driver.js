@@ -1,30 +1,30 @@
-import { makeBaseDriver } from '../common/index.js'
+import { makeBaseDriverMaker } from '../common/index.js'
 import { shareReplay, startWith } from '../libs/rx.js'
 import { defaultMaskElementConfig } from '../elements/mask.element.js'
-import { makeBaseRepository, ofType, makeBaseScopeManager } from '../libs/mobius.js'
+import { makeBaseRepository, ofType, makeBaseScopeManager } from '../libs/mobius-js.js'
 
 export const makeMaskDriver = () => {
   const [maskIn$, maskOut$] = makeBaseRepository().array
   const maskOutShare$ = maskOut$.pipe(startWith(defaultMaskElementConfig), shareReplay(1))
 
-  const maskObservers = {
+  const observers = {
     main: maskIn$
   }
-  const maskObservables = {
+  const observables = {
     main: maskOutShare$
   }
-  const driverMaker = makeBaseDriver(
-    () => ofType('main', maskObservers),
-    () => ofType('main', maskObservables)
+  const driverMaker = makeBaseDriverMaker(
+    () => ofType('main', observers),
+    () => ofType('main', observables)
   )
   return {
-    observers: maskObservers,
-    observables: maskObservables,
+    observers: observers,
+    observables: observables,
     maker: driverMaker,
     driver: driverMaker()
   }
 }
 
-export const maskDriverManager = makeBaseScopeManager()
+export const maskDriverManager = makeBaseScopeManager({ maker: makeMaskDriver })
 
 maskDriverManager.registerScope('app', makeMaskDriver())

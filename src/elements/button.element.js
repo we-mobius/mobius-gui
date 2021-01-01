@@ -1,5 +1,5 @@
 import { div, span } from '../libs/dom.js'
-import { hardDeepMerge } from '../libs/mobius.js'
+import { hardDeepMerge } from '../libs/mobius-utils.js'
 import { makeIfB } from '../blocks/if.block.js'
 
 const baseBtnClass = '.mobius-layout__horizontal.mobius-flex--inline.mobius-flex-justify--center' +

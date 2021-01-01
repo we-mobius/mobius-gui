@@ -1,6 +1,6 @@
 import { makeBaseComponent } from '../common/index.js'
 import { map } from '../libs/rx.js'
-import { asIs, isFunction } from '../libs/mobius.js'
+import { asIs, isFunction } from '../libs/mobius-utils.js'
 
 const pathToCondition = path => path
 

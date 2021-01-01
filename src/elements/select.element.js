@@ -1,5 +1,5 @@
 import { div, select, option } from '../libs/dom.js'
-import { hardDeepMerge } from '../libs/mobius.js'
+import { hardDeepMerge } from '../libs/mobius-utils.js'
 import { makeTipE } from './tip.element.js'
 
 const initSelect = elm => {

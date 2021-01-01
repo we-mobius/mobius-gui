@@ -1,5 +1,5 @@
 import isolate from '@cycle/isolate'
-import { makeUniqueId } from '../libs/mobius.js'
+import { makeUniqueId } from '../libs/mobius-js.js'
 
 export const makeSimplePart = ({ name, source, componentMaker }) => {
   const _unique = makeUniqueId(name)

@@ -1,9 +1,7 @@
-import { deviceObservables } from '../libs/mobius.js'
-import { makeBaseDriver } from '../common/index.js'
+import { deviceObservables } from '../libs/mobius-js.js'
+import { makeBaseDriverMaker } from '../common/index.js'
 
-const makeAdaptiveDriver = makeBaseDriver(
+export const makeAdaptiveDriver = makeBaseDriverMaker(
   () => {},
   () => deviceObservables.chunk()
 )
-
-export { makeAdaptiveDriver }

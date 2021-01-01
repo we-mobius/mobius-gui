@@ -1,7 +1,7 @@
 import { makePopoutE } from '../elements/popout.element.js'
 import { makeBaseComponent } from '../common/index.js'
 import { map } from '../libs/rx.js'
-import { asIs } from '../libs/mobius.js'
+import { asIs } from '../libs/mobius-utils.js'
 
 const makePopoutVNode = ({ unique, children, config }) => {
   return makePopoutE({

@@ -2,7 +2,7 @@ import './statics/styles/style.css'
 
 import run from '@cycle/rxjs-run'
 import { main } from './pages/index'
-import { makeDOMDriver } from '@cycle/dom'
+import { makeDOMDriver } from '../libs/dom.js'
 
 import initMobiusUI from './statics/js/mobius-css.js'
 import {

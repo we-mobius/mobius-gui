@@ -3,7 +3,7 @@ import { makeMaskE } from '../elements/mask.element.js'
 import { makeToastE } from '../elements/toast.element.js'
 import { makeBaseComponent } from '../common/index.js'
 import { map } from '../libs/rx.js'
-import { asIs } from '../libs/mobius.js'
+import { asIs } from '../libs/mobius-utils.js'
 
 const makeToastVnode = ({ unique, children, config }) => {
   const { isShow = false, hideOnClick = false, hasMask = true, maskConfig } = config

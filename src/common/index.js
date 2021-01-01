@@ -1,5 +1,7 @@
 
-import { isArray } from '../libs/mobius.js'
+import { isArray, semantic } from '../libs/mobius-utils.js'
+
+export const { equip, equiped } = semantic
 
 const neatenChildren = children => isArray(children) ? children : [children]
 

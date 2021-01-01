@@ -1,7 +1,7 @@
 import { makeMaskC } from '../components/mask.component.js'
 import { maskDriverManager } from '../drivers/mask.driver.js'
 import { makeBasePart } from '../common/index.js'
-import { asIs } from '../libs/mobius.js'
+import { asIs } from '../libs/mobius-utils.js'
 
 const makeMaskP = ({ source, scope }) => {
   return makeBasePart({

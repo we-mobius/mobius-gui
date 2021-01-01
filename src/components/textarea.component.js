@@ -3,7 +3,7 @@ import { makeBaseComponent } from '../common/index.js'
 import { makeTextareaE } from '../elements/textarea.element.js'
 import { makeMiddleColAdaptiveLayoutE } from '../elements/layout-middle_col_adaptive.element.js'
 import { map } from '../libs/rx.js'
-import { asIs } from '../libs/mobius.js'
+import { asIs } from '../libs/mobius-utils.js'
 
 const makeTextareaVNode = ({ unique, children, config } = {}) => {
   const { field } = config

@@ -1,5 +1,5 @@
 import { div } from '../libs/dom.js'
-import { hardDeepMerge, asIs } from '../libs/mobius.js'
+import { hardDeepMerge, asIs } from '../libs/mobius-utils.js'
 import { neatenChildren } from '../common/index.js'
 import { withFullAbs } from '../stylizers/index.js'
 

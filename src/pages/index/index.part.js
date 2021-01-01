@@ -1,5 +1,5 @@
 
-import { div, span } from '@cycle/dom'
+import { div, span } from '../libs/dom.js'
 
 const joinify = (reg) => (strings) => `${strings}`.replace(reg, '')
 const joinifyClasses = joinify(/(\r\n|\n|\s)/g)

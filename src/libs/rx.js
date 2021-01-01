@@ -1,6 +1,7 @@
 export {
+  isObservable,
   // creation
-  Observable, defer, empty, from, fromEvent, generate, interval, of, range, throwError, timer,
+  Observable, defer, empty, EMPTY, from, fromEvent, generate, interval, of, range, throwError, timer,
   // combination
   combineLatest, concat, forkJoin, merge, race, zip,
   // conditional

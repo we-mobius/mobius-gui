@@ -1,4 +1,5 @@
-import { div, span, a } from '@cycle/dom'
+import { equiped } from '../common/index.js'
+import { div, span, a } from '../libs/dom.js'
 import { combineLatest, map } from '../../libs/rx.js'
 import { makeCustomContainerE } from '../../elements/container-custom.element.js'
 import { makePortalLayoutE } from '../../elements/layout-portal.element.js'
@@ -6,7 +7,7 @@ import { makeModeToggleP } from '../../parts/mode.part.js'
 import { makeLightSourceButtonP } from '../../parts/lightsource.part.js'
 import { makeAdaptiveContainerP } from '../../parts/adaptiveContainer.part.js'
 import {
-  equiped, asNoShrinkItem, withFullPctWidth,
+  asNoShrinkItem, withFullPctWidth,
   withYScroll, withScrollbarHidden
 } from '../../stylizers/index.js'
 import {

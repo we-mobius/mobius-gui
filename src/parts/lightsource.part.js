@@ -1,7 +1,7 @@
 import { makeBasePart } from '../common/index.js'
 import { makePressButtonC } from '../components/button-press.component.js'
 import { makeLightSourceDriver } from '../drivers/lightsource.driver.js'
-import { makeThemeLightSourceCurrency } from '../libs/mobius.js'
+import { makeThemeLightSourceCurrency } from '../libs/mobius-js.js'
 
 const makeDriverToComponentMapper = lightSource => lightSourceCurrency => {
   return {

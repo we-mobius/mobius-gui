@@ -1,8 +1,8 @@
 import { adapt } from '@cycle/run/lib/adapt'
-import { makeCycleDriverMaker } from '../libs/mobius.js'
+import { makeCycleDriverMaker } from '../libs/mobius-js.js'
 
 // 其实就是简单 currify
-const makeBaseDriver = (observerMaker, observableMaker) => makeCycleDriverMaker(
+export const makeBaseDriverMaker = (observerMaker, observableMaker) => makeCycleDriverMaker(
   observerMaker,
   observableMaker,
   // @see https://cycle.js.org/drivers.html
@@ -13,5 +13,3 @@ const makeBaseDriver = (observerMaker, observableMaker) => makeCycleDriverMaker(
   // and returns a stream for the library used in run.
   adapt
 )
-
-export { makeBaseDriver }

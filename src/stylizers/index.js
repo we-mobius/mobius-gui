@@ -3,9 +3,7 @@ import {
   indexOf,
   filterTruthy, unique, join,
   curry, compose
-} from '../libs/mobius.js'
-
-export { equiped } from '../libs/mobius.js'
+} from '../libs/mobius-utils.js'
 
 export const isElementOptions = options => hasOwnProperty('selector', options)
 export const isVNode = options => hasOwnProperty('sel', options) && hasOwnProperty('elm', options)

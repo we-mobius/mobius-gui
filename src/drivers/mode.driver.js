@@ -1,9 +1,7 @@
-import { THEME, themeObservables, makeThemeObserver } from '../libs/mobius.js'
-import { makeBaseDriver } from '../common/index.js'
+import { THEME, themeObservables, makeThemeObserver } from '../libs/mobius-js.js'
+import { makeBaseDriverMaker } from '../common/index.js'
 
-const makeModeDriver = makeBaseDriver(
+export const makeModeDriver = makeBaseDriverMaker(
   makeThemeObserver,
   () => themeObservables.select(THEME.TYPE.MODE)
 )
-
-export { makeModeDriver }

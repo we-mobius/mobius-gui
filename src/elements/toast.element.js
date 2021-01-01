@@ -1,5 +1,5 @@
 import { div } from '../libs/dom.js'
-import { hardDeepMerge } from '../libs/mobius.js'
+import { hardDeepMerge } from '../libs/mobius-utils.js'
 import { makeIfB } from '../blocks/if.block.js'
 
 const baseSelector = '.mobius-layout__vertical.mobius-flex-items--center.mobius-padding-x--base.mobius-padding-y--xs.mobius-rounded--xs'

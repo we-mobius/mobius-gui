@@ -1,5 +1,5 @@
 import { div, input, label } from '../libs/dom.js'
-import { hardDeepMerge } from '../libs/mobius.js'
+import { hardDeepMerge } from '../libs/mobius-utils.js'
 
 const makeToggleE = ({
   unique, selector = '', props = {}, children = undefined, text = undefined, config = {

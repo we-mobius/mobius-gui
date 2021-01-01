@@ -1,5 +1,5 @@
 import { div, input } from '../libs/dom.js'
-import { hardDeepMerge } from '../libs/mobius.js'
+import { hardDeepMerge } from '../libs/mobius-utils.js'
 import { makeTipE } from './tip.element.js'
 
 const baseSelector = '.mobius-text-leading--large.mobius-padding--base.mobius-text--base'

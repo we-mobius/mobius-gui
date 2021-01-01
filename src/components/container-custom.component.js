@@ -1,7 +1,7 @@
 import { makeCustomContainerE } from '../elements/container-custom.element.js'
 import { makeBaseComponent } from '../common/index.js'
 import { map } from '../libs/rx.js'
-import { asIs } from '../libs/mobius.js'
+import { asIs } from '../libs/mobius-utils.js'
 
 const makeContainerVnode = ({ unique, children, config: { isShow } }) => {
   return makeCustomContainerE({

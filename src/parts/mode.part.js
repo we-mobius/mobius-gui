@@ -1,7 +1,7 @@
 import { makeBasePart } from '../common/index.js'
 import { makeToggleC } from '../components/toggle.component'
 import { makeModeDriver } from '../drivers/mode.driver'
-import { THEME, makeThemeModeCurrency } from '../libs/mobius.js'
+import { THEME, makeThemeModeCurrency } from '../libs/mobius-js.js'
 
 function toggleChangeToModeInput (e) {
   return makeThemeModeCurrency(e.target.checked ? THEME.MODE.DARK : THEME.MODE.LIGHT)

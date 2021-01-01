@@ -60,4 +60,6 @@
 .mobius-select--text { user-select: text; }
 .mobius-select--contain { user-select: contain; }
 
+.mobius-events--none { pointer-events: none; }
+
 /*! purgecss end ignore */

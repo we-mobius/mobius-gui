@@ -14,10 +14,8 @@ const makeRouterP = ({ source, children, config }) => {
         componentToDriverMapper: () => {},
         driver: routerDriverManager.scope('app').driver,
         driverToComponentMapper: path => {
-          let pathname = path.split('/')[depth]
-          pathname = pathname || 'index'
+          const pathname = path.split('/')[depth] || 'index'
           const condition = children[pathname] ? pathname : '404'
-
           return {
             condition: condition
           }

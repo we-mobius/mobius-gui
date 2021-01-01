@@ -3,6 +3,7 @@ import { makeBaseComponent } from '../common/index.js'
 import { makeInputE } from '../elements/input.element.js'
 import { makeMiddleColAdaptiveLayoutE } from '../elements/layout-middle_col_adaptive.element.js'
 import { map } from '../libs/rx.js'
+import { asIs } from '../libs/mobius-utils.js'
 
 const makeInputVNode = ({ unique, children, config }) => {
   const { field } = config
@@ -25,7 +26,7 @@ const makeInputVNode = ({ unique, children, config }) => {
 }
 
 const makeInputC = ({
-  unique, children, componentToDriverMapper, driver, driverToComponentMapper, config
+  unique, children, componentToDriverMapper = asIs, driver, driverToComponentMapper = asIs, config
 } = {}) => {
   return makeBaseComponent({
     children: children,

@@ -1,9 +1,9 @@
-import { makeBaseDriver } from '../common/index.js'
+import { makeBaseDriverMaker } from '../common/index.js'
 import { shareReplay, startWith, scan, switchMap, of, delay } from '../libs/rx.js'
 import {
-  hardDeepMerge, deepCopy,
   makeBaseRepository, ofType, makeBaseScopeManager
-} from '../libs/mobius.js'
+} from '../libs/mobius-js.js'
+import { hardDeepMerge, deepCopy } from '../libs/mobius-utils.js'
 
 const defaultToastConfig = { isShow: false, hasMask: true, hideOnClick: false, duration: 0, maskConfig: { style: 'transparent' } }
 
@@ -22,24 +22,24 @@ export const makeToastDriver = () => {
     shareReplay(1)
   )
 
-  const toastObservers = {
+  const observers = {
     main: toastIn$
   }
-  const toastObservables = {
+  const observables = {
     main: toastOutShare$
   }
-  const driverMaker = makeBaseDriver(
-    () => ofType('main', toastObservers),
-    () => ofType('main', toastObservables)
+  const driverMaker = makeBaseDriverMaker(
+    () => ofType('main', observers),
+    () => ofType('main', observables)
   )
   return {
-    observers: toastObservers,
-    observables: toastObservables,
+    observers: observers,
+    observables: observables,
     maker: driverMaker,
     driver: driverMaker()
   }
 }
 
-export const toastDriverManager = makeBaseScopeManager()
+export const toastDriverManager = makeBaseScopeManager({ maker: makeToastDriver })
 
 toastDriverManager.registerScope('app', makeToastDriver())

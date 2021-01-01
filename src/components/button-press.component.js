@@ -1,7 +1,7 @@
 import { map } from '../libs/rx.js'
 import { makeBaseComponent } from '../common/index.js'
 import { makePressButtonE } from '../elements/button-press.element.js'
-import { asIs } from '../libs/mobius.js'
+import { asIs } from '../libs/mobius-utils.js'
 
 function makePressButtonVNode ({ unique, config }) {
   return makePressButtonE({
