@@ -122,5 +122,5 @@ export const makeMonacoDriver = ({ clickToLoad } = {}) => {
   }
 }
 
-export const monacoDriverManager = makeBaseScopeManager({ maker: makeMonacoDriver })
+// export const monacoDriverManager = makeBaseScopeManager({ maker: makeMonacoDriver })
 // monacoDriverManager.registerScope('app', makeMonacoDriver())
