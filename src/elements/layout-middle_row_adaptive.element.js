@@ -9,23 +9,23 @@ import {
   withPositionRelative, withPositionAbsolute
 } from '../stylizers/index.js'
 
-const _isRecommondChildren = allPass([
+const _isRecommendChildren = allPass([
   isObject, anyPass([isEmptyObj, hasOwnProperty('top'), hasOwnProperty('middle'), hasOwnProperty('bottom')])
 ])
 
 export const makeMiddleRowAdaptiveLayoutE = elementOptions => {
   const { unique, selector = '', props = {}, children = {}, config = {} } = elementOptions
   let top, middle, bottom
-  if (_isRecommondChildren(elementOptions)) {
+  if (_isRecommendChildren(elementOptions)) {
     top = elementOptions.top
     middle = elementOptions.middle
     bottom = elementOptions.bottom
   }
-  if (_isRecommondChildren(children)) {
+  if (_isRecommendChildren(children)) {
     top = children.top || top
     middle = children.middle || middle
     bottom = children.bottom || bottom
-  } else if (isArray(children) && _isRecommondChildren(children[0])) {
+  } else if (isArray(children) && _isRecommendChildren(children[0])) {
     top = children[0].top || top
     middle = children[0].middle || middle
     bottom = children[0].bottom || bottom

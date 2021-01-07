@@ -1,0 +1,136 @@
+import {
+  stdLineLog, debounce,
+  Mutation, Data, TERMINATOR, pipeAtom,
+  createMutationFromEvent,
+  dataToData, mutationToDataS,
+  replayWithLatest,
+  combineT, startWithT, skipUntilT
+} from '../libs/mobius-utils.js'
+import { equiped } from '../common/index.js'
+import {
+  loaderObservers, loaderObservables, LOADER_TYPE,
+  dredge, ofType, withResponseFilter, makeBaseScopeManager
+} from '../libs/mobius-js.js'
+
+const initMonaco = () => {
+  return new Promise((resolve, reject) => {
+    window.MonacoEnvironment = {
+      getWorkerUrl: () => {
+        return URL.createObjectURL(new Blob([`
+          self.MonacoEnvironment = {
+            baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
+          };
+          importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');
+        `], { type: 'text/javascript' })
+        )
+      }
+    }
+    const { require } = window
+    require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@latest/min/vs' } })
+    require(['vs/editor/editor.main'], () => {
+      const { monaco } = window
+      const initializer = containerElm => {
+        return monaco.editor.create(containerElm, {
+          value:
+`// Welcome to use Thoughts Bookmarklet!
+document.querySelector('.highlight-span').innerHTML = "Welcome Mobius Bookmarklet!"
+`,
+          language: 'javascript',
+          theme: 'vs-dark'
+        })
+      }
+      resolve(initializer)
+    })
+  })
+}
+
+export const makeMonacoDriverA = ({ autoLoad, layoutDebounce = 50 } = {}) => {
+  const monacoLoaderSrc = 'https://unpkg.com/monaco-editor@latest/min/vs/loader.js'
+  dredge(loaderObservables, equiped(
+    ofType(LOADER_TYPE.js),
+    withResponseFilter('success')
+  ))
+    .subscribe(({ data: { collection } }) => {
+      const newcomeScripts = collection.newcome || []
+      const hasMonacoLoader = newcomeScripts.some(script => script.src === monacoLoaderSrc)
+      if (hasMonacoLoader) {
+        console.warn('monaco loader script loaded', newcomeScripts)
+        initMonaco().then(initializer => {
+          initializerRD.triggerValue(initializer)
+          loaderLoadedRD.triggerValue(true)
+        })
+      }
+    })
+
+  /**********************************************
+            load of monaco editor loader
+   **********************************************/
+  const loadRD = replayWithLatest(1, startWithT(autoLoad, Data.empty()))
+  const loadM = Mutation.ofLiftBoth((income, load) => {
+    // load of loader should only be triggerd once.
+    return load === true ? TERMINATOR : (income || TERMINATOR)
+  }) // export
+  const loadRM = replayWithLatest(1, loadM)
+  pipeAtom(loadRD, loadRM)
+  const loadLoaderM = Mutation.of(() => {
+    ofType(LOADER_TYPE.js, loaderObservers).next({ src: monacoLoaderSrc, group: 'monaco' })
+  })
+  // Mutation execute only when it be observed
+  pipeAtom(replayWithLatest(1, mutationToDataS(loadRM)), loadLoaderM, Data.empty())
+  // load states of monaco loader :: Boolean
+  const loaderLoadedRD = replayWithLatest(1, startWithT(autoLoad, Data.empty())) // export
+
+  /**********************************************
+          initializition of monaco editor
+   **********************************************/
+  const initializerRD = replayWithLatest(1, Data.empty())
+  const fillContainerM = Mutation.ofLiftLeft(container => container) // export
+  const containerRD = replayWithLatest(1, Data.empty())
+  pipeAtom(fillContainerM, containerRD)
+  const containerAndInitializerD = combineT(containerRD, initializerRD)
+  const initializeM = Mutation.ofLiftLeft(([container, initializer]) => {
+    const instance = initializer(container)
+    return { container, instance }
+  })
+  const initializedD = Data.empty()
+  pipeAtom(containerAndInitializerD, initializeM, initializedD)
+  const initializedRD = replayWithLatest(1, initializedD) // export
+  const initializedContainerRD = dataToData(({ container }) => container, initializedRD) // export
+  const initializedInstanceRD = dataToData(({ instance }) => instance, initializedRD) // export
+
+  /**********************************************
+          insertion of monaco editor
+   **********************************************/
+  const insertM = Mutation.of(() => true) // export
+
+  /**********************************************
+    control directives of monaco editor instance
+   **********************************************/
+  const layoutD = Data.empty()
+  const validLayoutD = skipUntilT(initializedInstanceRD, layoutD)
+  const layoutM = Mutation.ofLiftLeft(debounce(() => {
+    initializedInstanceRD.value.layout()
+  }, layoutDebounce)) // export
+  pipeAtom(layoutM, Data.empty())
+  pipeAtom(validLayoutD, layoutM)
+
+  // layout monaco editor when it be inserted in the DOM
+  pipeAtom(insertM, layoutD)
+  const resizeM = createMutationFromEvent(window, 'resize', e => () => e)[0]
+  // layout monaco editor when the window size change
+  pipeAtom(resizeM, layoutD)
+
+  return {
+    loadM,
+    loaderLoadedRD,
+    fillContainerM,
+    initializedRD,
+    initializedContainerRD,
+    initializedInstanceRD,
+    insertM,
+    layoutM
+  }
+}
+
+export const monacoDriverManager = makeBaseScopeManager({ maker: makeMonacoDriverA })
+// monacoDriverManager.registerScope('app', makeMonacoDriverA())
