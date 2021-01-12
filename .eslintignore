@@ -3,4 +3,5 @@
 build/*
 dist/*
 release/*
+dev/*
 !.cz-config.js

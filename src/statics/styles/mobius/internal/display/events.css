@@ -1,0 +1,15 @@
+/*! purgecss start ignore */
+
+.mobius-events--auto { pointer-events: auto; }
+.mobius-events--none { pointer-events: none; }
+
+.mobius-events--visible-painted { pointer-events: visiblePainted; }
+.mobius-events--visible-fill { pointer-events: visibleFill; }
+.mobius-events--visible-stroke { pointer-events: visibleStroke; }
+.mobius-events--visible { pointer-events: visible; }
+.mobius-events--painted { pointer-events: painted; }
+.mobius-events--fill { pointer-events: fill; }
+.mobius-events--stroke { pointer-events: stroke; }
+.mobius-events--all { pointer-events: all; }
+
+/*! purgecss end ignore */

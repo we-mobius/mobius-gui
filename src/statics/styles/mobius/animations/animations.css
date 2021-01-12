@@ -1,6 +1,0 @@
-@import "./keyframes.css";
-/*! purgecss start ignore */
-.mobius-animation--spin {
-  animation: spin 1.414s infinite linear;
-}
-/*! purgecss end ignore */

@@ -1,0 +1,9 @@
+/*! purgecss start ignore */
+
+.mobius-select--auto { user-select: auto; }
+.mobius-select--none { user-select: none; }
+.mobius-select--all { user-select: all; }
+.mobius-select--text { user-select: text; }
+.mobius-select--contain { user-select: contain; }
+
+/*! purgecss end ignore */

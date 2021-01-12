@@ -1,0 +1,14 @@
+/*! purgecss start ignore */
+
+.mobius-scroll--auto { scroll-behavior: auto; }
+.mobius-scroll--smooth { scroll-behavior: smooth; }
+
+.mobius-scroll--bar-hidden {
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/*! purgecss end ignore */

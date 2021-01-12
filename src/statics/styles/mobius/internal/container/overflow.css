@@ -1,0 +1,17 @@
+/*! purgecss start ignore */
+
+.mobius-overflow--auto { overflow: auto; }
+.mobius-overflow--hidden { overflow: hidden; }
+.mobius-overflow--all-scroll { overflow: scroll; }
+.mobius-overflow--x-scroll,
+.mobius-overflow--y-hidden {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.mobius-overflow--y-scroll,
+.mobius-overflow--x-hidden {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+/*! purgecss end ignore */

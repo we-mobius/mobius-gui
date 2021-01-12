@@ -1,0 +1,15 @@
+@import "./toggle.css";
+
+/*! purgecss start ignore */
+
+.mobius-app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+/*! purgecss end ignore */

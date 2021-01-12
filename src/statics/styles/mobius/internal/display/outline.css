@@ -1,0 +1,13 @@
+/*! purgecss start ignore */
+
+.mobius-outline--invalid {
+  outline: 2px solid var(--red-color-normal);
+}
+.mobius-outline--valid {
+  outline: 2px solid var(--green-color-normal);
+}
+.mobius-outline--warn {
+  outline: 2px solid var(--orange-color-normal);
+}
+
+/*! purgecss end ignore */

@@ -1,0 +1,6 @@
+/*! purgecss start ignore */
+
+.mobius-box--border { box-sizing: border-box; }
+.mobius-box--content { box-sizing: content-box; }
+
+/*! purgecss end ignore*/

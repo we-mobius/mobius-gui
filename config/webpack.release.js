@@ -1,19 +1,23 @@
-const path = require('path')
-const { release: releasePlugins } = require('./plugins.config')
-const { release: releaseLoaders } = require('./loaders.config')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
+import { rootResolvePath } from '../scripts/utils.js'
+import { getReleaseLoaders } from './loaders.config.js'
+import { getReleasePlugins } from './plugins.config.js'
+
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import CopyPlugin from 'copy-webpack-plugin'
+
+import path from 'path'
 
 const PATHS = {
-  src: path.resolve(process.cwd(), 'src'),
-  output: path.resolve(process.cwd(), 'release')
+  src: rootResolvePath('src'),
+  output: rootResolvePath('release')
 }
 
-module.exports = {
+export const getReleaseConfig = () => ({
   mode: 'production',
   entry: {
     mobius: './src/mobius.release.entry.js',
-    addons: './src/addons.release.entry.js',
+    addon: './src/addon.release.entry.js',
+    base: './src/base.release.entry.js',
     mobiusui: './src/mobiusui.release.entry.js'
   },
   output: {
@@ -36,12 +40,12 @@ module.exports = {
         ]
       },
       {
-        oneOf: [...releaseLoaders]
+        oneOf: [...getReleaseLoaders()]
       }
     ]
   },
   plugins: [
-    ...releasePlugins,
+    ...getReleasePlugins(),
     new MiniCssExtractPlugin({
       filename: 'styles/[name].css',
       chunkFilename: 'styles/[id].css'
@@ -70,3 +74,4 @@ module.exports = {
   ],
   devtool: 'hidden-nosources-source-map'
 }
+)

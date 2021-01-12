@@ -1,0 +1,57 @@
+/*! purgecss start ignore */
+
+/* ref: https://developer.mozilla.org/zh-CN/docs/Web/CSS/cursor */
+
+/* Genaral */
+.mobius-cursor--auto { cursor: auto; }
+.mobius-cursor--default { cursor: default; }
+.mobius-cursor--none { cursor: none; }
+
+/* 链接及状态 */
+.mobius-cursor--context-menu { cursor: context-menu; }
+.mobius-cursor--help { cursor: help; }
+.mobius-cursor--pointer { cursor: pointer; }
+.mobius-cursor--progress { cursor: progress; }
+.mobius-cursor--wait { cursor: wait; }
+
+/* 选择 */
+.mobius-cursor--cell { cursor: cell; }
+.mobius-cursor--cross { cursor: cross; }
+.mobius-cursor--text { cursor: text; }
+.mobius-cursor--v-text { cursor: vertical-text; }
+
+/* 拖拽 */
+.mobius-cursor--alias { cursor: alias; }
+.mobius-cursor--copy { cursor: copy; }
+.mobius-cursor--move { cursor: move; }
+.mobius-cursor--no-drop { cursor: no-drop; }
+.mobius-cursor--not-allowed { cursor: not-allowed; }
+.mobius-cursor--grab { cursor: grab; }
+.mobius-cursor--grabbing { cursor: grabbing; }
+
+/* 重设大小及滚动 */
+.mobius-cursor--all-scroll { cursor: all-scroll; }
+.mobius-cursor--col-resize { cursor: col-resize; }
+.mobius-cursor--row-resize { cursor: row-resize; }
+.mobius-cursor--n-resize, .mobius-cursor--t-resize { cursor: n-resize; }
+.mobius-cursor--e-resize, .mobius-cursor--r-resize { cursor: e-resize; }
+.mobius-cursor--s-resize, .mobius-cursor--b-resize { cursor: s-resize; }
+.mobius-cursor--w-resize, .mobius-cursor--l-resize { cursor: w-resize; }
+.mobius-cursor--ne-resize, .mobius-cursor--rt-resize { cursor: ne-resize; }
+.mobius-cursor--se-resize, .mobius-cursor--rb-resize { cursor: se-resize; }
+.mobius-cursor--nw-resize, .mobius-cursor--lt-resize { cursor: nw-resize; }
+.mobius-cursor--sw-resize, .mobius-cursor--lb-resize { cursor: sw-resize; }
+.mobius-cursor--ew-resize, .mobius-cursor--we-resize,
+.mobius-cursor--lr-resize, .mobius-cursor--rl-resize { cursor: ew-resize; }
+.mobius-cursor--ns-resize, .mobius-cursor--sn-resize,
+.mobius-cursor--tb-resize, .mobius-cursor--bt-resize { cursor: ns-resize; }
+.mobius-cursor--nesw-resize, .mobius-cursor--swne-resize,
+.mobius-cursor--rtlb-resize, .mobius-cursor--lbrt-resize { cursor: nesw-resize; }
+.mobius-cursor--nwse-resize, .mobius-cursor--senw-resize,
+.mobius-cursor--ltrb-resize, .mobius-cursor--rblt-resize { cursor: nwse-resize; }
+
+/* 缩放 */
+.mobius-cursor--zoom-in { cursor: zoom-in; }
+.mobius-cursor--zoom-out { cursor: zoom-out; }
+
+/*! purgecss end ignore */

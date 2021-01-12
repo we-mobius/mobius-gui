@@ -12,7 +12,7 @@ export {
 export {
   // creation
   ajax
-} from 'rxjs/ajax'
+} from 'rxjs/ajax/index.js'
 export {
   // creation
 

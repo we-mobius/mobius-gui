@@ -1,0 +1,7 @@
+/*! purgecss start ignore */
+
+.mobius-caret--auto { caret-color: auto; }
+.mobius-caret--transparent { caret-color: transparent; }
+.mobius-caret--current { caret-color: currentColor; }
+
+/*! purgecss end ignore */

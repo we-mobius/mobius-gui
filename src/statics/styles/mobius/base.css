@@ -1,4 +1,5 @@
 /*! purgecss start ignore */
+@import "./base/normalize.css";
 
 /*********************************************************
  *              Mobius Base Styles
@@ -30,8 +31,11 @@
   box-sizing: border-box;
 }
 
-html,
-page {
+:root.mobius-base,
+html.mobius-base,
+page.mobius-base,
+page,
+.mobius-base {
   @extend %base-common, %font-family-vars;
   font-family: var(--font-family-normal);
   color: var(--text-color-normal);
@@ -46,50 +50,54 @@ page {
   }
 }
 
-body,
-page {
+body.mobius-base,
+page.mobius-base,
+page,
+.mobius-base {
 }
 
-div,
-view {
-  box-sizing: border-box;
-}
+.mobius-base {
+  div,
+  view {
+    box-sizing: border-box;
+  }
 
-div {
-  -webkit-tap-highlight-color: transparent;
-}
+  div {
+    -webkit-tap-highlight-color: transparent;
+  }
 
-img {
-  mix-blend-mode: multiply;
-}
+  img {
+    mix-blend-mode: multiply;
+  }
 
-svg {
-  color: currentColor;
-}
+  svg {
+    color: currentColor;
+  }
 
-input,
-textarea,
-select {
-  outline: none;
-  appearance: none;
-  outline-offset: -2px;
-}
+  input,
+  textarea,
+  select {
+    outline: none;
+    appearance: none;
+    outline-offset: -2px;
+  }
 
-textarea {
-  resize: none;
-}
+  textarea {
+    resize: none;
+  }
 
-select {
-  background-color: #ffffff;
-}
-select[value=" "] {
-  color: gray;
-}
-option[value=" "][disabled] {
-  display: none;
-}
-option {
-  color: #000000;
+  select {
+    background-color: #ffffff;
+  }
+  select[value=" "] {
+    color: gray;
+  }
+  option[value=" "][disabled] {
+    display: none;
+  }
+  option {
+    color: #000000;
+  }
 }
 
 /*! purgecss end ignore*/
