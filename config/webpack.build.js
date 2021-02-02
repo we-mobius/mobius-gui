@@ -1,6 +1,6 @@
 import { rootResolvePath } from '../scripts/utils.js'
-import { getDevelopmentLoaders } from './loaders.config.js'
-import { getDevelopmentPlugins } from './plugins.config.js'
+import { getBuildLoaders } from './loaders.config.js'
+import { getBuildPlugins } from './plugins.config.js'
 import CopyPlugin from 'copy-webpack-plugin'
 import path from 'path'
 
@@ -29,12 +29,12 @@ export const getBuildConfig = () => ({
         ]
       },
       {
-        oneOf: [...getDevelopmentLoaders()]
+        oneOf: [...getBuildLoaders()]
       }
     ]
   },
   plugins: [
-    ...getDevelopmentPlugins(),
+    ...getBuildPlugins(),
     // CopyPlugin configurations: https://github.com/webpack-contrib/copy-webpack-plugin
     new CopyPlugin([
       {

@@ -1,5 +1,6 @@
 import { html, nothing } from 'lit-html'
 import { iif, argPlaceholder } from '../libs/mobius-utils.js'
+import { makeElementMaker } from '../helpers/index.js'
 
 const iifNothing = iif(argPlaceholder, argPlaceholder, nothing)
 
@@ -21,15 +22,17 @@ const makeRight = right => iifNothing(right, html`
   </div>
 `)
 
-export const makeMiddleColAdaptiveLayoutLE = elementOptions => {
-  const { classes = '', children = {}, config = {} } = elementOptions
-  const { left, middle, right } = children
-
-  return html`
-    <div class="mobius-display--flex mobius-layout__horizontal mobius-flex-items--stretch mobius-flex-wrap--nowrap ${classes}">
-      ${makeLeft(left)}
-      ${makeMiddle(middle)}
-      ${makeRight(right)}
-    </div>
-  `
-}
+export const makeMiddleColAdaptiveLayoutE = makeElementMaker({
+  marks: {},
+  styles: {},
+  actuations: {},
+  configs: {},
+  handler: (view, { styles }) =>
+    view`
+      <div class="mobius-display--flex mobius-layout__horizontal mobius-flex-items--stretch mobius-flex-wrap--nowrap ${'rootClasses'}">
+        ${makeLeft(styles.left)}
+        ${makeMiddle(styles.center)}
+        ${makeRight(styles.right)}
+      </div>
+    `
+})

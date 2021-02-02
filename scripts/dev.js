@@ -27,7 +27,7 @@ const devServerOptions = Object.assign({}, {
   writeToDisk: true,
   compress: true,
   port: 3000,
-  // open: true, // browser extension development do not need to open the page
+  open: true, // browser extension development do not need to open the page
   hot: true,
   clientLogLevel: 'trace',
   watchOptions: {
