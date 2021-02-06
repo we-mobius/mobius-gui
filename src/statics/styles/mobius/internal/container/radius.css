@@ -1,0 +1,107 @@
+/*! purgecss start ignore */
+
+/*********************************************************
+ *              Mobius Border Utility
+ *
+ * - with css    houdini: none,
+ * - with global control: none,
+ * - use  global params : none,
+ * - set  global params : none,
+ * - use  theme  props  : none,
+ * - release     props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: ...,
+ *
+ * - TODO: none,
+ *
+ * - 1. no comment,
+ *
+ * !important none
+ *
+ *********************************************************/
+
+/*********************************************************
+ *              Mobius Border Radius Utility
+ *********************************************************/
+
+%border-radius-size {
+  --border-radius-size-none: 0em;
+  --border-radius-size-xs: 0.5em;
+  --border-radius-size-small: 0.75em;
+  --border-radius-size-base: 1em;
+  --border-radius-size-large: 1.25em;
+  --border-radius-size-xl: 1.5em;
+  --border-radius-size-full: 9999em;
+}
+
+:root.mobius-base,
+html.mobius-base,
+page.mobius-base,
+page,
+.mobius-base {
+  @extend %border-radius-size;
+}
+
+.mobius-rounded--none,
+.hover_mobius-rounded--none:hover,
+.active_mobius-rounded--none:active { border-radius: var(--border-radius-size-none); }
+.mobius-rounded--xs,
+.hover_mobius-rounded--xs:hover,
+.active_mobius-rounded--xs:active { border-radius: var(--border-radius-size-xs); }
+.mobius-rounded--small,
+.hover_mobius-rounded--small:hover,
+.active_mobius-rounded--small:active { border-radius: var(--border-radius-size-small); }
+.mobius-rounded--base,
+.hover_mobius-rounded--base:hover,
+.active_mobius-rounded--base:active { border-radius: var(--border-radius-size-base); }
+.mobius-rounded--large,
+.hover_mobius-rounded--large:hover,
+.active_mobius-rounded--large:active { border-radius: var(--border-radius-size-large); }
+.mobius-rounded--xl,
+.hover_mobius-rounded--xl:hover,
+.active_mobius-rounded--xl:active { border-radius: var(--border-radius-size-xl); }
+
+.mobius-rounded--quarter,
+.hover_mobius-rounded--quarter:hover,
+.active_mobius-rounded--quarter:active { border-radius: 25%; }
+.mobius-rounded--half,
+.hover_mobius-rounded--half:hover,
+.active_mobius-rounded--half:active { border-radius: 50%; }
+.mobius-rounded--full,
+.hover_mobius-rounded--full:hover,
+.active_mobius-rounded--full:active { border-radius: var(--border-radius-size-full); }
+
+.mobius-rounded-lt--none,
+.hover_mobius-rounded-lt--none:hover,
+.active_mobius-rounded-lt--none:active { border-top-left-radius: var(--border-radius-size-none); }
+.mobius-rounded-rt--none,
+.hover_mobius-rounded-rt--none:hover,
+.active_mobius-rounded-rt--none:active { border-top-right-radius: var(--border-radius-size-none); }
+.mobius-rounded-rb--none,
+.hover_mobius-rounded-rb--none:hover,
+.active_mobius-rounded-rb--none:active { border-bottom-right-radius: var(--border-radius-size-none); }
+.mobius-rounded-lb--none,
+.hover_mobius-rounded-lb--none:hover,
+.active_mobius-rounded-lb--none:active { border-bottom-left-radius: var(--border-radius-size-none); }
+.mobius-rounded-top--none,
+.hover_mobius-rounded-top--none:hover,
+.active_mobius-rounded-top--none:active { border-top-left-radius: var(--border-radius-size-none); border-top-right-radius: var(--border-radius-size-none); }
+.mobius-rounded-right--none,
+.hover_mobius-rounded-right--none:hover,
+.active_mobius-rounded-right--none:active { border-top-right-radius: var(--border-radius-size-none); border-bottom-right-radius: var(--border-radius-size-none); }
+.mobius-rounded-bottom--none,
+.hover_mobius-rounded-bottom--none:hover,
+.active_mobius-rounded-bottom--none:active { border-bottom-left-radius: var(--border-radius-size-none); border-bottom-right-radius: var(--border-radius-size-none); }
+.mobius-rounded-left--none,
+.hover_mobius-rounded-left--none:hover,
+.active_mobius-rounded-left--none:active { border-top-left-radius: var(--border-radius-size-none); border-bottom-left-radius: var(--border-radius-size-none); }
+.mobius-rounded-ltrb--none,
+.hover_mobius-rounded-ltrb--none:hover,
+.active_mobius-rounded-ltrb--none:active { border-top-left-radius: var(--border-radius-size-none); border-bottom-right-radius: var(--border-radius-size-none); }
+.mobius-rounded-rtlb--none,
+.hover_mobius-rounded-rtlb--none:hover,
+.active_mobius-rounded-rtlb--none:active { border-top-right-radius: var(--border-radius-size-none); border-bottom-left-radius: var(--border-radius-size-none); }
+
+/*! purgecss end ignore */

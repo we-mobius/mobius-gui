@@ -1,27 +1,16 @@
-@import "normalize.css";
-@import "vars.css";
-@import "base.css";
-@import "utilities.css";
-@import "elements.css";
-@import "components.css";
+@import "variable.css";
+@import "./internal/internal.css";
+@import "./external/external.css";
 
 /*
- * Layouts
- *  - layout
- *  - width, height
- *  - padding, margin
- *  - layout, flex, grid
- *  - position
- * Effects
- *  - bg
- *  - shadow
- *  - border, rounded
- *  - theme
- *  - transition
- * Typography
- *  - font
- *  - text(indent, align, dir, wrap, tracking, leading, break )
- *  - font-size
- *  - text(color, weight, italic, decoration, transform)
- * ...
+ * Base
+ *  - Normalize
+ * Internal
+ *  - Layout
+ *  - Container
+ *  - Content
+ *  - Display
+ * External
+ *  - Element
+ *  - Component
  */

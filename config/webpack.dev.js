@@ -1,18 +1,19 @@
-const path = require('path')
-const { development: developmentLoaders } = require('./loaders.config')
-const { development: developmentPlugins } = require('./plugins.config')
-const CopyPlugin = require('copy-webpack-plugin')
+import { rootResolvePath } from '../scripts/utils.js'
+import { getDevelopmentLoaders } from './loaders.config.js'
+import { getDevelopmentPlugins } from './plugins.config.js'
+import CopyPlugin from 'copy-webpack-plugin'
+import path from 'path'
 
 const PATHS = {
-  output: path.resolve(process.cwd(), 'build')
+  output: rootResolvePath('dev')
 }
 
-module.exports = {
+export const getDevelopmentConfig = () => ({
   mode: 'development',
   // NOTE: entry sort matters style cascading
   entry: {
     static: './src/static.js',
-    main: './src/main.js'
+    index: './src/index.js'
   },
   output: {
     path: PATHS.output
@@ -28,12 +29,12 @@ module.exports = {
         ]
       },
       {
-        oneOf: [...developmentLoaders]
+        oneOf: [...getDevelopmentLoaders()]
       }
     ]
   },
   plugins: [
-    ...developmentPlugins,
+    ...getDevelopmentPlugins(),
     // CopyPlugin configurations: https://github.com/webpack-contrib/copy-webpack-plugin
     new CopyPlugin([
       {
@@ -46,17 +47,8 @@ module.exports = {
       }
     ])
   ],
-  devtool: 'eval-source-map',
-  devServer: {
-    writeToDisk: true,
-    compress: true,
-    port: 3000,
-    open: true,
-    hot: true,
-    historyApiFallback: true,
-    watchOptions: {
-      ignored: /node_modules/
-    },
-    disableHostCheck: true
-  }
-}
+  // devtool: 'eval-source-map',
+  devtool: 'source-map',
+  // in ./scripts/dev.js
+  devServer: {}
+})

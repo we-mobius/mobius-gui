@@ -1,23 +1,26 @@
+import { getCommonConfig } from './config/webpack.common.js'
+import { getDevelopmentConfig } from './config/webpack.dev.js'
+import { getBuildConfig } from './config/webpack.build.js'
+import { getProductionConfig } from './config/webpack.prod.js'
+import { getReleaseConfig } from './config/webpack.release.js'
+import { merge } from 'webpack-merge'
 
-const commonConfig = require('./config/webpack.common')
-const developmentConfig = require('./config/webpack.dev')
-const productionConfig = require('./config/webpack.prod')
-const releaseConfig = require('./config/webpack.release')
-const merge = require('webpack-merge')
-
-module.exports = (env, args) => {
+export const getWebpackConfig = (env, args) => {
   const { mode } = env
-
+  const commonConfig = getCommonConfig()
   let specificConfig = null
   switch (mode) {
     case 'production':
-      specificConfig = productionConfig
+      specificConfig = getProductionConfig()
       break
     case 'development':
-      specificConfig = developmentConfig
+      specificConfig = getDevelopmentConfig()
+      break
+    case 'build':
+      specificConfig = getBuildConfig()
       break
     case 'release':
-      specificConfig = releaseConfig
+      specificConfig = getReleaseConfig()
       break
     default:
       break

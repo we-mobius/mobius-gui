@@ -1,0 +1,115 @@
+/*! purgecss start ignore */
+
+/*********************************************************
+ *              Mobius Transition Utility
+ *
+ * - with css    houdini: none,
+ * - with global control: none,
+ * - use  global params : none,
+ * - set  global params : none,
+ * - use  ...    props  : none,
+ * - release     props  : none,
+ *
+ * - usage: [%transition-property-vars](use)(base),
+ *          [%transition-duration-vars](use)(base),
+ *          [%transition-timing-vars](use)(base),
+ *          [%transition-delay-vars](use)(base),
+ *
+ * - classes: .mobius-transition--all, .mobius-transition--normal, .mobius-transition--none,
+ *
+ * - TODO: none,
+ *
+ * - 1. no comment,
+ *
+ * !important none
+ *
+ *********************************************************/
+
+%transition-property-vars {
+  --transition-property-common: color, background-color, box-shadow, height, width;
+  --transition-property-all: all;
+  --transition-property-none: none;
+}
+%transition-duration-vars {
+  --transition-duration-normal: 0.624s;
+  --transition-duration-none: 0s;
+}
+%transition-timing-vars {
+  /* https://cubic-bezier.com/ */
+  /* --transition-timing-function-mobius: cubic-bezier(0.165, 0.84, 0.44, 1); */
+  /* --transition-timing-function-cigaret: cubic-bezier(0.165, 0.84, 0.44, 1); */
+  --transition-timing-function-normal: ease-in-out;
+  --transition-timing-function-ease: ease;
+  --transition-timing-function-linear: linear;
+  --transition-timing-function-easein: ease-in;
+  --transition-timing-function-easeout: ease-out;
+  --transition-timing-function-easeinout: ease-in-out;
+}
+%transition-delay-vars {
+  --transition-delay-none: 0s;
+}
+
+:root.mobius-base,
+html.mobius-base,
+page.mobius-base,
+page,
+.mobius-base {
+  @extend %transition-property-vars,
+    %transition-duration-vars,
+    %transition-timing-vars,
+    %transition-delay-vars;
+}
+
+/* .mobius-transition--all *, */
+.mobius-transition--all,
+.mobius-transition--all::before,
+.mobius-transition--all::after,
+.mobius-transition--all ::before,
+.mobius-transition--all ::after,
+.mobius-transition--all div,
+.mobius-transition--all div::before,
+.mobius-transition--all div::after,
+.mobius-transition--all p,
+.mobius-transition--all p::before,
+.mobius-transition--all p::after,
+.mobius-transition--all span,
+.mobius-transition--all span::before,
+.mobius-transition--all span::after,
+.mobius-transition--all view,
+.mobius-transition--all view::before,
+.mobius-transition--all view::after,
+.mobius-transition--all text,
+.mobius-transition--all text::before,
+.mobius-transition--all text::after {
+  transition-property: var(--transition-property-all);
+  transition-duration: var(--transition-duration-normal);
+  transition-timing-function: var(--transition-timing-function-normal);
+  transition-delay: var(--transition-delay-none);
+}
+
+.mobius-transition--normal,
+.mobius-transition--normal::before,
+.mobius-transition--normal::after {
+  transition-property: var(--transition-property-all);
+  transition-duration: var(--transition-duration-normal);
+  transition-timing-function: var(--transition-timing-function-normal);
+  transition-delay: var(--transition-delay-none);
+}
+
+%mobius-transition-none {
+  transition-property: var(--transition-property-none);
+  transition-duration: var(--transition-duration-none);
+}
+.mobius-transition--none {
+  @extend %mobius-transition-none;
+  @nest .mobius-transition--all &,
+    &.mobius-transition--all,
+    &.mobius-transition--normal {
+    @extend %mobius-transition-none;
+    & ::before, & ::after, &::before, &::after {
+      @extend %mobius-transition-none;
+    }
+  }
+}
+
+/*! purgecss end ignore */

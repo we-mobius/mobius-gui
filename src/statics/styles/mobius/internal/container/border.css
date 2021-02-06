@@ -1,0 +1,226 @@
+/*! purgecss start ignore*/
+
+/*********************************************************
+ *              Mobius Border Utility
+ *
+ * - with css    houdini: none,
+ * - with global control: none,
+ * - use  global params : --dark-color-normal, --light-color-normal, --cigaret-color-normal, --mobius-color-normal,
+ * - set  global params : none,
+ * - use  theme  props  : %theme-light-vars, %theme-dark-vars,
+ * - release     props  : none,
+ *
+ * - usage: none,
+ *
+ * - classes: .mobius-border-top(hover, active), .mobius-border-right(hover, active), .mobius-border-bottom(hover, active), mobius-border-left(hover, active), .mobius-border-x(hover, active), .mobius-border-y(hover, active), .mobius-border-all(hover, active),
+ *            .mobius-border-thin(hover, active), .mobius-border-thick(hover, active),
+ *            .mobius-border-none(hover, active), .mobius-border-hidden(hover, active), .mobius-border-dotted(hover, active), .mobius-border-dashed(hover, active), .mobius-border-solid(hover, active), .mobius-border-double(hover, active),
+ *            .mobius-border-light(hover, active), .mobius-border-dark(hover, active), .mobius-border-cigaret(hover, active), .mobius-border-mobius(hover, active),
+ *
+ * - TODO: none,
+ *
+ * - 1. no comment,
+ *
+ * !important none
+ *
+ *********************************************************/
+
+/*********************************************************
+ *              Mobius Border Utility
+ *********************************************************/
+
+%border-config {
+  --border-width: 2px;
+  --border-style: solid;
+  --border-color: currentColor;
+}
+
+%border-top {
+  border-top-width: var(--border-width);
+  border-top-style: var(--border-style);
+  border-top-color: var(--border-color);
+}
+%border-right {
+  border-right-width: var(--border-width);
+  border-right-style: var(--border-style);
+  border-right-color: var(--border-color);
+}
+%border-bottom {
+  border-bottom-width: var(--border-width);
+  border-bottom-style: var(--border-style);
+  border-bottom-color: var(--border-color);
+}
+%border-left {
+  border-left-width: var(--border-width);
+  border-left-style: var(--border-style);
+  border-left-color: var(--border-color);
+}
+
+:root.mobius-base,
+html.mobius-base,
+page.mobius-base,
+page,
+.mobius-base {
+  @extend %border-config;
+}
+
+/*********************************************************
+ *                       Border Position
+ *********************************************************/
+
+.mobius-border--top,
+.hover_mobius-border--top:hover,
+.active_mobius-border--top:active {
+  @extend %border-top;
+}
+
+.mobius-border--right,
+.hover_mobius-border--right:hover,
+.active_mobius-border--right:active {
+  @extend %border-right;
+}
+
+.mobius-border--bottom,
+.hover_mobius-border--bottom:hover,
+.active_mobius-border--bottom:active {
+  @extend %border-bottom;
+}
+
+.mobius-border--left,
+.hover_mobius-border--left:hover,
+.active_mobius-border--left:active {
+  @extend %border-left;
+}
+
+.mobius-border--x,
+.hover_mobius-border--x:hover,
+.active_mobius-border--x:active {
+  @extend %border-right, %border-left;
+}
+
+.mobius-border--y,
+.hover_mobius-border--y:hover,
+.active_mobius-border--y:active {
+  @extend %border-top, %border-bottom;
+}
+
+.mobius-border--all,
+.hover_mobius-border--all:hover,
+.active_mobius-border--all:active {
+  @extend %border-top, %border-right, %border-bottom, %border-left;
+}
+
+/*********************************************************
+ *                        Border Width
+ *********************************************************/
+
+:root,
+html,
+page {
+  & .mobius-border--thin,
+  & .hover_mobius-border--thin:hover,
+  & .active_mobius-border--thin:active {
+    --border-width: 1px;
+  }
+
+  & .mobius-border--thick,
+  & .hover_mobius-border--thick:hover,
+  & .active_mobius-border--thick:active {
+    --border-width: 3px;
+  }
+
+  /* & .mobius-border--hp,
+  & .hover_mobius-border--hp:hover,
+  & .active_mobius-border--hp:active {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      border-top: 1px solid #000;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      transform-origin: 0 0;
+      transform: scale(0.5, 0.5);
+    }
+  } */
+}
+
+/*********************************************************
+ *                      Border Style
+ *********************************************************/
+
+:root,
+html,
+page {
+  & .mobius-border--none,
+  & .hover_mobius-border--none:hover,
+  & .active_mobius-border--none:active {
+    --border-style: none;
+  }
+
+  & .mobius-border--hidden,
+  & .hover_mobius-border--hidden:hover,
+  & .active_mobius-border--hidden:active {
+    --border-style: hidden;
+  }
+
+  & .mobius-border--dotted,
+  & .hover_mobius-border--dotted:hover,
+  & .active_mobius-border--dotted:active {
+    --border-style: dotted;
+  }
+
+  & .mobius-border--dashed,
+  & .hover_mobius-border--dashed:hover,
+  & .active_mobius-border--dashed:active {
+    --border-style: dashed;
+  }
+
+  & .mobius-border--solid,
+  & .hover_mobius-border--solid:hover,
+  & .active_mobius-border--solid:active {
+    --border-style: solid;
+  }
+
+  & .mobius-border--double,
+  & .hover_mobius-border--double:hover,
+  & .active_mobius-border--double:active {
+    --border-style: double;
+  }
+}
+
+/*********************************************************
+ *                       Border Color
+ *********************************************************/
+
+:root,
+html,
+page {
+  & .mobius-border--light,
+  & .hover_mobius-border--light:hover,
+  & .active_mobius-border--light:active {
+    --border-color: var(--light-color-normal);
+  }
+
+  & .mobius-border--dark,
+  & .hover_mobius-border--dark:hover,
+  & .active_mobius-border--dark:active {
+    --border-color: var(--dark-color-normal);
+  }
+
+  & .mobius-border--cigaret,
+  & .hover_mobius-border--cigaret:hover,
+  & .active_mobius-border--cigaret:active {
+    --border-color: var(--cigaret-color-normal);
+  }
+
+  & .mobius-border--mobius,
+  & .hover_mobius-border--mobius:hover,
+  & .active_mobius-border--mobius:active {
+    --border-color: var(--mobius-color-normal);
+  }
+}
+
+/*! purgecss end ignore*/

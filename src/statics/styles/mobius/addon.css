@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Commodore64";
+  src: url("../fonts/Sixtyfour[wdth,wght].woff2") format("woff2");
+}
+@font-face {
+  font-family: "AmigaWorkbench";
+  src: url("../fonts/Workbench[wdth,wght].woff2") format("woff2");
+}
+
+%homecomputer-font-variants {
+  /* --bleed: 100~200, --scan: 200~900 */
+  --bleed: 100;
+  --scan: 400;
+}
+
+:root.mobius-base,
+html.mobius-base,
+page.mobius-base,
+page,
+.mobius-base {
+  @extend %homecomputer-font-variants;
+}

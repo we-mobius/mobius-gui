@@ -1,23 +1,30 @@
-const path = require('path')
-const { production: productionPlugins } = require('./plugins.config')
-const { production: productionLoaders } = require('./loaders.config')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
+import { rootResolvePath } from '../scripts/utils.js'
+import { getMobiusConfig } from './mobius.config.js'
+import { getProductionLoaders } from './loaders.config.js'
+import { getProductionPlugins } from './plugins.config.js'
+
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
+import CopyPlugin from 'copy-webpack-plugin'
+
+import path from 'path'
 
 const PATHS = {
-  src: path.resolve(process.cwd(), 'src'),
-  output: path.resolve(process.cwd(), 'dist')
+  src: rootResolvePath('src'),
+  output: rootResolvePath('dist')
 }
 
-module.exports = {
+export const getProductionConfig = () => ({
   mode: 'production',
   // NOTE: entry sort matters style cascading
   entry: {
     static: './src/static.js',
-    main: './src/main.js'
+    index: './src/index.js'
   },
   output: {
-    path: PATHS.output
+    filename: '[name].js',
+    path: PATHS.output,
+    publicPath: getMobiusConfig().publicPath
   },
   module: {
     rules: [
@@ -33,15 +40,16 @@ module.exports = {
           },
           'css-loader',
           'postcss-loader'
-        ]
+        ],
+        sideEffects: true
       },
       {
-        oneOf: [...productionLoaders]
+        oneOf: [...getProductionLoaders()]
       }
     ]
   },
   plugins: [
-    ...productionPlugins,
+    ...getProductionPlugins(),
     new MiniCssExtractPlugin({
       filename: 'styles/[name].[contenthash:10].css',
       chunkFilename: 'styles/[id].[contenthash:10].css'
@@ -63,5 +71,24 @@ module.exports = {
       }
     ])
   ],
-  devtool: 'hidden-nosources-source-map'
-}
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          sourceMap: true,
+          compress: {
+            drop_debugger: true,
+            drop_console: true
+          },
+          format: {
+            comments: false
+          }
+        }
+      })
+    ]
+  },
+  devtool: 'source-map'
+  // devtool: 'hidden-nosources-source-map'
+})

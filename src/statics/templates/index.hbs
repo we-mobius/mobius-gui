@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {{!-- 渲染 favicon --}}
-  <link rel="apple-touch-icon" type="image/png" href="{{mobiusConfig.favicon}}">
-  <link rel="apple-touch-startup-image" type="image/png" href="{{mobiusConfig.favicon}}">
-  <link rel="icon" type="image/png" href="{{mobiusConfig.favicon}}">
+  {{#each mobiusConfig.manifest.icons as |icon|}}
+  <link rel="{{icon.rel}}" type="{{icon.type}}" sizes="{{icon.sizes}}" href="{{icon.src}}">
+  {{/each}}
   {{!-- 渲染额外引入的字体资源 --}}
   {{!-- @see https://developer.mozilla.org/zh-CN/docs/Web/HTML/Preloading_content --}}
   {{#each mobiusConfig.fonts as |extra-font|}}

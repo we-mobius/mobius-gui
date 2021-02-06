@@ -1,0 +1,10 @@
+/*! purgecss start ignore */
+
+.mobius-resize--none { resize: none; }
+.mobius-resize--both { resize: both; }
+.mobius-resize--horizontal { resize: horizontal; }
+.mobius-resize--vertical { resize: vertical; }
+.mobius-resize--block { resize: block; }
+.mobius-resize--inline { resize: inline; }
+
+/*! purgecss end ignore */
