@@ -36,7 +36,7 @@
     "dist": "node ./scripts/dist",
     "serve:build": "npx live-server ./build --port=0624",
     "serve:dist": "npx live-server ./dist --port=0624",
-    "expose": "ngrok http 624",
+    "expose": "npx ngrok http 624",
     "bundle": "node ./scripts/bundle"
   },
   "repository": "https://github.com/we-mobius/mobius-ui.git",
