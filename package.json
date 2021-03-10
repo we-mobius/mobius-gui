@@ -34,7 +34,8 @@
     "dev": "node ./scripts/dev",
     "build": "node ./scripts/build",
     "dist": "node ./scripts/dist",
-    "serve": "npx live-server ./dist --port=0624",
+    "serve:build": "npx live-server ./build --port=0624",
+    "serve:dist": "npx live-server ./dist --port=0624",
     "expose": "ngrok http 624",
     "bundle": "node ./scripts/bundle"
   },
@@ -42,9 +43,13 @@
   "author": {
     "name": "kongxiangyan",
     "email": "kcigaret@outlook.com",
-    "url": "https://cigaret.world/"
+    "url": "http://cigaret.world/"
   },
   "license": "GPL v3.0",
+  "bugs": {
+    "url": "https://github.com/we-mobius/mobius-ui/issues"
+  },
+  "homepage": "https://github.com/we-mobius/mobius-ui#readme",
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.10.5",
