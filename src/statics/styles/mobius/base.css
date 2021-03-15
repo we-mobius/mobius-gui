@@ -54,48 +54,45 @@ body.mobius-base,
 page.mobius-base,
 page,
 .mobius-base {
-}
-
-.mobius-base {
-  div,
-  view {
+  & div,
+  & view {
     box-sizing: border-box;
   }
 
-  div {
+  & div {
     -webkit-tap-highlight-color: transparent;
   }
 
-  img {
+  & img {
     mix-blend-mode: multiply;
   }
 
-  svg {
+  & svg {
     color: currentColor;
   }
 
-  input,
-  textarea,
-  select {
+  & input,
+  & textarea,
+  & select {
     outline: none;
     appearance: none;
     outline-offset: -2px;
   }
 
-  textarea {
+  & textarea {
     resize: none;
   }
 
-  select {
+  & select {
     background-color: #ffffff;
   }
-  select[value=" "] {
+  & select[value=" "] {
     color: gray;
   }
-  option[value=" "][disabled] {
+  & option[value=" "][disabled] {
     display: none;
   }
-  option {
+  & option {
     color: #000000;
   }
 }

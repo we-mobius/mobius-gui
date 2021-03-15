@@ -29,9 +29,14 @@ module.exports = {
       verbose: true,
       rejected: true
     }),
+    // https://www.npmtrends.com/cssnano-vs-csso-vs-clean-css-vs-postcss-clean
+    // https://goalsmashers.github.io/css-minification-benchmark/
     // cssnano optimisations: https://cssnano.co/guides/optimisations
-    require('cssnano')(['default', {
-      normalizeUnicode: false
-    }])
+    // ! cssnano is not support the postcss v8, use csso instead
+    // require('cssnano')(['default', {
+    //   normalizeUnicode: false
+    // }]),
+    // refer: https://github.com/lahmatiy/postcss-csso
+    require('postcss-csso')({ restructure: true })
   ]
 }
