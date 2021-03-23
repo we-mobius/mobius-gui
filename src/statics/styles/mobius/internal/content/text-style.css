@@ -28,60 +28,58 @@
  *                       Text Color
  *********************************************************/
 
-.mobius-text--normal,
-.hover_mobius-text--normal:hover,
-.active_mobius-text--normal:active { color: var(--fg-color-normal); }
+.mobius-text--base,
+.hover_mobius-text--base:hover,
+.active_mobius-text--base:active { color: var(--fg-color-base); }
 
 .mobius-text--primary,
 .hover_mobius-text--primary:hover,
 .active_mobius-text--primary:active { color: var(--fg-color-primary); }
 
-.mobius-text--dark,
-.hover_mobius-text--dark:hover,
-.active_mobius-text--dark:active { color: var(--dark-color-normal); }
+.mobius-text--second,
+.hover_mobius-text--second:hover,
+.active_mobius-text--second:active { color: var(--fg-color-second); }
 
-.mobius-text--light,
-.hover_mobius-text--light:hover,
-.active_mobius-text--light:active { color: var(--light-color-normal); }
-
-.mobius-text--cigaret,
-.hover_mobius-text--cigaret:hover,
-.active_mobius-text--cigaret:active { color: var(--cigaret-color-normal); }
-
-.mobius-text--mobius,
-.hover_mobius-text--mobius:hover,
-.active_mobius-text--mobius:active { color: var(--mobius-color-normal); }
+.mobius-text--third,
+.hover_mobius-text--third:hover,
+.active_mobius-text--third:active { color: var(--fg-color-third); }
 
 .mobius-text--red,
 .hover_mobius-text--red:hover,
-.active_mobius-text--red:active { color: var(--red-color-normal); }
-.mobius-text--orange,
-.hover_mobius-text--orange:hover,
-.active_mobius-text--orange:active { color: var(--orange-color-normal); }
+.active_mobius-text--red:active { color: var(--fg-color-red); }
+.mobius-text--ry,
+.hover_mobius-text--ry:hover,
+.active_mobius-text--ry:active { color: var(--fg-color-ry); }
 .mobius-text--yellow,
 .hover_mobius-text--yellow:hover,
-.active_mobius-text--yellow:active { color: var(--yellow-color-normal); }
+.active_mobius-text--yellow:active { color: var(--fg-color-yellow); }
+.mobius-text--yg,
+.hover_mobius-text--yg:hover,
+.active_mobius-text--yg:active { color: var(--fg-color-yg); }
 .mobius-text--green,
 .hover_mobius-text--green:hover,
-.active_mobius-text--green:active { color: var(--green-color-normal); }
+.active_mobius-text--green:active { color: var(--fg-color-green); }
+.mobius-text--gc,
+.hover_mobius-text--gc:hover,
+.active_mobius-text--gc:active { color: var(--fg-color-gc); }
 .mobius-text--cyan,
 .hover_mobius-text--cyan:hover,
-.active_mobius-text--cyan:active { color: var(--cyan-color-normal); }
+.active_mobius-text--cyan:active { color: var(--fg-color-cyan); }
+.mobius-text--cb,
+.hover_mobius-text--cb:hover,
+.active_mobius-text--cb:active { color: var(--fg-color-cb); }
 .mobius-text--blue,
 .hover_mobius-text--blue:hover,
-.active_mobius-text--blue:active { color: var(--blue-color-normal); }
+.active_mobius-text--blue:active { color: var(--fg-color-blue); }
+.mobius-text--bp,
+.hover_mobius-text--bp:hover,
+.active_mobius-text--bp:active { color: var(--fg-color-bp); }
 .mobius-text--purple,
 .hover_mobius-text--purple:hover,
-.active_mobius-text--purple:active { color: var(--purple-color-normal); }
-.mobius-text--white,
-.hover_mobius-text--white:hover,
-.active_mobius-text--white:active { color: var(--white-color-normal); }
-.mobius-text--gray,
-.hover_mobius-text--gray:hover,
-.active_mobius-text--gray:active { color: var(--gray-color-normal); }
-.mobius-text--black,
-.hover_mobius-text--black:hover,
-.active_mobius-text--black:active { color: var(--black-color-normal); }
+.active_mobius-text--purple:active { color: var(--fg-color-purple); }
+.mobius-text--pr,
+.hover_mobius-text--pr:hover,
+.active_mobius-text--pr:active { color: var(--fg-color-pr); }
 
 /*********************************************************
  *                       Font Style

@@ -76,21 +76,6 @@
   }
 }
 
-.mobius-bg--primary,
-.hover_mobius-bg--primary:hover,
-.active_mobius-bg--primary:active {
-  background-color: var(--bg-color-primary);
-  &.mobius-bg--concave,
-  &.hover_mobius-bg--concave:hover,
-  &.active_mobius-bg--concave:active,
-  &.mobius-bg--convex,
-  &.hover_mobius-bg--convex:hover,
-  &.active_mobius-bg--convex:active {
-    --bglinear-color-dark: var(--bg-color-primary);
-    --bglinear-color-light: var(--bg-color-primary);
-  }
-}
-
 /* normal bg utility */
 .mobius-bg--light,
 .hover_mobius-bg--light:hover,
@@ -149,54 +134,160 @@
   }
 }
 
+/*********************************************************
+ *                       Background
+ *********************************************************/
+
+.mobius-bg--base,
+.hover_mobius-bg--base:hover,
+.active_mobius-bg--base:active { background-color: var(--bg-color-base); }
+.mobius-bg--primary,
+.hover_mobius-bg--primary:hover,
+.active_mobius-bg--primary:active { background-color: var(--bg-color-primary); }
+.mobius-bg--second,
+.hover_mobius-bg--second:hover,
+.active_mobius-bg--second:active { background-color: var(--bg-color-second); }
+.mobius-bg--third,
+.hover_mobius-bg--third:hover,
+.active_mobius-bg--third:active { background-color: var(--bg-color-third); }
+
 .mobius-bg--red,
 .hover_mobius-bg--red:hover,
-.active_mobius-bg--red:active {
-  background-color: var(--red-color-normal);
-}
-.mobius-bg--orange,
-.hover_mobius-bg--orange:hover,
-.active_mobius-bg--orange:active {
-  background-color: var(--orange-color-normal);
-}
+.active_mobius-bg--red:active { background-color: var(--bg-color-red); }
+.mobius-bg--ry,
+.hover_mobius-bg--ry:hover,
+.active_mobius-bg--ry:active { background-color: var(--bg-color-ry); }
 .mobius-bg--yellow,
 .hover_mobius-bg--yellow:hover,
-.active_mobius-bg--yellow:active {
-  background-color: var(--yellow-color-normal);
-}
+.active_mobius-bg--yellow:active { background-color: var(--bg-color-yellow); }
+.mobius-bg--yg,
+.hover_mobius-bg--yg:hover,
+.active_mobius-bg--yg:active { background-color: var(--bg-color-yg); }
 .mobius-bg--green,
 .hover_mobius-bg--green:hover,
-.active_mobius-bg--green:active {
-  background-color: var(--green-color-normal);
-}
+.active_mobius-bg--green:active { background-color: var(--bg-color-green); }
+.mobius-bg--gc,
+.hover_mobius-bg--gc:hover,
+.active_mobius-bg--gc:active { background-color: var(--bg-color-gc); }
 .mobius-bg--cyan,
 .hover_mobius-bg--cyan:hover,
-.active_mobius-bg--cyan:active {
-  background-color: var(--cyan-color-normal);
-}
+.active_mobius-bg--cyan:active { background-color: var(--bg-color-cyan); }
+.mobius-bg--cb,
+.hover_mobius-bg--cb:hover,
+.active_mobius-bg--cb:active { background-color: var(--bg-color-cb); }
 .mobius-bg--blue,
 .hover_mobius-bg--blue:hover,
-.active_mobius-bg--blue:active {
-  background-color: var(--blue-color-normal);
-}
+.active_mobius-bg--blue:active { background-color: var(--bg-color-blue); }
+.mobius-bg--bp,
+.hover_mobius-bg--bp:hover,
+.active_mobius-bg--bp:active { background-color: var(--bg-color-bp); }
 .mobius-bg--purple,
 .hover_mobius-bg--purple:hover,
-.active_mobius-bg--purple:active {
-  background-color: var(--purple-color-normal);
-}
-.mobius-bg--white,
-.hover_mobius-bg--white:hover,
-.active_mobius-bg--white:active {
+.active_mobius-bg--purple:active { background-color: var(--bg-color-purple); }
+.mobius-bg--pr,
+.hover_mobius-bg--pr:hover,
+.active_mobius-bg--pr:active { background-color: var(--bg-color-pr); }
+
+/*********************************************************
+ *                   Background Color
+ *********************************************************/
+
+.mobius-bgc--white,
+.hover_mobius-bgc--white:hover,
+.active_mobius-bgc--white:active {
   background-color: var(--white-color-normal);
 }
-.mobius-bg--gray,
-.hover_mobius-bg--gray:hover,
-.active_mobius-bg--gray:active {
+.mobius-bgc--gray,
+.hover_mobius-bgc--gray:hover,
+.active_mobius-bgc--gray:active {
   background-color: var(--gray-color-normal);
 }
-.mobius-bg--black,
-.hover_mobius-bg--black:hover,
-.active_mobius-bg--black:active {
+.mobius-bgc--black,
+.hover_mobius-bgc--black:hover,
+.active_mobius-bgc--black:active {
   background-color: var(--black-color-normal);
 }
+
+.mobius-bgc--dark,
+.hover_mobius-bgc--dark:hover,
+.active_mobius-bgc--dark:active {
+  background-color: var(--dark-color-normal);
+}
+.mobius-bgc--light,
+.hover_mobius-bgc--light:hover,
+.active_mobius-bgc--light:active {
+  background-color: var(--light-color-normal);
+}
+.mobius-bgc--cigaret,
+.hover_mobius-bgc--cigaret:hover,
+.active_mobius-bgc--cigaret:active {
+  background-color: var(--cigaret-color-normal);
+}
+.mobius-bgc--mobius,
+.hover_mobius-bgc--mobius:hover,
+.active_mobius-bgc--mobius:active {
+  background-color: var(--mobius-color-normal);
+}
+
+.mobius-bgc--red,
+.hover_mobius-bgc--red:hover,
+.active_mobius-bgc--red:active {
+  background-color: var(--red-color-normal);
+}
+.mobius-bgc--ry,
+.hover_mobius-bgc--ry:hover,
+.active_mobius-bgc--ry:active {
+  background-color: var(--ry-color-normal);
+}
+.mobius-bgc--yellow,
+.hover_mobius-bgc--yellow:hover,
+.active_mobius-bgc--yellow:active {
+  background-color: var(--yellow-color-normal);
+}
+.mobius-bgc--yg,
+.hover_mobius-bgc--yg:hover,
+.active_mobius-bgc--yg:active {
+  background-color: var(--yg-color-normal);
+}
+.mobius-bgc--green,
+.hover_mobius-bgc--green:hover,
+.active_mobius-bgc--green:active {
+  background-color: var(--green-color-normal);
+}
+.mobius-bgc--gc,
+.hover_mobius-bgc--gc:hover,
+.active_mobius-bgc--gc:active {
+  background-color: var(--gc-color-normal);
+}
+.mobius-bgc--cyan,
+.hover_mobius-bgc--cyan:hover,
+.active_mobius-bgc--cyan:active {
+  background-color: var(--cyan-color-normal);
+}
+.mobius-bgc--cb,
+.hover_mobius-bgc--cb:hover,
+.active_mobius-bgc--cb:active {
+  background-color: var(--cb-color-normal);
+}
+.mobius-bgc--blue,
+.hover_mobius-bgc--blue:hover,
+.active_mobius-bgc--blue:active {
+  background-color: var(--blue-color-normal);
+}
+.mobius-bgc--bp,
+.hover_mobius-bgc--bp:hover,
+.active_mobius-bgc--bp:active {
+  background-color: var(--bp-color-normal);
+}
+.mobius-bgc--purple,
+.hover_mobius-bgc--purple:hover,
+.active_mobius-bgc--purple:active {
+  background-color: var(--purple-color-normal);
+}
+.mobius-bgc--pr,
+.hover_mobius-bgc--pr:hover,
+.active_mobius-bgc--pr:active {
+  background-color: var(--pr-color-normal);
+}
+
 /*! purgecss end ignore */
