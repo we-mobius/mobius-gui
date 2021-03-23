@@ -18,17 +18,23 @@
   --cigaret: calc(var(--seed) - 360);
   --mobius: calc(360 - 264); */
 
+  --black-color-normal: hsla(264, 0%, 0%, 100%);
+
   --dark-color-darker: hsla(264, 0%, 2%, 100%);
   --dark-color-darker-m: hsla(264, 0%, 7%, 100%);
   --dark-color-normal: hsla(264, 0%, 17%, 100%);
   --dark-color-lighter-m: hsla(264, 0%, 27%, 100%);
   --dark-color-lighter: hsla(264, 0%, 32%, 100%);
 
+  --gray-color-normal: hsla(264, 0%, 50%, 100%);
+
   --light-color-darker: hsla(264, 0%, 68%, 100%);
   --light-color-darker-m: hsla(264, 0%, 73%, 100%);
   --light-color-normal: hsla(264, 0%, 83%, 100%);
   --light-color-lighter-m: hsla(264, 0%, 93%, 100%);
   --light-color-lighter: hsla(264, 0%, 98%, 100%);
+
+  --white-color-normal: hsla(264, 0%, 100%, 100%);
 
   --cigaret-color-darker: hsla(264, 100%, 17%, 100%);
   --cigaret-color-darker-m: hsla(264, 100%, 30%, 100%);
@@ -42,17 +48,77 @@
   --mobius-color-lighter-m: hsla(96, 100%, 70%, 100%);
   --mobius-color-lighter: hsla(96, 100%, 83%, 100%);
 
+  --red-color-darker: hsla(0, 62.4%, 17%, 100%);
+  --red-color-darker-m: hsla(0, 62.4%, 30%, 100%);
   --red-color-normal: hsla(0, 62.4%, 50%, 100%);
-  --orange-color-normal: hsla(30, 62.4%, 50%, 100%);
-  --yellow-color-normal: hsla(60, 62.4%, 50%, 100%);
-  --green-color-normal: hsla(120, 62.4%, 50%, 100%);
-  --cyan-color-normal: hsla(180, 62.4%, 50%, 100%);
-  --blue-color-normal: hsla(240, 62.4%, 50%, 100%);
-  --purple-color-normal: hsla(300, 62.4%, 50%, 100%);
+  --red-color-lighter-m: hsla(0, 62.4%, 70%, 100%);
+  --red-color-lighter: hsla(0, 62.4%, 83%, 100%);
 
-  --white-color-normal: hsla(264, 0%, 100%, 100%);
-  --gray-color-normal: hsla(264, 0%, 50%, 100%);
-  --black-color-normal: hsla(264, 0%, 0%, 100%);
+  --ry-color-darker: hsla(30, 62.4%, 17%, 100%);
+  --ry-color-darker-m: hsla(30, 62.4%, 30%, 100%);
+  --ry-color-normal: hsla(30, 62.4%, 50%, 100%);
+  --ry-color-lighter-m: hsla(30, 62.4%, 70%, 100%);
+  --ry-color-lighter: hsla(30, 62.4%, 83%, 100%);
+
+  --yellow-color-darker: hsla(60, 62.4%, 17%, 100%);
+  --yellow-color-darker-m: hsla(60, 62.4%, 30%, 100%);
+  --yellow-color-normal: hsla(60, 62.4%, 50%, 100%);
+  --yellow-color-lighter-m: hsla(60, 62.4%, 70%, 100%);
+  --yellow-color-lighter: hsla(60, 62.4%, 83%, 100%);
+
+  --yg-color-darker: hsla(90, 62.4%, 17%, 100%);
+  --yg-color-darker-m: hsla(90, 62.4%, 30%, 100%);
+  --yg-color-normal: hsla(90, 62.4%, 50%, 100%);
+  --yg-color-lighter-m: hsla(90, 62.4%, 70%, 100%);
+  --yg-color-lighter: hsla(90, 62.4%, 83%, 100%);
+
+  --green-color-darker: hsla(120, 62.4%, 17%, 100%);
+  --green-color-darker-m: hsla(120, 62.4%, 30%, 100%);
+  --green-color-normal: hsla(120, 62.4%, 50%, 100%);
+  --green-color-lighter-m: hsla(120, 62.4%, 70%, 100%);
+  --green-color-lighter: hsla(120, 62.4%, 83%, 100%);
+
+  --gc-color-darker: hsla(150, 62.4%, 17%, 100%);
+  --gc-color-darker-m: hsla(150, 62.4%, 30%, 100%);
+  --gc-color-normal: hsla(150, 62.4%, 50%, 100%);
+  --gc-color-lighter-m: hsla(150, 62.4%, 70%, 100%);
+  --gc-color-lighter: hsla(150, 62.4%, 83%, 100%);
+
+  --cyan-color-darker: hsla(180, 62.4%, 17%, 100%);
+  --cyan-color-darker-m: hsla(180, 62.4%, 30%, 100%);
+  --cyan-color-normal: hsla(180, 62.4%, 50%, 100%);
+  --cyan-color-lighter-m: hsla(180, 62.4%, 70%, 100%);
+  --cyan-color-lighter: hsla(180, 62.4%, 83%, 100%);
+
+  --cb-color-darker: hsla(210, 62.4%, 17%, 100%);
+  --cb-color-darker-m: hsla(210, 62.4%, 30%, 100%);
+  --cb-color-normal: hsla(210, 62.4%, 50%, 100%);
+  --cb-color-lighter-m: hsla(210, 62.4%, 70%, 100%);
+  --cb-color-lighter: hsla(210, 62.4%, 83%, 100%);
+
+  --blue-color-darker: hsla(240, 62.4%, 17%, 100%);
+  --blue-color-darker-m: hsla(240, 62.4%, 30%, 100%);
+  --blue-color-normal: hsla(240, 62.4%, 50%, 100%);
+  --blue-color-lighter-m: hsla(240, 62.4%, 70%, 100%);
+  --blue-color-lighter: hsla(240, 62.4%, 83%, 100%);
+
+  --bp-color-darker: hsla(270, 62.4%, 17%, 100%);
+  --bp-color-darker-m: hsla(270, 62.4%, 30%, 100%);
+  --bp-color-normal: hsla(270, 62.4%, 50%, 100%);
+  --bp-color-lighter-m: hsla(270, 62.4%, 70%, 100%);
+  --bp-color-lighter: hsla(270, 62.4%, 83%, 100%);
+
+  --purple-color-darker: hsla(300, 62.4%, 17%, 100%);
+  --purple-color-darker-m: hsla(300, 62.4%, 30%, 100%);
+  --purple-color-normal: hsla(300, 62.4%, 50%, 100%);
+  --purple-color-lighter-m: hsla(300, 62.4%, 70%, 100%);
+  --purple-color-lighter: hsla(300, 62.4%, 83%, 100%);
+
+  --pr-color-darker: hsla(330, 62.4%, 17%, 100%);
+  --pr-color-darker-m: hsla(330, 62.4%, 30%, 100%);
+  --pr-color-normal: hsla(330, 62.4%, 50%, 100%);
+  --pr-color-lighter-m: hsla(330, 62.4%, 70%, 100%);
+  --pr-color-lighter: hsla(330, 62.4%, 83%, 100%);
 }
 :root.mobius-base,
 html.mobius-base,

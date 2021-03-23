@@ -25,16 +25,47 @@
   --bg-color-lighter-m: var(--light-color-lighter-m);
   --bg-color-lighter: var(--light-color-lighter);
 
-  --bg-color-primary: var(--cigaret-color-lighter);
-
   --text-color-darker: var(--dark-color-darker);
   --text-color-darker-m: var(--dark-color-darker-m);
   --text-color-normal: var(--dark-color-normal);
   --text-color-lighter-m: var(--dark-color-lighter-m);
   --text-color-lighter: var(--dark-color-lighter);
 
-  /* --cigaret-color-darker too dark to light theme */
-  --text-color-primary: var(--cigaret-color-normal);
+  --bg-color-base: var(--light-color-normal);
+  --bg-color-primary: var(--cigaret-color-lighter-m);
+  --bg-color-second: var(--mobius-color-lighter-m);
+  --bg-color-third: var(--light-color-lighter-m);
+
+  --text-color-base: var(--dark-color-normal);
+  --text-color-primary: var(--cigaret-color-darker-m);
+  --text-color-second: var(--mobius-color-darker-m);
+  --text-color-third: var(--light-color-darker-m);
+
+  --bg-color-red: var(--red-color-lighter-m);
+  --bg-color-ry: var(--ry-color-lighter-m);
+  --bg-color-yellow: var(--yellow-color-lighter-m);
+  --bg-color-yg: var(--yg-color-lighter-m);
+  --bg-color-green: var(--green-color-lighter-m);
+  --bg-color-gc: var(--gc-color-lighter-m);
+  --bg-color-cyan: var(--cyan-color-lighter-m);
+  --bg-color-cb: var(--cb-color-lighter-m);
+  --bg-color-blue: var(--blue-color-lighter-m);
+  --bg-color-bp: var(--bp-color-lighter-m);
+  --bg-color-purple: var(--purple-color-lighter-m);
+  --bg-color-pr: var(--pr-color-lighter-m);
+
+  --text-color-red: var(--red-color-darker-m);
+  --text-color-ry: var(--ry-color-darker-m);
+  --text-color-yellow: var(--yellow-color-darker-m);
+  --text-color-yg: var(--yg-color-darker-m);
+  --text-color-green: var(--green-color-darker-m);
+  --text-color-gc: var(--gc-color-darker-m);
+  --text-color-cyan: var(--cyan-color-darker-m);
+  --text-color-cb: var(--cb-color-darker-m);
+  --text-color-blue: var(--blue-color-darker-m);
+  --text-color-bp: var(--bp-color-darker-m);
+  --text-color-purple: var(--purple-color-darker-m);
+  --text-color-pr: var(--pr-color-darker-m);
 }
 %theme-dark-vars {
   --bg-color-darker: var(--dark-color-darker);
@@ -43,19 +74,51 @@
   --bg-color-lighter-m: var(--dark-color-lighter-m);
   --bg-color-lighter: var(--dark-color-lighter);
 
-  --bg-color-primary: var(--cigaret-color-darker);
-
   --text-color-darker: var(--light-color-darker);
   --text-color-darker-m: var(--light-color-darker-m);
   --text-color-normal: var(--light-color-normal);
   --text-color-lighter-m: var(--light-color-lighter-m);
   --text-color-lighter: var(--light-color-lighter);
 
-  --text-color-primary: var(--cigaret-color-lighter);
+  --bg-color-base: var(--dark-color-normal);
+  --bg-color-primary: var(--cigaret-color-darker-m);
+  --bg-color-second: var(--mobius-color-darker-m);
+  --bg-color-third: var(--dark-color-darker-m);
+
+  --text-color-base: var(--light-color-normal);
+  --text-color-primary: var(--cigaret-color-lighter-m);
+  --text-color-second: var(--cigaret-color-lighter-m);
+  --text-color-third: var(--dark-color-lighter-m);
+
+  --bg-color-red: var(--red-color-darker-m);
+  --bg-color-ry: var(--ry-color-darker-m);
+  --bg-color-yellow: var(--yellow-color-darker-m);
+  --bg-color-yg: var(--yg-color-darker-m);
+  --bg-color-green: var(--green-color-darker-m);
+  --bg-color-gc: var(--gc-color-darker-m);
+  --bg-color-cyan: var(--cyan-color-darker-m);
+  --bg-color-cb: var(--cb-color-darker-m);
+  --bg-color-blue: var(--blue-color-darker-m);
+  --bg-color-bp: var(--bp-color-darker-m);
+  --bg-color-purple: var(--purple-color-darker-m);
+  --bg-color-pr: var(--pr-color-darker-m);
+
+  --text-color-red: var(--red-color-lighter-m);
+  --text-color-ry: var(--ry-color-lighter-m);
+  --text-color-yellow: var(--yellow-color-lighter-m);
+  --text-color-yg: var(--yg-color-lighter-m);
+  --text-color-green: var(--green-color-lighter-m);
+  --text-color-gc: var(--gc-color-lighter-m);
+  --text-color-cyan: var(--cyan-color-lighter-m);
+  --text-color-cb: var(--cb-color-lighter-m);
+  --text-color-blue: var(--blue-color-lighter-m);
+  --text-color-bp: var(--bp-color-lighter-m);
+  --text-color-purple: var(--purple-color-lighter-m);
+  --text-color-pr: var(--pr-color-lighter-m);
 }
 %mobius-theme {
-  color: var(--text-color-normal);
-  background-color: var(--bg-color-normal);
+  color: var(--text-color-base);
+  background-color: var(--bg-color-base);
 }
 .mobius-theme--light,
 .hover_mobius-theme--light:hover {
