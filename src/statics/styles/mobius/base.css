@@ -8,7 +8,7 @@
  * - with global     control: none,
  * - use  global     params : none,
  * - set  global     params : none,
- * - use  theme      props  : --text-color-normal, --bg-color-normal,
+ * - use  theme      props  : --fg-color-normal, --bg-color-normal,
  * - use  transition props  : --transition-property-common, --transition-duration-normal, --transition-timing-function-normal, --transition-delay-none,
  * - use  font       props  : --font-family-normal,
  * - release         props  : none,
@@ -38,7 +38,7 @@ page,
 .mobius-base {
   @extend %base-common, %font-family-vars;
   font-family: var(--font-family-normal);
-  color: var(--text-color-normal);
+  color: var(--fg-color-normal);
   background-color: var(--bg-color-normal);
   transition-property: var(--transition-property-common);
   transition-duration: var(--transition-duration-normal);

@@ -9,7 +9,7 @@
  * - use  ...    props  : none,
  * - release     props  : %theme-light-vars, %theme-dark-vars,
  *
- * - usage: [--text-color-normal](use)(base),
+ * - usage: [--fg-color-normal](use)(base),
  *          [--bg-color-normal](use)(base),
  *
  * - classes: .mobius-theme--dark(hover), .mobius-theme--light(hover)
@@ -25,21 +25,21 @@
   --bg-color-lighter-m: var(--light-color-lighter-m);
   --bg-color-lighter: var(--light-color-lighter);
 
-  --text-color-darker: var(--dark-color-darker);
-  --text-color-darker-m: var(--dark-color-darker-m);
-  --text-color-normal: var(--dark-color-normal);
-  --text-color-lighter-m: var(--dark-color-lighter-m);
-  --text-color-lighter: var(--dark-color-lighter);
+  --fg-color-darker: var(--dark-color-darker);
+  --fg-color-darker-m: var(--dark-color-darker-m);
+  --fg-color-normal: var(--dark-color-normal);
+  --fg-color-lighter-m: var(--dark-color-lighter-m);
+  --fg-color-lighter: var(--dark-color-lighter);
 
   --bg-color-base: var(--light-color-normal);
   --bg-color-primary: var(--cigaret-color-lighter-m);
   --bg-color-second: var(--mobius-color-lighter-m);
   --bg-color-third: var(--light-color-lighter-m);
 
-  --text-color-base: var(--dark-color-normal);
-  --text-color-primary: var(--cigaret-color-darker-m);
-  --text-color-second: var(--mobius-color-darker-m);
-  --text-color-third: var(--light-color-darker-m);
+  --fg-color-base: var(--dark-color-normal);
+  --fg-color-primary: var(--cigaret-color-darker-m);
+  --fg-color-second: var(--mobius-color-darker-m);
+  --fg-color-third: var(--light-color-darker-m);
 
   --bg-color-red: var(--red-color-lighter-m);
   --bg-color-ry: var(--ry-color-lighter-m);
@@ -54,18 +54,18 @@
   --bg-color-purple: var(--purple-color-lighter-m);
   --bg-color-pr: var(--pr-color-lighter-m);
 
-  --text-color-red: var(--red-color-darker-m);
-  --text-color-ry: var(--ry-color-darker-m);
-  --text-color-yellow: var(--yellow-color-darker-m);
-  --text-color-yg: var(--yg-color-darker-m);
-  --text-color-green: var(--green-color-darker-m);
-  --text-color-gc: var(--gc-color-darker-m);
-  --text-color-cyan: var(--cyan-color-darker-m);
-  --text-color-cb: var(--cb-color-darker-m);
-  --text-color-blue: var(--blue-color-darker-m);
-  --text-color-bp: var(--bp-color-darker-m);
-  --text-color-purple: var(--purple-color-darker-m);
-  --text-color-pr: var(--pr-color-darker-m);
+  --fg-color-red: var(--red-color-darker-m);
+  --fg-color-ry: var(--ry-color-darker-m);
+  --fg-color-yellow: var(--yellow-color-darker-m);
+  --fg-color-yg: var(--yg-color-darker-m);
+  --fg-color-green: var(--green-color-darker-m);
+  --fg-color-gc: var(--gc-color-darker-m);
+  --fg-color-cyan: var(--cyan-color-darker-m);
+  --fg-color-cb: var(--cb-color-darker-m);
+  --fg-color-blue: var(--blue-color-darker-m);
+  --fg-color-bp: var(--bp-color-darker-m);
+  --fg-color-purple: var(--purple-color-darker-m);
+  --fg-color-pr: var(--pr-color-darker-m);
 }
 %theme-dark-vars {
   --bg-color-darker: var(--dark-color-darker);
@@ -74,21 +74,21 @@
   --bg-color-lighter-m: var(--dark-color-lighter-m);
   --bg-color-lighter: var(--dark-color-lighter);
 
-  --text-color-darker: var(--light-color-darker);
-  --text-color-darker-m: var(--light-color-darker-m);
-  --text-color-normal: var(--light-color-normal);
-  --text-color-lighter-m: var(--light-color-lighter-m);
-  --text-color-lighter: var(--light-color-lighter);
+  --fg-color-darker: var(--light-color-darker);
+  --fg-color-darker-m: var(--light-color-darker-m);
+  --fg-color-normal: var(--light-color-normal);
+  --fg-color-lighter-m: var(--light-color-lighter-m);
+  --fg-color-lighter: var(--light-color-lighter);
 
   --bg-color-base: var(--dark-color-normal);
   --bg-color-primary: var(--cigaret-color-darker-m);
   --bg-color-second: var(--mobius-color-darker-m);
   --bg-color-third: var(--dark-color-darker-m);
 
-  --text-color-base: var(--light-color-normal);
-  --text-color-primary: var(--cigaret-color-lighter-m);
-  --text-color-second: var(--cigaret-color-lighter-m);
-  --text-color-third: var(--dark-color-lighter-m);
+  --fg-color-base: var(--light-color-normal);
+  --fg-color-primary: var(--cigaret-color-lighter-m);
+  --fg-color-second: var(--cigaret-color-lighter-m);
+  --fg-color-third: var(--dark-color-lighter-m);
 
   --bg-color-red: var(--red-color-darker-m);
   --bg-color-ry: var(--ry-color-darker-m);
@@ -103,21 +103,21 @@
   --bg-color-purple: var(--purple-color-darker-m);
   --bg-color-pr: var(--pr-color-darker-m);
 
-  --text-color-red: var(--red-color-lighter-m);
-  --text-color-ry: var(--ry-color-lighter-m);
-  --text-color-yellow: var(--yellow-color-lighter-m);
-  --text-color-yg: var(--yg-color-lighter-m);
-  --text-color-green: var(--green-color-lighter-m);
-  --text-color-gc: var(--gc-color-lighter-m);
-  --text-color-cyan: var(--cyan-color-lighter-m);
-  --text-color-cb: var(--cb-color-lighter-m);
-  --text-color-blue: var(--blue-color-lighter-m);
-  --text-color-bp: var(--bp-color-lighter-m);
-  --text-color-purple: var(--purple-color-lighter-m);
-  --text-color-pr: var(--pr-color-lighter-m);
+  --fg-color-red: var(--red-color-lighter-m);
+  --fg-color-ry: var(--ry-color-lighter-m);
+  --fg-color-yellow: var(--yellow-color-lighter-m);
+  --fg-color-yg: var(--yg-color-lighter-m);
+  --fg-color-green: var(--green-color-lighter-m);
+  --fg-color-gc: var(--gc-color-lighter-m);
+  --fg-color-cyan: var(--cyan-color-lighter-m);
+  --fg-color-cb: var(--cb-color-lighter-m);
+  --fg-color-blue: var(--blue-color-lighter-m);
+  --fg-color-bp: var(--bp-color-lighter-m);
+  --fg-color-purple: var(--purple-color-lighter-m);
+  --fg-color-pr: var(--pr-color-lighter-m);
 }
 %mobius-theme {
-  color: var(--text-color-base);
+  color: var(--fg-color-base);
   background-color: var(--bg-color-base);
 }
 .mobius-theme--light,
@@ -153,8 +153,8 @@ page,
     --bg-color-normal: black;
     --bg-color-lighter: black;
     --bg-color-darker: black;
-    --text-color-normal: white;
-    --text-color-hover: white;
+    --fg-color-normal: white;
+    --fg-color-hover: white;
 
     & img:not([src*=".svg"]) {
       filter: brightness(0.8) contrast(1.2) invert(100%) hue-rotate(180deg);

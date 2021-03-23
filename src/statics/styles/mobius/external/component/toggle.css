@@ -7,7 +7,7 @@
  * - with global control: none,
  * - use  global params : none,
  * - set  global params : none,
- * - use  theme  props  : --bg-color-normal, --text-color-primary,
+ * - use  theme  props  : --bg-color-normal, --fg-color-primary,
  * - release     props  : none,
  *
  * - usage: none,
@@ -59,7 +59,7 @@ page,
       height: 80%;
       width: 40%;
       margin: 5% 5%;
-      border: 2px solid var(--text-color-primary);
+      border: 2px solid var(--fg-color-primary);
     }
     &::after {
       height: 20%;
@@ -68,7 +68,7 @@ page,
     }
     &:hover::after,
     &:active::after {
-      background: var(--text-color-primary);
+      background: var(--fg-color-primary);
     }
   }
   & input:checked + label,

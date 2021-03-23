@@ -30,11 +30,11 @@
 
 .mobius-text--normal,
 .hover_mobius-text--normal:hover,
-.active_mobius-text--normal:active { color: var(--text-color-normal); }
+.active_mobius-text--normal:active { color: var(--fg-color-normal); }
 
 .mobius-text--primary,
 .hover_mobius-text--primary:hover,
-.active_mobius-text--primary:active { color: var(--text-color-primary); }
+.active_mobius-text--primary:active { color: var(--fg-color-primary); }
 
 .mobius-text--dark,
 .hover_mobius-text--dark:hover,
