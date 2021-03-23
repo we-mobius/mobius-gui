@@ -71,15 +71,15 @@
 .mobius-text--blue,
 .hover_mobius-text--blue:hover,
 .active_mobius-text--blue:active { color: var(--fg-color-blue); }
-.mobius-text--bp,
-.hover_mobius-text--bp:hover,
-.active_mobius-text--bp:active { color: var(--fg-color-bp); }
-.mobius-text--purple,
-.hover_mobius-text--purple:hover,
-.active_mobius-text--purple:active { color: var(--fg-color-purple); }
-.mobius-text--pr,
-.hover_mobius-text--pr:hover,
-.active_mobius-text--pr:active { color: var(--fg-color-pr); }
+.mobius-text--bm,
+.hover_mobius-text--bm:hover,
+.active_mobius-text--bm:active { color: var(--fg-color-bm); }
+.mobius-text--magenta,
+.hover_mobius-text--magenta:hover,
+.active_mobius-text--magenta:active { color: var(--fg-color-magenta); }
+.mobius-text--mr,
+.hover_mobius-text--mr:hover,
+.active_mobius-text--mr:active { color: var(--fg-color-mr); }
 
 /*********************************************************
  *                       Font Style

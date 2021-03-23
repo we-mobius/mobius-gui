@@ -178,15 +178,15 @@
 .mobius-bg--blue,
 .hover_mobius-bg--blue:hover,
 .active_mobius-bg--blue:active { background-color: var(--bg-color-blue); }
-.mobius-bg--bp,
-.hover_mobius-bg--bp:hover,
-.active_mobius-bg--bp:active { background-color: var(--bg-color-bp); }
-.mobius-bg--purple,
-.hover_mobius-bg--purple:hover,
-.active_mobius-bg--purple:active { background-color: var(--bg-color-purple); }
-.mobius-bg--pr,
-.hover_mobius-bg--pr:hover,
-.active_mobius-bg--pr:active { background-color: var(--bg-color-pr); }
+.mobius-bg--bm,
+.hover_mobius-bg--bm:hover,
+.active_mobius-bg--bm:active { background-color: var(--bg-color-bm); }
+.mobius-bg--magenta,
+.hover_mobius-bg--magenta:hover,
+.active_mobius-bg--magenta:active { background-color: var(--bg-color-magenta); }
+.mobius-bg--mr,
+.hover_mobius-bg--mr:hover,
+.active_mobius-bg--mr:active { background-color: var(--bg-color-mr); }
 
 /*********************************************************
  *                   Background Color
@@ -274,20 +274,20 @@
 .active_mobius-bgc--blue:active {
   background-color: var(--blue-color-normal);
 }
-.mobius-bgc--bp,
-.hover_mobius-bgc--bp:hover,
-.active_mobius-bgc--bp:active {
-  background-color: var(--bp-color-normal);
+.mobius-bgc--bm,
+.hover_mobius-bgc--bm:hover,
+.active_mobius-bgc--bm:active {
+  background-color: var(--bm-color-normal);
 }
-.mobius-bgc--purple,
-.hover_mobius-bgc--purple:hover,
-.active_mobius-bgc--purple:active {
-  background-color: var(--purple-color-normal);
+.mobius-bgc--magenta,
+.hover_mobius-bgc--magenta:hover,
+.active_mobius-bgc--magenta:active {
+  background-color: var(--magenta-color-normal);
 }
-.mobius-bgc--pr,
-.hover_mobius-bgc--pr:hover,
-.active_mobius-bgc--pr:active {
-  background-color: var(--pr-color-normal);
+.mobius-bgc--mr,
+.hover_mobius-bgc--mr:hover,
+.active_mobius-bgc--mr:active {
+  background-color: var(--mr-color-normal);
 }
 
 /*! purgecss end ignore */

@@ -50,14 +50,14 @@
 .mobius-color--blue,
 .hover_mobius-color--blue:hover,
 .active_mobius-color--blue:active { color: var(--blue-color-normal); }
-.mobius-color--bp,
-.hover_mobius-color--bp:hover,
-.active_mobius-color--bp:active { color: var(--bp-color-normal); }
-.mobius-color--purple,
-.hover_mobius-color--purple:hover,
-.active_mobius-color--purple:active { color: var(--purple-color-normal); }
-.mobius-color--pr,
-.hover_mobius-color--pr:hover,
-.active_mobius-color--pr:active { color: var(--pr-color-normal); }
+.mobius-color--bm,
+.hover_mobius-color--bm:hover,
+.active_mobius-color--bm:active { color: var(--bm-color-normal); }
+.mobius-color--magenta,
+.hover_mobius-color--magenta:hover,
+.active_mobius-color--magenta:active { color: var(--magenta-color-normal); }
+.mobius-color--mr,
+.hover_mobius-color--mr:hover,
+.active_mobius-color--mr:active { color: var(--mr-color-normal); }
 
 /*! purgecss end ignore */

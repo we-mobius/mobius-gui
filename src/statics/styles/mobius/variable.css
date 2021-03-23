@@ -102,23 +102,23 @@
   --blue-color-lighter-m: hsla(240, 62.4%, 70%, 100%);
   --blue-color-lighter: hsla(240, 62.4%, 83%, 100%);
 
-  --bp-color-darker: hsla(270, 62.4%, 17%, 100%);
-  --bp-color-darker-m: hsla(270, 62.4%, 30%, 100%);
-  --bp-color-normal: hsla(270, 62.4%, 50%, 100%);
-  --bp-color-lighter-m: hsla(270, 62.4%, 70%, 100%);
-  --bp-color-lighter: hsla(270, 62.4%, 83%, 100%);
+  --bm-color-darker: hsla(270, 62.4%, 17%, 100%);
+  --bm-color-darker-m: hsla(270, 62.4%, 30%, 100%);
+  --bm-color-normal: hsla(270, 62.4%, 50%, 100%);
+  --bm-color-lighter-m: hsla(270, 62.4%, 70%, 100%);
+  --bm-color-lighter: hsla(270, 62.4%, 83%, 100%);
 
-  --purple-color-darker: hsla(300, 62.4%, 17%, 100%);
-  --purple-color-darker-m: hsla(300, 62.4%, 30%, 100%);
-  --purple-color-normal: hsla(300, 62.4%, 50%, 100%);
-  --purple-color-lighter-m: hsla(300, 62.4%, 70%, 100%);
-  --purple-color-lighter: hsla(300, 62.4%, 83%, 100%);
+  --magenta-color-darker: hsla(300, 62.4%, 17%, 100%);
+  --magenta-color-darker-m: hsla(300, 62.4%, 30%, 100%);
+  --magenta-color-normal: hsla(300, 62.4%, 50%, 100%);
+  --magenta-color-lighter-m: hsla(300, 62.4%, 70%, 100%);
+  --magenta-color-lighter: hsla(300, 62.4%, 83%, 100%);
 
-  --pr-color-darker: hsla(330, 62.4%, 17%, 100%);
-  --pr-color-darker-m: hsla(330, 62.4%, 30%, 100%);
-  --pr-color-normal: hsla(330, 62.4%, 50%, 100%);
-  --pr-color-lighter-m: hsla(330, 62.4%, 70%, 100%);
-  --pr-color-lighter: hsla(330, 62.4%, 83%, 100%);
+  --mr-color-darker: hsla(330, 62.4%, 17%, 100%);
+  --mr-color-darker-m: hsla(330, 62.4%, 30%, 100%);
+  --mr-color-normal: hsla(330, 62.4%, 50%, 100%);
+  --mr-color-lighter-m: hsla(330, 62.4%, 70%, 100%);
+  --mr-color-lighter: hsla(330, 62.4%, 83%, 100%);
 }
 :root.mobius-base,
 html.mobius-base,

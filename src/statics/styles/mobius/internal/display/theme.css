@@ -50,9 +50,9 @@
   --bg-color-cyan: var(--cyan-color-lighter-m);
   --bg-color-cb: var(--cb-color-lighter-m);
   --bg-color-blue: var(--blue-color-lighter-m);
-  --bg-color-bp: var(--bp-color-lighter-m);
-  --bg-color-purple: var(--purple-color-lighter-m);
-  --bg-color-pr: var(--pr-color-lighter-m);
+  --bg-color-bm: var(--bm-color-lighter-m);
+  --bg-color-magenta: var(--magenta-color-lighter-m);
+  --bg-color-mr: var(--mr-color-lighter-m);
 
   --fg-color-red: var(--red-color-darker-m);
   --fg-color-ry: var(--ry-color-darker-m);
@@ -63,9 +63,9 @@
   --fg-color-cyan: var(--cyan-color-darker-m);
   --fg-color-cb: var(--cb-color-darker-m);
   --fg-color-blue: var(--blue-color-darker-m);
-  --fg-color-bp: var(--bp-color-darker-m);
-  --fg-color-purple: var(--purple-color-darker-m);
-  --fg-color-pr: var(--pr-color-darker-m);
+  --fg-color-bm: var(--bm-color-darker-m);
+  --fg-color-magenta: var(--magenta-color-darker-m);
+  --fg-color-mr: var(--mr-color-darker-m);
 }
 %theme-dark-vars {
   --bg-color-darker: var(--dark-color-darker);
@@ -99,9 +99,9 @@
   --bg-color-cyan: var(--cyan-color-darker-m);
   --bg-color-cb: var(--cb-color-darker-m);
   --bg-color-blue: var(--blue-color-darker-m);
-  --bg-color-bp: var(--bp-color-darker-m);
-  --bg-color-purple: var(--purple-color-darker-m);
-  --bg-color-pr: var(--pr-color-darker-m);
+  --bg-color-bm: var(--bm-color-darker-m);
+  --bg-color-magenta: var(--magenta-color-darker-m);
+  --bg-color-mr: var(--mr-color-darker-m);
 
   --fg-color-red: var(--red-color-lighter-m);
   --fg-color-ry: var(--ry-color-lighter-m);
@@ -112,9 +112,9 @@
   --fg-color-cyan: var(--cyan-color-lighter-m);
   --fg-color-cb: var(--cb-color-lighter-m);
   --fg-color-blue: var(--blue-color-lighter-m);
-  --fg-color-bp: var(--bp-color-lighter-m);
-  --fg-color-purple: var(--purple-color-lighter-m);
-  --fg-color-pr: var(--pr-color-lighter-m);
+  --fg-color-bm: var(--bm-color-lighter-m);
+  --fg-color-magenta: var(--magenta-color-lighter-m);
+  --fg-color-mr: var(--mr-color-lighter-m);
 }
 %mobius-theme {
   color: var(--fg-color-base);
