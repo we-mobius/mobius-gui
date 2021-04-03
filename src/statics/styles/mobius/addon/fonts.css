@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: "Commodore64";
-  src: url("../../../fonts/Sixtyfour[wdth,wght].woff2") format("woff2");
+  src: url("../fonts/Sixtyfour[wdth,wght].woff2") format("woff2");
 }
 @font-face {
   font-family: "AmigaWorkbench";
-  src: url("../../../fonts/Workbench[wdth,wght].woff2") format("woff2");
+  src: url("../fonts/Workbench[wdth,wght].woff2") format("woff2");
 }
 
 %homecomputer-font-variants {
