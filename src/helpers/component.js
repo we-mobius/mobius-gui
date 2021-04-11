@@ -4,6 +4,7 @@ import {
   Mutation, Data,
   isData, isMutation, isAtom,
   replayWithLatest, pipeAtom,
+  mutationToDataS,
   asIsDistinctPreviousT,
   combineLatestT, pluckT, nilToVoidT, defaultToT
 } from '../libs/mobius-utils.js'

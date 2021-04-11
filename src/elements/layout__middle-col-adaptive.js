@@ -31,7 +31,7 @@ export const makeMiddleColAdaptiveLayoutE = makeElementMaker({
     view`
       <div class="mobius-display--flex mobius-layout__horizontal mobius-flex-items--stretch mobius-flex-wrap--nowrap ${'rootClasses'}">
         ${makeLeft(styles.left)}
-        ${makeMiddle(styles.center)}
+        ${makeMiddle(styles.middle)}
         ${makeRight(styles.right)}
       </div>
     `

@@ -22,6 +22,7 @@
  *
  *********************************************************/
 
+.mobius-position--static { position: static; }
 .mobius-position--relative { position: relative; }
 .mobius-position--absolute { position: absolute; }
 .mobius-position--fixed { position: fixed; }

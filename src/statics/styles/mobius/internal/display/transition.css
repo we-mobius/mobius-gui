@@ -62,29 +62,31 @@ page,
 
 /* .mobius-transition--all *, */
 .mobius-transition--all,
-.mobius-transition--all::before,
-.mobius-transition--all::after,
-.mobius-transition--all ::before,
-.mobius-transition--all ::after,
-.mobius-transition--all div,
-.mobius-transition--all div::before,
-.mobius-transition--all div::after,
-.mobius-transition--all p,
-.mobius-transition--all p::before,
-.mobius-transition--all p::after,
-.mobius-transition--all span,
-.mobius-transition--all span::before,
-.mobius-transition--all span::after,
-.mobius-transition--all view,
-.mobius-transition--all view::before,
-.mobius-transition--all view::after,
-.mobius-transition--all text,
-.mobius-transition--all text::before,
-.mobius-transition--all text::after {
-  transition-property: var(--transition-property-all);
-  transition-duration: var(--transition-duration-normal);
-  transition-timing-function: var(--transition-timing-function-normal);
-  transition-delay: var(--transition-delay-none);
+.mobius-transition--all {
+  &::before,
+  &::after,
+  & ::before,
+  & ::after,
+  & div,
+  & div::before,
+  & div::after,
+  & p,
+  & p::before,
+  & p::after,
+  & span,
+  & span::before,
+  & span::after,
+  & view,
+  & view::before,
+  & view::after,
+  & text,
+  & text::before,
+  & text::after {
+    transition-property: var(--transition-property-all);
+    transition-duration: var(--transition-duration-normal);
+    transition-timing-function: var(--transition-timing-function-normal);
+    transition-delay: var(--transition-delay-none);
+  }
 }
 
 .mobius-transition--normal,
@@ -110,6 +112,9 @@ page,
       @extend %mobius-transition-none;
     }
   }
+}
+.mobius-transition--force-none {
+  transition-duration: var(--transition-duration-none) !important;
 }
 
 /*! purgecss end ignore */

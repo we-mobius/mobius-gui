@@ -212,4 +212,238 @@
   align-self: center;
 }
 
+
+.mobius-grid { display: grid; }
+.mobius-grid--inline { display: inline-grid; }
+
+/****************************************************************
+ *                        Container properties
+ ****************************************************************/
+
+%gap-size {
+  --gap-size-none: 0;
+  --gap-size-xs: 0.5;
+  --gap-size-small: 0.75;
+  --gap-size-base: 1;
+  --gap-size-large: 1.25;
+  --gap-size-xl: 1.5;
+}
+
+:root.mobius-base,
+html.mobius-base,
+page.mobius-base,
+page,
+.mobius-base { @extend %gap-size; }
+
+.mobius-grid-gap--none { gap: calc(var(--box-space-size-none) * 1em); }
+.mobius-grid-gap--xs { gap: calc(var(--box-space-size-xs) * 1em); }
+.mobius-grid-gap--small { gap: calc(var(--box-space-size-small) * 1em); }
+.mobius-grid-gap--base { gap: calc(var(--box-space-size-base) * 1em); }
+.mobius-grid-gap--large { gap: calc(var(--box-space-size-large) * 1em); }
+.mobius-grid-gap--xl { gap: calc(var(--box-space-size-xl) * 1em); }
+
+.mobius-grid-gap-col--none { column-gap: calc(var(--box-space-size-none) * 1em); }
+.mobius-grid-gap-col--xs { column-gap: calc(var(--box-space-size-xs) * 1em); }
+.mobius-grid-gap-col--small { column-gap: calc(var(--box-space-size-small) * 1em); }
+.mobius-grid-gap-col--base { column-gap: calc(var(--box-space-size-base) * 1em); }
+.mobius-grid-gap-col--large { column-gap: calc(var(--box-space-size-large) * 1em); }
+.mobius-grid-gap-col--xl { column-gap: calc(var(--box-space-size-xl) * 1em); }
+
+.mobius-grid-gap-row--none { row-gap: calc(var(--box-space-size-none) * 1em); }
+.mobius-grid-gap-row--xs { row-gap: calc(var(--box-space-size-xs) * 1em); }
+.mobius-grid-gap-row--small { row-gap: calc(var(--box-space-size-small) * 1em); }
+.mobius-grid-gap-row--base { row-gap: calc(var(--box-space-size-base) * 1em); }
+.mobius-grid-gap-row--large { row-gap: calc(var(--box-space-size-large) * 1em); }
+.mobius-grid-gap-row--xl { row-gap: calc(var(--box-space-size-xl) * 1em); }
+
+.mobius-grid-gap--r-none { gap: calc(var(--box-space-size-none) * 1rem); }
+.mobius-grid-gap--r-xs { gap: calc(var(--box-space-size-xs) * 1rem); }
+.mobius-grid-gap--r-small { gap: calc(var(--box-space-size-small) * 1rem); }
+.mobius-grid-gap--r-base { gap: calc(var(--box-space-size-base) * 1rem); }
+.mobius-grid-gap--r-large { gap: calc(var(--box-space-size-large) * 1rem); }
+.mobius-grid-gap--r-xl { gap: calc(var(--box-space-size-xl) * 1rem); }
+
+.mobius-grid-gap-col--r-none { column-gap: calc(var(--box-space-size-none) * 1rem); }
+.mobius-grid-gap-col--r-xs { column-gap: calc(var(--box-space-size-xs) * 1rem); }
+.mobius-grid-gap-col--r-small { column-gap: calc(var(--box-space-size-small) * 1rem); }
+.mobius-grid-gap-col--r-base { column-gap: calc(var(--box-space-size-base) * 1rem); }
+.mobius-grid-gap-col--r-large { column-gap: calc(var(--box-space-size-large) * 1rem); }
+.mobius-grid-gap-col--r-xl { column-gap: calc(var(--box-space-size-xl) * 1rem); }
+
+.mobius-grid-gap-row--r-none { row-gap: calc(var(--box-space-size-none) * 1rem); }
+.mobius-grid-gap-row--r-xs { row-gap: calc(var(--box-space-size-xs) * 1rem); }
+.mobius-grid-gap-row--r-small { row-gap: calc(var(--box-space-size-small) * 1rem); }
+.mobius-grid-gap-row--r-base { row-gap: calc(var(--box-space-size-base) * 1rem); }
+.mobius-grid-gap-row--r-large { row-gap: calc(var(--box-space-size-large) * 1rem); }
+.mobius-grid-gap-row--r-xl { row-gap: calc(var(--box-space-size-xl) * 1rem); }
+
+.mobius-grid-flow--row { grid-auto-flow: row; }
+.mobius-grid-flow--col { grid-auto-flow: column; }
+.mobius-grid-flow--row-dense { grid-auto-flow: row dense; }
+.mobius-grid-flow--col-dense { grid-auto-flow: column dense; }
+
+.mobius-grid-justify--start { justify-content: start; }
+.mobius-grid-justify--end { justify-content: end; }
+.mobius-grid-justify--center { justify-content: center; }
+.mobius-grid-justify--stretch { justify-content: stretch; }
+.mobius-grid-justify--around { justify-content: around; }
+.mobius-grid-justify--between { justify-content: between; }
+.mobius-grid-justify--evenly { justify-content: evenly; }
+
+.mobius-grid-align--start { align-content: start; }
+.mobius-grid-align--end { align-content: end; }
+.mobius-grid-align--center { align-content: center; }
+.mobius-grid-align--stretch { align-content: stretch; }
+.mobius-grid-align--around { align-content: around; }
+.mobius-grid-align--between { align-content: between; }
+.mobius-grid-align--evenly { align-content: evenly; }
+
+.mobius-grid-items-justify--start { justify-items: start; }
+.mobius-grid-items-justify--end { justify-items: end; }
+.mobius-grid-items-justify--center { justify-items: center; }
+.mobius-grid-items-justify--stretch { justify-items: stretch; }
+
+.mobius-grid-items-align--start { align-items: start; }
+.mobius-grid-items-align--end { align-items: end; }
+.mobius-grid-items-align--center { align-items: center; }
+.mobius-grid-items-align--stretch { align-items: stretch; }
+
+.mobius-grid-cols--none { grid-template-columns: none; }
+.mobius-grid-cols--1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.mobius-grid-cols--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.mobius-grid-cols--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.mobius-grid-cols--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.mobius-grid-cols--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.mobius-grid-cols--6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.mobius-grid-cols--7 { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.mobius-grid-cols--8 { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.mobius-grid-cols--9 { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+.mobius-grid-cols--10 { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+.mobius-grid-cols--11 { grid-template-columns: repeat(11, minmax(0, 1fr)); }
+.mobius-grid-cols--12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.mobius-grid-cols--auto { grid-auto-columns: auto; }
+.mobius-grid-cols--min { grid-auto-columns: min-content; }
+.mobius-grid-cols--max { grid-auto-columns: max-content; }
+.mobius-grid-cols--fr { grid-auto-columns: minmax(0, 1fr); }
+.mobius-grid-cols--fit { grid-auto-columns: fit-content; }
+
+.mobius-grid-rows--none { grid-template-rows: none; }
+.mobius-grid-rows--1 { grid-template-rows: repeat(1, minmax(0, 1fr)); }
+.mobius-grid-rows--2 { grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.mobius-grid-rows--3 { grid-template-rows: repeat(3, minmax(0, 1fr)); }
+.mobius-grid-rows--4 { grid-template-rows: repeat(4, minmax(0, 1fr)); }
+.mobius-grid-rows--5 { grid-template-rows: repeat(5, minmax(0, 1fr)); }
+.mobius-grid-rows--6 { grid-template-rows: repeat(6, minmax(0, 1fr)); }
+.mobius-grid-rows--7 { grid-template-rows: repeat(7, minmax(0, 1fr)); }
+.mobius-grid-rows--8 { grid-template-rows: repeat(8, minmax(0, 1fr)); }
+.mobius-grid-rows--9 { grid-template-rows: repeat(9, minmax(0, 1fr)); }
+.mobius-grid-rows--10 { grid-template-rows: repeat(10, minmax(0, 1fr)); }
+.mobius-grid-rows--11 { grid-template-rows: repeat(11, minmax(0, 1fr)); }
+.mobius-grid-rows--12 { grid-template-rows: repeat(12, minmax(0, 1fr)); }
+.mobius-grid-rows--auto { grid-auto-rows: auto; }
+.mobius-grid-rows--min { grid-auto-rows: min-content; }
+.mobius-grid-rows--max { grid-auto-rows: max-content; }
+.mobius-grid-rows--fr { grid-auto-rows: minmax(0, 1fr); }
+.mobius-grid-rows--fit { grid-auto-rows: fit-content; }
+
+/****************************************************************
+ *                        Item properties
+ ****************************************************************/
+
+.mobius-grid-item-justify--start { justify-self: start; }
+.mobius-grid-item-justify--end { justify-self: end; }
+.mobius-grid-item-justify--center { justify-self: center; }
+.mobius-grid-item-justify--stretch { justify-self: stretch; }
+
+.mobius-grid-item-align--start { align-self: start; }
+.mobius-grid-item-align--end { align-self: end; }
+.mobius-grid-item-align--center { align-self: center; }
+.mobius-grid-item-align--stretch { align-self: stretch; }
+
+.mobius-grid-col--auto { grid-column: auto; }
+.mobius-grid-col--span1 { grid-column: span 1 / span 1; }
+.mobius-grid-col--span2 { grid-column: span 2 / span 2; }
+.mobius-grid-col--span3 { grid-column: span 3 / span 3; }
+.mobius-grid-col--span4 { grid-column: span 4 / span 4; }
+.mobius-grid-col--span5 { grid-column: span 5 / span 5; }
+.mobius-grid-col--span6 { grid-column: span 6 / span 6; }
+.mobius-grid-col--span7 { grid-column: span 7 / span 7; }
+.mobius-grid-col--span8 { grid-column: span 8 / span 8; }
+.mobius-grid-col--span9 { grid-column: span 9 / span 9; }
+.mobius-grid-col--span10 { grid-column: span 10 / span 10; }
+.mobius-grid-col--span11 { grid-column: span 11 / span 11; }
+.mobius-grid-col--span12 { grid-column: span 12 / span 12; }
+.mobius-grid-col--fullspan { grid-column: 1 / -1; }
+.mobius-grid-col--start0 { grid-column-start: auto; }
+.mobius-grid-col--start1 { grid-column-start: 1; }
+.mobius-grid-col--start2 { grid-column-start: 2; }
+.mobius-grid-col--start3 { grid-column-start: 3; }
+.mobius-grid-col--start4 { grid-column-start: 4; }
+.mobius-grid-col--start5 { grid-column-start: 5; }
+.mobius-grid-col--start6 { grid-column-start: 6; }
+.mobius-grid-col--start7 { grid-column-start: 7; }
+.mobius-grid-col--start8 { grid-column-start: 8; }
+.mobius-grid-col--start9 { grid-column-start: 9; }
+.mobius-grid-col--start10 { grid-column-start: 10; }
+.mobius-grid-col--start11 { grid-column-start: 11; }
+.mobius-grid-col--start12 { grid-column-start: 12; }
+.mobius-grid-col--start13 { grid-column-start: 13; }
+.mobius-grid-col--end0 { grid-column-end: auto; }
+.mobius-grid-col--end1 { grid-column-end: 1; }
+.mobius-grid-col--end2 { grid-column-end: 2; }
+.mobius-grid-col--end3 { grid-column-end: 3; }
+.mobius-grid-col--end4 { grid-column-end: 4; }
+.mobius-grid-col--end5 { grid-column-end: 5; }
+.mobius-grid-col--end6 { grid-column-end: 6; }
+.mobius-grid-col--end7 { grid-column-end: 7; }
+.mobius-grid-col--end8 { grid-column-end: 8; }
+.mobius-grid-col--end9 { grid-column-end: 9; }
+.mobius-grid-col--end10 { grid-column-end: 10; }
+.mobius-grid-col--end11 { grid-column-end: 11; }
+.mobius-grid-col--end12 { grid-column-end: 12; }
+.mobius-grid-col--end13 { grid-column-end: 13; }
+
+.mobius-grid-row--auto { grid-row: auto; }
+.mobius-grid-row--span1 { grid-row: span 1 / span 1; }
+.mobius-grid-row--span2 { grid-row: span 2 / span 2; }
+.mobius-grid-row--span3 { grid-row: span 3 / span 3; }
+.mobius-grid-row--span4 { grid-row: span 4 / span 4; }
+.mobius-grid-row--span5 { grid-row: span 5 / span 5; }
+.mobius-grid-row--span6 { grid-row: span 6 / span 6; }
+.mobius-grid-row--span7 { grid-row: span 7 / span 7; }
+.mobius-grid-row--span8 { grid-row: span 8 / span 8; }
+.mobius-grid-row--span9 { grid-row: span 9 / span 9; }
+.mobius-grid-row--span10 { grid-row: span 10 / span 10; }
+.mobius-grid-row--span11 { grid-row: span 11 / span 11; }
+.mobius-grid-row--span12 { grid-row: span 12 / span 12; }
+.mobius-grid-row--fullspan { grid-row: 1 / -1; }
+.mobius-grid-row--start0 { grid-row-start: auto; }
+.mobius-grid-row--start1 { grid-row-start: 1; }
+.mobius-grid-row--start2 { grid-row-start: 2; }
+.mobius-grid-row--start3 { grid-row-start: 3; }
+.mobius-grid-row--start4 { grid-row-start: 4; }
+.mobius-grid-row--start5 { grid-row-start: 5; }
+.mobius-grid-row--start6 { grid-row-start: 6; }
+.mobius-grid-row--start7 { grid-row-start: 7; }
+.mobius-grid-row--start8 { grid-row-start: 8; }
+.mobius-grid-row--start9 { grid-row-start: 9; }
+.mobius-grid-row--start10 { grid-row-start: 10; }
+.mobius-grid-row--start11 { grid-row-start: 11; }
+.mobius-grid-row--start12 { grid-row-start: 12; }
+.mobius-grid-row--start13 { grid-row-start: 13; }
+.mobius-grid-row--end0 { grid-row-end: auto; }
+.mobius-grid-row--end1 { grid-row-end: 1; }
+.mobius-grid-row--end2 { grid-row-end: 2; }
+.mobius-grid-row--end3 { grid-row-end: 3; }
+.mobius-grid-row--end4 { grid-row-end: 4; }
+.mobius-grid-row--end5 { grid-row-end: 5; }
+.mobius-grid-row--end6 { grid-row-end: 6; }
+.mobius-grid-row--end7 { grid-row-end: 7; }
+.mobius-grid-row--end8 { grid-row-end: 8; }
+.mobius-grid-row--end9 { grid-row-end: 9; }
+.mobius-grid-row--end10 { grid-row-end: 10; }
+.mobius-grid-row--end11 { grid-row-end: 11; }
+.mobius-grid-row--end12 { grid-row-end: 12; }
+.mobius-grid-row--end13 { grid-row-end: 13; }
+
 /*! purgecss end ignore */

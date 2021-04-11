@@ -1,8 +1,20 @@
 /*! purgecss start ignore */
 
+/* refer: https://developer.mozilla.org/zh-CN/docs/Web/CSS/display */
+
+.mobius-display--inherit { display: inherit; }
+
 .mobius-display--none { display: none; }
+.mobius-display--contents { display: contents; }
+
 .mobius-display--block { display: block; }
+.mobius-display--inline { display: inline; }
+
 .mobius-display--flex { display: flex; }
+.mobius-display--iflex { display: inline-flex; }
 .mobius-display--grid { display: grid; }
+.mobius-display--igrid { display: igrid; }
+
+.mobius-display--listitem { display: list-item; }
 
 /*! purgecss end ignore */

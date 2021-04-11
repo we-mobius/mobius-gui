@@ -67,7 +67,7 @@
   align-items: stretch;
 } */
 
-.mobius-display--flex { display: flex; }
+.mobius-flex { display: flex; }
 .mobius-flex--inline { display: inline-flex; }
 
 /* 流动方向 */
@@ -82,12 +82,26 @@
 .mobius-flex-wrap--reverse { flex-wrap: wrap-reverse; }
 
 /* 主轴对齐 */
+/* Note: stretch is not supported by flexible boxes (flexbox). */
 .mobius-flex-justify--start { justify-content: flex-start; }
 .mobius-flex-justify--center { justify-content: center; }
 .mobius-flex-justify--end { justify-content: flex-end; }
 .mobius-flex-justify--between { justify-content: space-between; }
 .mobius-flex-justify--around { justify-content: space-around; }
 .mobius-flex-justify--evenly { justify-content: space-evenly; }
+
+/*
+  align-content determines the spacing between lines
+  align-items determines how the items as a whole are aligned within the container.
+  When there is only one line, align-content has no effect
+*/
+/*
+  refer: https://juejin.cn/post/6844903911690600456
+  align-items属性是针对单独的每一个flex子项起作用，它的基本单位是每一个子项，在所有情况下都有效果（当然要看具体的属性值）。
+  align-content属性是将flex子项作为一个整体起作用，它的基本单位是子项构成的行，只在两种情况下有效果：
+    -> 子项多行且flex容器高度固定
+    -> 子项单行，flex容器高度固定且设置了flex-wrap:wrap;
+*/
 
 .mobius-flex-align--start { align-content: start; }
 .mobius-flex-align--center { align-content: center; }
