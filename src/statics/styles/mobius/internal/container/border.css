@@ -114,8 +114,9 @@ page,
  *                        Border Width
  *********************************************************/
 
-:root,
-html,
+:root.mobius-base,
+html.mobius-base,
+page.mobius-base,
 page {
   & .mobius-border--thin,
   & .hover_mobius-border--thin:hover,
@@ -151,8 +152,9 @@ page {
  *                      Border Style
  *********************************************************/
 
-:root,
-html,
+:root.mobius-base,
+html.mobius-base,
+page.mobius-base,
 page {
   & .mobius-border--none,
   & .hover_mobius-border--none:hover,
@@ -195,9 +197,35 @@ page {
  *                       Border Color
  *********************************************************/
 
-:root,
-html,
+:root.mobius-base,
+html.mobius-base,
+page.mobius-base,
 page {
+
+  & .mobius-border--base,
+  & .hover_mobius-border--base:hover,
+  & .active_mobius-border--base:active {
+    --border-color: var(--fg-color-base);
+  }
+
+  & .mobius-border--primary,
+  & .hover_mobius-border--primary:hover,
+  & .active_mobius-border--primary:active {
+    --border-color: var(--fg-color-primary);
+  }
+
+  & .mobius-border--second,
+  & .hover_mobius-border--second:hover,
+  & .active_mobius-border--second:active {
+    --border-color: var(--fg-color-second);
+  }
+
+  & .mobius-border--third,
+  & .hover_mobius-border--third:hover,
+  & .active_mobius-border--third:active {
+    --border-color: var(--fg-color-third);
+  }
+
   & .mobius-border--light,
   & .hover_mobius-border--light:hover,
   & .active_mobius-border--light:active {

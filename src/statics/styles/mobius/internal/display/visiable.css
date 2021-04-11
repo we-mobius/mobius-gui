@@ -2,8 +2,8 @@
 
 .mobius-visible--none { visibility: hidden; }
 .mobius-visible--light { opacity: 0.25; }
-.mobius-visible--medium { visibility: 0.5; }
-.mobius-visible--heavy { visibility: 0.75; }
-.mobius-visible--all { visibility: 1; }
+.mobius-visible--medium { opacity: 0.5; }
+.mobius-visible--heavy { opacity: 0.75; }
+.mobius-visible--all { opacity: 1; }
 
 /*! purgecss end ignore */
