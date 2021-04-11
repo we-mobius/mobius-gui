@@ -1,4 +1,4 @@
-import { html, nothing } from 'lit-html'
+import { html, nothing } from '../libs/lit-html.js'
 import { iif, argPlaceholder } from '../libs/mobius-utils.js'
 import { makeElementMaker } from '../helpers/index.js'
 

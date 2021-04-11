@@ -3,7 +3,7 @@ import {
   compose, looseCurryN,
   Mutation, Data,
   isData, isMutation, isAtom,
-  replayWithLatest, pipeAtom,
+  replayWithLatest, pipeAtom, binaryTweenPipeAtom,
   mutationToDataS,
   asIsDistinctPreviousT,
   combineLatestT, pluckT, nilToVoidT, defaultToT
@@ -15,10 +15,10 @@ import {
  */
 export const makeComponentOption = option => {
   const rawOption = Object.entries(option).reduce((acc, [key, value]) => {
-    acc[key] = isAtom(value) ? value : replayWithLatest(1, Data.of(value))
+    acc[key] = isAtom(value) ? replayWithLatest(1, value) : replayWithLatest(1, Data.of(value))
     return acc
   }, {})
-  return combineLatestT(rawOption)
+  return replayWithLatest(1, combineLatestT(rawOption))
 }
 
 /**
@@ -35,6 +35,7 @@ export const useComponentOption = looseCurryN(3, (optionD, key, defaultValue, op
   if (!isString(key)) {
     throw (new TypeError('"key" argument of useComponentOption is expected to be type of "String".'))
   }
+
   const { nilToVoid = true, isDistinct = true, isReplay = true } = options
   const taches = [pluckT(key)]
   if (nilToVoid) {
@@ -47,7 +48,12 @@ export const useComponentOption = looseCurryN(3, (optionD, key, defaultValue, op
   if (isReplay) {
     taches.push(replayWithLatest(1))
   }
-  return optionD.pipe(...taches)
+
+  const tempD = Data.empty()
+  const res = tempD.pipe(...taches)
+  binaryTweenPipeAtom(optionD, tempD)
+
+  return res
 })
 
 /**
@@ -79,6 +85,21 @@ export const makeComponent = (input, operation, output) => {
 }
 
 /**
+ * @param contexts Any
+ * @return ReplayMediator
+ */
+const formatContexts = contexts => {
+  if (isAtom(contexts)) {
+    // do nothin
+  } else if (isObject(contexts) || isArray(contexts)) {
+    contexts = combineLatestT(contexts)
+  } else {
+    contexts = Data.of(contexts)
+  }
+  return replayWithLatest(1, contexts)
+}
+
+/**
  * @param input Data | Array | Object
  * @param operation Function, operation in Mutation
  * @param output Data, optional
@@ -104,7 +125,7 @@ export const makeComponentMaker = ({
 }) => {
   // create component level contexts
   // scope to all of the same type of component instance
-  const componentLevelContexts = prepareComponentLevelContexts()
+  const componentLevelContexts = formatContexts(prepareComponentLevelContexts())
 
   /**
    * CompontentMaker Function, be used to makeComponent
@@ -134,9 +155,10 @@ export const makeComponentMaker = ({
     if (!isAtom(configs)) {
       configs = makeComponentOption(configs)
     }
+
     // create singleton level contexts
     // scope to every single component
-    const singletonLevelContexts = prepareSingletonLevelContexts(
+    const singletonLevelContexts = formatContexts(prepareSingletonLevelContexts(
       { marks, styles, actuations, configs },
       {
         useMarks: useComponentOption(marks),
@@ -144,7 +166,7 @@ export const makeComponentMaker = ({
         useActuations: useComponentOption(actuations),
         useConfigs: useComponentOption(configs)
       }
-    )
+    ))
 
     // components are replay with latest by default
     return makeComponentWithReplay(
