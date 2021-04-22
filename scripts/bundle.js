@@ -57,8 +57,8 @@ const copy = () => {
       rootResolvePath('release/styles/mobius.wxss')
     )
     copyFileSync(
-      rootResolvePath('release/styles/addons.css'),
-      rootResolvePath('release/styles/addons.wxss')
+      rootResolvePath('release/styles/addon.css'),
+      rootResolvePath('release/styles/addon.wxss')
     )
     // TODO: 清除 base.js & addons.js & mobius.js
     resolve()
