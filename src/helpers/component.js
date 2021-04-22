@@ -1,19 +1,20 @@
 import {
-  isString, isObject, isArray, isFunction,
+  isObject, isArray, isFunction,
+  getByPath,
   compose, looseCurryN,
   Mutation, Data,
   isData, isMutation, isAtom,
   replayWithLatest, pipeAtom, binaryTweenPipeAtom,
   mutationToDataS,
   asIsDistinctPreviousT,
-  combineLatestT, pluckT, nilToVoidT, defaultToT
+  combineT, combineLatestT, pluckT, nilToVoidT, defaultToT
 } from '../libs/mobius-utils.js'
 
 /**
- * @param option Object, { Atom, Any }
- * @return option Object, { Atom }
+ * @param { object } option Object, { Atom, Any }
+ * @return { Atom } ReplayData of combined options
  */
-export const makeComponentOption = option => {
+export const makeUnidirComponentOption = option => {
   const rawOption = Object.entries(option).reduce((acc, [key, value]) => {
     acc[key] = isAtom(value) ? replayWithLatest(1, value) : replayWithLatest(1, Data.of(value))
     return acc
@@ -22,18 +23,27 @@ export const makeComponentOption = option => {
 }
 
 /**
- * @param option Data, Data of component option Object
+ * @param { object } option
+ * @return { object } option
+ */
+export const makeBidirComponentOption = option => {
+  const rawOption = Object.entries(option).reduce((acc, [key, value]) => {
+    acc[key] = isAtom(value) ? replayWithLatest(1, value) : replayWithLatest(1, Data.of(value))
+    return acc
+  }, {})
+  return rawOption
+}
+
+/**
+ * @param option Atom, Atom of component option Object
  * @param key String, option name
  * @param defaultValue Any
  * @param options Object, Optional, { nilToVoid = true, isDistinct = true, isReplay = true }
  * @return atom Data
  */
-export const useComponentOption = looseCurryN(3, (optionD, key, defaultValue, options = {}) => {
-  if (!isData(optionD)) {
-    throw (new TypeError('"optionD" argument of useComponentOption is expected to be type of "Data".'))
-  }
-  if (!isString(key)) {
-    throw (new TypeError('"key" argument of useComponentOption is expected to be type of "String".'))
+export const useUnidirComponentOption = looseCurryN(3, (option, key, defaultValue, options = {}) => {
+  if (!isAtom(option)) {
+    throw (new TypeError('"optionD" argument of useComponentOption is expected to be type of "Atom".'))
   }
 
   const { nilToVoid = true, isDistinct = true, isReplay = true } = options
@@ -49,18 +59,30 @@ export const useComponentOption = looseCurryN(3, (optionD, key, defaultValue, op
     taches.push(replayWithLatest(1))
   }
 
+  // ensure res have the latest value when optionD is repalyable
   const tempD = Data.empty()
   const res = tempD.pipe(...taches)
-  binaryTweenPipeAtom(optionD, tempD)
+
+  binaryTweenPipeAtom(option, tempD)
 
   return res
+})
+
+export const useBidirComponentOption = looseCurryN(3, (option, key, defaultValue, options = {}) => {
+  if (!isObject(option)) {
+    throw (new TypeError(`"option" is expected to be type of "Object", but received "${typeof option}".`))
+  }
+
+  const atom = getByPath(key, option) || (isAtom(defaultValue) ? defaultValue : Data.of(defaultValue))
+
+  return replayWithLatest(1, atom)
 })
 
 /**
  * @param input Data | Array | Object
  * @param operation Function, operation in Mutation
  * @param output Data, optional
- * @return RD of TemplateResult
+ * @return Data of TemplateResult
  */
 export const makeComponent = (input, operation, output) => {
   const outputD = output || Data.empty()
@@ -132,28 +154,28 @@ export const makeComponentMaker = ({
    *
    * @param marks Data, default to {}
    * @param styles Data, default to {}
-   * @param actuations Data, default to {}
+   * @param actuations Object, default to {}
    * @param configs Data, default to {}
    * @return RD of TemplateResult
    */
   const makeComponent = ({
     marks = replayWithLatest(1, Data.of({})),
     styles = replayWithLatest(1, Data.of({})),
-    actuations = replayWithLatest(1, Data.of({})),
+    actuations = {},
     configs = replayWithLatest(1, Data.of({}))
   } = {}) => {
     // check options
     if (!isAtom(marks)) {
-      marks = makeComponentOption(marks)
+      marks = makeUnidirComponentOption(marks)
     }
     if (!isAtom(styles)) {
-      styles = makeComponentOption(styles)
+      styles = makeUnidirComponentOption(styles)
     }
     if (!isAtom(actuations)) {
-      actuations = makeComponentOption(actuations)
+      actuations = makeBidirComponentOption(actuations)
     }
     if (!isAtom(configs)) {
-      configs = makeComponentOption(configs)
+      configs = makeUnidirComponentOption(configs)
     }
 
     // create singleton level contexts
@@ -161,16 +183,18 @@ export const makeComponentMaker = ({
     const singletonLevelContexts = formatContexts(prepareSingletonLevelContexts(
       { marks, styles, actuations, configs },
       {
-        useMarks: useComponentOption(marks),
-        useStyles: useComponentOption(styles),
-        useActuations: useComponentOption(actuations),
-        useConfigs: useComponentOption(configs)
+        useMarks: useUnidirComponentOption(marks),
+        useStyles: useUnidirComponentOption(styles),
+        useActuations: useBidirComponentOption(actuations),
+        useConfigs: useUnidirComponentOption(configs)
       }
     ))
 
+    const _actuations = replayWithLatest(1, combineT(actuations))
+
     // components are replay with latest by default
     return makeComponentWithReplay(
-      { marks, styles, actuations, configs, singletonLevelContexts, componentLevelContexts },
+      { marks, styles, actuations: _actuations, configs, singletonLevelContexts, componentLevelContexts },
       ({ marks, styles, actuations, configs, singletonLevelContexts, componentLevelContexts }) => {
         if (isFunction(singletonLevelContexts)) {
           singletonLevelContexts = singletonLevelContexts({ marks, styles, actuations, configs })

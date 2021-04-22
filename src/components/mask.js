@@ -1,18 +1,29 @@
 import { makeComponentMaker } from '../helpers/index.js'
 import { makeMaskE } from '../elements/index.js'
 import {
-  Data, replayWithLatest,
-  createDataWithReplay,
+  Mutation,
   makeGeneralEventHandler,
-  binaryTweenPipeAtom,
-  tapValueT
+  pipeAtom, binaryTweenPipeAtom,
+  mergeT, tapValueT
 } from '../libs/mobius-utils.js'
 
+/**
+ * @param marks
+ * @param styles Object, { mask, container, isShow, content }
+ * @param actuations
+ * @param configs
+ * @return Data of TemplateResult
+ */
 export const makeMaskC = makeComponentMaker({
-  prepareSingletonLevelContexts: (_, { useStyles }) => {
+  prepareSingletonLevelContexts: (_, { useStyles, useActuations }) => {
+    const externalToggleRD = useActuations('toggle', {})
+
     const [clickHandlerRD, , clickD] = makeGeneralEventHandler(e => false)
 
-    const isShowRD = useStyles('isShow', false, { isDistinct: false })
+    const toggleD = mergeT(externalToggleRD, clickD)
+
+    const isShowRD = useStyles('isShow', false)
+    pipeAtom(toggleD, Mutation.ofLiftBoth((_, isShow) => !isShow), isShowRD)
     binaryTweenPipeAtom(clickD, isShowRD)
 
     return {
