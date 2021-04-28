@@ -8,6 +8,7 @@ export * from './view.js'
 
 export * from './element.js'
 export * from './component.js'
+export * from './ui-driver.js'
 export * from './app.js'
 
 export * from './taches.js'

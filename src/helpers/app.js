@@ -57,7 +57,7 @@ export const makeAppContainerRD = (containerId, decorator) => {
 export const runApp = (containerD, templateD, render = r) => {
   const renderTargetRD = ReplayMediator.of(combineLatestT(containerD, templateD), { autoTrigger: true })
   return renderTargetRD.subscribe(({ value: [container, template] }) => {
-    console.log('[runAPP]', container, template)
+    console.log('[runAPP] render APP', container, template)
     render(template, container)
   })
 }

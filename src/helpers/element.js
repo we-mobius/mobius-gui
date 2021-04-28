@@ -1,5 +1,15 @@
 import { view } from './view.js'
-import { prefixClassWithMobius } from './style.js'
+import { mark } from './mark.js'
+import { style, prefixClassWithMobius } from './style.js'
+import { actuate } from './actuate.js'
+
+export const elementMakerUtilsContexts = {
+  view,
+  mark,
+  style,
+  prefix: prefixClassWithMobius,
+  actuate
+}
 
 /**
  * @param marks Object
@@ -26,9 +36,7 @@ export const makeElementMaker = ({ marks = {}, styles = {}, actuations = {}, con
         styles: _styles,
         actuations: _actuations,
         configs: _configs,
-        utils: {
-          prefix: prefixClassWithMobius
-        }
+        utils: { ...elementMakerUtilsContexts }
       }
     )
   }

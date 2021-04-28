@@ -15,6 +15,9 @@ import {
  * @return { Atom } ReplayData of combined options
  */
 export const makeUnidirComponentOption = option => {
+  if (isAtom(option)) {
+    return replayWithLatest(1, option)
+  }
   const rawOption = Object.entries(option).reduce((acc, [key, value]) => {
     acc[key] = isAtom(value) ? replayWithLatest(1, value) : replayWithLatest(1, Data.of(value))
     return acc
@@ -164,19 +167,11 @@ export const makeComponentMaker = ({
     actuations = {},
     configs = replayWithLatest(1, Data.of({}))
   } = {}) => {
-    // check options
-    if (!isAtom(marks)) {
-      marks = makeUnidirComponentOption(marks)
-    }
-    if (!isAtom(styles)) {
-      styles = makeUnidirComponentOption(styles)
-    }
-    if (!isAtom(actuations)) {
-      actuations = makeBidirComponentOption(actuations)
-    }
-    if (!isAtom(configs)) {
-      configs = makeUnidirComponentOption(configs)
-    }
+    // process options
+    marks = makeUnidirComponentOption(marks)
+    styles = makeUnidirComponentOption(styles)
+    actuations = makeBidirComponentOption(actuations)
+    configs = makeUnidirComponentOption(configs)
 
     // create singleton level contexts
     // scope to every single component
