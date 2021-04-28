@@ -6,9 +6,10 @@ import {
   isData, isMutation, isAtom,
   replayWithLatest, pipeAtom, binaryTweenPipeAtom,
   mutationToDataS,
-  asIsDistinctPreviousT,
+  asIsDistinctPreviousT, startWithT,
   combineT, combineLatestT, pluckT, nilToVoidT, defaultToT
 } from '../libs/mobius-utils.js'
+import { elementMakerUtilsContexts } from './element.js'
 
 /**
  * @param { object } option Object, { Atom, Any }
@@ -115,7 +116,7 @@ export const makeComponent = (input, operation, output) => {
  */
 const formatContexts = contexts => {
   if (isAtom(contexts)) {
-    // do nothin
+    // do nothing
   } else if (isObject(contexts) || isArray(contexts)) {
     contexts = combineLatestT(contexts)
   } else {
@@ -157,40 +158,44 @@ export const makeComponentMaker = ({
    *
    * @param marks Data, default to {}
    * @param styles Data, default to {}
-   * @param actuations Object, default to {}
+   * @param actuations Data, default to {}
    * @param configs Data, default to {}
+   * @param { object } outputs Object, default to {}
    * @return RD of TemplateResult
    */
   const makeComponent = ({
     marks = replayWithLatest(1, Data.of({})),
     styles = replayWithLatest(1, Data.of({})),
-    actuations = {},
-    configs = replayWithLatest(1, Data.of({}))
+    actuations = replayWithLatest(1, Data.of({})),
+    configs = replayWithLatest(1, Data.of({})),
+    outputs = {}
   } = {}) => {
     // process options
     marks = makeUnidirComponentOption(marks)
     styles = makeUnidirComponentOption(styles)
-    actuations = makeBidirComponentOption(actuations)
+    actuations = makeUnidirComponentOption(actuations).pipe(startWithT({}), replayWithLatest(1))
     configs = makeUnidirComponentOption(configs)
+    outputs = makeBidirComponentOption(outputs)
 
     // create singleton level contexts
     // scope to every single component
     const singletonLevelContexts = formatContexts(prepareSingletonLevelContexts(
-      { marks, styles, actuations, configs },
+      { marks, styles, actuations, configs, outputs },
       {
         useMarks: useUnidirComponentOption(marks),
         useStyles: useUnidirComponentOption(styles),
-        useActuations: useBidirComponentOption(actuations),
-        useConfigs: useUnidirComponentOption(configs)
+        useActuations: useUnidirComponentOption(actuations),
+        useConfigs: useUnidirComponentOption(configs),
+        useOutputs: useBidirComponentOption(outputs)
       }
     ))
 
-    const _actuations = replayWithLatest(1, combineT(actuations))
+    const _outputs = replayWithLatest(1, combineT(outputs))
 
     // components are replay with latest by default
     return makeComponentWithReplay(
-      { marks, styles, actuations: _actuations, configs, singletonLevelContexts, componentLevelContexts },
-      ({ marks, styles, actuations, configs, singletonLevelContexts, componentLevelContexts }) => {
+      { marks, styles, actuations, configs, outputs: _outputs, singletonLevelContexts, componentLevelContexts },
+      ({ marks, styles, actuations, configs, outputs, singletonLevelContexts, componentLevelContexts }, template) => {
         if (isFunction(singletonLevelContexts)) {
           singletonLevelContexts = singletonLevelContexts({ marks, styles, actuations, configs })
         }
@@ -199,7 +204,11 @@ export const makeComponentMaker = ({
         }
 
         // use component level contexts or singleton level contexts in handler
-        return handler({ marks, styles, actuations, configs, singletonLevelContexts, componentLevelContexts })
+        return handler(
+          { marks, styles, actuations, configs, outputs, singletonLevelContexts, componentLevelContexts },
+          template,
+          { ...elementMakerUtilsContexts }
+        )
       }
     )
   }

@@ -9,8 +9,8 @@ import {
 } from '../libs/mobius-utils.js'
 
 export const makeFileInputC = makeComponentMaker({
-  prepareSingletonLevelContexts: ({ styles }, { useActuations }) => {
-    const schemaOutD = useActuations('schemaOut', {})
+  prepareSingletonLevelContexts: ({ styles }, { useOutputs }) => {
+    const schemaOutD = useOutputs('schemaOut', {})
 
     const [changeHandlerRD, , changeD] = makeGeneralEventHandler()
 

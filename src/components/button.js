@@ -15,10 +15,10 @@ import {
  * @return Data of TemplateResult
  */
 export const makeButtonC = makeComponentMaker({
-  prepareSingletonLevelContexts: ({ styles }, { useActuations }) => {
-    const schemaOutD = useActuations('schemaOut', {})
+  prepareSingletonLevelContexts: ({ styles }, { useOutputs }) => {
+    const schemaOutD = useOutputs('schemaOut', {})
 
-    const externalConfirmRD = useActuations('confirm', {})
+    const externalConfirmRD = useOutputs('confirm', {})
 
     const [clickHandlerRD, , clickD] = makeGeneralEventHandler()
     binaryTweenPipeAtom(clickD, externalConfirmRD)
@@ -29,7 +29,7 @@ export const makeButtonC = makeComponentMaker({
       clickHandler: clickHandlerRD
     }
   },
-  handler: ({ marks, styles, actuations, configs, singletonLevelContexts }) => {
+  handler: ({ marks, styles, actuations, configs, outputs, singletonLevelContexts }, template, contexts) => {
     actuations = {
       ...actuations,
       clickHandler: singletonLevelContexts.clickHandler

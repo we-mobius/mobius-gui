@@ -17,7 +17,7 @@ import { FORM_ITEM_TYPE_MAP } from './form.js'
  * @return Data of TemplateResult
  */
 export const makeFormGroupC = makeComponentMaker({
-  prepareSingletonLevelContexts: (options, { useStyles, useActuations }) => {
+  prepareSingletonLevelContexts: (options, { useStyles, useOutputs }) => {
     // childs are options of form item component or component & related interface itself
     //   -> options of form item component: { name, type, ... }
     //   -> component & related interface: [component, { name, type, schemaIn, schemaOut }]
@@ -26,7 +26,7 @@ export const makeFormGroupC = makeComponentMaker({
     tapValueT('childsRD')(childsRD)
     tapValueT('rulesRD')(rulesRD)
 
-    const schemaOutD = useActuations('schemaOut', {})
+    const schemaOutD = useOutputs('schemaOut', {})
 
     // create component from childs options
     //   -> take: childs
@@ -34,23 +34,24 @@ export const makeFormGroupC = makeComponentMaker({
     const childsToFormItemsM = Mutation.ofLiftLeft(options => {
       return options.map(option => {
         if (isObject(option)) {
-          let { marks, styles, actuations, configs } = option
+          let { marks, styles, actuations, configs, outputs } = option
           if (!styles) {
             styles = option
             delete styles.marks
             delete styles.actuations
             delete styles.configs
+            delete styles.outputs
           }
           const { name, type } = styles
 
-          actuations = actuations || {}
-          actuations.schemaIn = actuations.schemaIn || Data.of({})
-          actuations.schemaOut = actuations.schemaOut || Data.of({})
+          outputs = outputs || {}
+          outputs.schemaIn = outputs.schemaIn || Data.of({})
+          outputs.schemaOut = outputs.schemaOut || Data.of({})
 
           return {
             name,
-            component: FORM_ITEM_TYPE_MAP.get(type)({ marks, styles, actuations, configs }),
-            interface: { schemaIn: actuations.schemaIn, schemaOut: actuations.schemaOut }
+            component: FORM_ITEM_TYPE_MAP.get(type)({ marks, styles, actuations, configs, outputs }),
+            interface: { schemaIn: outputs.schemaIn, schemaOut: outputs.schemaOut }
           }
         } else if (isArray(option)) {
           const { name, schemaIn, schemaOut } = option[1]
