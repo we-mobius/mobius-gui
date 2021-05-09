@@ -2,7 +2,6 @@ import { makeComponentMaker } from '../helpers/index.js'
 import { makeFileInputE } from '../elements/input__file.js'
 import {
   Data, Mutation, TERMINATOR,
-  replayWithLatest,
   pipeAtom, binaryTweenPipeAtom, makeGeneralEventHandler,
   pluckT, combineLatestT, mapT,
   tapValueT

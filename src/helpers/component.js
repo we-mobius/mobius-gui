@@ -6,10 +6,35 @@ import {
   isData, isMutation, isAtom,
   replayWithLatest, pipeAtom, binaryTweenPipeAtom,
   mutationToDataS,
-  asIsDistinctPreviousT, startWithT,
+  asIsDistinctPreviousT, emptyStartWithT,
   combineT, combineLatestT, pluckT, nilToVoidT, defaultToT
 } from '../libs/mobius-utils.js'
 import { elementMakerUtilsContexts } from './element.js'
+
+export const makeInstantComponent = (sources, operation) => {
+  let inputD
+  // ! detect order matters
+  //   -> Array type of input is most frequent scene
+  //   -> Mutation & Data is considered as normal Object.
+  if (isArray(sources)) {
+    inputD = combineLatestT(sources)
+  } else if (isMutation(sources)) {
+    inputD = mutationToDataS(replayWithLatest(1, sources))
+  } else if (isData(sources)) {
+    inputD = sources
+  } else if (isObject(sources)) {
+    inputD = combineLatestT(sources)
+  } else {
+    inputD = Data.of(sources)
+  }
+
+  const inputRD = replayWithLatest(1, inputD)
+  const mutation = Mutation.ofLiftBoth(operation)
+  const outputRD = replayWithLatest(1, Data.empty())
+  pipeAtom(inputRD, mutation, outputRD)
+
+  return outputRD
+}
 
 /**
  * @param { object } option Object, { Atom, Any }
@@ -88,27 +113,38 @@ export const useBidirComponentOption = looseCurryN(3, (option, key, defaultValue
  * @param output Data, optional
  * @return Data of TemplateResult
  */
-export const makeComponent = (input, operation, output) => {
+export const makeComponent = looseCurryN(2, (input, operation, output) => {
   const outputD = output || Data.empty()
 
   let inputD
+  // ! detect order matters
+  //   -> Array type of input is most frequent scene
+  //   -> Mutation & Data is considered as normal Object.
   if (isArray(input)) {
     inputD = combineLatestT(input)
   } else if (isMutation(input)) {
-    inputD = mutationToDataS(input)
+    inputD = mutationToDataS(replayWithLatest(1, input))
   } else if (isData(input)) {
     inputD = input
   } else if (isObject(input)) {
     inputD = combineLatestT(input)
   } else {
-    throw (new TypeError('Unexpected "input" of makeComponentD.'))
+    inputD = Data.of(input)
   }
 
   const inputRD = replayWithLatest(1, inputD)
   pipeAtom(inputRD, Mutation.ofLiftBoth(operation), outputD)
 
   return outputD
-}
+})
+
+/**
+ * @param input Data | Array | Object
+ * @param operation Function, operation in Mutation
+ * @param output Data, optional
+ * @return RD of TemplateResult
+ */
+export const makeComponentWithReplay = compose(replayWithLatest(1), makeComponent)
 
 /**
  * @param contexts Any
@@ -124,14 +160,6 @@ const formatContexts = contexts => {
   }
   return replayWithLatest(1, contexts)
 }
-
-/**
- * @param input Data | Array | Object
- * @param operation Function, operation in Mutation
- * @param output Data, optional
- * @return RD of TemplateResult
- */
-export const makeComponentWithReplay = compose(replayWithLatest(1), makeComponent)
 
 /**
  * @param prepareComponentLevelContexts Function, takes nothing, returns Object or Function, when returns a function,
@@ -173,7 +201,7 @@ export const makeComponentMaker = ({
     // process options
     marks = makeUnidirComponentOption(marks)
     styles = makeUnidirComponentOption(styles)
-    actuations = makeUnidirComponentOption(actuations).pipe(startWithT({}), replayWithLatest(1))
+    actuations = makeUnidirComponentOption(actuations).pipe(emptyStartWithT({}), replayWithLatest(1))
     configs = makeUnidirComponentOption(configs)
     outputs = makeBidirComponentOption(outputs)
 

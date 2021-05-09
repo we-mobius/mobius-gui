@@ -1,14 +1,16 @@
-import { view } from './view.js'
 import { mark } from './mark.js'
 import { style, prefixClassWithMobius } from './style.js'
 import { actuate } from './actuate.js'
+import { html } from '../libs/lit-html.js'
+import { view } from './view.js'
 
 export const elementMakerUtilsContexts = {
-  view,
   mark,
   style,
   prefix: prefixClassWithMobius,
-  actuate
+  actuate,
+  html,
+  view
 }
 
 /**
