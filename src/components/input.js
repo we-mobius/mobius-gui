@@ -1,11 +1,10 @@
-import { makeComponentMaker } from '../helpers/index.js'
+import { makeTacheFormatComponent, useUITache } from '../helpers/index.js'
 import { makeInputE } from '../elements/input.js'
 
-export const makeInputC = makeComponentMaker({
-  prepareSingletonLevelContexts: (options, contexts) => {
-
-  },
-  handler: ({ marks, styles, actuations, configs, singletonLevelContexts, componentLevelContexts }) => {
+export const inputTC = makeTacheFormatComponent({
+  prepareTemplate: ({ marks, styles, actuations, configs, singletonLevelContexts }, template, mutation, contexts) => {
     return makeInputE({ marks, styles, actuations, configs })
   }
 })
+
+export const useInputTC = useUITache(inputTC)

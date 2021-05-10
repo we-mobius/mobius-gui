@@ -1,4 +1,4 @@
-import { makeComponentMaker } from '../helpers/index.js'
+import { makeTacheFormatComponent, useUITache } from '../helpers/index.js'
 import { makeFileInputE } from '../elements/input__file.js'
 import {
   Data, Mutation, TERMINATOR,
@@ -7,7 +7,7 @@ import {
   tapValueT
 } from '../libs/mobius-utils.js'
 
-export const makeFileInputC = makeComponentMaker({
+export const fileInputTC = makeTacheFormatComponent({
   prepareSingletonLevelContexts: ({ styles }, { useOutputs }) => {
     const schemaOutD = useOutputs('schemaOut', {})
 
@@ -49,9 +49,11 @@ export const makeFileInputC = makeComponentMaker({
       changeHandler: changeHandlerRD
     }
   },
-  handler: ({ marks, styles, actuations, configs, singletonLevelContexts, componentLevelContexts }) => {
+  prepareTemplate: ({ marks, styles, actuations, configs, singletonLevelContexts, componentLevelContexts }) => {
     actuations = { ...actuations, changeHandler: singletonLevelContexts.changeHandler }
 
     return makeFileInputE({ marks, styles, actuations, configs })
   }
 })
+
+export const useFileInputTC = useUITache(fileInputTC)

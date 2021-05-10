@@ -1,4 +1,4 @@
-import { makeUIDriver, useUIDriver } from '../helpers/index.js'
+import { makeDriverFormatComponent, useUIDriver } from '../helpers/index.js'
 import { makeTableE } from '../elements/index.js'
 import {
   Data
@@ -8,7 +8,7 @@ import {
  * @param { object } options
  * @return Data of TemplateResult
  */
-export const tableUIDriver = makeUIDriver({
+export const tableDC = makeDriverFormatComponent({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
     const dataD = Data.empty()
 
@@ -30,4 +30,4 @@ export const tableUIDriver = makeUIDriver({
   }
 })
 
-export const useTableC = useUIDriver(tableUIDriver)
+export const useTableDC = useUIDriver(tableDC)

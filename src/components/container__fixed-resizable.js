@@ -1,4 +1,4 @@
-import { makeComponentMaker, idToNodeT } from '../helpers/index.js'
+import { makeTacheFormatComponent, useUITache, idToNodeT } from '../helpers/index.js'
 import { makeFixedResizableContainerE } from '../elements/index.js'
 import {
   minTo, between, minOf,
@@ -17,7 +17,7 @@ import {
  * @param styles { top: Number, right: Number, bottom: Number, left: Number, barWeight: Number, minWidth: Number, minHeight: Number }
  * @return component Atom(ReplayMediator)
  */
-export const makeFixedResizableContainerC = makeComponentMaker({
+export const fixedResizableContainerTC = makeTacheFormatComponent({
   prepareSingletonLevelContexts: (_, { useStyles }) => {
     // import parameters
     const topRD = useStyles('top', 100)
@@ -524,7 +524,7 @@ export const makeFixedResizableContainerC = makeComponentMaker({
       isPrepareToMoving: isSpaceKeyPressingRD
     })
   },
-  handler: ({ marks, styles, actuations, configs, singletonLevelContexts }) => {
+  prepareTemplate: ({ marks, styles, actuations, configs, singletonLevelContexts }) => {
     marks = {
       ...marks,
       id: singletonLevelContexts.id
@@ -554,3 +554,5 @@ export const makeFixedResizableContainerC = makeComponentMaker({
     return makeFixedResizableContainerE({ marks, styles, actuations, configs })
   }
 })
+
+export const useFixedResizableContainerTC = useUITache(fixedResizableContainerTC)

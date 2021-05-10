@@ -1,4 +1,4 @@
-import { makeComponentMaker } from '../helpers/index.js'
+import { makeTacheFormatComponent, useUITache } from '../helpers/index.js'
 import { makeMaskE } from '../elements/index.js'
 import {
   Mutation,
@@ -14,7 +14,7 @@ import {
  * @param configs
  * @return Data of TemplateResult
  */
-export const makeMaskC = makeComponentMaker({
+export const maskTC = makeTacheFormatComponent({
   prepareSingletonLevelContexts: (_, { useStyles, useActuations }) => {
     const externalToggleRD = useActuations('toggle', {})
 
@@ -31,7 +31,7 @@ export const makeMaskC = makeComponentMaker({
       clickHandler: clickHandlerRD
     }
   },
-  handler: ({ marks, styles, actuations, configs, singletonLevelContexts }) => {
+  prepareTemplate: ({ marks, styles, actuations, configs, singletonLevelContexts }, template, mutation, contexts) => {
     styles = {
       ...styles,
       isShow: singletonLevelContexts.isShow
@@ -44,3 +44,5 @@ export const makeMaskC = makeComponentMaker({
     return makeMaskE({ marks, styles, actuations, configs })
   }
 })
+
+export const useMaskTC = useUITache(maskTC)

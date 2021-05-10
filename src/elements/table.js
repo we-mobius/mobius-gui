@@ -17,9 +17,9 @@ export const makeTableE = makeElementMaker({
     const createTable = data => data.reduce((rows, rowData) => {
       rows.push(
         html`
-          <div class='mobius-layout__horizontal mobius-flex-justify--between'>
+          <div class='mobius-layout__horizontal'>
             ${rowData.reduce((row, value) => {
-              row.push(html`<div>${value}</div>`)
+              row.push(html`<div class='mobius-flex-grow--1'>${value}</div>`)
               return row
             }, [])}
           </div>

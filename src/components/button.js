@@ -1,4 +1,4 @@
-import { makeComponentMaker } from '../helpers/index.js'
+import { makeTacheFormatComponent, useUITache } from '../helpers/index.js'
 import { makeButtonE } from '../elements/index.js'
 import {
   makeGeneralEventHandler,
@@ -14,7 +14,7 @@ import {
  * @param configs
  * @return Data of TemplateResult
  */
-export const makeButtonC = makeComponentMaker({
+export const buttonTC = makeTacheFormatComponent({
   prepareSingletonLevelContexts: ({ styles }, { useOutputs }) => {
     const schemaOutD = useOutputs('schemaOut', {})
 
@@ -29,7 +29,7 @@ export const makeButtonC = makeComponentMaker({
       clickHandler: clickHandlerRD
     }
   },
-  handler: ({ marks, styles, actuations, configs, outputs, singletonLevelContexts }, template, contexts) => {
+  prepareTemplate: ({ marks, styles, actuations, configs, outputs, singletonLevelContexts }, template, mutation, contexts) => {
     actuations = {
       ...actuations,
       clickHandler: singletonLevelContexts.clickHandler
@@ -38,3 +38,5 @@ export const makeButtonC = makeComponentMaker({
     return makeButtonE({ marks, styles, actuations, configs })
   }
 })
+
+export const useButtonTC = useUITache(buttonTC)

@@ -1,5 +1,4 @@
-import { html } from '../libs/lit-html.js'
-import { makeComponentMaker } from '../helpers/index.js'
+import { makeTacheFormatComponent, useUITache } from '../helpers/index.js'
 import {
   isObject, isArray,
   Data, Mutation,
@@ -16,10 +15,10 @@ import { FORM_ITEM_TYPE_MAP } from './form.js'
  * @param configs
  * @return Data of TemplateResult
  */
-export const makeFormGroupC = makeComponentMaker({
+export const formGroupTC = makeTacheFormatComponent({
   prepareSingletonLevelContexts: (options, { useStyles, useOutputs }) => {
     // childs are options of form item component or component & related interface itself
-    //   -> options of form item component: { name, type, ... }
+    //   -> options of form item component: { styles: { name, type, ... }, marks, ... } | { name, type, marks, actuations, ... }
     //   -> component & related interface: [component, { name, type, schemaIn, schemaOut }]
     const childsRD = useStyles('childs', [])
     const rulesRD = useStyles('rules', [])
@@ -30,13 +29,13 @@ export const makeFormGroupC = makeComponentMaker({
 
     // create component from childs options
     //   -> take: childs
-    //   -> return: [{ name, component, interface }, ...]
-    const childsToFormItemsM = Mutation.ofLiftLeft(options => {
-      return options.map(option => {
-        if (isObject(option)) {
-          let { marks, styles, actuations, configs, outputs } = option
+    //   -> return: [{ name, component, interface: { schemaIn, schemaOut } }, ...]
+    const childsToFormItemsM = Mutation.ofLiftLeft(childs => {
+      return childs.map(child => {
+        if (isObject(child)) {
+          let { marks, styles, actuations, configs, outputs } = child
           if (!styles) {
-            styles = option
+            styles = child
             delete styles.marks
             delete styles.actuations
             delete styles.configs
@@ -53,11 +52,11 @@ export const makeFormGroupC = makeComponentMaker({
             component: FORM_ITEM_TYPE_MAP.get(type)({ marks, styles, actuations, configs, outputs }),
             interface: { schemaIn: outputs.schemaIn, schemaOut: outputs.schemaOut }
           }
-        } else if (isArray(option)) {
-          const { name, schemaIn, schemaOut } = option[1]
+        } else if (isArray(child)) {
+          const { name, schemaIn, schemaOut } = child[1]
           return {
             name,
-            component: option[0],
+            component: child[0],
             interface: { schemaIn, schemaOut }
           }
         }
@@ -68,6 +67,9 @@ export const makeFormGroupC = makeComponentMaker({
 
     // component in formItemsRD is a Data of Data structure here
     // it needs to be flatted before return as part of SingletonLevelContexts
+    //   -> take: formItems
+    //   -> return: { components: { name: component, ... }, interfaces: { name: interface, ... }}
+    //     -> where interface -> { schemaIn, schemaOut }
     const formItemsToPreContextsM = Mutation.ofLiftLeft(formItems => {
       return formItems.reduce((acc, formItem) => {
         const { name, component, interface: i } = formItem
@@ -83,10 +85,16 @@ export const makeFormGroupC = makeComponentMaker({
     const wrappedComponentsRD = preContextsRD.pipe(pluckT('components'), replayWithLatest(1))
     const componentsRD = wrappedComponentsRD.pipe(mapT(combineLatestT), replayWithLatest(1), withValueFlatted, replayWithLatest(1))
 
-    const interfacesRD = preContextsRD.pipe(pluckT('interfaces'), replayWithLatest(1))
-    const schemaOutsRD = interfacesRD.pipe(mapT(interfaces => {
-      return Object.entries(interfaces).reduce((acc, [name, value]) => {
-        acc[name] = acc[name] || value.schemaOut
+    const wrappedInterfacesRD = preContextsRD.pipe(pluckT('interfaces'), replayWithLatest(1))
+    const schemaInsRD = wrappedInterfacesRD.pipe(mapT(interfaces => {
+      return Object.entries(interfaces).reduce((acc, [name, { schemaIn }]) => {
+        acc[name] = acc[name] || schemaIn
+        return acc
+      }, {})
+    }), replayWithLatest(1), mapT(combineLatestT), replayWithLatest(1), withValueFlatted, replayWithLatest(1))
+    const schemaOutsRD = wrappedInterfacesRD.pipe(mapT(interfaces => {
+      return Object.entries(interfaces).reduce((acc, [name, { schemaOut }]) => {
+        acc[name] = acc[name] || schemaOut
         return acc
       }, {})
     }), replayWithLatest(1), mapT(combineLatestT), replayWithLatest(1), withValueFlatted, replayWithLatest(1))
@@ -98,7 +106,7 @@ export const makeFormGroupC = makeComponentMaker({
       components: componentsRD
     }
   },
-  handler: ({ marks, styles, actuations, configs, singletonLevelContexts, componentLevelContexts }) => {
+  prepareTemplate: ({ marks, styles, actuations, configs, singletonLevelContexts }, template, mutation, { html }) => {
     styles = {
       ...styles,
       components: singletonLevelContexts.components
@@ -107,3 +115,5 @@ export const makeFormGroupC = makeComponentMaker({
     return html`${Object.values(styles.components)}`
   }
 })
+
+export const useFormGroupTC = useUITache(formGroupTC)
