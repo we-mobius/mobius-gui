@@ -1,5 +1,6 @@
 import { directive, NodePart } from 'lit-html'
 export * from 'lit-html'
+export { cache } from 'lit-html/directives/cache.js'
 
 export const notifyWhenRerender = directive((eventHandler, value) => part => {
   // ref: https://github.com/Polymer/lit-html/blob/e66eb66/src/lib/parts.ts
