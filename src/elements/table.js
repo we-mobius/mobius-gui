@@ -14,19 +14,35 @@ export const makeTableE = makeElementMaker({
   handler: (view, { styles, utils: { prefix } }) => {
     const { data } = styles
 
-    const createTable = data => data.reduce((rows, rowData) => {
-      rows.push(
-        html`
-          <div class='mobius-layout__horizontal'>
-            ${rowData.reduce((row, value) => {
-              row.push(html`<div class='mobius-flex-grow--1'>${value}</div>`)
+    const createTable = data => {
+      const tableWrapper = table => html`<table class='mobius-table--collapse'>${table}</table>`
+      const headWrapper = head => html`<thead>${head}</thead>`
+      const bodyWrapper = body => html`<tbody>${body}</tbody>`
+      const normalRowWrapper = row => html`<tr>${row}</tr>`
+      const headCellWrapper = value => html`<th class='mobius-padding-x--base mobius-padding-y--xs mobius-border--all'>${value}</th>`
+      const bodyCellWrapper = value => html`<td class='mobius-padding-x--base mobius-padding-y--xs mobius-border--all'>${value}</td>`
+
+      const head = headWrapper(normalRowWrapper(
+        data.shift().reduce((cells, value) => {
+          cells.push(headCellWrapper(value))
+          return cells
+        }, [])
+      ))
+      const body = bodyWrapper(
+        data.reduce((rows, rowData) => {
+          rows.push(normalRowWrapper(
+            rowData.reduce((row, value) => {
+              row.push(bodyCellWrapper(value))
               return row
-            }, [])}
-          </div>
-        `
+            }, [])
+          ))
+          return rows
+        }, [])
       )
-      return rows
-    }, [])
+      const table = tableWrapper([head, body])
+
+      return table
+    }
 
     return view`${createTable(data)}`
   }
