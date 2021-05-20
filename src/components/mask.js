@@ -4,7 +4,7 @@ import {
   Mutation,
   makeGeneralEventHandler,
   pipeAtom, binaryTweenPipeAtom,
-  mergeT, tapValueT
+  mergeT
 } from '../libs/mobius-utils.js'
 
 /**
@@ -16,7 +16,7 @@ import {
  */
 export const maskTC = makeTacheFormatComponent({
   prepareSingletonLevelContexts: (_, { useStyles, useActuations }) => {
-    const externalToggleRD = useActuations('toggle', {})
+    const externalToggleRD = useActuations('toggle', {}, { isDistinct: false })
 
     const [clickHandlerRD, , clickD] = makeGeneralEventHandler(e => false)
 
