@@ -1,0 +1,9 @@
+/*! purgecss start ignore */
+
+.mobius-table { display: table; }
+.mobius-table--inline { display: inline-table; }
+
+.mobius-table--collapse { border-collapse: collapse; }
+.mobius-table--separate { border-collapse: separate; }
+
+/*! purgecss end ignore */

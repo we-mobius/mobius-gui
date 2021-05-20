@@ -13,7 +13,9 @@
 .mobius-display--flex { display: flex; }
 .mobius-display--iflex { display: inline-flex; }
 .mobius-display--grid { display: grid; }
-.mobius-display--igrid { display: igrid; }
+.mobius-display--igrid { display: inline-grid; }
+.mobius-display--table { display: table; }
+.mobius-display--itable { display: inline-table; }
 
 .mobius-display--listitem { display: list-item; }
 
