@@ -18,7 +18,7 @@ export const tableDC = makeDriverFormatComponent({
           data: dataD
         }
       },
-      internals: {
+      _internals: {
         styles: {
           data: dataD
         }

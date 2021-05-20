@@ -56,7 +56,7 @@ export const makeUIDriver = ({
       // extract options
       const { enableReplay = true } = options
 
-      let { inputs = {}, internals: { marks = {}, styles = {}, actuations = {}, configs = {} } = {}, outputs = {} } = singletonLevelContexts
+      let { inputs = {}, _internals: { marks = {}, styles = {}, actuations = {}, configs = {} } = {}, outputs = {} } = singletonLevelContexts
 
       const _processOption = compose(replayWithLatest(1), emptyStartWithT({}), combineLatestT, atomize)
 
