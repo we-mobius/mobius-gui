@@ -22,6 +22,7 @@ export const makeUnidirUITacheSource = source => {
     acc[key] = isAtom(value) ? replayWithLatest(1, value) : replayWithLatest(1, Data.of(value))
     return acc
   }, {})
+
   return replayWithLatest(1, combineLatestT(rawOption))
 }
 
