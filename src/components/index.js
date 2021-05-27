@@ -8,9 +8,10 @@ export * from './container__fixed-resizable.js'
 
 export * from './mask.js'
 
+export * from './toolbar.js'
+
 export * from './form.js'
 export * from './form-group.js'
-
 export * from './input.js'
 export * from './input__file.js'
 export * from './button.js'
