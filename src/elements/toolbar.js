@@ -108,7 +108,6 @@ export const makeToolbarE = makeElementMaker({
       item.eventHandler = eventHandler || item.eventHandler
       return item
     })
-    console.error(items)
 
     // items to templates
     const itemTemplates = items.map(itemToTemplate)
