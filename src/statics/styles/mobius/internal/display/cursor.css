@@ -16,7 +16,7 @@
 
 /* 选择 */
 .mobius-cursor--cell { cursor: cell; }
-.mobius-cursor--cross { cursor: cross; }
+.mobius-cursor--cross { cursor: crosshair; }
 .mobius-cursor--text { cursor: text; }
 .mobius-cursor--v-text { cursor: vertical-text; }
 

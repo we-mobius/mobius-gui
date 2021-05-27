@@ -35,11 +35,13 @@
   --bg-color-primary: var(--cigaret-color-lighter-m);
   --bg-color-second: var(--mobius-color-lighter-m);
   --bg-color-third: var(--light-color-lighter-m);
+  --bg-color-mean: var(--gray-color-normal);
 
   --fg-color-base: var(--dark-color-normal);
   --fg-color-primary: var(--cigaret-color-darker-m);
   --fg-color-second: var(--mobius-color-darker-m);
   --fg-color-third: var(--light-color-darker-m);
+  --fg-color-mean: var(--gray-color-normal);
 
   --bg-color-red: var(--red-color-lighter-m);
   --bg-color-ry: var(--ry-color-lighter-m);
@@ -84,11 +86,13 @@
   --bg-color-primary: var(--cigaret-color-darker-m);
   --bg-color-second: var(--mobius-color-darker-m);
   --bg-color-third: var(--dark-color-darker-m);
+  --bg-color-mean: var(--gray-color-normal);
 
   --fg-color-base: var(--light-color-normal);
   --fg-color-primary: var(--cigaret-color-lighter-m);
-  --fg-color-second: var(--cigaret-color-lighter-m);
+  --fg-color-second: var(--mobius-color-lighter-m);
   --fg-color-third: var(--dark-color-lighter-m);
+  --fg-color-mean: var(--gray-color-normal);
 
   --bg-color-red: var(--red-color-darker-m);
   --bg-color-ry: var(--ry-color-darker-m);

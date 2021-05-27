@@ -150,6 +150,9 @@
 .mobius-bg--third,
 .hover_mobius-bg--third:hover,
 .active_mobius-bg--third:active { background-color: var(--bg-color-third); }
+.mobius-bg--mean,
+.hover_mobius-bg--mean:hover,
+.active_mobius-bg--mean:active { background-color: var(--bg-color-mean); }
 
 .mobius-bg--red,
 .hover_mobius-bg--red:hover,

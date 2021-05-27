@@ -31,18 +31,18 @@
 .mobius-text--base,
 .hover_mobius-text--base:hover,
 .active_mobius-text--base:active { color: var(--fg-color-base); }
-
 .mobius-text--primary,
 .hover_mobius-text--primary:hover,
 .active_mobius-text--primary:active { color: var(--fg-color-primary); }
-
 .mobius-text--second,
 .hover_mobius-text--second:hover,
 .active_mobius-text--second:active { color: var(--fg-color-second); }
-
 .mobius-text--third,
 .hover_mobius-text--third:hover,
 .active_mobius-text--third:active { color: var(--fg-color-third); }
+.mobius-text--mean,
+.hover_mobius-text--mean:hover,
+.active_mobius-text--mean:active { color: var(--fg-color-mean); }
 
 .mobius-text--red,
 .hover_mobius-text--red:hover,
