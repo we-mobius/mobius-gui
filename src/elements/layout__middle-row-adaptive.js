@@ -29,7 +29,7 @@ export const makeMiddleRowAdaptiveLayoutE = makeElementMaker({
   configs: {},
   handler: (view, { styles }) =>
     view`
-      <div class="mobius-display--flex mobius-layout__vertical mobius-flex-wrap--nowrap ${'rootClasses'}">
+      <div class="mobius-display--flex mobius-layout__vertical mobius-flex-items--stretch mobius-flex-wrap--nowrap ${'rootClasses'}">
         ${makeTop(styles.top)}
         ${makeMiddle(styles.middle)}
         ${makeBottom(styles.bottom)}
