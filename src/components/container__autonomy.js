@@ -12,7 +12,7 @@ import {
  * @param { { styles: { rootClasses?: Data } } } inputs
  * @return { { id: Data, container: Data } } outputs
  */
-export const autonomyContainer = makeDriverFormatComponent({
+export const autonomyContainerDC = makeDriverFormatComponent({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
     const idRD = replayWithLatest(1, Data.of(makeUniqueString('autonomy-container')))
     const containerRD = idRD.pipe(idToNodeT(100), replayWithLatest(1))
@@ -44,9 +44,9 @@ export const autonomyContainer = makeDriverFormatComponent({
     const { rootClasses } = styles
 
     return html`
-      <div id=${id} class=${rootClasses}>awesome autonomy container!</div>
+      <div id=${id} class=${rootClasses}>Awesome autonomy container!</div>
     `
   }
 })
 
-export const useAutonomyContainerDC = useUIDriver(autonomyContainer)
+export const useAutonomyContainerDC = useUIDriver(autonomyContainerDC)
