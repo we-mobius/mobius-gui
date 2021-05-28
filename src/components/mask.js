@@ -1,10 +1,11 @@
-import { makeTacheFormatComponent, useUITache } from '../helpers/index.js'
+import { makeDriverFormatComponent, useUIDriver } from '../helpers/index.js'
 import { makeMaskE } from '../elements/index.js'
 import {
-  Mutation,
+  Data, Mutation,
   makeGeneralEventHandler,
   pipeAtom, binaryTweenPipeAtom,
-  mergeT
+  mergeT,
+  replayWithLatest
 } from '../libs/mobius-utils.js'
 
 /**
@@ -14,35 +15,55 @@ import {
  * @param configs
  * @return Data of TemplateResult
  */
-export const maskTC = makeTacheFormatComponent({
-  prepareSingletonLevelContexts: (_, { useStyles, useActuations }) => {
-    const externalToggleRD = useActuations('toggle', {}, { isDistinct: false })
+export const maskDC = makeDriverFormatComponent({
+  prepareSingletonLevelContexts: (options, driverLevelContexts) => {
+    const externalToggleD = Data.empty()
+    const isShowRD = replayWithLatest(1, Data.of(false))
+    const contentRD = replayWithLatest(1, Data.of(''))
+    const rootClassesRD = replayWithLatest(1, Data.of(''))
+    const contentContainerClassesRD = replayWithLatest(1, Data.of(''))
+    const maskClassesRD = replayWithLatest(1, Data.of(''))
 
     const [clickHandlerRD, , clickD] = makeGeneralEventHandler(e => false)
 
-    const toggleD = mergeT(externalToggleRD, clickD)
+    const toggleD = mergeT(externalToggleD, clickD)
 
-    const isShowRD = useStyles('isShow', false)
     pipeAtom(toggleD, Mutation.ofLiftBoth((_, isShow) => !isShow), isShowRD)
     binaryTweenPipeAtom(clickD, isShowRD)
 
     return {
-      isShow: isShowRD,
-      clickHandler: clickHandlerRD
+      inputs: {
+        styles: {
+          isShow: isShowRD,
+          content: contentRD,
+          rootClasses: rootClassesRD,
+          contentContainerClasses: contentContainerClassesRD,
+          maskClasses: maskClassesRD
+        },
+        actuations: {
+          toggle: externalToggleD
+        }
+      },
+      _internals: {
+        styles: {
+          isShow: isShowRD,
+          content: contentRD,
+          rootClasses: rootClassesRD,
+          contentContainerClasses: contentContainerClassesRD,
+          maskClasses: maskClassesRD
+        },
+        actuations: {
+          clickHandler: clickHandlerRD
+        }
+      },
+      outputs: {
+        isShow: isShowRD
+      }
     }
   },
-  prepareTemplate: ({ marks, styles, actuations, configs, singletonLevelContexts }, template, mutation, contexts) => {
-    styles = {
-      ...styles,
-      isShow: singletonLevelContexts.isShow
-    }
-    actuations = {
-      ...actuations,
-      clickHandler: singletonLevelContexts.clickHandler
-    }
-
+  prepareTemplate: ({ marks, styles, actuations, configs }, template, mutation, contexts) => {
     return makeMaskE({ marks, styles, actuations, configs })
   }
 })
 
-export const useMaskTC = useUITache(maskTC)
+export const useMaskDC = useUIDriver(maskDC)
