@@ -1,7 +1,9 @@
 import {
+  looseCurryN,
   makeUniqueString,
   Data,
-  replayWithLatest
+  replayWithLatest,
+  startWithT
 } from '../libs/mobius-utils.js'
 import {
   makeDriverFormatComponent, useUIDriver,
@@ -49,4 +51,9 @@ export const autonomyContainerDC = makeDriverFormatComponent({
   }
 })
 
-export const useAutonomyContainerDC = useUIDriver(autonomyContainerDC)
+export const useAutonomyContainerDC = looseCurryN(2, (driverOptions, interfaces) => {
+  const res = useUIDriver(autonomyContainerDC, driverOptions, interfaces)
+  const { template, container } = res.outputs
+  res.outputs.app = replayWithLatest(1, startWithT(template, container))
+  return res
+})
