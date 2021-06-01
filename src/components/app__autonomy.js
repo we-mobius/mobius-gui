@@ -21,7 +21,8 @@ export const autonomyAppDC = makeDriverFormatComponent({
     const idRD = replayWithLatest(1, Data.of(makeUniqueString('autonomy-app')))
     const containerRD = idRD.pipe(idToNodeT(100), replayWithLatest(1))
 
-    const rootClassesD = Data.empty()
+    const rootClassesRD = replayWithLatest(1, Data.of(''))
+    const contentRD = replayWithLatest(1, Data.of(undefined))
 
     // step1: prepare
     const startRD = replayWithLatest(1, Data.empty())
@@ -65,7 +66,8 @@ export const autonomyAppDC = makeDriverFormatComponent({
     return {
       inputs: {
         styles: {
-          rootClasses: rootClassesD
+          rootClasses: rootClassesRD,
+          content: contentRD
         },
         actuations: {
           start: startRD,
@@ -78,7 +80,8 @@ export const autonomyAppDC = makeDriverFormatComponent({
           id: idRD
         },
         styles: {
-          rootClasses: rootClassesD
+          rootClasses: rootClassesRD,
+          content: contentRD
         }
       },
       outputs: {
@@ -92,10 +95,10 @@ export const autonomyAppDC = makeDriverFormatComponent({
   },
   prepareTemplate: ({ marks, styles, actuations, configs }, template, mutation, { html }) => {
     const { id } = marks
-    const { rootClasses } = styles
+    const { rootClasses, content } = styles
 
     return html`
-      <div id=${id} class=${rootClasses}>Awesome autonomy app!</div>
+      <div id=${id} class=${rootClasses}>${content === undefined ? 'Awesome autonomy app!' : content}</div>
     `
   }
 })

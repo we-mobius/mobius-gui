@@ -46,6 +46,7 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
     // emit container when window size change
     // ! use promiseSwitchT instead of switchT because there is no container to get
     // ! when containerRD triggers containerSizeChangeSourceRD in the first time
+    // TODO: use mergeT & switchT
     const containerWhenSizeChangeD = promiseSwitchT(containerRD, containerSizeChangeSourceRD)
     const containerToContainerSizeM = Mutation.ofLiftLeft(container => [container.offsetWidth, container.offsetHeight])
     const containerSizeRD = replayWithLatest(1, Data.empty())
@@ -77,8 +78,8 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
         containerHeight: containerSize[1],
         minWidth: between(barWeight * 2, clientSize[0], minWidth),
         minHeight: between(barWeight * 2, clientSize[1], minHeight),
-        maxWidth: maxWidth > 0 ? maxWidth : 0,
-        maxHeight: maxHeight > 0 ? maxHeight : 0
+        maxWidth: minTo(0, maxWidth),
+        maxHeight: minTo(0, maxHeight)
       }
     }), replayWithLatest(1))
 
@@ -272,9 +273,7 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
     const validHandleTargetRD = handleTargetRD.pipe(filterT(v => v), replayWithLatest(1))
 
     const handleTypeSetterD = Data.empty()
-    const setHandleTypeM = Mutation.ofLiftBoth((update, prev) => {
-      return { ...prev, ...update }
-    })
+    const setHandleTypeM = Mutation.ofLiftBoth((update, prev) => ({ ...prev, ...update }))
     pipeAtom(handleTypeSetterD, setHandleTypeM, handleTypeRD)
     pipeAtom(handleTypeRD, Mutation.ofLiftLeft(type => Object.values(type).some(v => v)), isHandlingRD)
 
@@ -375,7 +374,7 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
       // when bottom bar is out of screen, ensure top bar is always in the screen
       const minTop = bottom < 0 ? 0 : -Infinity
       // when containerHeight < innerHeight
-      //  -> it can be grow but can not be shrink
+      //  -> it can grow but can not shrink
       //  -> so we use minOf(containerHeight, minHeight) to specify the actual minHeight of container
       const actualMinHeight = minOf(containerHeight, minHeight)
       // clientHeight = top + containerHeight + bottom
