@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "baseUrl": ".",
+    "paths": {
+      "Business/*": [
+        "./src/business/*"
+      ],
+      "FreeBusiness/*": [
+        "./src/business-free/*"
+      ],
+      "Interface/*": [
+        "./src/interface/*"
+      ],
+      "Libs/*": [
+        "./src/libs/*"
+      ],
+      "Statics/*": [
+        "./src/statics/*"
+      ],
+      "Images/*": [
+        "./src/statics/images/*"
+      ],
+      "Styles/*": [
+        "./src/statics/styles/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "dev",
+    "release",
+    "scripts"
+  ]
+}

@@ -1,4 +1,4 @@
-export * from '@we-mobius/mobius-utils/es/external/class.js'
+export * from '@we-mobius/mobius-utils/es/external/class'
 
 export * from './base.js'
 export * from './mark.js'

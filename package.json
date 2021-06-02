@@ -1,31 +1,35 @@
 {
   "name": "@we-mobius/mobius-ui",
-  "version": "0.1.0",
-  "description": "Mobius UI is a neumorphism-like, utility-first UI framework.",
+  "version": "0.3.0",
+  "description": "Just a UI framework.",
   "type": "module",
   "main": "./src/main.js",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
+      "require": "./release/mobius-ui.umd.js",
       "import": "./src/main.js",
+      "node": "./src/main.js",
       "default": "./src/main.js"
     },
     "./module": "./src/main.js",
     "./es": "./src/main.js",
-    "./cjs": "./dist/cjs/index.js",
-    "./module/": "./src/",
-    "./es/": "./src/",
-    "./cjs/": "./src/cjs/",
-    "./src/": "./src/",
-    "./dist/": "./dist/"
+    "./module/*": "./src/es/*.js",
+    "./es/*": "./src/es/*.js",
+    "./src/*": "./src/*.js",
+    "./dist/*": "./dist/*.js",
+    "./release/*": "./release/*.js",
+    "./package.json": "./package.json"
   },
   "module": "./src/main.js",
   "keywords": [
+    "Interface",
     "UI framework",
-    "Mobius"
+    "Mobius",
+    "Frontend"
   ],
   "directories": {
-    "doc": "docs"
+    "doc": "./docs",
+    "bin": "./bin"
   },
   "scripts": {
     "cz-commit": "npm run lint && npx git-cz",
@@ -37,15 +41,19 @@
     "serve:build": "npx live-server ./build --port=0624",
     "serve:dist": "npx live-server ./dist --port=0624",
     "expose": "npx ngrok http 624",
-    "bundle": "node ./scripts/bundle"
+    "bundle": "node ./scripts/bundle",
+    "beforepublish": "npm run build && npm run dist && npm run bundle"
   },
-  "repository": "https://github.com/we-mobius/mobius-ui.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/we-mobius/mobius-ui.git"
+  },
   "author": {
     "name": "kongxiangyan",
     "email": "kcigaret@outlook.com",
     "url": "http://cigaret.world/"
   },
-  "license": "GPL v3.0",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/we-mobius/mobius-ui/issues"
   },
@@ -108,12 +116,19 @@
     "lit-html": "^1.4.1",
     "rxjs": "^6.6.0"
   },
-  "jsdelivr": "./release/styles/mobius.css",
+  "jsdelivr": "./release/mobius-ui.umd.js",
   "files": [
     "/release/*",
-    "/public/*",
     "/dist/*",
-    "/docs/*"
+    "/build/*",
+    "/src/*",
+    "/public/*",
+    "/docs/*",
+    "/bin/*"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "./statics/**"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org",

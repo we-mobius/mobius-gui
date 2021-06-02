@@ -1,25 +1,34 @@
-const PUBLIC_PATH = '/' // '/'
+const PUBLIC_PATH = './' // '/'
 // https://fonts.googleapis.com/
 //  -> https://fonts.googleapis.cnpmjs.org/
 //  -> https://fonts.dogedoge.com/
 const CSS_CDN_ORIGIN = 'https://fonts.googleapis.cnpmjs.org/'
+const CSP_WHITE_LIST = 'https://*.unpkg.com https://*.jsdelivr.net https://*.cloudflare.com'
 
 const commonTemplate = {
-  title: 'Hello, Mobius Project!',
-  'meta-csp': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' *.alicdn.com data:; connect-src *;",
+  title: 'Hello, Mobius Electron Project!',
+  'meta-csp':
+    `default-src 'self' ${CSP_WHITE_LIST};` +
+    ` script-src 'self' 'unsafe-inline' 'unsafe-eval' ${CSP_WHITE_LIST};` +
+    ` style-src 'self' 'unsafe-inline' ${CSP_WHITE_LIST};` +
+    ` font-src 'self' *.alicdn.com data: ${CSP_WHITE_LIST};` +
+    ` img-src 'self' data: ${CSP_WHITE_LIST};` +
+    ` connect-src * ${CSP_WHITE_LIST};` +
+    ' worker-src blob:;' +
+    ' child-src blob:',
   whisper: 'The owner is looking for a job as a product manager | business manager \\n             For a quickest preview of his info, check https://www.cigaret.world',
   fonts: [
     // `${PUBLIC_PATH}statics/fonts/Workbench[wdth,wght].woff2`,
     // `${PUBLIC_PATH}statics/fonts/Sixtyfour[wdth,wght].woff2`
   ],
   asyncCss: [
-    `${CSS_CDN_ORIGIN}css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap`,
-    `${CSS_CDN_ORIGIN}css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap`,
-    `${CSS_CDN_ORIGIN}css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap`,
-    `${CSS_CDN_ORIGIN}css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap`
+    // `${CSS_CDN_ORIGIN}css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap`,
+    // `${CSS_CDN_ORIGIN}css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap`,
+    // `${CSS_CDN_ORIGIN}css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap`,
+    // `${CSS_CDN_ORIGIN}css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap`
   ],
   css: [
-    'https://cdn.jsdelivr.net/npm/@we-mobius/mobius-ui@latest'
+    // 'https://cdn.jsdelivr.net/npm/@we-mobius/mobius-ui@latest'
   ],
   scripts: [],
   // generator: https://favicon.io/favicon-converter/
@@ -102,14 +111,6 @@ export const getMobiusConfig = () => ({
   template: {
     index: {
       title: 'Index Page',
-      ...commonTemplate
-    },
-    popup: {
-      title: 'Popup Page',
-      ...commonTemplate
-    },
-    options: {
-      title: 'Options Page',
       ...commonTemplate
     }
   }

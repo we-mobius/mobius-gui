@@ -44,22 +44,24 @@ const pack = () => {
 
 const copy = () => {
   return new Promise((resolve) => {
+    console.log('【copy】 start...')
     copyFileSync(
       rootResolvePath('src/statics/images/thoughts-daily.png'),
       rootResolvePath(resolvePathInDes('statics/images/thoughts-daily.png'))
     )
     copyFileSync(
-      rootResolvePath('release/styles/base.css'),
-      rootResolvePath('release/styles/base.wxss')
+      rootResolvePath('release/styles/css-base.css'),
+      rootResolvePath('release/styles/css-base.wxss')
     )
     copyFileSync(
-      rootResolvePath('release/styles/mobius.css'),
-      rootResolvePath('release/styles/mobius.wxss')
+      rootResolvePath('release/styles/mobius-css.css'),
+      rootResolvePath('release/styles/mobius-css.wxss')
     )
     copyFileSync(
-      rootResolvePath('release/styles/addon.css'),
-      rootResolvePath('release/styles/addon.wxss')
+      rootResolvePath('release/styles/css-addon.css'),
+      rootResolvePath('release/styles/css-addon.wxss')
     )
+    console.log('【copy】 complete!')
     // TODO: 清除 base.js & addons.js & mobius.js
     resolve()
   })

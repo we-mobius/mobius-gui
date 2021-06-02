@@ -12,17 +12,8 @@ const PATHS = {
   output: rootResolvePath('release')
 }
 
-export const getReleaseConfig = () => ({
+const reusedConfigs = {
   mode: 'production',
-  entry: {
-    mobius: './src/mobius.release.entry.js',
-    addon: './src/addon.release.entry.js',
-    base: './src/base.release.entry.js',
-    mobiusui: './src/mobiusui.release.entry.js'
-  },
-  output: {
-    path: PATHS.output
-  },
   module: {
     rules: [
       {
@@ -61,17 +52,58 @@ export const getReleaseConfig = () => ({
         toType: 'dir'
       },
       {
-        from: './src/statics/styles/fonts/',
-        to: path.resolve(PATHS.output, './statics/styles/fonts/'),
+        from: './src/statics/fonts/',
+        to: path.resolve(PATHS.output, './statics/fonts/'),
         toType: 'dir'
       },
       {
-        from: './src/statics/fonts/',
-        to: path.resolve(PATHS.output, './statics/fonts/'),
+        from: './src/statics/images/',
+        to: path.resolve(PATHS.output, './statics/images/'),
+        toType: 'dir'
+      },
+      {
+        from: './src/statics/styles/fonts/',
+        to: path.resolve(PATHS.output, './statics/styles/fonts/'),
         toType: 'dir'
       }
     ])
   ],
   devtool: 'hidden-nosources-source-map'
 }
-)
+
+export const getReleaseConfig = () => ([
+  {
+    target: 'web',
+    entry: {
+      'mobius-css': './src/mobius-css.release.entry.js',
+      'css-addon': './src/css-addon.release.entry.js',
+      'css-base': './src/css-base.release.entry.js'
+    },
+    output: {
+      filename: '[name].js',
+      path: PATHS.output
+    },
+    ...reusedConfigs
+  },
+  {
+    target: 'web',
+    entry: {
+      'mobius-ui': './src/mobius-ui.release.entry.js'
+    },
+    output: {
+      filename: '[name].umd.js',
+      path: PATHS.output,
+      // @refer: https://webpack.js.org/configuration/output/#outputlibrarytarget
+      // @refer: https://webpack.js.org/configuration/output/#outputlibrarytype
+      // libraryTarget: 'umd',
+      library: {
+        name: 'MobiusUI',
+        type: 'umd'
+      },
+      // @refer: https://webpack.js.org/configuration/output/#outputglobalobject
+      globalObject: 'this',
+      umdNamedDefine: true
+    },
+    ...reusedConfigs
+  }
+])

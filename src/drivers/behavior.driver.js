@@ -1,4 +1,3 @@
-import { makeBaseScopeManager } from '../libs/mobius-js.js'
 import {
   TERMINATOR,
   Data, Mutation,
@@ -81,5 +80,3 @@ export const makeBehaviorDriver = () => {
     disableCtrlRRefreshM
   }
 }
-
-export const behaviorDriverManager = makeBaseScopeManager({ maker: makeBehaviorDriver })

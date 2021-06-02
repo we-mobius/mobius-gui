@@ -5,6 +5,8 @@ import { getProductionConfig } from './config/webpack.prod.js'
 import { getReleaseConfig } from './config/webpack.release.js'
 import { merge } from 'webpack-merge'
 
+const isArray = tar => Object.prototype.toString.call(tar) === '[object Array]'
+
 export const getWebpackConfig = (env, args) => {
   const { mode } = env
   const commonConfig = getCommonConfig()
@@ -25,5 +27,9 @@ export const getWebpackConfig = (env, args) => {
     default:
       break
   }
-  return merge(commonConfig, specificConfig, {})
+  if (isArray(specificConfig)) {
+    return specificConfig.map(config => merge(commonConfig, config, {}))
+  } else {
+    return merge(commonConfig, specificConfig, {})
+  }
 }

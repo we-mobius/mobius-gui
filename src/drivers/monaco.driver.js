@@ -1,15 +1,14 @@
 import {
-  stdLineLog, debounce,
+  debounce, composeL,
   Mutation, Data, TERMINATOR, pipeAtom,
   createMutationFromEvent,
   dataToData, mutationToDataS,
   replayWithLatest,
-  combineLatestT, startWithT, skipUntilT
+  combineLatestT, skipUntilT
 } from '../libs/mobius-utils.js'
-import { equiped } from '../common/index.js'
 import {
   loaderObservers, loaderObservables, LOADER_TYPE,
-  dredge, ofType, withResponseFilter, makeBaseScopeManager
+  dredge, ofType, withResponseFilter
 } from '../libs/mobius-js.js'
 // https://cdn.jsdelivr.net/npm/
 // https://unpkg.com/
@@ -47,7 +46,7 @@ document.querySelector('.highlight-span').innerHTML = "Welcome Mobius Bookmarkle
 
 export const makeMonacoDriver = ({ autoLoad, layoutDebounce = 50 } = {}) => {
   const monacoLoaderSrc = 'https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs/loader.js'
-  dredge(loaderObservables, equiped(
+  dredge(loaderObservables, composeL(
     ofType(LOADER_TYPE.js),
     withResponseFilter('success')
   ))
@@ -134,6 +133,3 @@ export const makeMonacoDriver = ({ autoLoad, layoutDebounce = 50 } = {}) => {
     layoutM
   }
 }
-
-export const monacoDriverManager = makeBaseScopeManager({ maker: makeMonacoDriver })
-// monacoDriverManager.registerScope('app', makeMonacoDriverA())
