@@ -20,7 +20,7 @@ export { guard } from 'lit-html/directives/guard.js'
 export { ifDefined } from 'lit-html/directives/if-defined.js'
 export { live } from 'lit-html/directives/live.js'
 
-export { ref } from 'lit-html/directives/ref.js'
+// export { ref } from 'lit-html/directives/ref.js'
 
 export { until } from 'lit-html/directives/until.js'
 export { asyncAppend } from 'lit-html/directives/async-append.js'
