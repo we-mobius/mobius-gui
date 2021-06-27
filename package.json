@@ -1,6 +1,6 @@
 {
   "name": "@we-mobius/mobius-ui",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Just a UI framework.",
   "type": "module",
   "main": "./src/main.js",
