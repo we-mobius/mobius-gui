@@ -6,7 +6,7 @@ import {
   pipeAtom, binaryTweenPipeAtom,
   pluckT, mapT, combineLatestT, tapValueT
 } from '../libs/mobius-utils.js'
-import { FORM_ITEM_TYPE_MAP } from './form.js'
+import { FORM_ITEM_MAP } from './form.js'
 
 /**
  * @param marks
@@ -49,7 +49,7 @@ export const formGroupTC = makeTacheFormatComponent({
 
           return {
             name,
-            component: FORM_ITEM_TYPE_MAP.get(type)({ marks, styles, actuations, configs, outputs }),
+            component: FORM_ITEM_MAP.get(type)()({ marks, styles, actuations, configs, outputs }),
             interface: { schemaIn: outputs.schemaIn, schemaOut: outputs.schemaOut }
           }
         } else if (isArray(child)) {
