@@ -1,4 +1,4 @@
-import { makeTacheFormatComponent, useUITache } from '../helpers/index.js'
+import { makeDriverFormatComponent, useUIDriver } from '../helpers/index.js'
 import {
   isObject, isArray,
   Data, Mutation,
@@ -13,51 +13,91 @@ import { FORM_ITEM_MAP } from './form.js'
  * @param styles Object, { name, type, layout, childs, rules }
  * @param actuations Object, { schemaIn, schemaOut }
  * @param configs
- * @return Data of TemplateResult
+ * @return driver
  */
-export const formGroupTC = makeTacheFormatComponent({
-  prepareSingletonLevelContexts: (options, { useStyles, useOutputs }) => {
-    // childs are options of form item component or component & related interface itself
-    //   -> options of form item component: { styles: { name, type, ... }, marks, ... } | { name, type, marks, actuations, ... }
+export const formGroupDC = makeDriverFormatComponent({
+  prepareSingletonLevelContexts: (options, driverLevelContexts) => {
+    // 表单项约束
+    const schemaInD = Data.empty()
+    const schemaOutRD = replayWithLatest(1, Data.empty())
+    tapValueT('schemaInD')(schemaInD)
+    tapValueT('schemaOutRD')(schemaOutRD)
+
+    // childs are options of formItemComponent or component & related interface itself
+    //   -> options of formItemComponent: { styles: { name, type, ... }, marks, ... }
     //   -> component & related interface: [component, { name, type, schemaIn, schemaOut }]
-    const childsRD = useStyles('childs', [])
-    const rulesRD = useStyles('rules', [])
+    const childsInD = Data.empty()
+    const rulesInD = Data.empty()
+    const childsRD = replayWithLatest(1, Data.of([]))
+    const rulesRD = replayWithLatest(1, Data.of([]))
+    binaryTweenPipeAtom(childsInD, childsRD)
+    binaryTweenPipeAtom(rulesInD, rulesRD)
     tapValueT('childsRD')(childsRD)
     tapValueT('rulesRD')(rulesRD)
 
-    const schemaOutD = useOutputs('schemaOut', {})
-
     // create component from childs options
     //   -> take: childs
-    //   -> return: [{ name, component, interface: { schemaIn, schemaOut } }, ...]
+    //   -> return: [{ name, component, interfaces: { schemaIn, schemaOut } }, ...]
     const childsToFormItemsM = Mutation.ofLiftLeft(childs => {
       return childs.map(child => {
+        if (!isObject(child) && !isArray(child)) {
+          throw (new TypeError('"child" is expected to be type of "Object" | "Array".'))
+        }
+        // 预置表单项组件的配置项数据结构为对象
+        // 自定义表单项组件的配置项数据结构为数组
         if (isObject(child)) {
-          let { marks, styles, actuations, configs, outputs } = child
-          if (!styles) {
-            styles = child
-            delete styles.marks
-            delete styles.actuations
-            delete styles.configs
-            delete styles.outputs
+          // tacheComponent 的配置项数据结构为：{ styles, outputs, ... }
+          // driverComponent 的配置项数据结构为: { inputs, outputs, ... }
+          if (!child.styles && !child.inputs) {
+            throw (new TypeError('"child" is expected to be options of tacheComponent or driverComponent.'))
           }
-          const { name, type } = styles
 
-          outputs = outputs || {}
-          outputs.schemaIn = outputs.schemaIn || Data.of({})
-          outputs.schemaOut = outputs.schemaOut || Data.of({})
+          if (child.styles) {
+            // 解析 tacheComponent 的配置项
+            const { marks, styles, actuations, configs, outputs = {} } = child
+            const { name, type } = styles
 
-          return {
-            name,
-            component: FORM_ITEM_MAP.get(type)()({ marks, styles, actuations, configs, outputs }),
-            interface: { schemaIn: outputs.schemaIn, schemaOut: outputs.schemaOut }
+            if (!name || !type) {
+              throw (new TypeError('Both "name" and "type" option is required for formItemComponent.'))
+            }
+
+            styles.schema = styles.schema || Data.of({})
+            outputs.schema = outputs.schema || Data.of({})
+
+            return {
+              name,
+              component: FORM_ITEM_MAP.get(type)()({ marks, styles, actuations, configs, outputs }),
+              interfaces: { schemaIn: styles.schema, schemaOut: outputs.schema }
+            }
+          } else if (child.inputs) {
+            // 解析 driverComponent 的配置
+            const { inputs, outputs = {} } = child
+
+            if (!inputs.styles) {
+              throw (new TypeError('"styles" option is required for driverComponent.'))
+            }
+
+            const { name, type } = inputs.styles
+
+            if (!name || !type) {
+              throw (new TypeError('Both "name" and "type" option is required for formItemComponent.'))
+            }
+
+            inputs.styles.schema = inputs.styles.schema || Data.of({})
+            outputs.schema = outputs.schame || Data.of({})
+
+            return {
+              name,
+              component: FORM_ITEM_MAP.get(type)()({ inputs, outputs }).outputs.template,
+              interfaces: { schemaIn: inputs.styles.schema, schemaOut: outputs.schema }
+            }
           }
         } else if (isArray(child)) {
           const { name, schemaIn, schemaOut } = child[1]
           return {
             name,
             component: child[0],
-            interface: { schemaIn, schemaOut }
+            interfaces: { schemaIn, schemaOut }
           }
         }
       })
@@ -68,13 +108,13 @@ export const formGroupTC = makeTacheFormatComponent({
     // component in formItemsRD is a Data of Data structure here
     // it needs to be flatted before return as part of SingletonLevelContexts
     //   -> take: formItems
-    //   -> return: { components: { name: component, ... }, interfaces: { name: interface, ... }}
-    //     -> where interface -> { schemaIn, schemaOut }
+    //   -> return: { components: { name: component, ... }, interfaces: { name: interfaces, ... }}
+    //     -> where interfaces -> { schemaIn, schemaOut }
     const formItemsToPreContextsM = Mutation.ofLiftLeft(formItems => {
       return formItems.reduce((acc, formItem) => {
-        const { name, component, interface: i } = formItem
+        const { name, component, interfaces } = formItem
         acc.components[name] = component
-        acc.interfaces[name] = i
+        acc.interfaces[name] = interfaces
         return acc
       }, { components: {}, interfaces: {} })
     })
@@ -86,34 +126,46 @@ export const formGroupTC = makeTacheFormatComponent({
     const componentsRD = wrappedComponentsRD.pipe(mapT(combineLatestT), replayWithLatest(1), withValueFlatted, replayWithLatest(1))
 
     const wrappedInterfacesRD = preContextsRD.pipe(pluckT('interfaces'), replayWithLatest(1))
+
+    // formGroup 的 schemaInD 分解之后对接给各个 formItemComponent 的 schemaIn
+    // TODO: 待完善
     const schemaInsRD = wrappedInterfacesRD.pipe(mapT(interfaces => {
       return Object.entries(interfaces).reduce((acc, [name, { schemaIn }]) => {
         acc[name] = acc[name] || schemaIn
         return acc
       }, {})
     }), replayWithLatest(1), mapT(combineLatestT), replayWithLatest(1), withValueFlatted, replayWithLatest(1))
-    const schemaOutsRD = wrappedInterfacesRD.pipe(mapT(interfaces => {
+
+    // 各个 formItemComponent 的 schemaOut 汇总成 formGroup 的 schemaOut
+    const _schemaOutRD = wrappedInterfacesRD.pipe(mapT(interfaces => {
       return Object.entries(interfaces).reduce((acc, [name, { schemaOut }]) => {
         acc[name] = acc[name] || schemaOut
         return acc
       }, {})
     }), replayWithLatest(1), mapT(combineLatestT), replayWithLatest(1), withValueFlatted, replayWithLatest(1))
-
-    binaryTweenPipeAtom(schemaOutsRD, schemaOutD)
-    tapValueT('schemaOutsRD')(schemaOutsRD)
+    binaryTweenPipeAtom(_schemaOutRD, schemaOutRD)
 
     return {
-      components: componentsRD
+      inputs: {
+        styles: {
+          schema: schemaInD,
+          childs: childsInD,
+          rules: rulesInD
+        }
+      },
+      _internals: {
+        styles: {
+          components: componentsRD
+        }
+      },
+      outputs: {
+        schema: schemaOutRD
+      }
     }
   },
-  prepareTemplate: ({ marks, styles, actuations, configs, singletonLevelContexts }, template, mutation, { html }) => {
-    styles = {
-      ...styles,
-      components: singletonLevelContexts.components
-    }
-
-    return html`${Object.values(styles.components)}`
+  prepareTemplate: ({ marks, styles, actuations, configs }, template, mutation, { html }) => {
+    return styles.components ? html`${Object.values(styles.components)}` : ''
   }
 })
 
-export const useFormGroupTC = useUITache(formGroupTC)
+export const useFormGroupDC = useUIDriver(formGroupDC)
