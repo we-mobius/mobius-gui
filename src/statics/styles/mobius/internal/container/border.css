@@ -226,6 +226,12 @@ page {
     --border-color: var(--fg-color-third);
   }
 
+  & .mobius-border--mean,
+  & .hover_mobius-border--mean:hover,
+  & .active_mobius-border--mean:active {
+    --border-color: var(--fg-color-mean);
+  }
+
   & .mobius-border--light,
   & .hover_mobius-border--light:hover,
   & .active_mobius-border--light:active {
@@ -249,6 +255,43 @@ page {
   & .active_mobius-border--mobius:active {
     --border-color: var(--mobius-color-normal);
   }
+
+  & .mobius-border--red,
+  & .hover_mobius-border--red:hover,
+  & .active_mobius-border--red:active { --border-color: var(--fg-color-red); }
+  & .mobius-border--ry,
+  & .hover_mobius-border--ry:hover,
+  & .active_mobius-border--ry:active { --border-color: var(--fg-color-ry); }
+  & .mobius-border--yellow,
+  & .hover_mobius-border--yellow:hover,
+  & .active_mobius-border--yellow:active { --border-color: var(--fg-color-yellow); }
+  & .mobius-border--yg,
+  & .hover_mobius-border--yg:hover,
+  & .active_mobius-border--yg:active { --border-color: var(--fg-color-yg); }
+  & .mobius-border--green,
+  & .hover_mobius-border--green:hover,
+  & .active_mobius-border--green:active { --border-color: var(--fg-color-green); }
+  & .mobius-border--gc,
+  & .hover_mobius-border--gc:hover,
+  & .active_mobius-border--gc:active { --border-color: var(--fg-color-gc); }
+  & .mobius-border--cyan,
+  & .hover_mobius-border--cyan:hover,
+  & .active_mobius-border--cyan:active { --border-color: var(--fg-color-cyan); }
+  & .mobius-border--cb,
+  & .hover_mobius-border--cb:hover,
+  & .active_mobius-border--cb:active { --border-color: var(--fg-color-cb); }
+  & .mobius-border--blue,
+  & .hover_mobius-border--blue:hover,
+  & .active_mobius-border--blue:active { --border-color: var(--fg-color-blue); }
+  & .mobius-border--bm,
+  & .hover_mobius-border--bm:hover,
+  & .active_mobius-border--bm:active { --border-color: var(--fg-color-bm); }
+  & .mobius-border--magenta,
+  & .hover_mobius-border--magenta:hover,
+  & .active_mobius-border--magenta:active { --border-color: var(--fg-color-magenta); }
+  & .mobius-border--mr,
+  & .hover_mobius-border--mr:hover,
+  & .active_mobius-border--mr:active { --border-color: var(--fg-color-mr); }
 }
 
 /*! purgecss end ignore*/
