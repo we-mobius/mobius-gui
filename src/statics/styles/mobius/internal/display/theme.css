@@ -19,6 +19,7 @@
  *********************************************************/
 
 %theme-light-vars {
+  /* 按明度区分的前景色和背景色：用于系统级别的阴影、层级 */
   --bg-color-darker: var(--light-color-darker);
   --bg-color-darker-m: var(--light-color-darker-m);
   --bg-color-normal: var(--light-color-normal);
@@ -31,6 +32,7 @@
   --fg-color-lighter-m: var(--dark-color-lighter-m);
   --fg-color-lighter: var(--dark-color-lighter);
 
+  /* 按使用场景区分的前景色和背景色：用于交互、反馈、提示 */
   --bg-color-base: var(--light-color-normal);
   --bg-color-primary: var(--cigaret-color-lighter-m);
   --bg-color-second: var(--mobius-color-lighter-m);
@@ -43,6 +45,7 @@
   --fg-color-third: var(--light-color-darker-m);
   --fg-color-mean: var(--gray-color-normal);
 
+  /* 按色值区分的前景色和背景色：用于满足某些边界明确的场景的色彩需求 */
   --bg-color-red: var(--red-color-lighter-m);
   --bg-color-ry: var(--ry-color-lighter-m);
   --bg-color-yellow: var(--yellow-color-lighter-m);
@@ -127,10 +130,16 @@
 .mobius-theme--light,
 .hover_mobius-theme--light:hover {
   @extend %mobius-theme, %theme-light-vars;
+  & .mobius-theme--reverse {
+    @extend %theme-dark-vars;
+  }
 }
 .mobius-theme--dark,
 .hover_mobius-theme--dark:hover {
   @extend %mobius-theme, %theme-dark-vars;
+  & .mobius-theme--reverse {
+    @extend %theme-light-vars;
+  }
 }
 
 :root.mobius-base,
@@ -143,9 +152,16 @@ page,
   /* global control */
   &[data-theme="light"] {
     @extend %theme-light-vars;
+    & .mobius-theme--reverse {
+      @extend %theme-dark-vars;
+    }
   }
   &[data-theme="dark"] {
     @extend %theme-dark-vars;
+
+    & .mobius-theme--reverse {
+      @extend %theme-light-vars;
+    }
 
     & img:not([src*=".svg"]) {
       filter: brightness(0.8) contrast(1.2) invert(100%) hue-rotate(180deg);

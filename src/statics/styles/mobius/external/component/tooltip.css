@@ -1,0 +1,509 @@
+/*! purgecss start ignore */
+
+:root.mobius-base,
+html.mobius-base,
+page.mobius-base,
+page,
+.mobius-base {
+  --tooltip-size: 0.5rem;
+  --tooltip-offset: 0rem;
+  /* 通过设置 --tooltip-animation-name 可以设置 tooltip 的显示动画 */
+  /* --tooltip-animation-name: none; */
+}
+
+/* 盛放内容的气泡 */
+%tooltip__bubble--base {
+  z-index: 100;
+  position: absolute;
+  padding: var(--tooltip-size) calc(var(--tooltip-size) * 2);
+  border-radius: calc(var(--tooltip-size) / 2);
+  font-size: 1rem;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* 指向内容的箭头 */
+%tooltip__arrow--base {
+  z-index: 100;
+  position: absolute;
+}
+
+.mobius-tooltip--simple[data-tooltip-content] {
+  position: relative;
+  &::before {
+    @extend %tooltip__bubble--base;
+    display: none;
+    content: attr(data-tooltip-content);
+    /* simple tooltip 遵循 Mobius 的风格指导，色彩与系统主题相反 */
+    color: var(--bg-color-normal);
+    background-color: var(--fg-color-normal);
+    box-shadow: 0 0.5rem 1rem -0.25rem var(--fg-color-darker);
+  }
+  &::after {
+    @extend %tooltip__arrow--base;
+    display: none;
+    content: "";
+    /* ! 这种利用 border 的实现方式无法设置箭头的圆角 */
+    /* 如果需要设置箭头圆角，可以通过旋转矩形实现 */
+    /* 旋转矩形的方案在添加部分动画的时候会穿帮 */
+    /* 由于阴影的存在，旋转矩形也不能实现镂空 */
+    /* 更复杂的效果需要单独定制 */
+    border: var(--tooltip-size) solid transparent;
+    border-top-color: var(--fg-color-normal);
+  }
+
+  &:not(.mobius-tooltip--hide):hover,
+  &.mobius-tooltip--show {
+    &::before {
+      display: block;
+    }
+    &::after {
+      display: block;
+    }
+  }
+}
+.mobius-tooltip--custom {
+  position: relative;
+
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--base;
+    display: none;
+    color: var(--fg-color-normal);
+    background-color: var(--bg-color-normal);
+    box-shadow: 0 0.5rem 1rem -0.25rem var(--bg-color-darker);
+
+    overflow: visible;
+
+    &::after {
+      @extend %tooltip__arrow--base;
+      display: none;
+      content: "";
+      border: var(--tooltip-size) solid transparent;
+      border-top-color: var(--bg-color-normal);
+    }
+  }
+
+  &:not(.mobius-tooltip--hide):hover,
+  &.mobius-tooltip--show {
+    & .mobius-tooltip__bubble {
+      display: block;
+      &::after {
+        display: block;
+      }
+    }
+  }
+}
+
+/**********************************************************************************************************************
+ *                                                       气泡位置：上
+ **********************************************************************************************************************/
+%tooltip__bubble--top {
+  bottom: calc(100% + var(--tooltip-size) * 2 + var(--tooltip-offset));
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+%tooltip__arrow--top {
+  bottom: calc(100% + 0rem + var(--tooltip-offset));
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.mobius-tooltip--simple[data-tooltip-content]:not([data-tooltip-position]),
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position=""],
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position="top"] {
+  &::before {
+    @extend %tooltip__bubble--top;
+  }
+  &::after {
+    @extend %tooltip__arrow--top;
+  }
+}
+.mobius-tooltip--custom:not([class*=mobius-tooltip--top]):not([class*=mobius-tooltip--right]):not([class*=mobius-tooltip--bottom]):not([class*=mobius-tooltip--left]),
+.mobius-tooltip--custom.mobius-tooltip--top {
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--top;
+    &::after {
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
+%tooltip__bubble--top-left {
+  bottom: calc(100% + var(--tooltip-size) * 2 + var(--tooltip-offset));
+  left: 0;
+}
+%tooltip__arrow--top-left {
+  bottom: calc(100% + 0rem + var(--tooltip-offset));
+  left: var(--tooltip-size);
+}
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position="top-left"] {
+  &::before {
+    @extend %tooltip__bubble--top-left;
+  }
+  &::after {
+    @extend %tooltip__arrow--top-left;
+  }
+}
+.mobius-tooltip--custom.mobius-tooltip--top-left {
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--top-left;
+    &::after {
+      top: 100%;
+      left: var(--tooltip-size);
+    }
+  }
+}
+
+%tooltip__bubble--top-right {
+  bottom: calc(100% + var(--tooltip-size) * 2 + var(--tooltip-offset));
+  left: 100%;
+  transform: translate(-100%, 0);
+}
+%tooltip__arrow--top-right {
+  bottom: calc(100% + 0rem + var(--tooltip-offset));
+  right: var(--tooltip-size);
+}
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position="top-right"] {
+  &::before {
+    @extend %tooltip__bubble--top-right;
+  }
+  &::after {
+    @extend %tooltip__arrow--top-right;
+  }
+}
+.mobius-tooltip--custom.mobius-tooltip--top-right {
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--top-right;
+    &::after {
+      top: 100%;
+      right: var(--tooltip-size);
+    }
+  }
+}
+/**********************************************************************************************************************
+ *                                                       气泡位置：右
+ **********************************************************************************************************************/
+%tooltip__bubble--right {
+  left: calc(100% + var(--tooltip-size) * 2 + var(--tooltip-offset));
+  top: 50%;
+  transform: translate(0, -50%);
+}
+%tooltip__arrow--right {
+  left: calc(100% + 0rem + var(--tooltip-offset));
+  top: 50%;
+  transform: translate(0, -50%) rotateZ(90deg);
+}
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position="right"] {
+  &::before {
+    @extend %tooltip__bubble--right;
+  }
+  &::after {
+    @extend %tooltip__arrow--right;
+  }
+}
+.mobius-tooltip--custom.mobius-tooltip--right {
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--right;
+    &::after {
+      right: 100%;
+      top: 50%;
+      transform: translate(0, -50%) rotateZ(90deg);
+    }
+  }
+}
+
+%tooltip__bubble--right-top {
+  left: calc(100% + var(--tooltip-size) * 2 + var(--tooltip-offset));
+  top: 0;
+}
+%tooltip__arrow--right-top {
+  left: calc(100% + 0rem + var(--tooltip-offset));
+  top: var(--tooltip-size);
+  transform: rotateZ(90deg);
+}
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position="right-top"] {
+  &::before {
+    @extend %tooltip__bubble--right-top;
+  }
+  &::after {
+    @extend %tooltip__arrow--right-top;
+  }
+}
+.mobius-tooltip--custom.mobius-tooltip--right-top {
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--right-top;
+    &::after {
+      right: 100%;
+      top: var(--tooltip-size);
+      transform: rotateZ(90deg);
+    }
+  }
+}
+
+%tooltip__bubble--right-bottom {
+  left: calc(100% + var(--tooltip-size) * 2 + var(--tooltip-offset));
+  top: 100%;
+  transform: translate(0, -100%);
+}
+%tooltip__arrow--right-bottom {
+  left: calc(100% + 0rem + var(--tooltip-offset));
+  bottom: var(--tooltip-size);
+  transform: rotateZ(90deg);
+}
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position="right-bottom"] {
+  &::before {
+    @extend %tooltip__bubble--right-bottom;
+  }
+  &::after {
+    @extend %tooltip__arrow--right-bottom;
+  }
+}
+.mobius-tooltip--custom.mobius-tooltip--right-bottom {
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--right-bottom;
+    &::after {
+      right: 100%;
+      bottom: var(--tooltip-size);
+      transform: rotateZ(90deg);
+    }
+  }
+}
+/**********************************************************************************************************************
+ *                                                       气泡位置：下
+ **********************************************************************************************************************/
+%tooltip__bubble--bottom {
+  top: calc(100% + var(--tooltip-size) * 2 + var(--tooltip-offset));
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+%tooltip__arrow--bottom {
+  top: calc(100% + 0rem + var(--tooltip-offset));
+  left: 50%;
+  transform: translate(-50%, 0) rotate(180deg);
+}
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position="bottom"] {
+  &::before {
+    @extend %tooltip__bubble--bottom;
+  }
+  &::after {
+    @extend %tooltip__arrow--bottom;
+  }
+}
+.mobius-tooltip--custom.mobius-tooltip--bottom {
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--bottom;
+    &::after {
+      bottom: 100%;
+      left: 50%;
+      transform: translate(-50%, 0) rotate(180deg);
+    }
+  }
+}
+
+%tooltip__bubble--bottom-left {
+  top: calc(100% + var(--tooltip-size) * 2 + var(--tooltip-offset));
+  left: 0;
+}
+%tooltip__arrow--bottom-left {
+  top: calc(100% + 0rem + var(--tooltip-offset));
+  left: var(--tooltip-size);
+  transform: rotate(180deg);
+}
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position="bottom-left"] {
+  &::before {
+    @extend %tooltip__bubble--bottom-left;
+  }
+  &::after {
+    @extend %tooltip__arrow--bottom-left;
+  }
+}
+.mobius-tooltip--custom.mobius-tooltip--bottom-left {
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--bottom-left;
+    &::after {
+      bottom: 100%;
+      left: var(--tooltip-size);
+      transform: rotate(180deg);
+    }
+  }
+}
+
+%tooltip__bubble--bottom-right {
+  top: calc(100% + var(--tooltip-size) * 2 + var(--tooltip-offset));
+  left: 100%;
+  transform: translate(-100%, 0);
+}
+%tooltip__arrow--bottom-right {
+  top: calc(100% + 0rem + var(--tooltip-offset));
+  right: var(--tooltip-size);
+  transform: rotate(180deg);
+}
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position="bottom-right"] {
+  &::before {
+    @extend %tooltip__bubble--bottom-right;
+  }
+  &::after {
+    @extend %tooltip__arrow--bottom-right;
+  }
+}
+.mobius-tooltip--custom.mobius-tooltip--bottom-right {
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--bottom-right;
+    &::after {
+      bottom: 100%;
+      right: var(--tooltip-size);
+      transform: rotate(180deg);
+    }
+  }
+}
+/**********************************************************************************************************************
+ *                                                       气泡位置：左
+ **********************************************************************************************************************/
+%tooltip__bubble--left {
+  right: calc(100% + var(--tooltip-size) * 2 + var(--tooltip-offset));
+  top: 50%;
+  transform: translate(0, -50%);
+}
+%tooltip__arrow--left {
+  right: calc(100% + 0rem + var(--tooltip-offset));
+  top: 50%;
+  transform: translate(0, -50%) rotateZ(270deg);
+}
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position="left"] {
+  &::before {
+    @extend %tooltip__bubble--left;
+  }
+  &::after {
+    @extend %tooltip__arrow--left;
+  }
+}
+.mobius-tooltip--custom.mobius-tooltip--left {
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--left;
+    &::after {
+      left: 100%;
+      top: 50%;
+      transform: translate(0, -50%) rotateZ(270deg);
+    }
+  }
+}
+
+%tooltip__bubble--left-top {
+  right: calc(100% + var(--tooltip-size) * 2 + var(--tooltip-offset));
+  top: 0;
+}
+%tooltip__arrow--left-top {
+  right: calc(100% + 0rem + var(--tooltip-offset));
+  top: var(--tooltip-size);
+  transform: rotateZ(270deg);
+}
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position="left-top"] {
+  &::before {
+    @extend %tooltip__bubble--left-top;
+  }
+  &::after {
+    @extend %tooltip__arrow--left-top;
+  }
+}
+.mobius-tooltip--custom.mobius-tooltip--left-top {
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--left-top;
+    &::after {
+      left: 100%;
+      top: var(--tooltip-size);
+      transform: rotateZ(270deg);
+    }
+  }
+}
+
+%tooltip__bubble--left-bottom {
+  right: calc(100% + var(--tooltip-size) * 2 + var(--tooltip-offset));
+  top: 100%;
+  transform: translate(0, -100%);
+}
+%tooltip__arrow--left-bottom {
+  right: calc(100% + 0rem + var(--tooltip-offset));
+  bottom: var(--tooltip-size);
+  transform: rotateZ(270deg);
+}
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position="left-bottom"] {
+  &::before {
+    @extend %tooltip__bubble--left-bottom;
+  }
+  &::after {
+    @extend %tooltip__arrow--left-bottom;
+  }
+}
+.mobius-tooltip--custom.mobius-tooltip--left-bottom {
+  & .mobius-tooltip__bubble {
+    @extend %tooltip__bubble--left-bottom;
+    &::after {
+      left: 100%;
+      top: var(--tooltip-size);
+      transform: rotateZ(270deg);
+    }
+  }
+}
+/**********************************************************************************************************************
+ *                                                       气泡动画
+ **********************************************************************************************************************/
+%tooltip__animation--default {
+  animation: var(--tooltip-animation-name, fadeIn--lighter) 312ms ease-out
+    forwards;
+}
+
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position^="top"] {
+  &::before,
+  &::after {
+    @extend %tooltip__animation--default;
+  }
+}
+.mobius-tooltip--custom[class*="mobius-tooltip--top"] {
+  & .mobius-tooltip__bubble,
+  & .mobius-tooltip__bubble::after {
+    @extend %tooltip__animation--default;
+  }
+}
+
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position^="right"] {
+  &::before,
+  &::after {
+    @extend %tooltip__animation--default;
+  }
+}
+.mobius-tooltip--custom[class*="mobius-tooltip--right"] {
+  & .mobius-tooltip__bubble,
+  & .mobius-tooltip__bubble::after {
+    @extend %tooltip__animation--default;
+  }
+}
+
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position^="bottom"] {
+  &::before,
+  &::after {
+    @extend %tooltip__animation--default;
+  }
+}
+.mobius-tooltip--custom[class*="mobius-tooltip--bottom"] {
+  & .mobius-tooltip__bubble,
+  & .mobius-tooltip__bubble::after {
+    @extend %tooltip__animation--default;
+  }
+}
+
+.mobius-tooltip--simple[data-tooltip-content][data-tooltip-position^="left"] {
+  &::before,
+  &::after {
+    @extend %tooltip__animation--default;
+  }
+}
+.mobius-tooltip--custom[class*="mobius-tooltip--left"] {
+  & .mobius-tooltip__bubble,
+  & .mobius-tooltip__bubble::after {
+    @extend %tooltip__animation--default;
+  }
+}
+
+/*! purgecss end ignore */

@@ -26,7 +26,7 @@
  *********************************************************/
 
 %transition-property-vars {
-  --transition-property-common: color, background-color, box-shadow, height, width;
+  --transition-property-common: color, background-color, box-shadow, height, width, opacity;
   --transition-property-all: all;
   --transition-property-none: none;
 }
