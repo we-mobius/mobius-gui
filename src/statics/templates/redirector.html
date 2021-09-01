@@ -23,7 +23,8 @@
     console.log(`[Mobius Redirector] current origin: ${origin}`)
     console.log(`[Mobius Redirector] current app: ${app}`)
     console.log(`[Mobius Redirector] current searches: ${JSON.stringify(searches)}`)
-    const dest = `${[origin, app, ''].join('/')}?mobius_redirect=${searches['mobius_redirect'] || encodeURIComponent(window.location.href)}`
+    // const dest = `${[origin, app, ''].join('/')}?mobius_redirect=${searches['mobius_redirect'] || encodeURIComponent(window.location.href)}`
+    const dest = `${origin}?mobius_redirect=${searches['mobius_redirect'] || encodeURIComponent(window.location.href)}`
     console.info(`[Mobius Redirector] Redirect to: ${dest}`)
     window.location.replace(dest)
   </script>
