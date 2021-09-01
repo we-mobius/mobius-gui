@@ -118,15 +118,13 @@ All the relative documentations of detail, pls check `./docs`，which contains:
 
 Priview Site is build with:
 
-- [cyclejs](https://github.com/cyclejs/cyclejs) - Great Jobs for handle DOMs functionally and reactively 🤞
-- [rxjs](https://github.com/ReactiveX/rxjs) - Reactive programming library for JavaScript
 - [tailwindcss](https://github.com/tailwindcss/tailwindcss) - Utility-first CSS framework
-- [21yunbox](https://www.21yunbox.com/) - Static pages host service provider
-- [QRBTF](https://qrbtf.com/) - QR Code Generator
+- [Mobius Utils](https://github.com/we-mobius/mobius-utils) 🤞
+- somthing else...
 
 ## Author
 
-- **Cigaret** - *Undergraduate of CUC*
+- **Cigaret**
   - E-mail: kcigaret@outlook.com
   - wechat: cigaret_bot
 

@@ -172,7 +172,8 @@
     "/src/*",
     "/public/*",
     "/docs/*",
-    "/bin/*"
+    "/bin/*",
+    "/typings/*"
   ],
   "sideEffects": [
     "**/*.css",
