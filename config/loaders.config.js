@@ -65,11 +65,19 @@ const fontLoader4Release = {
 }
 
 const jsLoader = {
-  test: /\.m?js$/,
+  test: /\.[m|c]?[j|t]sx?$/,
   exclude: /(node_modules|bower_components)/,
-  use: [{
-    loader: 'babel-loader'
-  }]
+  use: [
+    {
+      loader: 'babel-loader'
+    },
+    {
+      loader: 'ts-loader',
+      options: {
+        transpileOnly: true
+      }
+    }
+  ]
 }
 
 export const getDevelopmentLoaders = () => [handlebarsLoader, jsLoader, imageLoader, svgLoader, fontLoader]

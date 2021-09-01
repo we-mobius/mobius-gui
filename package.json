@@ -3,29 +3,68 @@
   "version": "0.3.3",
   "description": "Just a UI framework.",
   "type": "module",
-  "main": "./src/main.js",
+  "typings": "./typings/main.d.ts",
+  "types": "./typings/main.d.ts",
+  "main": "./release/modules/cjs/main.js",
+  "module": "./release/modules/es/main.js",
   "exports": {
     ".": {
-      "require": "./release/mobius-ui.umd.js",
-      "import": "./src/main.js",
-      "node": "./src/main.js",
-      "default": "./src/main.js"
+      "require": "./release/modules/cjs/main.js",
+      "import": "./release/modules/es/main.js",
+      "node": "./release/modules/es/main.js",
+      "default": "./release/modules/es/main.js"
     },
-    "./module": "./src/main.js",
-    "./es": "./src/main.js",
     "./css": "./src/statics/styles/static.css",
     "./css-base": "./src/statics/styles/base.release.css",
     "./css-addon": "./src/statics/styles/addon.release.css",
     "./css-main": "./src/statics/styles/mobius.release.css",
     "./css/*": "./src/statics/styles/*.css",
-    "./module/*": "./src/es/*.js",
-    "./es/*": "./src/es/*.js",
+    "./ts": "./src/main.ts",
+    "./module": "./release/modules/es/main.js",
+    "./es": "./release/modules/es/main.js",
+    "./esm": "./release/modules/esm/main.js",
+    "./cjs": "./release/modules/cjs/main.js",
+    "./ts/*": "./src/ts/*.ts",
+    "./es-in-ts/*": "./src/ts/*.js",
+    "./module/*": "./release/modules/es/*.js",
+    "./es/*": "./release/modules/es/*.js",
+    "./esm/*": "./release/modules/esm/*.js",
+    "./cjs/*": "./release/modules/cjs/*.js",
     "./src/*": "./src/*.js",
-    "./dist/*": "./dist/*.js",
     "./release/*": "./release/*.js",
     "./package.json": "./package.json"
   },
-  "module": "./src/main.js",
+  "typesVersions": {
+    "*": {
+      "esm": [
+        "./typings/main.d.ts"
+      ],
+      "cjs": [
+        "./typings/main.d.ts"
+      ],
+      "ts": [
+        "./src/main.ts"
+      ],
+      "ts/*": [
+        "./src/ts/*"
+      ],
+      "es-in-ts/*": [
+        "./src/ts/*"
+      ],
+      "module": [
+        "./release/modules/es/main"
+      ],
+      "module/*": [
+        "./release/modules/es/*"
+      ],
+      "es": [
+        "./release/modules/es/main"
+      ],
+      "es/*": [
+        "./release/modules/es/*"
+      ]
+    }
+  },
   "keywords": [
     "Interface",
     "UI framework",
@@ -56,7 +95,7 @@
   "author": {
     "name": "kongxiangyan",
     "email": "kcigaret@outlook.com",
-    "url": "http://cigaret.world/"
+    "url": "https://www.cigaret.world/"
   },
   "license": "GPL-3.0",
   "bugs": {
@@ -69,6 +108,8 @@
     "@babel/preset-env": "^7.10.4",
     "@commitlint/cli": "^8.3.5",
     "@fullhuman/postcss-purgecss": "^2.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
     "autoprefixer": "^10.0.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -78,8 +119,9 @@
     "css-loader": "^3.6.0",
     "cssnano": "^4.1.10",
     "cz-customizable": "^6.2.1",
-    "eslint": "^6.8.0",
+    "eslint": "^7.9.0",
     "eslint-config-standard": "^14.1.1",
+    "eslint-config-standard-with-typescript": "^21.0.1",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
@@ -103,9 +145,11 @@
     "standard": "^14.3.4",
     "style-loader": "^2.0.0",
     "tailwindcss": "^2.0.0",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.4.2",
     "url-loader": "^4.1.0",
-    "webpack": "^5.0.0",
-    "webpack-cli": "^4.0.0",
+    "webpack": "^5.10.3",
+    "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.0.0"
   },
@@ -118,10 +162,9 @@
     }
   },
   "dependencies": {
-    "lit-html": "^1.4.1",
-    "rxjs": "^6.6.0"
+    "lit-html": "^1.4.1"
   },
-  "jsdelivr": "./release/mobius-ui.umd.js",
+  "jsdelivr": "./release/modules/umd/main.js",
   "files": [
     "/release/*",
     "/dist/*",

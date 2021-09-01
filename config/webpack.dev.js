@@ -8,13 +8,8 @@ const PATHS = {
   output: rootResolvePath('dev')
 }
 
-export const getDevelopmentConfig = () => ({
+const reusedConfigs = {
   mode: 'development',
-  // NOTE: entry sort matters style cascading
-  entry: {
-    static: './src/static.js',
-    index: './src/index.js'
-  },
   output: {
     path: PATHS.output
   },
@@ -51,4 +46,15 @@ export const getDevelopmentConfig = () => ({
   devtool: 'source-map',
   // in ./scripts/dev.js
   devServer: {}
-})
+}
+
+export const getDevelopmentConfig = () => ([
+  {
+    // NOTE: entry sort matters style cascading
+    entry: {
+      static: './src/static.ts',
+      index: './src/index.ts'
+    },
+    ...reusedConfigs
+  }
+])

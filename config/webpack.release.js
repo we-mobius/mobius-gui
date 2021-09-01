@@ -3,6 +3,7 @@ import { getReleaseLoaders } from './loaders.config.js'
 import { getReleasePlugins } from './plugins.config.js'
 
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
 import CopyPlugin from 'copy-webpack-plugin'
 
 import path from 'path'
@@ -68,6 +69,24 @@ const reusedConfigs = {
       }
     ])
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          sourceMap: true,
+          compress: {
+            drop_debugger: true,
+            drop_console: true
+          },
+          format: {
+            comments: false
+          }
+        }
+      })
+    ]
+  },
   devtool: 'hidden-nosources-source-map'
 }
 
@@ -75,9 +94,9 @@ export const getReleaseConfig = () => ([
   {
     target: 'web',
     entry: {
-      'mobius-css': './src/mobius-css.release.entry.js',
-      'css-addon': './src/css-addon.release.entry.js',
-      'css-base': './src/css-base.release.entry.js'
+      'mobius-css': './src/mobius-css.release.entry.ts',
+      'css-addon': './src/css-addon.release.entry.ts',
+      'css-base': './src/css-base.release.entry.ts'
     },
     output: {
       filename: '[name].js',
@@ -86,13 +105,13 @@ export const getReleaseConfig = () => ([
     ...reusedConfigs
   },
   {
-    target: 'web',
+    target: 'node',
     entry: {
-      'mobius-ui': './src/mobius-ui.release.entry.js'
+      main: './src/mobius-ui.release.entry.ts'
     },
     output: {
-      filename: '[name].umd.js',
-      path: PATHS.output,
+      filename: '[name].js',
+      path: path.resolve(PATHS.output, './modules/umd'),
       // @refer: https://webpack.js.org/configuration/output/#outputlibrarytarget
       // @refer: https://webpack.js.org/configuration/output/#outputlibrarytype
       // libraryTarget: 'umd',
@@ -103,6 +122,39 @@ export const getReleaseConfig = () => ([
       // @refer: https://webpack.js.org/configuration/output/#outputglobalobject
       globalObject: 'this',
       umdNamedDefine: true
+    },
+    ...reusedConfigs
+  },
+  {
+    target: 'node',
+    entry: {
+      main: './src/mobius-ui.release.entry.ts'
+    },
+    output: {
+      filename: '[name].js',
+      path: path.resolve(PATHS.output, './modules/cjs'),
+      library: {
+        name: 'MobiusUI',
+        type: 'commonjs'
+      },
+      globalObject: 'this'
+    },
+    ...reusedConfigs
+  },
+  {
+    target: 'web',
+    entry: {
+      main: './src/mobius-ui.release.entry.ts'
+    },
+    experiments: {
+      outputModule: true
+    },
+    output: {
+      filename: '[name].js',
+      path: path.resolve(PATHS.output, './modules/esm'),
+      library: {
+        type: 'module'
+      }
     },
     ...reusedConfigs
   }

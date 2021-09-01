@@ -4,17 +4,46 @@
     "module": "es6",
     "baseUrl": ".",
     "paths": {
+      "ES": [
+        "./src/es/index.js",
+        "./src/es/index.mjs"
+      ],
+      "ES/*": [
+        "./src/es/*"
+      ],
+      "CJS": [
+        "./src/cjs/index.js",
+        "./src/cjs/index.cjs"
+      ],
+      "CJS/*": [
+        "./src/cjs/*"
+      ],
+      "TS": [
+        "./src/ts/index.ts"
+      ],
+      "TS/*": [
+        "./src/ts/*"
+      ],
+      "MobiusUtils": [
+        "./src/ts/libs/mobius-utils.ts"
+      ],
+      "MobiusUI": [
+        "./src/ts/libs/mobius-ui.ts"
+      ],
+      "MobiusJS": [
+        "./src/ts/libs/mobius-js.ts"
+      ],
       "Business/*": [
-        "./src/business/*"
+        "src/ts/business/*"
       ],
       "FreeBusiness/*": [
-        "./src/business-free/*"
+        "./src/ts/business-free/*"
       ],
       "Interface/*": [
-        "./src/interface/*"
+        "./src/ts/interface/*"
       ],
       "Libs/*": [
-        "./src/libs/*"
+        "./src/ts/libs/*"
       ],
       "Statics/*": [
         "./src/statics/*"

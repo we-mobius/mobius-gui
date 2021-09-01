@@ -48,6 +48,10 @@ const copy = () => {
       rootResolvePath('src/statics/images/thoughts-daily.png'),
       rootResolvePath(resolvePathInDes('statics/images/thoughts-daily.png'))
     )
+    copyFileSync(
+      rootResolvePath('src/statics/images/beian.png'),
+      rootResolvePath(resolvePathInDes('statics/images/beian.png'))
+    )
     resolve()
   })
 }

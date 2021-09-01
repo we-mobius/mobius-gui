@@ -1,4 +1,4 @@
-const PUBLIC_PATH = './' // '/'
+const PUBLIC_PATH = '/' // '/'
 // https://fonts.googleapis.com/
 //  -> https://fonts.googleapis.cnpmjs.org/
 //  -> https://fonts.dogedoge.com/
@@ -6,7 +6,7 @@ const CSS_CDN_ORIGIN = 'https://fonts.googleapis.cnpmjs.org/'
 const CSP_WHITE_LIST = 'https://*.unpkg.com https://*.jsdelivr.net https://*.cloudflare.com'
 
 const commonTemplate = {
-  title: 'Hello, Mobius Electron Project!',
+  title: 'Hello, Mobius UI!',
   'meta-csp':
     `default-src 'self' ${CSP_WHITE_LIST};` +
     ` script-src 'self' 'unsafe-inline' 'unsafe-eval' ${CSP_WHITE_LIST};` +
@@ -77,11 +77,10 @@ const commonTemplate = {
   headHtmlSnippet: `
     <style>
       body { developer: "cigaret"; wechat: "cigaret_bot"; email: "kcigaret@outlook.com"; }
-      html { width: 480px; height: 960px; }
     </style>
   `,
   bodyHtmlSnippet: `
-    <div id="mobius-app" style="width: 480px; height: 960px;">
+    <div id="mobius-app">
       <div class="mobius-width--100vw mobius-height--100vh mobius-layout__vertical">
         <div class="mobius-padding--xl mobius-margin--auto mobius-shadow--normal mobius-rounded--base">
           <div class="mobius-layout__vertical mobius-flex-items--center mobius-select--none">
@@ -89,7 +88,7 @@ const commonTemplate = {
               <div class="svg-loading" style="width: 45px; height: 45px;"></div>
             </p>
             <p>
-              Mobius Template Project!
+              Mobius UI!
             </p>
           </div>
         </div>

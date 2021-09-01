@@ -1,6 +1,12 @@
 # Custom
-# /src/main.js
+/src/_main.js
+/dev/*
 dev/
+build/
+dist/
+release/
+typings/
+.temp
 
 # Logs
 logs

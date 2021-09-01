@@ -20,6 +20,10 @@ compiler.hooks.done.tap('MobiusCopyPlugin', () => {
     rootResolvePath('src/statics/images/thoughts-daily.png'),
     rootResolvePath(resolvePathInDes('statics/images/thoughts-daily.png'))
   )
+  copyFileSync(
+    rootResolvePath('src/statics/images/beian.png'),
+    rootResolvePath(resolvePathInDes('statics/images/beian.png'))
+  )
 })
 const devServerOptions = Object.assign({}, {
   headers: { 'Access-Control-Allow-Origin': '*' },

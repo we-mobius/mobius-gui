@@ -1,24 +1,31 @@
 import { rootResolvePath } from '../scripts/utils.js'
+import { getMobiusConfig } from './mobius.config.js'
 
 export const getCommonConfig = () => ({
   output: {
     filename: '[name].js',
-    publicPath: './'
+    publicPath: getMobiusConfig().publicPath
   },
   module: {
     rules: []
   },
   plugins: [],
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.ts'],
     alias: {
-      Libs: rootResolvePath('src/libs/'),
-      MobiusUI$: rootResolvePath('src/libs/mobius-ui.js'),
-      MobiusJS$: rootResolvePath('src/libs/mobius-js.js'),
-      MobiusUtils$: rootResolvePath('src/libs/mobius-utils.js'),
-      Interface: rootResolvePath('src/interface/'),
-      Business: rootResolvePath('src/business/'),
-      FreeBusiness: rootResolvePath('src/business-free/'),
+      ES: rootResolvePath('src/es/'),
+      ES$: rootResolvePath('src/es/index.js'),
+      CJS: rootResolvePath('src/cjs/'),
+      CJS$: rootResolvePath('src/cjs/index.cjs'),
+      TS: rootResolvePath('src/ts/'),
+      TS$: rootResolvePath('src/ts/index.ts'),
+      Libs: rootResolvePath('src/ts/libs/'),
+      MobiusUtils$: rootResolvePath('src/ts/libs/mobius-utils.ts'),
+      MobiusUI$: rootResolvePath('src/ts/libs/mobius-ui.ts'),
+      MobiusJS$: rootResolvePath('src/ts/libs/mobius-js.ts'),
+      Interface: rootResolvePath('src/ts/interface/'),
+      Business: rootResolvePath('src/ts/business/'),
+      FreeBusiness: rootResolvePath('src/ts/business-free/'),
       Statics: rootResolvePath('src/statics/'),
       Images: rootResolvePath('src/statics/images/'),
       Styles: rootResolvePath('src/statics/styles/'),

@@ -4,17 +4,45 @@
     "es6": true,
     "node": true
   },
-  "extends": [
-    "standard"
-  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
+  "overrides": [
+    {
+      "files": [
+        "*.js"
+      ],
+      "extends": [
+        "standard"
+      ],
+      "plugins": [],
+      "parser": "espree",
+      "parserOptions": {
+        "ecmaVersion": 2021,
+        "sourceType": "module"
+      }
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "standard-with-typescript",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "ecmaVersion": 2021,
+        "sourceType": "module",
+        "project": "./tsconfig.eslint.json"
+      },
+      "plugins": [
+        "@typescript-eslint/eslint-plugin"
+      ]
+    }
+  ],
   "rules": {
     "max-len": [
       1,
@@ -23,8 +51,6 @@
         "ignoreUrls": true,
         "ignoreTemplateLiterals": true
       }
-    ],
-    "prefer-rest-params": 0,
-    "no-new-func": 0
+    ]
   }
 }
