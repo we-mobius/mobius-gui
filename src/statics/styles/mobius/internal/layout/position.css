@@ -22,31 +22,137 @@
  *
  *********************************************************/
 
+.mobius-position--revert { position: revert; }
+.mobius-position--initial { position: initial; }
+.mobius-position--unset { position: unset; }
+
 .mobius-position--static { position: static; }
 .mobius-position--relative { position: relative; }
 .mobius-position--absolute { position: absolute; }
 .mobius-position--fixed { position: fixed; }
 .mobius-position--sticky { position: sticky; }
 
-.mobius-position--t-0 { top: 0; }
-.mobius-position--r-0 { right: 0; }
-.mobius-position--b-0 { bottom: 0; }
-.mobius-position--l-0 { left: 0; }
-.mobius-position--lt, .mobius-position--tl { left: 0; top: 0; }
-.mobius-position--rt, .mobius-position--tr { top: 0; right: 0; }
-.mobius-position--rb, .mobius-position--br { right: 0; bottom: 0; }
-.mobius-position--lb, .mobius-position--lb { bottom: 0; left: 0; }
+.mobius-position--top { top: 0; }
+.mobius-position--right { right: 0; }
+.mobius-position--bottom { bottom: 0; }
+.mobius-position--left { left: 0; }
+.mobius-position--left-top, .mobius-position--top-left { left: 0; top: 0; }
+.mobius-position--right-top, .mobius-position--top-right { top: 0; right: 0; }
+.mobius-position--right-bottom, .mobius-position--bottom-right { right: 0; bottom: 0; }
+.mobius-position--left-bottom, .mobius-position--bottom-left { bottom: 0; left: 0; }
 
-.mobius-position--rc, .mobius-position--cr { margin-top: auto; margin-bottom: auto; right: 0; }
-.mobius-position--lc, .mobius-position--cl { margin-top: auto; margin-bottom: auto; left: 0; }
+/**
+ * 使用 margin 实现居中要满足三个条件：
+ *  - 目标元素必须使用绝对定位
+ *  - 目标元素需要显式设置宽度
+ *  - 居中方向上极值设置为 0（水平居中 - left: 0; right: 0; 垂直居中 - top: 0; bottom: 0;）
+ **/
+/* vertical-center 和 horizontal-center 可以组合使用实现平面居中 */
+.mobius-position--vertical-center {
+  position: absolute;
+  height: fit-content;
+  margin-top: auto;
+  margin-bottom: auto;
+}
 .mobius-position--horizontal-center {
+  position: absolute;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
 }
-
-.mobius-position--z-toppest {
-  z-index: 9999999999999999999;
+/* ! x-center 和 y-center 不可以组合使用，因为 transform 会相互覆盖 */
+.mobius-position--x-center {
+  position: absoulte;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.mobius-position--y-center {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.mobius-position--p-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
- /*! purgecss end ignore */
+/**
+ * layout__nine 有两种效果
+ *  - 一般效果：目标容器会将页面其它内容阻挡，无法进行其它操作
+ *  - 镂空效果：目标容器除了盛放元素的部分，其它地方都没有阻挡，不妨碍对页面进行操作
+ * 使用方式：
+ *  - 一般效果：为目标容器添加 mobius-layout__nine，并为该目标容器显式设置宽高
+ *  - 镂空效果：为目标容器同时添加 mobius-layout__nine 和 mobius-layout__nine--hollow，
+               不需要为目标容器设置宽高，但要求目标容器的容器设置了 position: relative
+ **/
+.mobius-layout__nine {
+  position: relative;
+
+  &.mobius-layout__nine--hollow {
+    position: static;
+    height: 0px;
+    width: 0px;
+  }
+
+  & .mobius-layout__nine--tl,
+  & .mobius-layout__nine--lt {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  & .mobius-layout__nine--tc,
+  & .mobius-layout__nine--ct {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  & .mobius-layout__nine--tr,
+  & .mobius-layout__nine--rt {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  & .mobius-layout__nine--cl,
+  & .mobius-layout__nine--lc {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  & .mobius-layout__nine--cc {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  & .mobius-layout__nine--cr,
+  & .mobius-layout__nine--rc {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+  }
+  & .mobius-layout__nine--bl,
+  & .mobius-layout__nine--lb {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  & .mobius-layout__nine--bc,
+  & .mobius-layout__nine--cb {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  & .mobius-layout__nine--br,
+  & .mobius-layout__nine--rb {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+/*! purgecss end ignore */

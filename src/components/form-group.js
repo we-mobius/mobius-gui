@@ -20,8 +20,6 @@ export const formGroupDC = makeDriverFormatComponent({
     // 表单项约束
     const schemaInD = Data.empty()
     const schemaOutRD = replayWithLatest(1, Data.empty())
-    tapValueT('schemaInD')(schemaInD)
-    tapValueT('schemaOutRD')(schemaOutRD)
 
     // childs are options of formItemComponent or component & related interface itself
     //   -> options of formItemComponent: { styles: { name, type, ... }, marks, ... }
@@ -86,10 +84,12 @@ export const formGroupDC = makeDriverFormatComponent({
             inputs.styles.schema = inputs.styles.schema || Data.of({})
             outputs.schema = outputs.schame || Data.of({})
 
+            const driverComponentInstance = FORM_ITEM_MAP.get(type)()({ inputs, outputs })
+
             return {
               name,
-              component: FORM_ITEM_MAP.get(type)()({ inputs, outputs }).outputs.template,
-              interfaces: { schemaIn: inputs.styles.schema, schemaOut: outputs.schema }
+              component: driverComponentInstance.outputs.template,
+              interfaces: { schemaIn: driverComponentInstance.inputs.styles.schema, schemaOut: driverComponentInstance.outputs.schema }
             }
           }
         } else if (isArray(child)) {

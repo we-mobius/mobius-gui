@@ -7,6 +7,9 @@ import {
   mutationToDataS,
   combineLatestT
 } from '../libs/mobius-utils.js'
+import {
+  nothing
+} from '../libs/lit-html.js'
 import { elementMakerUtilsContexts } from './element.js'
 import { makeUITache } from './ui-tache.js'
 import { makeUIDriver } from './ui-driver.js'
@@ -42,7 +45,8 @@ export const makeInstantComponent = looseCurryN(2, (operation, sources, options 
     throw (new TypeError(`"options" is expected to be type of "Object", but received "${typeof options}".`))
   }
 
-  const { enableReplay = true, liftType = 'both' } = options
+  // enableOutlier: 设置为 true 之后，将使用 nothing 作为组件的初始值，即使在应用启动的时候 sources 没有输出值，也不影响程序整体运行
+  const { enableReplay = true, liftType = 'both', enableOutlier = true } = options
 
   let inputD
   // ! detect order matters
@@ -57,14 +61,14 @@ export const makeInstantComponent = looseCurryN(2, (operation, sources, options 
   } else if (isObject(sources)) {
     inputD = combineLatestT(sources)
   } else {
-    inputD = Data.of(sources)
+    inputD = replayWithLatest(1, Data.of(sources))
   }
 
   const inputRD = replayWithLatest(1, inputD)
   const mutation = Mutation.ofLift((...args) => {
     return operation(...args, { ...elementMakerUtilsContexts })
   }, { liftType })
-  let output = Data.empty()
+  let output = enableOutlier ? Data.of(nothing) : Data.empty()
 
   if (enableReplay) {
     output = replayWithLatest(1, output)

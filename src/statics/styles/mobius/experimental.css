@@ -1,0 +1,31 @@
+/*! purgecss start ignore */
+.mobius-experimental__yang {
+  position: relative;
+  transform-style: preserve-3d;
+  border-color: var(--bg-color-base) !important;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(-1px);
+    width: 100%;
+    height: 100%;
+    /* background-color: hsla(0, 0%, 80%, 50%); */
+    border-radius: 1rem;
+    box-shadow: 0 0 0 transparent,0 0 0 transparent,var(--shadow-lefttop-inset),var(--shadow-rightbottom-inset);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(-2px);
+    width: 100%;
+    height: 100%;
+    /* background-color: hsla(0, 0%, 80%, 50%); */
+    border-radius: 1rem;
+    box-shadow: var(--shadow-lefttop-normal),var(--shadow-rightbottom-normal);
+  }
+}
+/*! purgecss end ignore */

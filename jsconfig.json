@@ -25,7 +25,21 @@
       "Styles/*": [
         "./src/statics/styles/*"
       ]
-    }
+    },
+    "plugins": [
+      {
+        "name": "typescript-lit-html-plugin",
+        "tags": [
+          "template",
+          "raw",
+          "mark",
+          "style",
+          "actuate",
+          "view",
+          "html"
+        ]
+      }
+    ]
   },
   "exclude": [
     "node_modules",

@@ -29,3 +29,11 @@ export const FORM_ITEM_MAP = new Map([
   ['FileInput', createItem(useFileInputDC)],
   ['Button', createItem(useButtonDC)]
 ])
+
+export const registerFormItem = (name, componentFactory) => {
+  if (FORM_ITEM_MAP.get(name)) {
+    throw (new Error(`"${name}" is existed in "FORM_ITEM_APP".`))
+  } else {
+    FORM_ITEM_MAP.set(name, createItem(componentFactory))
+  }
+}
