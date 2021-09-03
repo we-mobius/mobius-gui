@@ -34,7 +34,7 @@
         "./src/ts/libs/mobius-js.ts"
       ],
       "Business/*": [
-        "src/ts/business/*"
+        "./src/ts/business/*"
       ],
       "FreeBusiness/*": [
         "./src/ts/business-free/*"
