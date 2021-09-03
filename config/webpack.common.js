@@ -11,7 +11,7 @@ export const getCommonConfig = () => ({
   },
   plugins: [],
   resolve: {
-    extensions: ['', '.js', '.ts', '...'],
+    extensions: ['.js', '.ts', '...'],
     alias: {
       ES: rootResolvePath('src/es/'),
       ES$: rootResolvePath('src/es/index.js'),
