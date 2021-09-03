@@ -5,42 +5,61 @@
   "type": "module",
   "typings": "./typings/main.d.ts",
   "types": "./typings/main.d.ts",
-  "main": "./release/modules/cjs/main.js",
-  "module": "./release/modules/es/main.js",
+  "main": "./release/modules/cjs/main.cjs",
+  "module": "./release/modules/esm/main.js",
   "exports": {
     ".": {
-      "require": "./release/modules/cjs/main.js",
-      "import": "./release/modules/es/main.js",
-      "node": "./release/modules/es/main.js",
-      "default": "./release/modules/es/main.js"
+      "require": "./release/modules/cjs/main.cjs",
+      "import": "./release/modules/esm/main.js",
+      "node": "./release/modules/esm/main.js",
+      "default": "./release/modules/esm/main.js"
     },
-    "./css": "./src/statics/styles/static.css",
+
+    "./es": "./release/modules/es/main.js",
+    "./es/*": "./release/modules/es/*",
+    "./es-js/*": "./release/modules/es/*.js",
+
+    "./ts": "./src/main.ts",
+    "./ts/*": "./src/ts/*.ts",
+    "./ts-js/*": "./src/ts/*.js",
+
+    "./esm": "./release/modules/esm/main.js",
+    "./umd": {
+      "require": "./release/modules/umd/main.cjs",
+      "import": "./release/modules/umd/main.js",
+      "node": "./release/modules/umd/main.js",
+      "default": "./release/modules/umd/main.js"
+    },
+    "./cjs": "./release/modules/cjs/main.cjs",
+
+    "./src/*": "./src/*",
+    "./src-ts/*": "./src/*.ts",
+    "./src-js/*": "./src/*.js",
+    "./statics/*": "./statics/*",
+    "./release/*": "./release/*",
+    "./release-js/*": "./release/*.js",
+    "./release-cjs/*": "./release/*.cjs",
+    "./esm/*": "./release/modules/esm/*",
+    "./cjs/*": "./release/modules/cjs/*",
+    "./umd/*": "./release/modules/umd/*",
+
+    "./css": "./src/statics/styles/release.css",
     "./css-base": "./src/statics/styles/base.release.css",
     "./css-addon": "./src/statics/styles/addon.release.css",
     "./css-main": "./src/statics/styles/mobius.release.css",
     "./css/*": "./src/statics/styles/*.css",
-    "./ts": "./src/main.ts",
-    "./module": "./release/modules/es/main.js",
-    "./es": "./release/modules/es/main.js",
-    "./esm": "./release/modules/esm/main.js",
-    "./cjs": "./release/modules/cjs/main.js",
-    "./ts/*": "./src/ts/*.ts",
-    "./es-in-ts/*": "./src/ts/*.js",
-    "./module/*": "./release/modules/es/*.js",
-    "./es/*": "./release/modules/es/*.js",
-    "./esm/*": "./release/modules/esm/*.js",
-    "./cjs/*": "./release/modules/cjs/*.js",
-    "./src/*": "./src/*.js",
-    "./release/*": "./release/*.js",
     "./package.json": "./package.json"
   },
   "typesVersions": {
     "*": {
-      "esm": [
-        "./typings/main.d.ts"
+      "es": [
+        "./release/modules/es/main.d.ts"
       ],
-      "cjs": [
-        "./typings/main.d.ts"
+      "es/*": [
+        "./release/modules/es/*"
+      ],
+      "es-js/*": [
+        "./release/modules/es/*"
       ],
       "ts": [
         "./src/main.ts"
@@ -48,20 +67,20 @@
       "ts/*": [
         "./src/ts/*"
       ],
-      "es-in-ts/*": [
+      "ts-js/*": [
         "./src/ts/*"
       ],
-      "module": [
-        "./release/modules/es/main"
+      "esm": [
+        "./typings/main.d.ts"
       ],
-      "module/*": [
-        "./release/modules/es/*"
+      "umd": [
+        "./typings/main.d.ts"
       ],
-      "es": [
-        "./release/modules/es/main"
+      "cjs": [
+        "./typings/main.d.ts"
       ],
-      "es/*": [
-        "./release/modules/es/*"
+      "*": [
+        "./typings/main.d.ts"
       ]
     }
   },

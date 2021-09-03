@@ -1,4 +1,4 @@
-export * from '@we-mobius/mobius-utils/es-in-ts/external/class'
+export * from '@we-mobius/mobius-utils/ts-js/external/class'
 
 export * from './base.js'
 export * from './mark.js'

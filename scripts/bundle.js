@@ -131,6 +131,21 @@ const pack = () => {
   })
 }
 
+const complementModules = () => {
+  return new Promise((resolve) => {
+    console.log('[[complementModules]] start...')
+    copyFileSync(
+      rootResolvePath('release/modules/cjs/main.js'),
+      rootResolvePath('release/modules/cjs/main.cjs')
+    )
+    copyFileSync(
+      rootResolvePath('release/modules/umd/main.js'),
+      rootResolvePath('release/modules/umd/main.cjs')
+    )
+    console.log('[[complementModules]] complete...')
+  })
+}
+
 const copy = () => {
   return new Promise((resolve) => {
     console.log('【copy】 start...')
@@ -165,6 +180,7 @@ empty()
   .then(() => packES())
   .then(() => packTypings())
   .then(() => pack())
+  .then(() => complementModules())
   .then(() => copy())
   .then(() => {
     console.log(`${BUILD_MODE} Build Complete!!!`)
