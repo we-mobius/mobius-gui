@@ -4,7 +4,7 @@ import {
   Data, Mutation, TERMINATOR,
   replayWithLatest,
   pipeAtom, binaryTweenPipeAtom, makeGeneralEventHandler,
-  pluckT, combineLatestT, mapT,
+  pluckT_, combineLatestT, mapT_,
   tapValueT
 } from '../libs/mobius-utils'
 
@@ -13,7 +13,7 @@ export const fileInputDC = makeDriverFormatComponent({
     // 表单项约束 - 接口
     const schemaInD = Data.empty()
     const schemaOutRD = replayWithLatest(1, Data.empty())
-    tapValueT('FileInputSchemaOutRD')(schemaOutRD)
+    tapValueT('FileInputSchemaOutRD', schemaOutRD)
 
     // TODO: 将 schemaIn 映射到 styles
     // 组件 styles
@@ -38,7 +38,7 @@ export const fileInputDC = makeDriverFormatComponent({
     // 组件核心逻辑
     const [changeHandlerRD, , changeD] = makeGeneralEventHandler()
 
-    const filesD = changeD.pipe(pluckT('target.files'))
+    const filesD = changeD.pipe(pluckT_('target.files'))
 
     const filesToContentsM = Mutation.ofLiftLeft((files, _, mutation) => {
       const promises = Array.from(files).map(async file => {
@@ -52,14 +52,14 @@ export const fileInputDC = makeDriverFormatComponent({
       })
 
       Promise.allSettled(promises).then(res => {
-        mutation.triggerOperation(() => res.map(({ value }) => value))
+        mutation.triggerTransformation(() => res.map(({ value }) => value))
       })
 
       return TERMINATOR
     })
     const contentsD = Data.empty()
     pipeAtom(filesD, filesToContentsM, contentsD)
-    tapValueT('contentsD')(contentsD)
+    tapValueT('contentsD', contentsD)
 
     // 表单项约束
     const stylesRD = replayWithLatest(1, combineLatestT({
@@ -70,7 +70,7 @@ export const fileInputDC = makeDriverFormatComponent({
       multiple: multipleRD
     }))
     const rawSchemaD = combineLatestT({ styles: stylesRD, contents: contentsD })
-    const innerSchemaD = rawSchemaD.pipe(mapT(rawSchema => {
+    const innerSchemaD = rawSchemaD.pipe(mapT_(rawSchema => {
       const { styles, contents } = rawSchema
       return { ...styles, contents, value: contents }
     }))

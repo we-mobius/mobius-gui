@@ -1,12 +1,12 @@
-import { makeElementMaker } from '../helpers/element'
+import { createElementMaker } from '../helpers/element'
 
 // TODO: 完善
-export const makeTipE = makeElementMaker({
+export const makeTipE = createElementMaker({
   mark: {},
   styles: {},
   actuations: {},
   configs: {},
-  handler: (view, { marks, styles, actuations, configs, utils: { html } }) => {
+  prepareTemplate: (view, { marks, styles, actuations, configs, utils: { html } }) => {
     return html`
       <div class='mobius-padding--base'>
         <div class='mobius-padding--small mobius-rounded--full mobius-bg--base mobius-text--red mobius-text--small mobius-cursor--pointer'>

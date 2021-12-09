@@ -1,7 +1,7 @@
 import { html } from '../libs/lit-html'
-import { makeElementMaker } from '../helpers/index'
+import { createElementMaker } from '../helpers/index'
 
-export const makeTableE = makeElementMaker({
+export const makeTableE = createElementMaker({
   marks: { },
   styles: {
     data: [
@@ -11,7 +11,7 @@ export const makeTableE = makeElementMaker({
   },
   actuations: { },
   configs: { },
-  handler: (view, { styles, utils: { prefix } }) => {
+  prepareTemplate: (view, { styles, utils: { prefix } }) => {
     const { data } = styles
 
     const createTable = data => {

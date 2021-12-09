@@ -118,7 +118,7 @@ export const makeMonacoDriver = ({ autoLoad, layoutDebounce = 50 } = {}) => {
 
   // layout monaco editor when it be inserted in the DOM
   pipeAtom(insertM, layoutD)
-  const resizeM = createMutationFromEvent(window, 'resize', e => () => e)[0]
+  const resizeM = createMutationFromEvent({ target: window, type: 'resize', handler: e => () => e })[0]
   // layout monaco editor when the window size change
   pipeAtom(resizeM, layoutD)
 

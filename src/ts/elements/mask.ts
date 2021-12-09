@@ -1,5 +1,5 @@
 import { isBoolean, isString, isFunction } from '../libs/mobius-utils'
-import { makeElementMaker } from '../helpers/index'
+import { createElementMaker } from '../helpers/index'
 
 const classesSetter = {
   contentContainerClasses: c => {
@@ -24,7 +24,7 @@ const applySpec = (fns, target) => {
   return target
 }
 
-export const makeMaskE = makeElementMaker({
+export const makeMaskE = createElementMaker({
   marks: {},
   styles: {
     rootClasses: '',
@@ -37,7 +37,7 @@ export const makeMaskE = makeElementMaker({
     clickHandler: e => { console.warn('Mask need an eventHandler!') }
   },
   configs: {},
-  handler: (view, { styles, utils: { prefix } }) => {
+  prepareTemplate: (view, { styles, utils: { prefix } }) => {
     const { rootClasses, maskClasses, contentContainerClasses, isShow } = applySpec(classesSetter, { ...styles })
 
     return view`

@@ -5,11 +5,11 @@ import {
   Data,
   replayWithLatest,
   binaryTweenPipeAtom,
-  combineLatestT, takeT, mapT, filterT, startWithT
+  combineLatestT, takeT_, mapT_, filterT_, startWithT
 } from '../libs/mobius-utils'
 import {
   makeDriverFormatComponent, useUIDriver,
-  idToNodeT
+  idToElementT_
 } from '../helpers/index'
 
 /**
@@ -19,7 +19,7 @@ import {
 export const autonomyAppDC = makeDriverFormatComponent({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
     const idRD = replayWithLatest(1, Data.of(makeUniqueString('autonomy-app')))
-    const containerRD = idRD.pipe(idToNodeT(100), replayWithLatest(1))
+    const containerRD = idRD.pipe(idToElementT_(100), replayWithLatest(1))
 
     const rootClassesRD = replayWithLatest(1, Data.of(''))
     const contentRD = replayWithLatest(1, Data.of(undefined))
@@ -28,8 +28,8 @@ export const autonomyAppDC = makeDriverFormatComponent({
     const startRD = replayWithLatest(1, Data.empty())
     const scriptRD = replayWithLatest(1, Data.empty())
     const scriptsToBeLoadD = combineLatestT([scriptRD, startRD]).pipe(
-      takeT(1),
-      mapT(([script]) => isArray(script) ? script : [script])
+      takeT_(1),
+      mapT_(([script]) => isArray(script) ? script : [script])
     )
 
     // step2: load scripts
@@ -39,7 +39,7 @@ export const autonomyAppDC = makeDriverFormatComponent({
     // step3: extract scripts loaded
     const scriptsLoadedD = Data.empty()
     const scriptsRD = combineLatestT([scriptsToBeLoadD, scriptsLoadedD]).pipe(
-      filterT(([options, loaded]) => {
+      filterT_(([options, loaded]) => {
         const { external } = loaded
         return options.every(item => {
           if (!isString(item) && !isObject(item)) {
@@ -53,8 +53,8 @@ export const autonomyAppDC = makeDriverFormatComponent({
           return external.some(i => i.src === src)
         })
       }),
-      takeT(1),
-      mapT(([options, { external }]) => {
+      takeT_(1),
+      mapT_(([options, { external }]) => {
         return options.map(i => external.find(j => i.src === j.src))
       }),
       replayWithLatest(1)

@@ -1,36 +1,49 @@
 import { isString } from '../libs/mobius-utils'
-import { dirty, isDirty, isMarker, isPlain } from './base'
+import { Dirty, isDirty, isMarker, isPlain } from './base'
 
-export const mark = (marks, configs) => (strings, ...values) => {
-  const newValues = values.map((value, idx) => {
-    if (isDirty(value)) {
-      return value
-    }
+import type { TemplatePieces } from './view'
 
-    const prevString = strings[idx]
-    const idReg = /id=('|"|`)?$/ig
+/**
+ * Return a processor for tagged template.
+ *
+ * @description_i18n 处理模板中位于 `id=` | `id='` | `id="` 之后的值
+ */
+export const mark = (marks: Record<string, string>, configs: Record<string, any>) =>
+  (templatePieces: TemplatePieces): TemplatePieces => {
+    const { strings, values } = templatePieces
+    const newValues = values.map((value, index) => {
+      // if value is marked as dirty, return it
+      if (isDirty(value)) {
+        return value
+      }
 
-    if (idReg.test(prevString)) {
-      if (isMarker(value)) {
-        const marker = value.value
-        const mark = marks[marker]
-        if (mark !== undefined) {
-          return dirty(mark)
+      const prevString = strings[index]
+      const idReg = /id=('|"|`)?$/ig
+
+      if (idReg.test(prevString)) {
+        if (isMarker(value)) {
+          const marker = value.value
+          const mark = marks[marker]
+          if (mark !== undefined) {
+            return Dirty.of(mark)
+          } else {
+            console.warn(`There is no "${marker}" found in marks, use "${marker}" instead.`, marks)
+            return Dirty.of(marker)
+          }
+        } else if (isPlain(value)) {
+          return Dirty.of(value.value)
+        } else if (isString(value)) {
+          return marks[value] ?? value
         } else {
-          console.warn(`There is no "${marker}" found in marks.`, marks)
-          return dirty('') // id=''
+          return value
         }
-      } else if (isPlain(value)) {
-        return dirty(value.value)
-      } else if (isString(value)) {
-        return marks[value] || value
       } else {
         return value
       }
+    })
+
+    return {
+      strings,
+      values: newValues
     }
-
-    return value
-  })
-
-  return [strings, ...newValues]
-}
+  }

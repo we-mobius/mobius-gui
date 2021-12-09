@@ -3,12 +3,12 @@ import {
   completeStateRD,
   Data, Mutation, TERMINATOR, replayWithLatest, createDataFromEvent,
   pipeAtom, dataToData,
-  pluckT, combineLatestT, switchT,
-  mergeT, withLatestFromT, debounceTimeT, throttleTimeT, filterT,
-  takeT, skipUntilT, takeWhileT, truthyPairwiseT,
+  pluckT, combineLatestT, switchT_,
+  convergeT, withLatestFromT_, debounceTimeT, throttleTimeT_, filterT_,
+  takeT, skipUntilT_, takeWhileT, truthyPairwiseT,
   makeGeneralEventHandler,
-  tapValueT,
-  createGeneralDriver, useGeneralDriver
+  tapValueT_,
+  createGeneralDriver, useGeneralDriver_
 } from '../libs/mobius-utils'
 
 export const resizableDriver = createGeneralDriver({
@@ -38,7 +38,7 @@ export const resizableDriver = createGeneralDriver({
       const resizeObserver = new ResizeObserver(entries => {
         for (const entry of entries) {
           const { contentRect: { width, height } } = entry
-          mutation.triggerOperation(() => ([width, height]))
+          mutation.triggerTransformation(() => ([width, height]))
         }
       })
       resizeObserver.observe(container)
@@ -47,28 +47,28 @@ export const resizableDriver = createGeneralDriver({
     const _wrapperContainerResizeRD = replayWithLatest(1, Data.empty())
     pipeAtom(wrapperContainerRD, _wrapperContainerResizeM, _wrapperContainerResizeRD)
     const debouncedWrapperContainerResizeRD = _wrapperContainerResizeRD.pipe(debounceTimeT(50), replayWithLatest(1))
-    const wrapperContainerSizeRD = mergeT(
+    const wrapperContainerSizeRD = convergeT(
       wrapperContainerRD.pipe(dataToData(c => [c.clientWidth, c.clientHeight])),
       debouncedWrapperContainerResizeRD
     )
-    tapValueT('wrapperContainerSizeRD')(wrapperContainerSizeRD)
+    tapValueT_('wrapperContainerSizeRD')(wrapperContainerSizeRD)
 
     /**
      *                               TargetContainer Size Section
      *  update newest container size when container size has possibly changed
      */
 
-    const _targetContainerSizeChangeSourceRD = mergeT(
+    const _targetContainerSizeChangeSourceRD = convergeT(
       debouncedWrapperContainerResizeRD, topRD, rightRD, bottomRD, leftRD
-    ).pipe(replayWithLatest(1), switchT(targetContainerRD), replayWithLatest(1))
-    const _targetContainerWhenSizeChangeD = mergeT(targetContainerRD, _targetContainerSizeChangeSourceRD)
+    ).pipe(replayWithLatest(1), switchT_(targetContainerRD), replayWithLatest(1))
+    const _targetContainerWhenSizeChangeD = convergeT(targetContainerRD, _targetContainerSizeChangeSourceRD)
     const targetContainerSizeRD = replayWithLatest(1, Data.empty())
     pipeAtom(
       _targetContainerWhenSizeChangeD,
       Mutation.ofLiftLeft(c => [c.offsetWidth, c.offsetHeight]),
       targetContainerSizeRD
     )
-    tapValueT('targetContainerSizeRD')(targetContainerSizeRD)
+    tapValueT_('targetContainerSizeRD')(targetContainerSizeRD)
 
     /******************************************************************************
      *                             Common Use atoms
@@ -117,7 +117,7 @@ export const resizableDriver = createGeneralDriver({
     const isHandlingRD = replayWithLatest(1, Data.of(false))
     const handleTypeRD = replayWithLatest(1, Data.of({ resize: false, move: false }))
     const handleTargetRD = replayWithLatest(1, Data.of(undefined))
-    const validHandleTargetRD = handleTargetRD.pipe(filterT(v => v), replayWithLatest(1))
+    const validHandleTargetRD = handleTargetRD.pipe(filterT_(v => v), replayWithLatest(1))
 
     const handleTypeSetterD = Data.empty()
     const setHandleTypeM = Mutation.ofLiftBoth((update, prev) => ({ ...prev, ...update }))
@@ -126,8 +126,8 @@ export const resizableDriver = createGeneralDriver({
 
     // set keypress state
     const isKeyboardPressingRD = replayWithLatest(1, Data.of(false))
-    const keydownD = createDataFromEvent(document, 'keydown')[0].pipe(throttleTimeT(250))
-    const keyupD = createDataFromEvent(document, 'keyup')[0].pipe(throttleTimeT(250))
+    const keydownD = createDataFromEvent({ target: document, type: 'keydown' })[0].pipe(throttleTimeT_(250))
+    const keyupD = createDataFromEvent({ target: document, type: 'keyup' })[0].pipe(throttleTimeT_(250))
     pipeAtom(keydownD, Mutation.of(() => true), isKeyboardPressingRD)
     pipeAtom(keyupD, Mutation.of(() => false), isKeyboardPressingRD)
 
@@ -160,7 +160,7 @@ export const resizableDriver = createGeneralDriver({
     const isResizingRD = replayWithLatest(1, Data.of(false))
     // mouse down: set isResizing to true when there is no key has been press down
     // mouse up: set isResizing to false
-    pipeAtom(switchT(isKeyboardPressingRD, mouseDownD), Mutation.ofLiftLeft(isKeyboardPressing => !isKeyboardPressing), isResizingRD)
+    pipeAtom(switchT_(isKeyboardPressingRD, mouseDownD), Mutation.ofLiftLeft(isKeyboardPressing => !isKeyboardPressing), isResizingRD)
     pipeAtom(mouseUpD, Mutation.ofLiftLeft(() => false), isResizingRD)
     // sync to isHandlingRD
     pipeAtom(isResizingRD, Mutation.ofLiftLeft(v => ({ resize: v })), handleTypeSetterD)
@@ -211,10 +211,10 @@ export const resizableDriver = createGeneralDriver({
     pipeAtom(resizingBottomTraceD, traceToBottomDeltaM, bottomDeltaRD)
     pipeAtom(resizingLeftTraceD, traceToLeftDeltaM, leftDeltaRD)
 
-    const topChangeDetailD = withLatestFromT(changeExtraDetailRD, topDeltaRD)
-    const rightChangeDetailD = withLatestFromT(changeExtraDetailRD, rightDeltaRD)
-    const bottomChangeDetailD = withLatestFromT(changeExtraDetailRD, bottomDeltaRD)
-    const leftChangeDetailD = withLatestFromT(changeExtraDetailRD, leftDeltaRD)
+    const topChangeDetailD = withLatestFromT_(changeExtraDetailRD, topDeltaRD)
+    const rightChangeDetailD = withLatestFromT_(changeExtraDetailRD, rightDeltaRD)
+    const bottomChangeDetailD = withLatestFromT_(changeExtraDetailRD, bottomDeltaRD)
+    const leftChangeDetailD = withLatestFromT_(changeExtraDetailRD, leftDeltaRD)
 
     const applyTopChangeM = Mutation.ofLiftBoth(([delta, extraDetail], top) => {
       const { wrapperContainerHeight, targetContainerHeight, minHeight, bottom, barWeight } = extraDetail
@@ -269,20 +269,20 @@ export const resizableDriver = createGeneralDriver({
      *                Space and Mouse move related container size change
      ******************************************************************************/
 
-    const isMovingRD = replayWithLatest(1, Data.of(false)).pipe(tapValueT('isMoving'))
+    const isMovingRD = replayWithLatest(1, Data.of(false)).pipe(tapValueT_('isMoving'))
 
     // when space key press down, set space key press state to true
     // when space key press up, set space key press state to false
-    const isSpaceKeyPressingRD = replayWithLatest(1, Data.of(false)).pipe(tapValueT('space'))
-    const spaceDownD = createDataFromEvent(document, 'keydown')[0].pipe(
-      filterT(e => e.code === 'Space'),
-      skipUntilT(completeStateRD),
-      throttleTimeT(250)
+    const isSpaceKeyPressingRD = replayWithLatest(1, Data.of(false)).pipe(tapValueT_('space'))
+    const spaceDownD = createDataFromEvent({ target: document, type: 'keydown' })[0].pipe(
+      filterT_(e => e.code === 'Space'),
+      skipUntilT_(completeStateRD),
+      throttleTimeT_(250)
     )
-    const spaceUpD = createDataFromEvent(document, 'keyup')[0].pipe(
-      filterT(e => e.code === 'Space'),
-      skipUntilT(completeStateRD),
-      throttleTimeT(250)
+    const spaceUpD = createDataFromEvent({ target: document, type: 'keyup' })[0].pipe(
+      filterT_(e => e.code === 'Space'),
+      skipUntilT_(completeStateRD),
+      throttleTimeT_(250)
     )
     const spaceDownM = Mutation.of(() => true)
     const spaceUpM = Mutation.of(() => false)
@@ -290,7 +290,7 @@ export const resizableDriver = createGeneralDriver({
     pipeAtom(spaceUpD, spaceUpM, isSpaceKeyPressingRD)
     // mouse down: set isMoving to true when there is space key has been press down
     // mouse up: set isMoving to false
-    pipeAtom(switchT(isSpaceKeyPressingRD, mouseDownD), Mutation.ofLiftLeft(v => v), isMovingRD)
+    pipeAtom(switchT_(isSpaceKeyPressingRD, mouseDownD), Mutation.ofLiftLeft(v => v), isMovingRD)
     pipeAtom(mouseUpD, Mutation.ofLiftLeft(() => false), isMovingRD)
     // sync to isHandlingRD
     pipeAtom(isMovingRD, Mutation.ofLiftLeft(v => ({ move: v })), handleTypeSetterD)
@@ -319,8 +319,8 @@ export const resizableDriver = createGeneralDriver({
     const deltaYD = Data.empty()
     const deltaXD = Data.empty()
 
-    pipeAtom(movingTraceD.pipe(withLatestFromT(changeExtraDetailRD)), movingTraceToYM, deltaYD)
-    pipeAtom(movingTraceD.pipe(withLatestFromT(changeExtraDetailRD)), movingTraceToXM, deltaXD)
+    pipeAtom(movingTraceD.pipe(withLatestFromT_(changeExtraDetailRD)), movingTraceToYM, deltaYD)
+    pipeAtom(movingTraceD.pipe(withLatestFromT_(changeExtraDetailRD)), movingTraceToXM, deltaXD)
 
     pipeAtom(deltaYD, Mutation.ofLiftBoth((delta, top) => top + delta), topRD)
     pipeAtom(deltaXD, Mutation.ofLiftBoth((delta, right) => right - delta), rightRD)
@@ -333,9 +333,9 @@ export const resizableDriver = createGeneralDriver({
 
     const [dbClickHandlerRD, , dbClickD] = makeGeneralEventHandler()
 
-    const positionDetailRD = combineLatestT({ top: topRD, right: rightRD, bottom: bottomRD, left: leftRD }).pipe(tapValueT('positionDetailRD'))
-    const positionCacheD = mergeT(switchT(positionDetailRD, dbClickD).pipe(tapValueT('switch')), takeT(1, positionDetailRD).pipe(tapValueT('take')))
-      .pipe(tapValueT('merge'), truthyPairwiseT, tapValueT('pair'))
+    const positionDetailRD = combineLatestT({ top: topRD, right: rightRD, bottom: bottomRD, left: leftRD }).pipe(tapValueT_('positionDetailRD'))
+    const positionCacheD = convergeT(switchT_(positionDetailRD, dbClickD).pipe(tapValueT_('switch')), takeT(1, positionDetailRD).pipe(tapValueT_('take')))
+      .pipe(tapValueT_('merge'), truthyPairwiseT, tapValueT_('pair'))
 
     const maxMizeM = Mutation.ofLiftLeft(([cur, prev]) => {
       const { top, right, bottom, left } = cur
@@ -374,4 +374,4 @@ export const resizableDriver = createGeneralDriver({
   }
 })
 
-export const useResizableDriver = useGeneralDriver(resizableDriver)
+export const useResizableDriver = useGeneralDriver_(resizableDriver)

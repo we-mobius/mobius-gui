@@ -4,7 +4,7 @@ import {
   Data, Mutation,
   makeGeneralEventHandler,
   pipeAtom, binaryTweenPipeAtom,
-  mergeT,
+  convergeT,
   replayWithLatest
 } from '../libs/mobius-utils'
 
@@ -26,7 +26,7 @@ export const maskDC = makeDriverFormatComponent({
 
     const [clickHandlerRD, , clickD] = makeGeneralEventHandler(e => false)
 
-    const toggleD = mergeT(externalToggleD, clickD)
+    const toggleD = convergeT(externalToggleD, clickD)
 
     pipeAtom(toggleD, Mutation.ofLiftBoth((_, isShow) => !isShow), isShowRD)
     binaryTweenPipeAtom(clickD, isShowRD)

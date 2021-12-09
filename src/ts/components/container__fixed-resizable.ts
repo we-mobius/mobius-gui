@@ -1,4 +1,4 @@
-import { makeTacheFormatComponent, useUITache, idToNodeT } from '../helpers/index'
+import { makeTacheFormatComponent, useUITache, idToElementT_ } from '../helpers/index'
 import { makeFixedResizableContainerE } from '../elements/index'
 import {
   minTo, between, minOf,
@@ -6,11 +6,11 @@ import {
   Data, Mutation, TERMINATOR, replayWithLatest, createDataFromEvent,
   pipeAtom, dataToData,
   pluckT, combineLatestT, switchT, promiseSwitchT,
-  mergeT, withLatestFromT, debounceTimeT, throttleTimeT, filterT, zipLatestT,
-  takeT, skipUntilT, takeWhileT, truthyPairwiseT,
+  convergeT, withLatestFromT_, debounceTimeT, throttleTimeT_, filterT_, zipLatestT,
+  takeT, skipUntilT_, takeWhileT, truthyPairwiseT,
   makeGeneralEventHandler,
   makeUniqueString,
-  tapValueT
+  tapValueT_
 } from '../libs/mobius-utils'
 
 /**
@@ -33,7 +33,7 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
 
     // id of component & DOM Node
     const idRD = replayWithLatest(1, Data.of(makeUniqueString('fixed-resizable-container')))
-    const containerRD = idRD.pipe(idToNodeT(100), replayWithLatest(1))
+    const containerRD = idRD.pipe(idToElementT_(100), replayWithLatest(1))
 
     //                               Client Size Section
     // clientWidth = body offsetWidth + scrollbar weight
@@ -42,11 +42,11 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
 
     //                              Container Size Section
     // update newest container size when container size has possibly changed
-    const containerSizeChangeSourceRD = mergeT(containerRD, debouncedWindowResizeRD, topRD, rightRD, bottomRD, leftRD).pipe(replayWithLatest(1))
+    const containerSizeChangeSourceRD = convergeT(containerRD, debouncedWindowResizeRD, topRD, rightRD, bottomRD, leftRD).pipe(replayWithLatest(1))
     // emit container when window size change
     // ! use promiseSwitchT instead of switchT because there is no container to get
     // ! when containerRD triggers containerSizeChangeSourceRD in the first time
-    // TODO: use mergeT & switchT
+    // TODO: use convergeT & switchT
     const containerWhenSizeChangeD = promiseSwitchT(containerRD, containerSizeChangeSourceRD)
     const containerToContainerSizeM = Mutation.ofLiftLeft(container => [container.offsetWidth, container.offsetHeight])
     const containerSizeRD = replayWithLatest(1, Data.empty())
@@ -96,9 +96,9 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
     // changes of top & right & bottom & left will lead to new changes of clientSize & containerSize,
     //   -> but will not back to trigger a new turn of window resize
 
-    // const pairwiseChangesRD = mergeT(
+    // const pairwiseChangesRD = convergeT(
     //   switchT(changeExtraDetailRD, debouncedWindowResizeRD), takeT(1, changeExtraDetailRD)
-    // ).pipe(pairwiseT, filterT(v => v[0] && v[1]), replayWithLatest(1))
+    // ).pipe(pairwiseT, filterT_(v => v[0] && v[1]), replayWithLatest(1))
 
     // get window size change detail when window resize event happens
     // { clientWidth, clientHeight, screenLeft, screenTop }
@@ -270,7 +270,7 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
     const isHandlingRD = replayWithLatest(1, Data.of(false))
     const handleTypeRD = replayWithLatest(1, Data.of({ resize: false, move: false }))
     const handleTargetRD = replayWithLatest(1, Data.of(undefined))
-    const validHandleTargetRD = handleTargetRD.pipe(filterT(v => v), replayWithLatest(1))
+    const validHandleTargetRD = handleTargetRD.pipe(filterT_(v => v), replayWithLatest(1))
 
     const handleTypeSetterD = Data.empty()
     const setHandleTypeM = Mutation.ofLiftBoth((update, prev) => ({ ...prev, ...update }))
@@ -279,8 +279,8 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
 
     // set keypress state
     const isKeyboardPressingRD = replayWithLatest(1, Data.of(false))
-    const keydownD = createDataFromEvent(document, 'keydown')[0].pipe(throttleTimeT(250))
-    const keyupD = createDataFromEvent(document, 'keyup')[0].pipe(throttleTimeT(250))
+    const keydownD = createDataFromEvent({ target: document, type: 'keydown' })[0].pipe(throttleTimeT_(250))
+    const keyupD = createDataFromEvent({ target: document, type: 'keyup' })[0].pipe(throttleTimeT_(250))
     pipeAtom(keydownD, Mutation.of(() => true), isKeyboardPressingRD)
     pipeAtom(keyupD, Mutation.of(() => false), isKeyboardPressingRD)
 
@@ -364,10 +364,10 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
     pipeAtom(resizingBottomTraceD, traceToBottomDeltaM, bottomDeltaRD)
     pipeAtom(resizingLeftTraceD, traceToLeftDeltaM, leftDeltaRD)
 
-    const topChangeDetailD = withLatestFromT(changeExtraDetailRD, topDeltaRD)
-    const rightChangeDetailD = withLatestFromT(changeExtraDetailRD, rightDeltaRD)
-    const bottomChangeDetailD = withLatestFromT(changeExtraDetailRD, bottomDeltaRD)
-    const leftChangeDetailD = withLatestFromT(changeExtraDetailRD, leftDeltaRD)
+    const topChangeDetailD = withLatestFromT_(changeExtraDetailRD, topDeltaRD)
+    const rightChangeDetailD = withLatestFromT_(changeExtraDetailRD, rightDeltaRD)
+    const bottomChangeDetailD = withLatestFromT_(changeExtraDetailRD, bottomDeltaRD)
+    const leftChangeDetailD = withLatestFromT_(changeExtraDetailRD, leftDeltaRD)
 
     const applyTopChangeM = Mutation.ofLiftBoth(([delta, extraDetail], top) => {
       const { clientHeight, containerHeight, minHeight, bottom, barWeight } = extraDetail
@@ -422,20 +422,20 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
      *                Space and Mouse move related container size change
      ******************************************************************************/
 
-    const isMovingRD = replayWithLatest(1, Data.of(false)).pipe(tapValueT('isMoving'))
+    const isMovingRD = replayWithLatest(1, Data.of(false)).pipe(tapValueT_('isMoving'))
 
     // when space key press down, set space key press state to true
     // when space key press up, set space key press state to false
-    const isSpaceKeyPressingRD = replayWithLatest(1, Data.of(false)).pipe(tapValueT('space'))
-    const spaceDownD = createDataFromEvent(document, 'keydown')[0].pipe(
-      filterT(e => e.code === 'Space'),
-      skipUntilT(completeStateRD),
-      throttleTimeT(250)
+    const isSpaceKeyPressingRD = replayWithLatest(1, Data.of(false)).pipe(tapValueT_('space'))
+    const spaceDownD = createDataFromEvent({ target: document, type: 'keydown' })[0].pipe(
+      filterT_(e => e.code === 'Space'),
+      skipUntilT_(completeStateRD),
+      throttleTimeT_(250)
     )
-    const spaceUpD = createDataFromEvent(document, 'keyup')[0].pipe(
-      filterT(e => e.code === 'Space'),
-      skipUntilT(completeStateRD),
-      throttleTimeT(250)
+    const spaceUpD = createDataFromEvent({ target: document, type: 'keyup' })[0].pipe(
+      filterT_(e => e.code === 'Space'),
+      skipUntilT_(completeStateRD),
+      throttleTimeT_(250)
     )
     const spaceDownM = Mutation.of(() => true)
     const spaceUpM = Mutation.of(() => false)
@@ -472,8 +472,8 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
     const deltaYD = Data.empty()
     const deltaXD = Data.empty()
 
-    pipeAtom(movingTraceD.pipe(withLatestFromT(changeExtraDetailRD)), movingTraceToYM, deltaYD)
-    pipeAtom(movingTraceD.pipe(withLatestFromT(changeExtraDetailRD)), movingTraceToXM, deltaXD)
+    pipeAtom(movingTraceD.pipe(withLatestFromT_(changeExtraDetailRD)), movingTraceToYM, deltaYD)
+    pipeAtom(movingTraceD.pipe(withLatestFromT_(changeExtraDetailRD)), movingTraceToXM, deltaXD)
 
     pipeAtom(deltaYD, Mutation.ofLiftBoth((delta, top) => top + delta), topRD)
     pipeAtom(deltaXD, Mutation.ofLiftBoth((delta, right) => right - delta), rightRD)
@@ -486,9 +486,9 @@ export const fixedResizableContainerTC = makeTacheFormatComponent({
 
     const [dbClickHandlerRD, , dbClickD] = makeGeneralEventHandler()
 
-    const positionDetailRD = combineLatestT({ top: topRD, right: rightRD, bottom: bottomRD, left: leftRD }).pipe(tapValueT('positionDetailRD'))
-    const positionCacheD = mergeT(switchT(positionDetailRD, dbClickD).pipe(tapValueT('switch')), takeT(1, positionDetailRD).pipe(tapValueT('take')))
-      .pipe(tapValueT('merge'), truthyPairwiseT, tapValueT('pair'))
+    const positionDetailRD = combineLatestT({ top: topRD, right: rightRD, bottom: bottomRD, left: leftRD }).pipe(tapValueT_('positionDetailRD'))
+    const positionCacheD = convergeT(switchT(positionDetailRD, dbClickD).pipe(tapValueT_('switch')), takeT(1, positionDetailRD).pipe(tapValueT_('take')))
+      .pipe(tapValueT_('merge'), truthyPairwiseT, tapValueT_('pair'))
 
     const maxMizeM = Mutation.ofLiftLeft(([cur, prev]) => {
       const { top, right, bottom, left } = cur

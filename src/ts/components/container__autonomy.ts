@@ -7,7 +7,7 @@ import {
 } from '../libs/mobius-utils'
 import {
   makeDriverFormatComponent, useUIDriver,
-  idToNodeT
+  idToElementT_
 } from '../helpers/index'
 
 /**
@@ -17,7 +17,7 @@ import {
 export const autonomyContainerDC = makeDriverFormatComponent({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
     const idRD = replayWithLatest(1, Data.of(makeUniqueString('autonomy-container')))
-    const containerRD = idRD.pipe(idToNodeT(100), replayWithLatest(1))
+    const containerRD = idRD.pipe(idToElementT_(100), replayWithLatest(1))
 
     const rootClassesD = Data.empty()
 

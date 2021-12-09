@@ -4,7 +4,7 @@ import {
   Data, Mutation,
   replayWithLatest, withValueFlatted,
   pipeAtom, binaryTweenPipeAtom,
-  pluckT, mapT, combineLatestT, tapValueT
+  pluckT_, mapT_, combineLatestT, tapValueT
 } from '../libs/mobius-utils'
 import { FORM_ITEM_MAP } from './form'
 
@@ -30,8 +30,8 @@ export const formGroupDC = makeDriverFormatComponent({
     const rulesRD = replayWithLatest(1, Data.of([]))
     binaryTweenPipeAtom(childsInD, childsRD)
     binaryTweenPipeAtom(rulesInD, rulesRD)
-    tapValueT('childsRD')(childsRD)
-    tapValueT('rulesRD')(rulesRD)
+    tapValueT('childsRD', childsRD)
+    tapValueT('rulesRD', rulesRD)
 
     // create component from childs options
     //   -> take: childs
@@ -122,27 +122,27 @@ export const formGroupDC = makeDriverFormatComponent({
     pipeAtom(formItemsRD, formItemsToPreContextsM, preContextsRD)
 
     // pluck components & interfaces seperate
-    const wrappedComponentsRD = preContextsRD.pipe(pluckT('components'), replayWithLatest(1))
-    const componentsRD = wrappedComponentsRD.pipe(mapT(combineLatestT), replayWithLatest(1), withValueFlatted, replayWithLatest(1))
+    const wrappedComponentsRD = preContextsRD.pipe(pluckT_('components'), replayWithLatest(1))
+    const componentsRD = wrappedComponentsRD.pipe(mapT_(combineLatestT), replayWithLatest(1), withValueFlatted, replayWithLatest(1))
 
-    const wrappedInterfacesRD = preContextsRD.pipe(pluckT('interfaces'), replayWithLatest(1))
+    const wrappedInterfacesRD = preContextsRD.pipe(pluckT_('interfaces'), replayWithLatest(1))
 
     // formGroup 的 schemaInD 分解之后对接给各个 formItemComponent 的 schemaIn
     // TODO: 待完善
-    const schemaInsRD = wrappedInterfacesRD.pipe(mapT(interfaces => {
+    const schemaInsRD = wrappedInterfacesRD.pipe(mapT_(interfaces => {
       return Object.entries(interfaces).reduce((acc, [name, { schemaIn }]) => {
         acc[name] = acc[name] || schemaIn
         return acc
       }, {})
-    }), replayWithLatest(1), mapT(combineLatestT), replayWithLatest(1), withValueFlatted, replayWithLatest(1))
+    }), replayWithLatest(1), mapT_(combineLatestT), replayWithLatest(1), withValueFlatted, replayWithLatest(1))
 
     // 各个 formItemComponent 的 schemaOut 汇总成 formGroup 的 schemaOut
-    const _schemaOutRD = wrappedInterfacesRD.pipe(mapT(interfaces => {
+    const _schemaOutRD = wrappedInterfacesRD.pipe(mapT_(interfaces => {
       return Object.entries(interfaces).reduce((acc, [name, { schemaOut }]) => {
         acc[name] = acc[name] || schemaOut
         return acc
       }, {})
-    }), replayWithLatest(1), mapT(combineLatestT), replayWithLatest(1), withValueFlatted, replayWithLatest(1))
+    }), replayWithLatest(1), mapT_(combineLatestT), replayWithLatest(1), withValueFlatted, replayWithLatest(1))
     binaryTweenPipeAtom(_schemaOutRD, schemaOutRD)
 
     return {

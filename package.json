@@ -14,15 +14,12 @@
       "node": "./release/modules/esm/main.js",
       "default": "./release/modules/esm/main.js"
     },
-
     "./es": "./release/modules/es/main.js",
     "./es/*": "./release/modules/es/*",
     "./es-js/*": "./release/modules/es/*.js",
-
     "./ts": "./src/main.ts",
     "./ts/*": "./src/ts/*.ts",
     "./ts-js/*": "./src/ts/*.js",
-
     "./esm": "./release/modules/esm/main.js",
     "./umd": {
       "require": "./release/modules/umd/main.cjs",
@@ -31,7 +28,6 @@
       "default": "./release/modules/umd/main.js"
     },
     "./cjs": "./release/modules/cjs/main.cjs",
-
     "./src/*": "./src/*",
     "./src-ts/*": "./src/*.ts",
     "./src-js/*": "./src/*.js",
@@ -42,7 +38,6 @@
     "./esm/*": "./release/modules/esm/*",
     "./cjs/*": "./release/modules/cjs/*",
     "./umd/*": "./release/modules/umd/*",
-
     "./css": "./src/statics/styles/release.css",
     "./css-base": "./src/statics/styles/base.release.css",
     "./css-addon": "./src/statics/styles/addon.release.css",
@@ -165,7 +160,7 @@
     "style-loader": "^2.0.0",
     "tailwindcss": "^2.0.0",
     "ts-loader": "^9.2.5",
-    "typescript": "^4.4.2",
+    "typescript": "4.5",
     "url-loader": "^4.1.0",
     "webpack": "^5.10.3",
     "webpack-cli": "^4.2.0",

@@ -1,6 +1,6 @@
 import { isArray } from '../libs/mobius-utils'
 import { html } from '../libs/lit-html'
-import { makeElementMaker } from '../helpers/index'
+import { createElementMaker } from '../helpers/index'
 
 const normal = ({ opType, icon, title, eventHandler }) => {
   return html`
@@ -74,7 +74,7 @@ const formatItems = (items, { dividerItem }) => {
   return items
 }
 
-export const makeToolbarE = makeElementMaker({
+export const makeToolbarE = createElementMaker({
   marks: {},
   styles: {
     position: 'lt',
@@ -90,7 +90,7 @@ export const makeToolbarE = makeElementMaker({
     eventHandler: e => { console.warn('Toolbar need an eventHandler!') }
   },
   configs: {},
-  handler: (view, { styles, actuations, utils: { prefix, html } }) => {
+  prepareTemplate: (view, { styles, actuations, utils: { prefix, html } }) => {
     let { items, position, direction } = styles
     const { eventHandler } = actuations
 

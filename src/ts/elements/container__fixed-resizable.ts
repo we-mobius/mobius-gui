@@ -1,4 +1,4 @@
-import { makeElementMaker } from '../helpers/index'
+import { createElementMaker } from '../helpers/index'
 
 const useCursorStyle = ({ isPrepareToMoving, isMoving }, dft) => {
   return `${!isPrepareToMoving ? dft : ''}` +
@@ -16,7 +16,7 @@ const useShowStyle = ({ isHandling }) => {
  * @param configs Object, {}
  * @return TemplateResult
  */
-export const makeFixedResizableContainerE = makeElementMaker({
+export const makeFixedResizableContainerE = createElementMaker({
   marks: {},
   styles: {
     'container--outer': ({ isHandling }) => 'position--fixed ' + `${isHandling ? 'mobius-select--none' : ''}`,
@@ -44,7 +44,7 @@ export const makeFixedResizableContainerE = makeElementMaker({
     isPrepareToMoving: false,
     isMoving: false
   },
-  handler: view => view`
+  prepareTemplate: view => view`
     <div
       data-name="outer-mask"
       class=${'mask--outer'}

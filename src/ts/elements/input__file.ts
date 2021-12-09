@@ -1,6 +1,6 @@
-import { makeElementMaker } from '../helpers/index'
+import { createElementMaker } from '../helpers/index'
 
-export const makeFileInputE = makeElementMaker({
+export const makeFileInputE = createElementMaker({
   marks: {},
   styles: {
     type: 'FileInput',
@@ -22,7 +22,7 @@ export const makeFileInputE = makeElementMaker({
     }
   },
   configs: {},
-  handler: (view) => {
+  prepareTemplate: (view) => {
     return view`
       <div>
         <label for=${'name'}>${'label'}</label>

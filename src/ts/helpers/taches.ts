@@ -1,30 +1,25 @@
 import {
-  isString,
+  curryN,
+  pollingToGetElement,
   effectT
 } from '../libs/mobius-utils'
 
+import type {
+  AtomLikeOfOutput, Data
+} from '../libs/mobius-utils'
+
 /**
- * @param interval Number, Optional (in ms), default to 100
- * @return tache Tache
+ * @param interval polling interval in milliseconds, default to 100ms
  */
-export const idToNodeT = (interval = 100) => {
-  return effectT((() => {
-    const _internalValues = { container: undefined, timer: 0 }
-    return (emit, selector) => {
-      if (!isString(selector)) {
-        throw (new TypeError('"selector" pass to idToNodeT tache is expected to be type of "String".'))
-      }
-      _internalValues.timer = setInterval(() => {
-        if (selector.includes('#') || selector.includes('.')) {
-          _internalValues.container = _internalValues.container || document.querySelector(selector)
-        } else {
-          _internalValues.container = _internalValues.container || document.getElementById(selector)
-        }
-        if (_internalValues.container) {
-          clearInterval(_internalValues.timer)
-          emit(_internalValues.container)
-        }
-      }, interval)
-    }
-  })())
+export const idToElementT = (interval: number, target: AtomLikeOfOutput<string>): Data<Element> => {
+  return effectT((emit, selector: string) => {
+    pollingToGetElement(selector, interval, (node: Element): void => {
+      emit(node)
+    })
+  }, target)
 }
+
+/**
+ * @see {@link idToElementT}
+ */
+export const idToElementT_ = curryN(2, idToElementT)

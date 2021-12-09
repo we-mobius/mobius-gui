@@ -1,5 +1,5 @@
 import {
-  makeElementMaker
+  createElementMaker
 } from '../helpers/index'
 import {
   repeat, html
@@ -12,14 +12,14 @@ import {
  * @param configs Object, {}
  * @return TemplateResult
  */
-export const makeInfiniteLayoutE = makeElementMaker({
+export const makeInfiniteLayoutE = createElementMaker({
   marks: {},
   styles: {},
   actuations: {},
   configs: {
     blocks: []
   },
-  handler: (view, { configs: { blocks } }) => {
+  prepareTemplate: (view, { configs: { blocks } }) => {
     // sort blocks by (min z) -> (min y) -> (min x)
     blocks = blocks.sort(({ coord: [x0, y0, z0] }, { coord: [x1, y1, z1] }) => {
       if (z0 < z1) return -1

@@ -1,12 +1,12 @@
 import {
-  makeElementMaker
+  createElementMaker
 } from '../helpers/element'
 import {
   nothing
 } from '../libs/lit-html'
 
 // TODO: 支持设置 mask
-export const makeNineLayoutE = makeElementMaker({
+export const makeNineLayoutE = createElementMaker({
   marks: {},
   styles: {
     rootClasses: '',
@@ -24,7 +24,7 @@ export const makeNineLayoutE = makeElementMaker({
   },
   actuations: {},
   configs: {},
-  handler: (view, { marks, styles, actuations, configs, utils: { html } }) => {
+  prepareTemplate: (view, { marks, styles, actuations, configs, utils: { html } }) => {
     const { isShow, isHollow } = styles
 
     return view`

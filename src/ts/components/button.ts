@@ -59,6 +59,7 @@ export const buttonDC = makeDriverFormatComponent({
         click: clickD
       },
       _internals: {
+        marks: {},
         styles: {
           name: nameRD,
           type: typeRD,
@@ -66,7 +67,8 @@ export const buttonDC = makeDriverFormatComponent({
         },
         actuations: {
           clickHandler: clickHandlerRD
-        }
+        },
+        configs: {}
       }
     }
   },

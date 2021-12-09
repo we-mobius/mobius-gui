@@ -1,6 +1,6 @@
-import { makeElementMaker } from '../helpers/index'
+import { createElementMaker } from '../helpers/index'
 
-export const makeInputE = makeElementMaker({
+export const makeInputE = createElementMaker({
   marks: {},
   styles: {
     type: 'Input',
@@ -10,7 +10,7 @@ export const makeInputE = makeElementMaker({
     changeHandler: e => { console.warn('LOG', e) }
   },
   configs: {},
-  handler: (view) => {
+  prepareTemplate: (view) => {
     return view`
       <div>
         <div>${'name'}</div>
