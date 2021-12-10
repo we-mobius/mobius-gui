@@ -1,6 +1,6 @@
 import {
   isPlainObject, isFunction, isString,
-  Mutation, Data, ReplayMediator,
+  Mutation, Data,
   replayWithLatest, pipeAtom,
   combineLatestT, holdLatestUntilT,
   completeStateRD
@@ -94,12 +94,11 @@ export const runApp = (
 ): DataSubscription<[HTMLElement, TemplateResult]> => {
   const { render, isLogOn } = { ...DEFAULT_RUN_APP_OPTIONS, ...options }
 
-  const renderTargetRD = ReplayMediator.of(
-    combineLatestT(container, template)
-  )
+  const renderTargetRD = replayWithLatest(1, (combineLatestT(container, template)))
+
   return renderTargetRD.subscribeValue(([container, template]) => {
     if (isLogOn) {
-      console.log('[runAPP] render APP', container, template)
+      console.log('[MobiusApp] render App: ', container, template)
     }
     render(template, container)
   })
@@ -127,13 +126,16 @@ export const runSimpleApp = (
   template: AtomLikeOfOutput<TemplateResult>,
   options: RunSimpleAppOptions = DEFAULT_RUN_SIMPLE_APP_OPTIONS
 ): DataSubscription<any> => {
-  const { render, decorator } = { ...DEFAULT_RUN_SIMPLE_APP_OPTIONS, ...options }
+  const { render, isLogOn, decorator } = { ...DEFAULT_RUN_SIMPLE_APP_OPTIONS, ...options }
 
-  console.log('[runSimpleApp] initialize start!')
+  console.log('[MobiusSimpleApp] initialize start!')
   const preparedContainer = isString(container) ? initAppContainer(container, decorator) : container
-  console.log('[runSimpleApp] app will be rendered in container: ', container)
+  console.log('[MobiusSimpleApp] App will be rendered in container: ', container)
 
   return holdLatestUntilT(completeStateRD, template).subscribeValue((template) => {
+    if (isLogOn) {
+      console.log('[MobiusSimpleApp] render App: ', container, template)
+    }
     render(template, preparedContainer)
   })
 }
