@@ -372,7 +372,7 @@ export const createUITache = <
       // create singleton level contexts
       // scope to every single component
       const singletonLevelContexts = formatUITacheContexts(prepareSingletonLevelContexts(
-        preparedSources as PrepareUITacheSources<S>,
+        preparedSources as unknown as PrepareUITacheSources<S>,
         {
           useMarks: useUnidirUITacheSource_(preparedMarks),
           useStyles: useUnidirUITacheSource_(preparedStyles),
@@ -415,7 +415,7 @@ export const createUITache = <
     prepareOutput: (options, tacheLevelContexts, midpieces) => {
       const { enableReplay } = { ...DEFAULT_UI_TACHE_OPTIONS, ...options }
 
-      if (enableReplay === true) {
+      if (enableReplay) {
         return replayWithLatest(1, Data.empty<Out>())
       } else {
         return Data.empty<Out>()

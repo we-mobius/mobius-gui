@@ -259,7 +259,7 @@ export const createUIDriver = <
         marks: preparedMarks, styles: preparedStyles, actuations: preparedActuations, configs: preparedConfigs
       }))
 
-      const template = enableReplay === true ? replayWithLatest(1, Data.empty<Template>()) : Data.empty<Template>()
+      const template = enableReplay ? replayWithLatest(1, Data.empty<Template>()) : Data.empty<Template>()
 
       pipeAtom(
         uiInputsRD,
