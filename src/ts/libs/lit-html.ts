@@ -1,8 +1,13 @@
-import { directive, NodePart } from 'lit-html'
+// import { directive, NodePart } from 'lit-html'
 
-import type { Part } from 'lit-html'
+// import type { Part } from 'lit-html'
 
 export * from 'lit-html'
+
+/**
+ * @refer https://lit.dev/docs/templates/expressions/#static-expressions
+ */
+export * as StaticHTML from 'lit-html/static.js'
 
 /**
  * export build-in driectives
@@ -19,21 +24,21 @@ export { unsafeSVG } from 'lit-html/directives/unsafe-svg.js'
 
 export { cache } from 'lit-html/directives/cache.js'
 export { guard } from 'lit-html/directives/guard.js'
-export { ifDefined } from 'lit-html/directives/if-defined.js'
 export { live } from 'lit-html/directives/live.js'
+export { ifDefined } from 'lit-html/directives/if-defined.js'
 
-// export { ref } from 'lit-html/directives/ref.js'
+export { ref } from 'lit-html/directives/ref.js'
 
 export { until } from 'lit-html/directives/until.js'
 export { asyncAppend } from 'lit-html/directives/async-append.js'
 export { asyncReplace } from 'lit-html/directives/async-replace.js'
 
-export const notifyWhenRerender = directive((eventHandler, value) => (part: Part) => {
-  // ref: https://github.com/Polymer/lit-html/blob/e66eb66/src/lib/parts.ts
-  if (!(part instanceof NodePart)) {
-    throw (new TypeError('"observed" directive can only used for NodePart.'))
-  }
+// export const notifyWhenRerender = directive((eventHandler, value) => (part: Part) => {
+//   // ref: https://github.com/Polymer/lit-html/blob/e66eb66/src/lib/parts.ts
+//   if (!(part instanceof NodePart)) {
+//     throw (new TypeError('"observed" directive can only used for NodePart.'))
+//   }
 
-  part.setValue(value)
-  eventHandler(value)
-})
+//   part.setValue(value)
+//   eventHandler(value)
+// })

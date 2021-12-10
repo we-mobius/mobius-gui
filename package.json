@@ -176,7 +176,7 @@
     }
   },
   "dependencies": {
-    "lit-html": "^1.4.1"
+    "lit-html": "^2.0.2"
   },
   "jsdelivr": "./release/modules/umd/main.js",
   "files": [
