@@ -1,0 +1,21 @@
+{
+  "name": "Mobius UI API",
+  "readme": "none",
+  "includeVersion": true,
+  "entryPoints": [
+    "./src/main.ts"
+  ],
+  "out": "./docs/api",
+  "tsconfig": "./tsconfig.json",
+  "sort": [
+    "static-first",
+    "source-order"
+  ],
+  "categorizeByGroup": true,
+  "cleanOutputDir": true,
+  "emit": "docs",
+  "excludeExternals": true,
+  "theme": "default",
+  "hideGenerator": true,
+  "hideLegend": true
+}
