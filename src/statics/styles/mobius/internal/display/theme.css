@@ -168,6 +168,7 @@ page,
       mix-blend-mode: screen;
     }
   }
+
   /* TODO: high-contrast theme */
   &[data-theme="high-contrast"] {
     --bg-color-normal: black;

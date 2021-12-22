@@ -175,20 +175,20 @@ page,
 
 :root.mobius-base,
 .mobius-base {
-  --mode: "unknown";
+  --prefers-color-scheme: "unknown";
 }
 
 @media (prefers-color-scheme: dark) {
   :root.mobius-base,
   .mobius-base {
-    --mode: "dark";
+    --prefers-color-scheme: "dark";
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root.mobius-base,
   .mobius-base {
-    --mode: "light";
+    --prefers-color-scheme: "light";
   }
 }
 
