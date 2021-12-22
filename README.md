@@ -18,7 +18,7 @@
 
 <h1 align="center">Mobius UI - alpha</h1>
 
-🎨 Mobius UI is a uitility-frist UI framework which inspired by Michal Malewicz's work on [Neumorphism](https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6).
+🎨 Reactive & Stream & Driver based UI framework build on Mobius Utils, equiped with neumorphism-derived & utility-first styles.
 
 This repo will shows latest stage of Mobius UI before I surely complete the first stable version. We are now on the **alpha** stage.
 
@@ -116,8 +116,9 @@ All the relative documentations of detail, pls check `./docs`，which contains:
 
 ## Built With
 
-Priview Site is build with:
+Mobius UI is inspired by such great works:
 
+- [Neumorphism](https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6) - Michal Malewicz's creative work
 - [tailwindcss](https://github.com/tailwindcss/tailwindcss) - Utility-first CSS framework
 - [Mobius Utils](https://github.com/we-mobius/mobius-utils) 🤞
 - somthing else...

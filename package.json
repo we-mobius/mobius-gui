@@ -1,7 +1,7 @@
 {
   "name": "@we-mobius/mobius-ui",
   "version": "0.3.3",
-  "description": "Just a UI framework.",
+  "description": "🎨 Reactive & Stream & Driver based UI framework build on Mobius Utils, equiped with neumorphism-derived & utility-first styles.",
   "type": "module",
   "typings": "./typings/main.d.ts",
   "types": "./typings/main.d.ts",
@@ -80,10 +80,19 @@
     }
   },
   "keywords": [
-    "Interface",
-    "UI framework",
-    "Mobius",
-    "Frontend"
+    "interface",
+    "web",
+    "framework",
+    "UI",
+    "mobius",
+    "frontend",
+    "declarative",
+    "reactive",
+    "stream",
+    "driver",
+    "css",
+    "utility-first",
+    "neumorphism"
   ],
   "directories": {
     "doc": "./docs",
@@ -91,8 +100,8 @@
   },
   "scripts": {
     "cz-commit": "npm run lint && npx git-cz",
-    "lint": "npx eslint .",
-    "lint:fix": "npx eslint . --fix",
+    "lint": "npx eslint ./src",
+    "lint:fix": "npx eslint ./src --fix",
     "dev": "node ./scripts/dev",
     "build": "node ./scripts/build",
     "dist": "node ./scripts/dist",
@@ -100,7 +109,8 @@
     "serve:dist": "npx live-server ./dist --port=0624",
     "expose": "npx ngrok http 624",
     "bundle": "node ./scripts/bundle",
-    "beforepublish": "npm run build && npm run dist && npm run bundle"
+    "doc": "node ./scripts/document",
+    "beforepublish": "npm run build && npm run dist && npm run bundle && npm run doc"
   },
   "repository": {
     "type": "git",
@@ -120,7 +130,7 @@
     "@babel/core": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
-    "@commitlint/cli": "^8.3.5",
+    "@commitlint/cli": "15.0",
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
@@ -129,7 +139,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "commitizen": "^4.1.2",
     "commitlint-config-cz": "^0.13.1",
-    "copy-webpack-plugin": "^5.1.1",
+    "copy-webpack-plugin": "10.2",
     "css-loader": "^3.6.0",
     "cssnano": "^4.1.10",
     "cz-customizable": "^6.2.1",
@@ -160,11 +170,12 @@
     "style-loader": "^2.0.0",
     "tailwindcss": "^2.0.0",
     "ts-loader": "^9.2.5",
-    "typescript": "4.5",
+    "typedoc": "^0.22.10",
+    "typescript": "^4.5.4",
     "url-loader": "^4.1.0",
-    "webpack": "^5.10.3",
+    "webpack": "^5.65.0",
     "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server": "^4.7.0",
     "webpack-merge": "^5.0.0"
   },
   "config": {
@@ -176,6 +187,9 @@
     }
   },
   "dependencies": {
+    "@types/wechat-miniprogram": "^3.4.0",
+    "chalk": "^5.0.0",
+    "fork-ts-checker-webpack-plugin": "^6.5.0",
     "lit-html": "^2.0.2"
   },
   "jsdelivr": "./release/modules/umd/main.js",
