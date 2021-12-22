@@ -5,6 +5,7 @@ export * from './mark'
 export * from './style'
 export * from './actuate'
 export * from './view'
+export * from './template'
 
 export * from './element'
 

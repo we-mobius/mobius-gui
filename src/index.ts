@@ -2,9 +2,9 @@ import 'Styles/style.css'
 
 import { completeStateRD } from './ts/libs/mobius-utils'
 import { makeAppContainerRD, runApp } from './main'
-import { initConfig, initTheme } from './ts/libs/mobius-js'
+import { initConfig, initTheme } from './ts/libs/mobius-services'
 
-import { appTemplateRD } from 'Interface/app'
+import { appTemplateRD } from 'Interfaces/app'
 
 // initConfig()
 initTheme({

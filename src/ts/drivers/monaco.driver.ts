@@ -9,7 +9,7 @@ import {
 import {
   loaderObservers, loaderObservables, LOADER_TYPE,
   dredge, ofType, withResponseFilter
-} from '../libs/mobius-js'
+} from '../libs/mobius-services'
 // https://cdn.jsdelivr.net/npm/
 // https://unpkg.com/
 const initMonaco = async () => {
