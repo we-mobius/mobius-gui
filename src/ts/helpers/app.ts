@@ -89,7 +89,7 @@ const DEFAULT_RUN_APP_OPTIONS: Required<RunAppOptions> = {
  */
 export const runApp = (
   container: AtomLikeOfOutput<HTMLElement>,
-  template: AtomLikeOfOutput<TemplateResult>,
+  template: AtomLikeOfOutput<TemplateResult<any>>,
   options: RunAppOptions = DEFAULT_RUN_APP_OPTIONS
 ): DataSubscription<[HTMLElement, TemplateResult]> => {
   const { render, isLogOn } = { ...DEFAULT_RUN_APP_OPTIONS, ...options }
@@ -123,7 +123,7 @@ const DEFAULT_RUN_SIMPLE_APP_OPTIONS: Required<RunSimpleAppOptions> = {
  */
 export const runSimpleApp = (
   container: HTMLElement | string,
-  template: AtomLikeOfOutput<TemplateResult>,
+  template: AtomLikeOfOutput<TemplateResult<any>>,
   options: RunSimpleAppOptions = DEFAULT_RUN_SIMPLE_APP_OPTIONS
 ): DataSubscription<any> => {
   const { render, isLogOn, decorator } = { ...DEFAULT_RUN_SIMPLE_APP_OPTIONS, ...options }

@@ -1,5 +1,5 @@
 import { replayWithLatest, Data } from '../libs/mobius-utils'
-import { html, makeComponentWithReplay } from '../../main'
+import { html } from '../../main'
 
 // export const appTemplateRD = makeComponentWithReplay(
 //   [],
