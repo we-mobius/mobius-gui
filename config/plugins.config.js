@@ -2,6 +2,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { getMobiusConfig } from './mobius.config.js'
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 
 // All files inside webpack's output.path directory will be removed once, but the
 // directory itself will not be. If using webpack 4+'s default configuration,
@@ -13,6 +14,12 @@ const commonClean = new CleanWebpackPlugin({
   dry: false,
   verbose: true,
   cleanOnceBeforeBuildPatterns: ['**/*']
+})
+
+const forkTsCheckerWebpackPlugin = new ForkTsCheckerWebpackPlugin({
+  typescript: {
+    syntactic: true, semantic: true, declaration: false, global: false
+  }
 })
 
 const htmlWebpackPluginFactory = ({ pageName = 'index', templateName, keywords = [] }) => {
@@ -66,7 +73,7 @@ const bundleAnalyzer = new BundleAnalyzerPlugin({
   openAnalyzer: false
 })
 
-export const getDevelopmentPlugins = () => [indexHtmlPack]
-export const getBuildPlugins = () => [commonClean, indexHtmlPack]
-export const getProductionPlugins = () => [commonClean, indexHtmlPack, bundleAnalyzer]
-export const getReleasePlugins = () => []
+export const getDevelopmentPlugins = () => [forkTsCheckerWebpackPlugin, indexHtmlPack]
+export const getBuildPlugins = () => [forkTsCheckerWebpackPlugin, indexHtmlPack]
+export const getProductionPlugins = () => [forkTsCheckerWebpackPlugin, indexHtmlPack, bundleAnalyzer]
+export const getReleasePlugins = () => [forkTsCheckerWebpackPlugin]
