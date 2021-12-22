@@ -4,6 +4,36 @@
     "module": "es6",
     "baseUrl": ".",
     "paths": {
+      "MobiusUtils": [
+        "./src/ts/libs/mobius-utils.ts"
+      ],
+      "MobiusUI": [
+        "./src/ts/libs/mobius-ui.ts"
+      ],
+      "MobiusServices": [
+        "./src/ts/libs/mobius-services.ts"
+      ],
+      "Services/*": [
+        "./src/ts/services/*"
+      ],
+      "FreeServices/*": [
+        "./src/ts/services-free/*"
+      ],
+      "Interfaces/*": [
+        "./src/ts/interfaces/*"
+      ],
+      "Libs/*": [
+        "./src/ts/libs/*"
+      ],
+      "Statics/*": [
+        "./src/statics/*"
+      ],
+      "Images/*": [
+        "./src/statics/images/*"
+      ],
+      "Styles/*": [
+        "./src/statics/styles/*"
+      ],
       "ES": [
         "./src/es/index.js",
         "./src/es/index.mjs"
@@ -23,52 +53,8 @@
       ],
       "TS/*": [
         "./src/ts/*"
-      ],
-      "MobiusUtils": [
-        "./src/ts/libs/mobius-utils.ts"
-      ],
-      "MobiusUI": [
-        "./src/ts/libs/mobius-ui.ts"
-      ],
-      "MobiusJS": [
-        "./src/ts/libs/mobius-js.ts"
-      ],
-      "Business/*": [
-        "./src/ts/business/*"
-      ],
-      "FreeBusiness/*": [
-        "./src/ts/business-free/*"
-      ],
-      "Interface/*": [
-        "./src/ts/interface/*"
-      ],
-      "Libs/*": [
-        "./src/ts/libs/*"
-      ],
-      "Statics/*": [
-        "./src/statics/*"
-      ],
-      "Images/*": [
-        "./src/statics/images/*"
-      ],
-      "Styles/*": [
-        "./src/statics/styles/*"
       ]
-    },
-    "plugins": [
-      {
-        "name": "typescript-lit-html-plugin",
-        "tags": [
-          "template",
-          "raw",
-          "mark",
-          "style",
-          "actuate",
-          "view",
-          "html"
-        ]
-      }
-    ]
+    }
   },
   "exclude": [
     "node_modules",
