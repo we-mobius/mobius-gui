@@ -136,6 +136,7 @@
     "@typescript-eslint/parser": "^4.30.0",
     "autoprefixer": "^10.0.0",
     "babel-loader": "^8.1.0",
+    "chalk": "^5.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "commitizen": "^4.1.2",
     "commitlint-config-cz": "^0.13.1",
@@ -151,6 +152,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "file-loader": "^6.0.0",
+    "fork-ts-checker-webpack-plugin": "^6.5.0",
     "handlebars": "^4.7.6",
     "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^5.3.1",
@@ -188,8 +190,6 @@
   },
   "dependencies": {
     "@types/wechat-miniprogram": "^3.4.0",
-    "chalk": "^5.0.0",
-    "fork-ts-checker-webpack-plugin": "^6.5.0",
     "lit-html": "^2.0.2"
   },
   "jsdelivr": "./release/modules/umd/main.js",
