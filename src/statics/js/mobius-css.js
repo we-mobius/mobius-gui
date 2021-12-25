@@ -2,9 +2,9 @@ function initMobiusCSS () {
   const customProps = {
     color: ['--start-color', '--end-color']
   }
-  console.log(`[MobiusCSS] initMobiusUI: window.CSS -> ${window.CSS}`)
+  console.log(`[MobiusCSS] initMobiusGUI: window.CSS -> ${window.CSS}`)
   if (window.CSS && CSS.registerProperty) {
-    console.log('[MobiusCSS] initMobiusUI: window.CSS methods...')
+    console.log('[MobiusCSS] initMobiusGUI: window.CSS methods...')
     console.dir(window.CSS)
     Object.keys(customProps).forEach(key => {
       if (customProps[key]) {

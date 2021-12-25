@@ -109,7 +109,7 @@ export const getReleaseConfig = () => ([
   {
     target: 'node',
     entry: {
-      main: './src/mobius-ui.release.entry.ts'
+      main: './src/mobius-gui.release.entry.ts'
     },
     output: {
       filename: '[name].js',
@@ -118,7 +118,7 @@ export const getReleaseConfig = () => ([
       // @refer: https://webpack.js.org/configuration/output/#outputlibrarytype
       // libraryTarget: 'umd',
       library: {
-        name: 'MobiusUI',
+        name: 'MobiusGUI',
         type: 'umd'
       },
       // @refer: https://webpack.js.org/configuration/output/#outputglobalobject
@@ -130,7 +130,7 @@ export const getReleaseConfig = () => ([
   {
     target: 'node',
     entry: {
-      main: './src/mobius-ui.release.entry.ts'
+      main: './src/mobius-gui.release.entry.ts'
     },
     output: {
       filename: '[name].js',
@@ -144,7 +144,7 @@ export const getReleaseConfig = () => ([
   {
     target: 'web',
     entry: {
-      main: './src/mobius-ui.release.entry.ts'
+      main: './src/mobius-gui.release.entry.ts'
     },
     experiments: {
       outputModule: true

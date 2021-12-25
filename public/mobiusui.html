@@ -14,15 +14,15 @@
   <div id="app"></div>
   <script>
     console.info(MobiusJS)
-    console.info(MobiusUI)
+    console.info(MobiusGUI)
     console.info(rxjs)
     const { of } = rxjs
     const { map } = rxjs.operators
-    let { run, makeDOMDriver } = MobiusUI
+    let { run, makeDOMDriver } = MobiusGUI
     let {
       makeFullContainerE, makeFlexContainerE,
       withPresetVertical, withFullView
-    } = MobiusUI
+    } = MobiusGUI
     const main = (source) => {
 
       const vnode$ = of(1).pipe(map(() => {
@@ -32,7 +32,7 @@
           ]
         })))
         // return makeFullContainerE({
-        //   children: ['Hello, Mobius UI.']
+        //   children: ['Hello, Mobius GUI.']
         // })
       }))
       return {

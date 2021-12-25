@@ -7,8 +7,8 @@
       "MobiusUtils": [
         "./src/ts/libs/mobius-utils.ts"
       ],
-      "MobiusUI": [
-        "./src/ts/libs/mobius-ui.ts"
+      "MobiusGUI": [
+        "./src/ts/libs/mobius-gui.ts"
       ],
       "MobiusServices": [
         "./src/ts/libs/mobius-services.ts"

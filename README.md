@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Standard - JavaScript Style Guide"></a>
   <a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly"></a>
-  <a href="https://www.jsdelivr.com/package/gh/we-mobius/mobius-ui"><img src="https://data.jsdelivr.com/v1/package/gh/we-mobius/mobius-ui/badge" alt="Commitizen friendly"></a>
+  <a href="https://www.jsdelivr.com/package/gh/we-mobius/mobius-gui"><img src="https://data.jsdelivr.com/v1/package/gh/we-mobius/mobius-gui/badge" alt="Commitizen friendly"></a>
 </p>
 
 <p align="center">
@@ -16,11 +16,11 @@
   <a href="./docs/readme_zh.md" style="color: hsla(264, 100%, 50%, 100%);">📜 中文文档</a>
 </p>
 
-<h1 align="center">Mobius UI - alpha</h1>
+<h1 align="center">Mobius GUI - alpha</h1>
 
 🎨 Reactive & Stream & Driver based UI framework build on Mobius Utils, equiped with neumorphism-derived & utility-first styles.
 
-This repo will shows latest stage of Mobius UI before I surely complete the first stable version. We are now on the **alpha** stage.
+This repo will shows latest stage of Mobius GUI before I surely complete the first stable version. We are now on the **alpha** stage.
 
 The `alpha` stage means that most (over 70%) of the major features have been developed, and while there are still some uncertainties, there are already far fewer than the `preview` stage.
 
@@ -28,11 +28,11 @@ The main tasks in alpha stage are refining the base examples, developing complex
 
 > 💬 Check todos & roadmaps for more information.
 
-For a quickest preview: visit [Mobius UI preview](https://mobius-ui.21yunbox.com/).
+For a quickest preview: visit [Mobius GUI preview](https://mobius-gui.21yunbox.com/).
 
 ## Details
 
-![Mobius UI Preview Release 20200406](./public/assets/mobiusui-preview-hybrid-20200406.png)
+![Mobius GUI Preview Release 20200406](./public/assets/mobiusui-preview-hybrid-20200406.png)
 
 ## Instance
 
@@ -47,7 +47,7 @@ For a quickest preview: visit [Mobius UI preview](https://mobius-ui.21yunbox.com
       </td>
       <td align="center" valign="middle">
         <a href="#Instance" target="_blank">
-          <img width="1000px" src="./public/assets/mobius-ui-preview-site-qr.jpg"/>
+          <img width="1000px" src="./public/assets/mobius-gui-preview-site-qr.jpg"/>
         </a>
         <p style="width: 100%; text-align: center;">Preview Site</p>
       </td>
@@ -73,19 +73,19 @@ Simple Use Example:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mobius CSS</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@we-mobius/mobius-ui@0.1.0/release/styles/mobius.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@we-mobius/mobius-gui@0.1.0/release/styles/mobius.css">
 </head>
 
 <body>
   <div class="mobius-width--100vw mobius-height--100vh mobius-layout__vertical">
     <div class="mobius-padding--xl mobius-margin--auto mobius-shadow--normal mobius-rounded--base">
       <div class="mobius-layout__vertical mobius-flex-items--center mobius-select--none">
-        <img width="200px" src="./assets/mobius-ui-preview-site-qr.jpg" alt="Scan to preview full feature of Mobius UI">
+        <img width="200px" src="./assets/mobius-gui-preview-site-qr.jpg" alt="Scan to preview full feature of Mobius GUI">
         <p class="mobius-text--center mobius-text--xl mobius-font--fantasy">
           <span class="mobius-text--3xl">Hi</span>, developers !
         </p>
         <p>
-          Scan to meet full features of Mobius UI.
+          Scan to meet full features of Mobius GUI.
         </p>
       </div>
     </div>
@@ -95,7 +95,7 @@ Simple Use Example:
 </html>
 ```
 
-Visit 🔗[Simple Use Example](https://mobius-ui-example.21yunbox.com/example.html) to see what it looks like.
+Visit 🔗[Simple Use Example](https://mobius-gui-example.21yunbox.com/example.html) to see what it looks like.
 
 Since it's just a **pure CSS library**, you can use it in your own projects with confidence.
 
@@ -116,7 +116,7 @@ All the relative documentations of detail, pls check `./docs`，which contains:
 
 ## Built With
 
-Mobius UI is inspired by such great works:
+Mobius GUI is inspired by such great works:
 
 - [Neumorphism](https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6) - Michal Malewicz's creative work
 - [tailwindcss](https://github.com/tailwindcss/tailwindcss) - Utility-first CSS framework

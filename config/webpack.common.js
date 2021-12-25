@@ -15,7 +15,7 @@ export const getCommonConfig = () => ({
     alias: {
       Libs: rootResolvePath('src/ts/libs/'),
       MobiusUtils$: rootResolvePath('src/ts/libs/mobius-utils.ts'),
-      MobiusUI$: rootResolvePath('src/ts/libs/mobius-ui.ts'),
+      MobiusGUI$: rootResolvePath('src/ts/libs/mobius-gui.ts'),
       MobiusServices$: rootResolvePath('src/ts/libs/mobius-services.ts'),
       Interfaces: rootResolvePath('src/ts/interfaces/'),
       Services: rootResolvePath('src/ts/services/'),

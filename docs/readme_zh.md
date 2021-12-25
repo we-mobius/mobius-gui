@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Standard - JavaScript Style Guide"></a>
   <a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly"></a>
-  <a href="https://www.jsdelivr.com/package/gh/we-mobius/mobius-ui"><img src="https://data.jsdelivr.com/v1/package/gh/we-mobius/mobius-ui/badge" alt="Distributed on jsDelivr"></a>
+  <a href="https://www.jsdelivr.com/package/gh/we-mobius/mobius-gui"><img src="https://data.jsdelivr.com/v1/package/gh/we-mobius/mobius-gui/badge" alt="Distributed on jsDelivr"></a>
 </p>
 
 <p align="center">
@@ -16,17 +16,17 @@
   <span style="font-weight: bold; color: hsla(96, 100%, 50%, 100%);">📜 中文文档</span>
 </p>
 
-<h1 align="center">Mobius UI - alpha</h1>
+<h1 align="center">Mobius GUI - alpha</h1>
 
-🎨 Mobius UI 是一个类 Neumorphism （新拟态）风格的 UI 框架，它的核心是「一套设计风格应用指南」 + 「一种 UI 层面的代码组织方式」。
+🎨 Mobius GUI 是一个类 Neumorphism （新拟态）风格的 UI 框架，它的核心是「一套设计风格应用指南」 + 「一种 UI 层面的代码组织方式」。
 
 在项目完全成型之前，以上介绍可能会略显含糊，不过没有关系，Mobius CSS 是其中的一部分，你可以直接使用它来在页面中应用 Neumorphism （新拟态）风格。
 
 > 关于 Neumorphism 风格相关的信息，请查阅：[Neumorphism](https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6) - Michal Malewicz。
 
-目前，Mobius UI 处于 Alpha 阶段，七成以上的主要样式开发工作都已经完成，虽然在样式类命名、模块分割等方面还存在不确定性，但与 preview 阶段相比已经好太多太多了。这一阶段预计历时 6 个月左右，主要的任务是**完善基础示例**、**开发复杂组件**以及**撰写风格应用指南和使用文档**，你随时可以查看 `docs` 目录下的 `todos` 文件获知最新最近的任务安排和进展。
+目前，Mobius GUI 处于 Alpha 阶段，七成以上的主要样式开发工作都已经完成，虽然在样式类命名、模块分割等方面还存在不确定性，但与 preview 阶段相比已经好太多太多了。这一阶段预计历时 6 个月左右，主要的任务是**完善基础示例**、**开发复杂组件**以及**撰写风格应用指南和使用文档**，你随时可以查看 `docs` 目录下的 `todos` 文件获知最新最近的任务安排和进展。
 
-Mobius UI 应用示例快速预览，请访问：[Mobius UI preview](https://mobius-ui.21yunbox.com/).
+Mobius GUI 应用示例快速预览，请访问：[Mobius GUI preview](https://mobius-gui.21yunbox.com/).
 
 ## 预览
 
@@ -45,7 +45,7 @@ Mobius UI 应用示例快速预览，请访问：[Mobius UI preview](https://mob
       </td>
       <td align="center" valign="middle">
         <a href="#Instance" target="_blank">
-          <img width="1000px" src="../public/assets/mobius-ui-preview-site-qr.jpg"/>
+          <img width="1000px" src="../public/assets/mobius-gui-preview-site-qr.jpg"/>
         </a>
         <p style="width: 100%; text-align: center;">Preview Site</p>
       </td>
@@ -61,7 +61,7 @@ Mobius UI 应用示例快速预览，请访问：[Mobius UI preview](https://mob
 
 ## 文档
 
-简单使用示例，查看效果请访问：🔗 [Simple Use Example](https://mobius-ui-example.21yunbox.com/example.html)
+简单使用示例，查看效果请访问：🔗 [Simple Use Example](https://mobius-gui-example.21yunbox.com/example.html)
 
 ```html
 <!DOCTYPE html>
@@ -71,19 +71,19 @@ Mobius UI 应用示例快速预览，请访问：[Mobius UI preview](https://mob
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mobius CSS</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@we-mobius/mobius-ui@0.1.0/release/styles/mobius.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@we-mobius/mobius-gui@0.1.0/release/styles/mobius.css">
 </head>
 
 <body>
   <div class="mobius-width--100vw mobius-height--100vh mobius-layout__vertical">
     <div class="mobius-padding--xl mobius-margin--auto mobius-shadow--normal mobius-rounded--base">
       <div class="mobius-layout__vertical mobius-flex-items--center mobius-select--none">
-        <img width="200px" src="./assets/mobius-ui-preview-site-qr.jpg" alt="Scan to preview full feature of Mobius UI">
+        <img width="200px" src="./assets/mobius-gui-preview-site-qr.jpg" alt="Scan to preview full feature of Mobius GUI">
         <p class="mobius-text--center mobius-text--xl mobius-font--fantasy">
           <span class="mobius-text--3xl">Hi</span>, developers !
         </p>
         <p>
-          Scan to meet full features of Mobius UI.
+          Scan to meet full features of Mobius GUI.
         </p>
       </div>
     </div>
@@ -110,7 +110,7 @@ Mobius CSS 是一个纯 CSS 的样式库，当前阶段你完全可以放心地�
 
 ## 技术栈
 
-- [cyclejs](https://github.com/cyclejs/cyclejs) - Mobius UI 项目相关的站点由 cyclejs 驱动 🤞
+- [cyclejs](https://github.com/cyclejs/cyclejs) - Mobius GUI 项目相关的站点由 cyclejs 驱动 🤞
 - [rxjs](https://github.com/ReactiveX/rxjs) - 响应式的 JavaScript 工具库
 - [tailwindcss](https://github.com/tailwindcss/tailwindcss) - 样式类优先的 CSS 样式框架，Mobius CSS 在实现的过程中多有借鉴 Tailwind CSS 的样式类切割方案
 - [21 云盒子](https://www.21yunbox.com/) - 本项目展示页面使用 21 云盒子提供的静态页面部署服务
@@ -120,7 +120,7 @@ Mobius CSS 是一个纯 CSS 的样式库，当前阶段你完全可以放心地�
 
 - **Cigaret**
   - E-mail: kcigaret@outlook.com
-  - wechat: cigaret_bot（添加请备注 Mobius UI）
+  - wechat: cigaret_bot（添加请备注 Mobius GUI）
 
 ## 开源许可
 

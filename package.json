@@ -1,5 +1,5 @@
 {
-  "name": "@we-mobius/mobius-ui",
+  "name": "@we-mobius/mobius-gui",
   "version": "0.3.3",
   "description": "🎨 Reactive & Stream & Driver based UI framework build on Mobius Utils, equiped with neumorphism-derived & utility-first styles.",
   "type": "module",
@@ -114,7 +114,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/we-mobius/mobius-ui.git"
+    "url": "git+https://github.com/we-mobius/mobius-gui.git"
   },
   "author": {
     "name": "kongxiangyan",
@@ -123,9 +123,9 @@
   },
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/we-mobius/mobius-ui/issues"
+    "url": "https://github.com/we-mobius/mobius-gui/issues"
   },
-  "homepage": "https://github.com/we-mobius/mobius-ui#readme",
+  "homepage": "https://github.com/we-mobius/mobius-gui#readme",
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.10.5",
