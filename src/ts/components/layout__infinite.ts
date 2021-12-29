@@ -1,41 +1,57 @@
 import {
-  makeDriverFormatComponent, useUIDriver
-} from '../helpers/index'
-import {
-  makeInfiniteLayoutE
-} from '../elements/index'
-import {
-  Data,
-  replayWithLatest,
-  binaryTweenPipeAtom
+  Data, replayWithLatest, binaryTweenPipeAtom
 } from '../libs/mobius-utils'
+import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
+import { makeInfiniteLayoutE } from '../elements/index'
 
-export const infiniteLayoutDC = makeDriverFormatComponent({
-  prepareSingletonLevelContexts: (options, driverLevelContexts) => {
-    const blocksInD = Data.empty()
+import type { TemplateResult } from '../libs/lit-html'
+import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
+import type { InfiniteLayoutElementBlock } from '../elements/index'
 
-    const blocksRD = replayWithLatest(1, Data.empty())
+export interface InfiniteLayoutDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+  inputs: {
+    styles: {
+      blocks: InfiniteLayoutElementBlock[]
+    }
+  }
+  _internals: {
+    styles: {
+      blocks: InfiniteLayoutElementBlock[]
+    }
+  }
+}
 
-    binaryTweenPipeAtom(blocksInD, blocksRD)
+/**
+ * @param inputs.styles.blocks - data of blocks.
+ */
+export const makeInfiniteLayoutDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, InfiniteLayoutDCSingletonLevelContexts, TemplateResult>({
+  prepareSingletonLevelContexts: () => {
+    const blocksD = Data.empty<InfiniteLayoutElementBlock[]>()
+
+    const blocksRD = replayWithLatest(1, Data.of<InfiniteLayoutElementBlock[]>([]))
+
+    binaryTweenPipeAtom(blocksD, blocksRD)
 
     return {
       inputs: {
-        configs: {
-          blocks: blocksInD
+        styles: {
+          blocks: blocksD
         }
       },
       _internals: {
-        configs: {
+        styles: {
           blocks: blocksRD
         }
-      },
-      outputs: {
       }
     }
   },
-  prepareTemplate: ({ marks, styles, actuations, configs }, template, mutation, contexts) => {
+  prepareTemplate: ({ marks, styles, actuations, configs }) => {
     return makeInfiniteLayoutE({ marks, styles, actuations, configs })
   }
 })
 
-export const useInfiniteLayoutDC = useUIDriver(infiniteLayoutDC)
+/**
+ * @see {@link makeInfiniteLayoutDC}
+ */
+export const useInfiniteLayoutDC = useGUIDriver_(makeInfiniteLayoutDC)

@@ -11,8 +11,8 @@ import {
   nothing
 } from '../libs/lit-html'
 import { ELEMENT_MAKER_UTILS } from './element'
-import { createUITache } from './ui-tache'
-import { createUIDriver } from './ui-driver'
+import { createGUITache } from './gui-tache'
+import { createGUIDriver } from './gui-driver'
 
 import type {
   Vacuo, Terminator,
@@ -163,7 +163,7 @@ export function makeInstantComponent (
     if (isVacuo(prev)) return TERMINATOR
     return transformation(prev, template, mutation, { ...ELEMENT_MAKER_UTILS })
   })
-  const stepOne = enableOutlier ? Data.of<TemplateResult>(nothing as TemplateResult) : Data.empty<TemplateResult>()
+  const stepOne = enableOutlier ? Data.of<TemplateResult>(nothing as unknown as TemplateResult) : Data.empty<TemplateResult>()
   const stepTwo = enableReplay ? replayWithLatest(1, stepOne) : stepOne
 
   pipeAtom(inputRD, mutation, stepTwo)
@@ -180,8 +180,8 @@ export function makeInstantComponent (
 /**
  *
  */
-export const makeTacheFormatComponent = createUITache
-export const makeDriverFormatComponent = createUIDriver
+export const makeTacheFormatComponent = createGUITache
+export const makeDriverFormatComponent = createGUIDriver
 
 /******************************************************************************************************
  *

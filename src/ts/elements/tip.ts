@@ -1,12 +1,19 @@
 import { createElementMaker } from '../helpers/element'
 
-// TODO: 完善
-export const makeTipE = createElementMaker({
-  mark: {},
+import type { ElementOptions } from '../helpers/element'
+
+export interface TipElementOptions extends ElementOptions {
+}
+
+/**
+ * @todo TODO: complete implementation
+ */
+export const makeTipE = createElementMaker<TipElementOptions>({
+  marks: {},
   styles: {},
   actuations: {},
   configs: {},
-  prepareTemplate: (view, { marks, styles, actuations, configs, utils: { html } }) => {
+  prepareTemplate: (view, { utils: { html } }) => {
     return html`
       <div class='mobius-padding--base'>
         <div class='mobius-padding--small mobius-rounded--full mobius-bg--base mobius-text--red mobius-text--small mobius-cursor--pointer'>

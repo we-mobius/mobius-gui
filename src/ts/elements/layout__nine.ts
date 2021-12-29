@@ -1,12 +1,29 @@
-import {
-  createElementMaker
-} from '../helpers/element'
-import {
-  nothing
-} from '../libs/lit-html'
+import { createElementMaker } from '../helpers/element'
+import { nothing } from '../libs/lit-html'
 
-// TODO: 支持设置 mask
-export const makeNineLayoutE = createElementMaker({
+import type { ElementOptions } from '../helpers/element'
+
+export interface NineLayoutElementOptions extends ElementOptions {
+  styles?: {
+    rootClasses?: string
+    isShow?: boolean
+    isHollow?: boolean
+    tl?: any
+    tc?: any
+    tr?: any
+    cl?: any
+    cc?: any
+    cr?: any
+    bl?: any
+    bc?: any
+    br?: any
+  }
+}
+
+/**
+ * @todo TODO: 支持设置 mask
+ */
+export const makeNineLayoutE = createElementMaker<NineLayoutElementOptions>({
   marks: {},
   styles: {
     rootClasses: '',
@@ -24,7 +41,7 @@ export const makeNineLayoutE = createElementMaker({
   },
   actuations: {},
   configs: {},
-  prepareTemplate: (view, { marks, styles, actuations, configs, utils: { html } }) => {
+  prepareTemplate: (view, { styles }) => {
     const { isShow, isHollow } = styles
 
     return view`

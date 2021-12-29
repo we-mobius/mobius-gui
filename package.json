@@ -1,6 +1,6 @@
 {
   "name": "@we-mobius/mobius-gui",
-  "version": "0.3.3",
+  "version": "1.0.0",
   "description": "🎨 Reactive & Stream & Driver based UI framework build on Mobius Utils, equiped with neumorphism-derived & utility-first styles.",
   "type": "module",
   "typings": "./typings/main.d.ts",

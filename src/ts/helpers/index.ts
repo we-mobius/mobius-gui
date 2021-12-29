@@ -9,8 +9,8 @@ export * from './template'
 
 export * from './element'
 
-export * from './ui-tache'
-export * from './ui-driver'
+export * from './gui-tache'
+export * from './gui-driver'
 
 export * from './component'
 export * from './app'

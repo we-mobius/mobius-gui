@@ -1,10 +1,13 @@
 import { createElementMaker } from '../helpers/index'
 
-interface ButtonElementOptions {
+import type { ElementOptions } from '../helpers/index'
+
+export type ButtonElementType = 'Button'
+export interface ButtonElementOptions extends ElementOptions {
   styles?: {
-    type?: 'Button'
+    type?: ButtonElementType
     name?: string
-    label?: string
+    label: string
   }
   actuations?: {
     clickHandler?: (event: Event) => void
@@ -28,7 +31,7 @@ export const makeButtonE = createElementMaker<ButtonElementOptions>({
     clickHandler: (event: Event): Event => event
   },
   configs: {},
-  prepareTemplate: (view, { styles, utils: { prefix } }) => {
+  prepareTemplate: (view) => {
     return view`
       <button name=${'name'} @click=${'clickHandler'}>${'label'}</button>
     `

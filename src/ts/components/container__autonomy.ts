@@ -1,59 +1,104 @@
 import {
-  looseCurryN,
   makeUniqueString,
   Data,
   replayWithLatest,
-  startWithT
+  startWithT, mapT, combineLatestT
 } from '../libs/mobius-utils'
-import {
-  makeDriverFormatComponent, useUIDriver,
-  idToElementT_
-} from '../helpers/index'
+import { makeDriverFormatComponent, useGUIDriver_, idToElementT } from '../helpers/index'
+
+import type { TemplateResult } from '../libs/lit-html'
+import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
+
+export interface AutonomyContainerDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+  inputs: {
+    styles: {
+      rootClasses: string
+      content: any
+    }
+  }
+  _internals: {
+    marks: {
+      containerId: string
+      hostId: string
+    }
+    styles: {
+      rootClasses: string
+      content: any
+    }
+  }
+  outputs: {
+    containerId: string
+    container: HTMLDivElement
+    hostId: string
+    host: HTMLDivElement
+    materials: { container: HTMLDivElement, host: HTMLDivElement }
+    app: any
+  }
+}
 
 /**
- * @param { { styles: { rootClasses?: Data } } } inputs
- * @return { { id: Data, container: Data } } outputs
+ * @todo TODO: static styles continuous setting logic
  */
-export const autonomyContainerDC = makeDriverFormatComponent({
+export const makeAutonomyContainerDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, AutonomyContainerDCSingletonLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
-    const idRD = replayWithLatest(1, Data.of(makeUniqueString('autonomy-container')))
-    const containerRD = idRD.pipe(idToElementT_(100), replayWithLatest(1))
+    const rootClassesD = Data.empty<string>()
+    const rootClassesRD = replayWithLatest(1, rootClassesD)
+    const contentD = Data.of<any>(undefined)
+    const contentRD = replayWithLatest(1, contentD)
 
-    const rootClassesD = Data.empty()
+    const containerIdRD = replayWithLatest(1, Data.of(makeUniqueString('autonomy-container')))
+    const containerRD = replayWithLatest(1, idToElementT<HTMLDivElement>(100, containerIdRD))
+    const hostIdRD = replayWithLatest(1, mapT((id) => `${id}__host`, containerIdRD))
+    const hostRD = replayWithLatest(1, idToElementT<HTMLDivElement>(100, hostIdRD))
+
+    const materialsRD = replayWithLatest(1, combineLatestT({ container: containerRD, host: hostRD }))
 
     return {
       inputs: {
         styles: {
-          rootClasses: rootClassesD
+          rootClasses: rootClassesD,
+          content: contentD
         }
       },
       _internals: {
         marks: {
-          id: idRD
+          containerId: containerIdRD,
+          hostId: hostIdRD
         },
         styles: {
-          rootClasses: rootClassesD
+          rootClasses: rootClassesRD,
+          content: contentRD
         }
       },
       outputs: {
-        id: idRD,
-        container: containerRD
+        containerId: containerIdRD,
+        container: containerRD,
+        hostId: hostIdRD,
+        host: hostRD,
+        materials: materialsRD,
+        app: replayWithLatest(1, Data.of(''))
       }
     }
   },
   prepareTemplate: ({ marks, styles, actuations, configs }, template, mutation, { html }) => {
-    const { id } = marks
-    const { rootClasses } = styles
+    const { containerId, hostId } = marks
+    const { rootClasses, content } = styles
 
     return html`
-      <div id=${id} class=${rootClasses}>Awesome autonomy container!</div>
+      <div id=${containerId} class="mobius-size--fullpct mobius-scroll--bar-hidden">
+        <div id=${hostId} class="mobius-size--fullpct mobius-scroll--bar-hidden">${content === undefined ? 'Awesome autonomy container!' : content}</div>
+      </div>
     `
+  },
+  prepareInstance: (options, instance) => {
+    const { template, container } = instance.outputs
+    instance.outputs.app = replayWithLatest(1, startWithT<any>(template, container))
+    return instance
   }
 })
 
-export const useAutonomyContainerDC = looseCurryN(2, (driverOptions, interfaces) => {
-  const res = useUIDriver(autonomyContainerDC, driverOptions, interfaces)
-  const { template, container } = res.outputs
-  res.outputs.app = replayWithLatest(1, startWithT(template, container))
-  return res
-})
+/**
+ * @see {@link makeAutonomyContainerDC}
+ */
+export const useAutonomyContainerDC = useGUIDriver_(makeAutonomyContainerDC)

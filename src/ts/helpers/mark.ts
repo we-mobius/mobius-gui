@@ -1,4 +1,4 @@
-import { isString } from '../libs/mobius-utils'
+import { isString, isNormalFunction } from '../libs/mobius-utils'
 import { Dirty, isDirty, isMarker, isPlain } from './base'
 
 import type { TemplatePieces } from './view'
@@ -24,11 +24,13 @@ export const mark = (marks: Record<string, string>, configs: Record<string, any>
         if (isMarker(value)) {
           const marker = value.value
           const mark = marks[marker]
-          if (mark !== undefined) {
-            return Dirty.of(mark)
-          } else {
+          if (mark === undefined) {
             console.warn(`There is no "${marker}" found in marks, use "${marker}" instead.`, marks)
             return Dirty.of(marker)
+          } else if (isNormalFunction(mark)) {
+            return Dirty.of(mark(configs))
+          } else {
+            return Dirty.of(mark)
           }
         } else if (isPlain(value)) {
           return Dirty.of(value.value)

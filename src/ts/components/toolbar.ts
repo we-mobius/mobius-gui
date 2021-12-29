@@ -4,16 +4,54 @@ import {
   makeGeneralEventHandler
 } from '../libs/mobius-utils'
 import {
-  makeDriverFormatComponent, useUIDriver
+  makeDriverFormatComponent, useGUIDriver_
 } from '../helpers/index'
 import { makeToolbarE } from '../elements/index'
 
-export const toolbarDC = makeDriverFormatComponent({
+import type { TemplateResult } from '../libs/lit-html'
+import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
+import type { ToolbarElementDirection, ToolbarElementItem } from '../elements/index'
+
+export interface ToolbarDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+  inputs: {
+    styles: {
+      position: string
+      direction: ToolbarElementDirection
+      items: Array<ToolbarElementItem | ToolbarElementItem[]>
+    }
+  }
+  _internals: {
+    styles: {
+      position: string
+      direction: ToolbarElementDirection
+      items: Array<ToolbarElementItem | ToolbarElementItem[]>
+    }
+    actuations: {
+      eventHandler: (event: Event) => void
+    }
+  }
+  outputs: {
+    event: any
+  }
+}
+
+/**
+ *
+ */
+export const makeToolbarDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ToolbarDCSingletonLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
-    const positionRD = replayWithLatest(1, Data.empty())
-    const directionRD = replayWithLatest(1, Data.empty())
-    const itemsRD = replayWithLatest(1, Data.empty())
-    const [eventHandlerRD, , eventD] = makeGeneralEventHandler(e => ({ event: e, payload: { ...e.target.dataset } }))
+    const positionD = Data.empty<string>()
+    const positionRD = replayWithLatest(1, positionD)
+    const directionD = Data.empty<ToolbarElementDirection>()
+    const directionRD = replayWithLatest(1, directionD)
+    const itemsD = Data.empty<Array<ToolbarElementItem | ToolbarElementItem[]>>()
+    const itemsRD = replayWithLatest(1, itemsD)
+
+    const [eventHandlerRD, , eventD] = makeGeneralEventHandler(event => ({
+      event: event, payload: { ...(event?.target as HTMLDivElement)?.dataset }
+    }))
+    const eventRD = replayWithLatest(1, eventD)
 
     return {
       inputs: {
@@ -34,7 +72,7 @@ export const toolbarDC = makeDriverFormatComponent({
         }
       },
       outputs: {
-        event: eventD
+        event: eventRD
       }
     }
   },
@@ -43,4 +81,7 @@ export const toolbarDC = makeDriverFormatComponent({
   }
 })
 
-export const useToolbarDC = useUIDriver(toolbarDC)
+/**
+ * @see {@link makeToolbarDC}
+ */
+export const useToolbarDC = useGUIDriver_(makeToolbarDC)

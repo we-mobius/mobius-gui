@@ -1,8 +1,8 @@
+// extra types
+export * from './ts/@types/index'
+
 // lit Related
 export * from './ts/libs/lit-html'
-
-// CSS enhancements
-export * from './statics/js/mobius-css'
 
 // Mobius GUI Releated
 export * from './ts/helpers/index'

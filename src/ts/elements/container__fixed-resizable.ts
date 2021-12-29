@@ -1,25 +1,56 @@
 import { createElementMaker } from '../helpers/index'
 
-const useCursorStyle = ({ isPrepareToMoving, isMoving }, dft) => {
+import type { ElementOptions } from '../helpers/index'
+
+const useCursorStyle = (configs: Required<FixedResizableContainerElementConfigs>, dft: string): string => {
+  const { isPrepareToMoving, isMoving } = configs
+
   return `${!isPrepareToMoving ? dft : ''}` +
   `${isPrepareToMoving && !isMoving ? 'cursor--grab' : ''}` +
   `${isMoving ? 'cursor--grabbing' : ''}`
 }
-const useShowStyle = ({ isHandling }) => {
+const useShowStyle = (configs: Required<FixedResizableContainerElementConfigs>): string => {
+  const { isHandling } = configs
   return `${isHandling ? 'display--block' : 'display--none'}`
 }
 
+export interface FixedResizableContainerElementConfigs {
+  isHandling?: boolean
+  isResizing?: boolean
+  isPrepareToMoving?: boolean
+  isMoving?: boolean
+}
+
+export interface FixedResizableContainerElementOptions extends ElementOptions {
+  styles?: {
+    'container--outer'?: string
+    'control-bar--top'?: string
+    'control-bar--right'?: string
+    'control-bar--bottom'?: string
+    'control-bar--left'?: string
+    'control-bar--left-top'?: string
+    'control-bar--right-top'?: string
+    'control-bar--right-bottom'?: string
+    'control-bar--left-bottom'?: string
+    'container--inner'?: string
+    'mask--inner'?: string
+    'mask--outer'?: string
+    'bar-weight'?: number
+    'position--top'?: number
+    'position--right'?: number
+    'position--bottom'?: number
+    'position--left'?: number
+  }
+  configs?: FixedResizableContainerElementConfigs
+}
+
 /**
- * @param marks Object, {}
- * @param styles Object, {}
- * @param actuations Object, {}
- * @param configs Object, {}
- * @return TemplateResult
+ *
  */
-export const makeFixedResizableContainerE = createElementMaker({
+export const makeFixedResizableContainerE = createElementMaker<FixedResizableContainerElementOptions>({
   marks: {},
   styles: {
-    'container--outer': ({ isHandling }) => 'position--fixed ' + `${isHandling ? 'mobius-select--none' : ''}`,
+    'container--outer': configs => 'position--fixed ' + `${configs.isHandling ? 'mobius-select--none' : ''}`,
     'control-bar--top': configs => 'position--absolute bg--cigaret ' + useCursorStyle(configs, 'cursor--t-resize'),
     'control-bar--right': configs => 'position--absolute bg--cigaret ' + useCursorStyle(configs, 'cursor--r-resize'),
     'control-bar--bottom': configs => 'position--absolute bg--cigaret ' + useCursorStyle(configs, 'cursor--b-resize'),
@@ -31,14 +62,14 @@ export const makeFixedResizableContainerE = createElementMaker({
     'container--inner': 'position--absolute overflow--hidden',
     'mask--inner': configs => 'position--absolute ' + useShowStyle(configs) + ' ' + useCursorStyle(configs, ''),
     'mask--outer': configs => 'select--none size--fullview position--fixed position--tl ' + useShowStyle(configs) + ' ' + useCursorStyle(configs, ''),
-    'bar-weight': '20',
+    'bar-weight': 20,
     'position--top': 0,
     'position--right': 0,
     'position--bottom': 0,
     'position--left': 0
   },
   actuations: {},
-  config: {
+  configs: {
     isHandling: false,
     isResizing: false,
     isPrepareToMoving: false,

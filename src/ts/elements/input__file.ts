@@ -1,6 +1,26 @@
+import { isNull } from '../libs/mobius-utils'
 import { createElementMaker } from '../helpers/index'
 
-export const makeFileInputE = createElementMaker({
+import type { ElementOptions } from '../helpers/index'
+
+export type FileInputElementType = 'FileInput'
+export interface FileInputElementOptions extends ElementOptions {
+  styles?: {
+    type?: FileInputElementType
+    name?: string
+    label?: string
+    accept?: string
+    multiple?: boolean
+  }
+  actuations?: {
+    changeHandler?: (event: Event) => void
+  }
+}
+
+/**
+ *
+ */
+export const makeFileInputE = createElementMaker<FileInputElementOptions>({
   marks: {},
   styles: {
     type: 'FileInput',
@@ -10,12 +30,14 @@ export const makeFileInputE = createElementMaker({
     multiple: false
   },
   actuations: {
-    changeHandler: e => {
-      const files = e.target.files
-      files.forEach(file => {
+    changeHandler: (event) => {
+      const files = (event.target as HTMLInputElement).files
+      if (isNull(files)) return
+
+      Array.from(files).forEach(file => {
         const reader = new FileReader()
-        reader.onload = e => {
-          console.warn('[FileInput element changeHandler example]:', e.target.result)
+        reader.onload = (progressEvent) => {
+          console.warn('[FileInput element changeHandler example]:', progressEvent?.target?.result)
         }
         reader.readAsText(file)
       })

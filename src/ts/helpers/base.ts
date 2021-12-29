@@ -1,4 +1,4 @@
-import { isString, isObject, isFunction } from '../libs/mobius-utils'
+import { isString, isObject, isNormalFunction } from '../libs/mobius-utils'
 
 type QuotedString = `"${string}"` | `'${string}'` | `\`${string}\``
 
@@ -28,16 +28,20 @@ type MarkerUnion = QuotedString | Marker
 
 /**
  * Predicate whether the target string is a valid marker, i.e. `QuotedString` or instance of `Marker`.
+ *
+ * @see {@link isMarker}
  */
 export const isValidMarker = (tar: any): tar is MarkerUnion => (isString(tar) && isQuotedString(tar)) || isMarker(tar)
 
 /**
  * Predicate whether the target string is an instance of `Marker`.
+ *
+ * @see {@link Marker}, {@link isValidMarker}
  */
 export const isMarker = (tar: any): tar is Marker => (isObject(tar) && tar.isMarker)
 
 /**
- *
+ * @see {@link isMarker}
  */
 export class Marker {
   _value: string
@@ -58,7 +62,7 @@ export class Marker {
   get value (): string { return this._value }
 
   static of (value: MarkerUnion | (() => MarkerUnion)): Marker {
-    if (isFunction(value)) {
+    if (isNormalFunction(value)) {
       return Marker.of(value())
     } else if (isMarker(value)) {
       return value
@@ -70,11 +74,17 @@ export class Marker {
 
 /**
  * Predicate whether the target is an instance of `Plain`.
+ *
+ * @see {@link Plain}
  */
 export const isPlain = (tar: any): tar is Plain => isObject(tar) && tar.isPlain
 
 /**
+ * Plain data type is designed to indicate the pure data that
+ *   does not want to be processed by process functions.
+ * It will be rewraped to `Dirty` after the first process.
  *
+ * @see {@link isPlain}
  */
 export class Plain<V = any> {
   _value: V
@@ -100,14 +110,20 @@ export class Plain<V = any> {
 
 /**
  * Predicate whether the target is an instance of `Dirty`.
+ *
+ * @see {@link Dirty}
  */
 export const isDirty = <V = any>(tar: any): tar is Dirty<V> => isObject(tar) && tar.isDirty
 
 /**
+ * Dirty data type is designed to indicate the `processed value`,
+ *   value that has been processed and does not want to be processed again can be marked as Drity.
  *
+ * @see {@link isDirty}
  */
 export class Dirty<V = any> {
   _value: V
+
   constructor (value: V) {
     this._value = value
   }

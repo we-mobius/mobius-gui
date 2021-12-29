@@ -1,16 +1,34 @@
-import { makeDriverFormatComponent, useUIDriver } from '../helpers/index'
-import { makeTableE } from '../elements/index'
 import {
-  Data
+  Data, replayWithLatest
 } from '../libs/mobius-utils'
+import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
+import { makeTableE } from '../elements/index'
+
+import type { TemplateResult } from '../libs/lit-html'
+import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
+import type { TableElementData } from '../elements/index'
+
+export interface TableDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+  inputs: {
+    styles: {
+      data: TableElementData
+    }
+  }
+  _internals: {
+    styles: {
+      data: TableElementData
+    }
+  }
+}
 
 /**
- * @param { object } options
- * @return Data of TemplateResult
+ *
  */
-export const tableDC = makeDriverFormatComponent({
+export const makeTableDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, TableDCSingletonLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
-    const dataD = Data.empty()
+    const dataD = Data.empty<TableElementData>()
+    const dataRD = replayWithLatest(1, dataD)
 
     return {
       inputs: {
@@ -20,14 +38,17 @@ export const tableDC = makeDriverFormatComponent({
       },
       _internals: {
         styles: {
-          data: dataD
+          data: dataRD
         }
       }
     }
   },
-  prepareTemplate: ({ marks, styles, actuations, configs }, template, mutation, contexts) => {
+  prepareTemplate: ({ marks, styles, actuations, configs }) => {
     return makeTableE({ marks, styles, actuations, configs })
   }
 })
 
-export const useTableDC = useUIDriver(tableDC)
+/**
+ * @see {@link makeTableDC}
+ */
+export const useTableDC = useGUIDriver_(makeTableDC)

@@ -1,4 +1,4 @@
-import { isString, isFunction, isPlainObject } from '../libs/mobius-utils'
+import { isString, isNormalFunction, isPlainObject } from '../libs/mobius-utils'
 import { Dirty, isDirty, isMarker } from './base'
 
 import type { TemplatePieces } from './view'
@@ -30,27 +30,31 @@ export const actuate = (actuations: Record<string, any>, configs: Record<string,
           // marker
           const marker = value.value
           const actuation = actuations[marker]
-          if (actuation !== undefined) {
-            return Dirty.of(actuation)
-          } else {
+          if (actuation === undefined) {
             console.warn(`There is no "${marker}" found in actuations, use "defaultWarnningActuation" instead.`, actuations)
             return Dirty.of(defaultWarnningActuation(marker))
+          } else if (isNormalFunction(actuation)) {
+            return Dirty.of((event: Event) => actuation(event, configs))
+          } else {
+            return Dirty.of(actuation)
           }
         } else if (isString(value)) {
           // string
           const actuation = actuations[value]
-          if (actuation !== undefined) {
-            return Dirty.of(actuation)
-          } else {
+          if (actuation === undefined) {
             console.warn(`There is no "${value}" found in actuations, use "defaultWarnningActuation" instead.`, actuations)
             return Dirty.of(defaultWarnningActuation(value))
+          } else if (isNormalFunction(actuation)) {
+            return Dirty.of((event: Event) => actuation(event, configs))
+          } else {
+            return Dirty.of(actuation)
           }
-        } else if (isFunction(value)) {
+        } else if (isNormalFunction(value)) {
           // function
-          return Dirty.of(value)
-        } else if (isPlainObject(value) && isFunction(value.handleEvent)) {
+          return Dirty.of((event: Event) => value(event, configs))
+        } else if (isPlainObject(value) && isNormalFunction(value.handleEvent)) {
           // object
-          return Dirty.of(value)
+          return Dirty.of({ ...value, handleEvent: (event: Event) => value.handleEvent(event, configs) })
         } else {
           throw (new TypeError('Unexpected value received as event listener.'))
         }

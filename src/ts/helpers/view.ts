@@ -21,8 +21,6 @@ const preprocess = (templatePieces: TemplatePieces): TemplatePieces => {
     values: values.map(value => {
       // if current is not a Marker, skip value transformation
       if (isValidMarker(value)) {
-        // use Marker constructor to transform the Marker value of quoted string format
-        //  -> "classname" -> { _value: "classname" }<Marker>
         return Marker.of(value)
       } else if (isPlain(value)) {
         return Dirty.of(value.value)
