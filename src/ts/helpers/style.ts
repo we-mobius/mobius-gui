@@ -2,7 +2,7 @@ import {
   isString, isArray, isPlainObject, isNormalFunction,
   toClassStr, prefixClassWith, removePrefixOfClass
 } from '../libs/mobius-utils'
-import { Dirty, isDirty, isMarker } from './base'
+import { Marker, Dirty, isDirty, isValidMarker } from './base'
 
 import type { TemplatePieces } from './view'
 
@@ -15,9 +15,10 @@ const processValue = (
   const classReg = /class=('|"|`)?[^'"`=>]*$/ig
 
   if (classReg.test(prevString)) {
-    if (isMarker(value)) {
+    if (isValidMarker(value)) {
+      const standardMarker = Marker.of(value)
       // marker
-      const marker = value.value
+      const marker = standardMarker.value
       const style = styles[marker]
       if (style === undefined) {
         console.warn(`There is no "${marker}" found in styles, use "${marker}" instead.`, styles)
@@ -29,16 +30,7 @@ const processValue = (
       }
     } else if (isString(value)) {
       // string
-      const marker = value
-      const style = styles[marker]
-      if (style === undefined) {
-        console.warn(`There is no "${marker}" found in styles, use "${marker}" instead.`, styles)
-        return Dirty.of(marker)
-      } else if (isNormalFunction(style)) {
-        return Dirty.of(toClassStr(prefixClassWithMobius(style(configs))))
-      } else {
-        return Dirty.of(toClassStr(prefixClassWithMobius(style)))
-      }
+      return Dirty.of(toClassStr(prefixClassWithMobius(value)))
     } else if (isPlainObject(value) || isArray(value)) {
       // plain object & array
       return Dirty.of(toClassStr(prefixClassWithMobius(value)))
