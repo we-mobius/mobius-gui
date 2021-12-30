@@ -42,6 +42,7 @@ export const isMarker = (tar: any): tar is Marker => (isObject(tar) && tar.isMar
 
 /**
  * @see {@link isMarker}
+ * @see {@link Plain}, {@link Dirty}
  */
 export class Marker {
   _value: string
@@ -61,6 +62,12 @@ export class Marker {
 
   get value (): string { return this._value }
 
+  /**
+   * Marker's value will be handled by subsequent processers,
+   * so it can be dynamicly return by function.
+   *
+   * But Plain & Dirty will not.
+   */
   static of (value: MarkerUnion | (() => MarkerUnion)): Marker {
     if (isNormalFunction(value)) {
       return Marker.of(value())
@@ -69,6 +76,20 @@ export class Marker {
     } else {
       return new Marker(value)
     }
+  }
+
+  /**
+   * @see {@link isMarker}
+   */
+  static isMarker (tar: any): tar is Marker {
+    return isMarker(tar)
+  }
+
+  /**
+   * @see {@link isValidMarker}
+   */
+  static isValidMarker (tar: any): tar is MarkerUnion {
+    return isValidMarker(tar)
   }
 }
 
@@ -85,6 +106,7 @@ export const isPlain = (tar: any): tar is Plain => isObject(tar) && tar.isPlain
  * It will be rewraped to `Dirty` after the first process.
  *
  * @see {@link isPlain}
+ * @see {@link Marker}, {@link Dirty}
  */
 export class Plain<V = any> {
   _value: V
@@ -106,6 +128,13 @@ export class Plain<V = any> {
       return new Plain(value)
     }
   }
+
+  /**
+   * @see {@link isPlain}
+   */
+  static isPlain (tar: any): tar is Plain {
+    return isPlain(tar)
+  }
 }
 
 /**
@@ -120,6 +149,7 @@ export const isDirty = <V = any>(tar: any): tar is Dirty<V> => isObject(tar) && 
  *   value that has been processed and does not want to be processed again can be marked as Drity.
  *
  * @see {@link isDirty}
+ * @see {@link Marker}, {@link Plain}
  */
 export class Dirty<V = any> {
   _value: V
@@ -139,5 +169,12 @@ export class Dirty<V = any> {
     } else {
       return new Dirty(value)
     }
+  }
+
+  /**
+   * @see {@link isDirty}
+   */
+  static isDirty <V = any>(value: any): value is Dirty<V> {
+    return isDirty(value)
   }
 }
