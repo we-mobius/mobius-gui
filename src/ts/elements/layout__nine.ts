@@ -45,7 +45,7 @@ export const makeNineLayoutE = createElementMaker<NineLayoutElementOptions>({
     const { isShow, isHollow } = styles
 
     return view`
-      <div class='${'rootClasses'} mobius-layout__nine ${isHollow ? 'mobius-layout__nine--hollow' : 'mobius-size--fullpct'} ${isShow ? 'mobius-display--block' : 'mobius-display--none'}' >
+      <div class='${'"rootClasses"'} mobius-layout__nine ${isHollow ? 'mobius-layout__nine--hollow' : 'mobius-size--fullpct'} ${isShow ? 'mobius-display--block' : 'mobius-display--none'}' >
         <div class='mobius-layout__nine--tl'>${'tl'}</div>
         <div class='mobius-layout__nine--tc'>${'tc'}</div>
         <div class='mobius-layout__nine--tr'>${'tr'}</div>

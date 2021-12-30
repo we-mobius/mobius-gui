@@ -8,6 +8,7 @@ import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelC
 export interface MiddleColAdaptiveLayoutDCSingleLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {
     styles: {
+      rootClasses: string
       left: any
       middle: any
       right: any
@@ -15,6 +16,7 @@ export interface MiddleColAdaptiveLayoutDCSingleLevelContexts extends GUIDriverS
   }
   _internals: {
     styles: {
+      rootClasses: string
       left: any
       middle: any
       right: any
@@ -30,6 +32,8 @@ export interface MiddleColAdaptiveLayoutDCSingleLevelContexts extends GUIDriverS
 export const makeMiddleColAdaptiveLayoutDC =
 makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, MiddleColAdaptiveLayoutDCSingleLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: () => {
+    const rootClassesD = Data.empty<string>()
+    const rootClassesRD = replayWithLatest(1, rootClassesD)
     const leftD = Data.empty<any>()
     const leftRD = replayWithLatest(1, leftD)
     const middleD = Data.empty<any>()
@@ -40,6 +44,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, MiddleColAda
     return {
       inputs: {
         styles: {
+          rootClasses: rootClassesD,
           left: leftD,
           middle: middleD,
           right: rightD
@@ -47,6 +52,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, MiddleColAda
       },
       _internals: {
         styles: {
+          rootClasses: rootClassesRD,
           left: leftRD,
           middle: middleRD,
           right: rightRD

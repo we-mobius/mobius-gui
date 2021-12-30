@@ -27,6 +27,7 @@ const makeBottom = (bottom: any): TemplateResult | typeof nothing => iifNothing(
 
 export interface MiddleRowAdaptiveLayoutElementOptions extends ElementOptions {
   styles?: {
+    rootClasses?: string
     top?: any
     middle?: any
     bottom?: any
@@ -41,6 +42,7 @@ export interface MiddleRowAdaptiveLayoutElementOptions extends ElementOptions {
 export const makeMiddleRowAdaptiveLayoutE = createElementMaker<MiddleRowAdaptiveLayoutElementOptions>({
   marks: {},
   styles: {
+    rootClasses: '',
     top: nothing,
     middle: nothing,
     bottom: nothing
@@ -51,7 +53,7 @@ export const makeMiddleRowAdaptiveLayoutE = createElementMaker<MiddleRowAdaptive
     const { top, middle, bottom } = styles
 
     return view`
-      <div class="mobius-display--flex mobius-layout__vertical mobius-flex-items--stretch mobius-flex-wrap--nowrap ${'rootClasses'}">
+      <div class="mobius-display--flex mobius-layout__vertical mobius-flex-items--stretch mobius-flex-wrap--nowrap ${'"rootClasses"'}">
         ${makeTop(top)}
         ${makeMiddle(middle)}
         ${makeBottom(bottom)}
