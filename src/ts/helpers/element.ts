@@ -1,3 +1,4 @@
+import { Dirty, Marker, Plain } from './base'
 import { mark } from './mark'
 import { style, prefixClassWithMobius } from './style'
 import { actuate } from './actuate'
@@ -14,7 +15,10 @@ export const ELEMENT_MAKER_UTILS = {
   prefix: prefixClassWithMobius,
   actuate,
   html,
-  view
+  view,
+  dirty: Dirty.of,
+  marker: Marker.of,
+  plain: Plain.of
 } as const
 
 export type ElementMakerUtils = typeof ELEMENT_MAKER_UTILS
