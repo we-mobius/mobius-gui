@@ -3,7 +3,7 @@ import {
   makeUniqueString,
   Data,
   replayWithLatest,
-  combineLatestT, mapT, takeT_, mapT_, filterT_, startWithT
+  combineLatestT, mapT, takeT_, mapT_, filterT_, takeBeforeSwitchT
 } from '../libs/mobius-utils'
 import { neatenJavaScriptLoadOptions } from '../libs/mobius-services'
 import { makeDriverFormatComponent, useGUIDriver_, idToElementT } from '../helpers/index'
@@ -152,7 +152,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, AutonomyAppD
   },
   prepareInstance: (options, instance) => {
     const { template, container } = instance.outputs
-    instance.outputs.app = replayWithLatest(1, startWithT<any>(template, container))
+    instance.outputs.app = replayWithLatest(1, takeBeforeSwitchT<any>(template, container))
     return instance
   }
 })
