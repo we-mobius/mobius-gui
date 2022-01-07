@@ -3,19 +3,23 @@ import {
   Data, Mutation, isData, isAtomLike, isVacuo, TERMINATOR,
   replayWithLatest, pipeAtom,
   combineLatestT, emptyStartWithT_,
-  createGeneralDriver, useGeneralDriver, useGeneralDriver_
+  createGeneralDriver, useGeneralDriver, useGeneralDriver_,
+  DEFAULT_DRIVER_OPTIONS
 } from '../libs/mobius-utils'
+import { nothing } from '../libs/lit-html'
 import { ELEMENT_MAKER_UTILS } from './element'
+import { DEFAULT_COMPONENT_COMMON_OPTIONS } from './component.common'
 
 import type {
   AnyStringRecord, IsAny,
   Terminator,
-  AtomLike, AtomLikeOfOutput,
+  DataLike, AtomLike, AtomLikeOfOutput,
   ReplayDataMediator,
   DriverOptions, DriverLevelContexts, DriverSingletonLevelContexts, GeneralDriverCreateOptions
 } from '../libs/mobius-utils'
 import type { ElementMakerUtils, HyperElementOptions } from './element'
 import type { TemplateResult } from '../libs/lit-html'
+import type { ComponentCommonOptions } from './component.common'
 
 export type IUseGUIDriver = typeof useGeneralDriver
 export type { IUseGeneralDriver_ as IUseGUIDriver_, IPartialUseGeneralDriver_ as IPartialUseGUIDriver_ } from '../libs/mobius-utils'
@@ -26,6 +30,9 @@ export type { IUseGeneralDriver_ as IUseGUIDriver_, IPartialUseGeneralDriver_ as
  *
  ************************************************************************************************/
 
+/**
+ *
+ */
 function atomize <T extends AtomLikeOfOutput<any>> (tar: T): T
 function atomize (tar: AnyStringRecord): AtomLikeOfOutput<AnyStringRecord>
 function atomize (tar: any): any {
@@ -173,13 +180,12 @@ type PrepareGUIDSLC<Target> = AtomizeNecessary<DeepMergeDefault<GUIDriverSinglet
 /**
  *
  */
-export interface GUIDriverOptions extends DriverOptions {
-  enableReplay?: boolean
-}
+export interface GUIDriverOptions extends DriverOptions, ComponentCommonOptions { }
 const DEFAULT_GUI_DRIVER_OPTIONS: Required<GUIDriverOptions> = {
-  enableReplay: true
+  ...DEFAULT_DRIVER_OPTIONS,
+  ...DEFAULT_COMPONENT_COMMON_OPTIONS
 }
-export interface GUIDriverLevelContexts extends DriverLevelContexts {}
+export interface GUIDriverLevelContexts extends DriverLevelContexts { }
 export interface GUIDriverSingletonLevelContexts extends DriverSingletonLevelContexts {
   inputs?: {
     marks?: AnyStringRecord
@@ -226,7 +232,7 @@ type PrepareGUIDriverInstance<
 > = {
   inputs: PrepareGUIDSLC<DSLC>['inputs']
   outputs: PrepareGUIDSLC<DSLC>['outputs']
-} & { outputs: { template: ReplayDataMediator<Template> }}
+} & { outputs: { template: DataLike<Template> } }
 
 export interface GUIDriverCreateOptions<
   Options extends GUIDriverOptions = GUIDriverOptions,
@@ -234,6 +240,7 @@ export interface GUIDriverCreateOptions<
   DSLC extends GUIDriverSingletonLevelContexts = GUIDriverSingletonLevelContexts,
   Template = TemplateResult
 > {
+  defaultOptions?: Options
   prepareOptions?: (options: Options) => Options
   prepareDriverLevelContexts?: () => PrepareGUIDLC<DLC>
   prepareSingletonLevelContexts?: PrepareGUIDriverSingletonLevelContexts<Options, DLC, DSLC>
@@ -243,10 +250,13 @@ export interface GUIDriverCreateOptions<
     mutation: Mutation<any, Template>,
     contexts: ElementMakerUtils & { driverOptions: Options }
   ) => Template
-  prepareInstance?: (options: Options, instance: PrepareGUIDriverInstance<DSLC, Template>) => PrepareGUIDriverInstance<DSLC, Template>
+  prepareInstance?: (
+    options: Options, instance: PrepareGUIDriverInstance<DSLC, Template>
+  ) => PrepareGUIDriverInstance<DSLC, Template>
 }
 
 const DEFAULT_GUI_DRIVER_CREATE_OPTIONS: Required<GUIDriverCreateOptions<any, any, any, any>> = {
+  defaultOptions: DEFAULT_GUI_DRIVER_OPTIONS,
   prepareOptions: (options: any) => options,
   prepareDriverLevelContexts: () => ({ }),
   prepareSingletonLevelContexts: () => ({ }),
@@ -294,6 +304,7 @@ export const createGUIDriver = <
   }
 
   const {
+    defaultOptions,
     prepareOptions,
     prepareDriverLevelContexts,
     prepareSingletonLevelContexts,
@@ -307,8 +318,9 @@ export const createGUIDriver = <
   PrepareGUIDSLC<DSLC>,
   PrepareGUIDriverInstance<DSLC, Template>
   > = {
+    defaultOptions: defaultOptions,
     prepareOptions: (options) => {
-      return prepareOptions(options)
+      return prepareOptions({ ...DEFAULT_GUI_DRIVER_OPTIONS, ...options })
     },
     prepareDriverLevelContexts: () => {
       const driverLevelContexts = prepareDriverLevelContexts()
@@ -319,8 +331,7 @@ export const createGUIDriver = <
       return singletonLevelContexts
     },
     prepareInstance: (options, driverLevelContexts, singletonLevelContexts) => {
-      // extract options
-      const { enableReplay } = { ...DEFAULT_GUI_DRIVER_OPTIONS, ...options }
+      const { enableAsync: isAsync, enableReplay, enableOutlier } = options as (typeof DEFAULT_GUI_DRIVER_OPTIONS & Options)
 
       const { inputs, _internals, outputs } = { ...DEFAULT_GUI_DRIVER_SINGLETON_LEVEL_CONTEXTS, ...singletonLevelContexts }
       const marks = _internals?.marks ?? {}
@@ -349,7 +360,15 @@ export const createGUIDriver = <
         marks: preparedMarks, styles: preparedStyles, actuations: preparedActuations, configs: preparedConfigs
       }))
 
-      const template = enableReplay ? replayWithLatest(1, Data.empty<Template>()) : Data.empty<Template>()
+      let preparedTemplate: DataLike<Template>
+      if (enableOutlier) {
+        preparedTemplate = Data.of<Template>(nothing as unknown as Template, { isAsync })
+      } else {
+        preparedTemplate = Data.empty<Template>({ isAsync })
+      }
+      if (enableReplay) {
+        preparedTemplate = replayWithLatest(1, preparedTemplate)
+      }
 
       pipeAtom(
         uiInputsRD,
@@ -365,8 +384,10 @@ export const createGUIDriver = <
               mutation as Mutation<any, Template>,
               { driverOptions: options, ...ELEMENT_MAKER_UTILS }
             )
-          }),
-        template
+          },
+          { isAsync }
+        ),
+        preparedTemplate
       )
 
       // format inputs & outputs
@@ -375,7 +396,7 @@ export const createGUIDriver = <
 
       const instance = {
         inputs: { ...inputs as AnyStringRecord },
-        outputs: { template: template, ...formattedOutputs as AnyStringRecord }
+        outputs: { template: preparedTemplate, ...formattedOutputs as AnyStringRecord }
       } as unknown as PrepareGUIDriverInstance<DSLC, Template>
 
       const preparedInstance = prepareInstance(options, instance)
@@ -477,7 +498,7 @@ const mockGUIInstance = mockGUIDriver({
 
 const { inputs, outputs } = mockGUIInstance
 
-const otherMockGUIInstance = useGUIDriver_(mockGUIDriver)(undefined, {
+const otherMockGUIInstance = useGUIDriver_(mockGUIDriver)({ enableAsync: true, driverOptionsField: '' }, {
   inputs: { styles: { book: 1 }, otherBook: 1 }, outputs: { love: Data.of(Symbol(1)) }
 })
 

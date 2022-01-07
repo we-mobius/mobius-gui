@@ -8,18 +8,21 @@ import {
   combineLatestT, emptyStartWithT_, pluckT_, defaultToT_, nilToVoidT, asIsDistinctPreviousT, combineT,
   createGeneralTache_, useGeneralTache, useGeneralTache_
 } from '../libs/mobius-utils'
+import { nothing } from '../libs/lit-html'
 import { ELEMENT_MAKER_UTILS } from './element'
+import { DEFAULT_COMPONENT_COMMON_OPTIONS } from './component.common'
 
-import type { ElementMakerUtils } from './element'
 import type {
   AnyStringRecord,
   PropPath, Terminator, ReplayDataMediator,
-  AtomLike, AtomLikeOfOutput,
+  DataLike, AtomLike, AtomLikeOfOutput,
   SSTache, Tache,
   TacheOptions, TacheLevelContexts,
   GeneralTacheCreateOptions
 } from '../libs/mobius-utils'
 import type { TemplateResult } from '../libs/lit-html'
+import type { ElementMakerUtils } from './element'
+import type { ComponentCommonOptions } from './component.common'
 
 export type IUseGUITache = typeof useGeneralTache
 export type { IUseGeneralTache_ as IUseGUITache_, IPartialUseGeneralTache_ as IPartialUseGUITache_ } from '../libs/mobius-utils'
@@ -205,14 +208,9 @@ function formatGUITacheContexts (contexts: any): ReplayDataMediator<any> {
 /**
  *
  */
-export interface GUITacheOptions extends TacheOptions {
-  /**
-   * Whether the generated Atom is relayable (for one).
-   */
-  enableReplay?: boolean
-}
+export interface GUITacheOptions extends TacheOptions, ComponentCommonOptions { }
 const DEFAULT_GUI_TACHE_OPTIONS: Required<GUITacheOptions> = {
-  enableReplay: true
+  ...DEFAULT_COMPONENT_COMMON_OPTIONS
 }
 export interface GUITacheLevelContexts extends TacheLevelContexts {}
 export interface GUITacheSingletonLevelContexts extends AnyStringRecord {}
@@ -246,33 +244,35 @@ type MapRecordValuesToOutputAtom<T> = {
 }
 
 export interface GUITacheCreateOptions<
-  O extends GUITacheOptions = GUITacheOptions, TLC extends GUITacheLevelContexts = GUITacheLevelContexts,
+  Options extends GUITacheOptions = GUITacheOptions, TLC extends GUITacheLevelContexts = GUITacheLevelContexts,
   TSLC extends GUITacheSingletonLevelContexts = GUITacheSingletonLevelContexts,
-  S extends GUITacheSources = GUITacheSources, Out = TemplateResult
+  Sources extends GUITacheSources = GUITacheSources, Out = TemplateResult
 > {
-  prepareOptions?: (options: O) => O
+  defaultOptions?: Options
+  prepareOptions?: (options: Options) => Options
   prepareTacheLevelContexts?: () => TLC
   prepareSingletonLevelContexts?: (
-    sources: PrepareGUITacheSources<S>,
+    sources: PrepareGUITacheSources<Sources>,
     contexts: {
-      useMarks: IPartialTypedUseUnidirGUITacheSource_<NonNullable<S['marks']>>
-      useStyles: IPartialTypedUseUnidirGUITacheSource_<NonNullable<S['styles']>>
-      useActuations: IPartialTypedUseUnidirGUITacheSource_<NonNullable<S['actuations']>>
-      useConfigs: IPartialTypedUseUnidirGUITacheSource_<NonNullable<S['configs']>>
-      useOutputs: IPartialTypedUseBidirGUITacheSource_<NonNullable<S['outputs']>>
-      tacheOptions: O
+      useMarks: IPartialTypedUseUnidirGUITacheSource_<NonNullable<Sources['marks']>>
+      useStyles: IPartialTypedUseUnidirGUITacheSource_<NonNullable<Sources['styles']>>
+      useActuations: IPartialTypedUseUnidirGUITacheSource_<NonNullable<Sources['actuations']>>
+      useConfigs: IPartialTypedUseUnidirGUITacheSource_<NonNullable<Sources['configs']>>
+      useOutputs: IPartialTypedUseBidirGUITacheSource_<NonNullable<Sources['outputs']>>
+      tacheOptions: Options
       tacheLevelContexts: TLC
     }
   ) => MapRecordValuesToOutputAtom<TSLC>
   prepareTemplate: (
-    templateOptions: MergeDefault<Required<GUITacheSources>, S> & { singletonLevelContexts: TSLC },
+    templateOptions: MergeDefault<Required<GUITacheSources>, Sources> & { singletonLevelContexts: TSLC },
     prevTemplate: Out,
     mutation: Mutation<AnyStringRecord, Out>,
-    contexts: ElementMakerUtils & { tacheOptions: O }
+    contexts: ElementMakerUtils & { tacheOptions: Options }
   ) => Out
 }
 const DEFAULT_GUI_TACHE_CREATE_OPTIONS: Required<GUITacheCreateOptions<any, any, any, any, any>> = {
-  prepareOptions: (options: GUITacheOptions) => ({ ...DEFAULT_GUI_TACHE_OPTIONS, ...options }),
+  defaultOptions: DEFAULT_GUI_TACHE_OPTIONS,
+  prepareOptions: (options: GUITacheOptions) => options,
   prepareTacheLevelContexts: () => ({ }),
   prepareSingletonLevelContexts: () => ({ }),
   prepareTemplate: () => 'function prepareTemplate is not defined!'
@@ -293,18 +293,19 @@ const DEFAULT_GUI_TACHE_CREATE_OPTIONS: Required<GUITacheCreateOptions<any, any,
  * @see {@link useGUITache_}
  */
 export const createGUITache = <
-  O extends GUITacheOptions = GUITacheOptions, TLC extends TacheLevelContexts = GUITacheLevelContexts,
+  Options extends GUITacheOptions = GUITacheOptions, TLC extends TacheLevelContexts = GUITacheLevelContexts,
   TSLC extends GUITacheSingletonLevelContexts = GUITacheSingletonLevelContexts,
-  S extends GUITacheSources = GUITacheSources, Out = TemplateResult
+  Sources extends GUITacheSources = GUITacheSources, Out = TemplateResult
 >(
-    createOptions: GUITacheCreateOptions<O, TLC, TSLC, S, Out>
+    createOptions: GUITacheCreateOptions<Options, TLC, TSLC, Sources, Out>
   ): (
-    (options?: O) => Tache<[S], Data<Out> | ReplayDataMediator<Out>>
+    (options?: Options) => Tache<[Sources], DataLike<Out>>
   ) => {
-  const preparedCreateOptions: Required<GUITacheCreateOptions<O, TLC, TSLC, S, Out>> = {
+  const preparedCreateOptions: Required<GUITacheCreateOptions<Options, TLC, TSLC, Sources, Out>> = {
     ...DEFAULT_GUI_TACHE_CREATE_OPTIONS as any, ...createOptions
   }
   const {
+    defaultOptions,
     prepareOptions,
     prepareTacheLevelContexts,
     prepareSingletonLevelContexts,
@@ -321,15 +322,16 @@ export const createGUITache = <
     singletonLevelContexts: ReplayDataMediator<any>
   }
   type GUITacheMidpiece<P = any, C = any> = Mutation<P, C>
-  type GUITacheOutput<Out = TemplateResult> = Data<Out> | ReplayDataMediator<Out>
+  type GUITacheOutput<Out = TemplateResult> = DataLike<Out>
 
   const uiTacheCreateOptions: GeneralTacheCreateOptions<
-  O, TLC,
-  [S],
+  Options, TLC,
+  [Sources],
   GUITacheInput,
   GUITacheMidpiece<any, Out>,
   GUITacheOutput<Out>
   > = {
+    defaultOptions: defaultOptions,
     prepareOptions: (options) => {
       return prepareOptions(options)
     },
@@ -375,7 +377,7 @@ export const createGUITache = <
       // create singleton level contexts
       // scope to every single component
       const singletonLevelContexts = formatGUITacheContexts(prepareSingletonLevelContexts(
-        preparedSources as unknown as PrepareGUITacheSources<S>,
+        preparedSources as unknown as PrepareGUITacheSources<Sources>,
         {
           useMarks: useUnidirGUITacheSource_(preparedMarks),
           useStyles: useUnidirGUITacheSource_(preparedStyles),
@@ -400,6 +402,8 @@ export const createGUITache = <
       return GUITacheInput
     },
     prepareMidpiece: (options, tacheLevelContexts, inputs) => {
+      const { enableAsync: isAsync } = options as (typeof DEFAULT_GUI_TACHE_OPTIONS & Options)
+
       const mutation = Mutation.ofLiftBoth<any, Out | Terminator>(
         (prev, template, mutation) => {
           if (isVacuo(prev)) return TERMINATOR
@@ -412,17 +416,25 @@ export const createGUITache = <
             mutation as Mutation<any, Out>,
             { tacheOptions: options, ...ELEMENT_MAKER_UTILS }
           )
-        })
+        },
+        { isAsync }
+      )
       return mutation as GUITacheMidpiece<any, Out>
     },
     prepareOutput: (options, tacheLevelContexts, midpieces) => {
-      const { enableReplay } = { ...DEFAULT_GUI_TACHE_OPTIONS, ...options }
+      const { enableAsync: isAsync, enableReplay, enableOutlier } = options as (typeof DEFAULT_GUI_TACHE_OPTIONS & Options)
 
-      if (enableReplay) {
-        return replayWithLatest(1, Data.empty<Out>())
+      let preparedTemplate: DataLike<Out>
+      if (enableOutlier) {
+        preparedTemplate = Data.of<Out>(nothing as unknown as Out, { isAsync })
       } else {
-        return Data.empty<Out>()
+        preparedTemplate = Data.empty<Out>({ isAsync })
       }
+      if (enableReplay) {
+        preparedTemplate = replayWithLatest(1, preparedTemplate)
+      }
+
+      return preparedTemplate
     },
     connect: (options, tacheLevelContexts, [inputs, midpieces, outputs]) => {
       const inputsRD = replayWithLatest(1, combineLatestT(inputs))
