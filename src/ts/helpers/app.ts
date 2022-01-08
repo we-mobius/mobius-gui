@@ -12,7 +12,7 @@ import type {
   ReplayDataMediator,
   DataSubscription
 } from '../libs/mobius-utils'
-import type { TemplateResult } from '../libs/lit-html'
+import type { TemplateResult, RenderOptions } from '../libs/lit-html'
 
 /**
  * Init app container(`div` element) with given `containerId`.
@@ -70,13 +70,13 @@ export const makeAppContainerRD = (
   return appContainerRD
 }
 
-interface RunAppOptions {
+interface RunAppOptions extends RenderOptions {
   render?: typeof r
-  isLogOn?: boolean
+  enableLog?: boolean
 }
-const DEFAULT_RUN_APP_OPTIONS: Required<RunAppOptions> = {
+const DEFAULT_RUN_APP_OPTIONS: Required<Omit<RunAppOptions, keyof RenderOptions>> = {
   render: r,
-  isLogOn: true
+  enableLog: true
 }
 
 /**
@@ -87,27 +87,28 @@ const DEFAULT_RUN_APP_OPTIONS: Required<RunAppOptions> = {
  *
  * @see {@link runSimpleApp}
  */
-export const runApp = (
-  container: AtomLikeOfOutput<HTMLElement>,
-  template: AtomLikeOfOutput<TemplateResult<any>>,
+export const runApp = <Container extends HTMLElement | DocumentFragment, Template extends TemplateResult>(
+  container: AtomLikeOfOutput<Container>,
+  template: AtomLikeOfOutput<Template>,
   options: RunAppOptions = DEFAULT_RUN_APP_OPTIONS
-): DataSubscription<[HTMLElement, TemplateResult]> => {
-  const { render, isLogOn } = { ...DEFAULT_RUN_APP_OPTIONS, ...options }
+): DataSubscription<[Container, Template]> => {
+  const preparedOptions = { ...DEFAULT_RUN_APP_OPTIONS, ...options }
+  const { render, enableLog } = preparedOptions
 
   const renderTargetRD = replayWithLatest(1, (combineLatestT(container, template)))
 
   return renderTargetRD.subscribeValue(([container, template]) => {
-    if (isLogOn) {
+    if (enableLog) {
       console.log('[MobiusApp] render App: ', container, template)
     }
-    render(template, container)
+    render(template, container, preparedOptions)
   })
 }
 
 interface RunSimpleAppOptions extends RunAppOptions {
   decorator?: ((container: HTMLElement) => void) | Partial<HTMLElement>
 }
-const DEFAULT_RUN_SIMPLE_APP_OPTIONS: Required<RunSimpleAppOptions> = {
+const DEFAULT_RUN_SIMPLE_APP_OPTIONS: Required<Omit<RunSimpleAppOptions, keyof RenderOptions>> = {
   ...DEFAULT_RUN_APP_OPTIONS,
   decorator: () => { /** do nothing */ }
 }
@@ -121,21 +122,22 @@ const DEFAULT_RUN_SIMPLE_APP_OPTIONS: Required<RunSimpleAppOptions> = {
  *
  * @see {@link runApp}
  */
-export const runSimpleApp = (
-  container: HTMLElement | string,
-  template: AtomLikeOfOutput<TemplateResult<any>>,
+export const runSimpleApp = <Template extends TemplateResult>(
+  container: HTMLElement | DocumentFragment | string,
+  template: AtomLikeOfOutput<Template>,
   options: RunSimpleAppOptions = DEFAULT_RUN_SIMPLE_APP_OPTIONS
-): DataSubscription<any> => {
-  const { render, isLogOn, decorator } = { ...DEFAULT_RUN_SIMPLE_APP_OPTIONS, ...options }
+): DataSubscription<Template> => {
+  const preparedOptions = { ...DEFAULT_RUN_SIMPLE_APP_OPTIONS, ...options }
+  const { render, enableLog, decorator } = preparedOptions
 
   console.log('[MobiusSimpleApp] initialize start!')
   const preparedContainer = isString(container) ? initAppContainer(container, decorator) : container
   console.log('[MobiusSimpleApp] App will be rendered in container: ', container)
 
   return holdLatestUntilT(completeStateRD, template).subscribeValue((template) => {
-    if (isLogOn) {
+    if (enableLog) {
       console.log('[MobiusSimpleApp] render App: ', container, template)
     }
-    render(template, preparedContainer)
+    render(template, preparedContainer, preparedOptions)
   })
 }
