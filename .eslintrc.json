@@ -25,7 +25,7 @@
     },
     {
       "files": [
-        "*.ts"
+        "*.ts", "*.d.ts"
       ],
       "extends": [
         "standard-with-typescript",
