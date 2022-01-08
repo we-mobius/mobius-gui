@@ -6,7 +6,7 @@ import { initAppTheme } from './ts/libs/mobius-services'
 import { appTemplateRD } from 'Interfaces/app'
 
 initAppTheme({
-  isAutoToggle: true,
+  enableAutoToggle: true,
   isExpectUnknown: false
 })
 
