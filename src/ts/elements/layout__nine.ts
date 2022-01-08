@@ -1,11 +1,12 @@
-import { createElementMaker } from '../helpers/element'
 import { nothing } from '../libs/lit-html'
+import { createElementMaker } from '../helpers/element'
 
+import type { ClassUnion } from '../libs/mobius-utils'
 import type { ElementOptions } from '../helpers/element'
 
 export interface NineLayoutElementOptions extends ElementOptions {
   styles?: {
-    rootClasses?: string
+    rootClasses?: ClassUnion
     isShow?: boolean
     isHollow?: boolean
     tl?: any

@@ -1,6 +1,6 @@
 import {
   isString, isArray, isPlainObject, isNormalFunction,
-  toClassStr, prefixClassWith, removePrefixOfClass
+  toClassString, prefixClassWith, removePrefixOfClass
 } from '../libs/mobius-utils'
 import { Marker, Dirty, isDirty, isValidMarker } from './base'
 
@@ -24,19 +24,19 @@ const processValue = (
         console.warn(`There is no "${marker}" found in styles, use "${marker}" instead.`, styles)
         return Dirty.of(marker)
       } else if (isNormalFunction(style)) {
-        return Dirty.of(toClassStr(prefixClassWithMobius(style(configs))))
+        return Dirty.of(toClassString(prefixClassWithMobius(style(configs))))
       } else {
-        return Dirty.of(toClassStr(prefixClassWithMobius(style)))
+        return Dirty.of(toClassString(prefixClassWithMobius(style)))
       }
     } else if (isString(value)) {
       // string
-      return Dirty.of(toClassStr(prefixClassWithMobius(value)))
+      return Dirty.of(toClassString(prefixClassWithMobius(value)))
     } else if (isPlainObject(value) || isArray(value)) {
       // plain object & array
-      return Dirty.of(toClassStr(prefixClassWithMobius(value)))
+      return Dirty.of(toClassString(prefixClassWithMobius(value)))
     } else if (isNormalFunction(value)) {
       // function
-      return Dirty.of(toClassStr(prefixClassWithMobius(value(configs))))
+      return Dirty.of(toClassString(prefixClassWithMobius(value(configs))))
     } else {
       // unexpected
       throw (new TypeError(

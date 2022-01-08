@@ -1,6 +1,10 @@
-import { isBoolean, isString, isNormalFunction } from '../libs/mobius-utils'
+import {
+  isBoolean, isString, isNormalFunction,
+  toClassString
+} from '../libs/mobius-utils'
 import { createElementMaker } from '../helpers/index'
 
+import type { ClassUnion } from '../libs/mobius-utils'
 import type { ElementOptions } from '../helpers/index'
 
 interface Setters {
@@ -33,9 +37,9 @@ const applySpec = <T extends Record<string, any>>(setters: Setters, target: T): 
 export interface MaskElementOptions extends ElementOptions {
   styles?: {
     isShow?: boolean
-    rootClasses?: string
-    maskClasses?: string
-    contentContainerClasses?: string
+    rootClasses?: ClassUnion
+    maskClasses?: ClassUnion
+    contentContainerClasses?: ClassUnion
     content?: string
   }
   actuations?: {
@@ -64,15 +68,15 @@ export const makeMaskE = createElementMaker<MaskElementOptions>({
 
     return view`
       <div
-        class=${prefix('size--fullabs position--relative layout__horizontal flex-justify--center flex-items--center ' + rootClasses)}
+        class=${prefix('size--fullabs position--relative layout__horizontal flex-justify--center flex-items--center ' + toClassString(rootClasses))}
         style='display: ${isShow ? 'flex' : 'none'}'
       >
         <div
-          class=${prefix('size--fullabs bg--third visible--medium ' + maskClasses)}
+          class=${prefix('size--fullabs bg--third visible--medium ' + toClassString(maskClasses))}
           @click=${'clickHandler'}
         ></div>
         <div
-          class=${prefix('position--z-toppest overflow--hidden ' + contentContainerClasses)}
+          class=${prefix('position--z-toppest overflow--hidden ' + toClassString(contentContainerClasses))}
         >
           ${styles.content}
         </div>

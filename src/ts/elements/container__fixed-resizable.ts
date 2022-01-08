@@ -1,5 +1,6 @@
 import { createElementMaker } from '../helpers/index'
 
+import type { ClassUnion } from '../libs/mobius-utils'
 import type { ElementOptions } from '../helpers/index'
 
 const useCursorStyle = (configs: Required<FixedResizableContainerElementConfigs>, dft: string): string => {
@@ -23,18 +24,18 @@ export interface FixedResizableContainerElementConfigs {
 
 export interface FixedResizableContainerElementOptions extends ElementOptions {
   styles?: {
-    'container--outer'?: string
-    'control-bar--top'?: string
-    'control-bar--right'?: string
-    'control-bar--bottom'?: string
-    'control-bar--left'?: string
-    'control-bar--left-top'?: string
-    'control-bar--right-top'?: string
-    'control-bar--right-bottom'?: string
-    'control-bar--left-bottom'?: string
-    'container--inner'?: string
-    'mask--inner'?: string
-    'mask--outer'?: string
+    'container--outer'?: ClassUnion
+    'control-bar--top'?: ClassUnion
+    'control-bar--right'?: ClassUnion
+    'control-bar--bottom'?: ClassUnion
+    'control-bar--left'?: ClassUnion
+    'control-bar--left-top'?: ClassUnion
+    'control-bar--right-top'?: ClassUnion
+    'control-bar--right-bottom'?: ClassUnion
+    'control-bar--left-bottom'?: ClassUnion
+    'container--inner'?: ClassUnion
+    'mask--inner'?: ClassUnion
+    'mask--outer'?: ClassUnion
     'bar-weight'?: number
     'position--top'?: number
     'position--right'?: number

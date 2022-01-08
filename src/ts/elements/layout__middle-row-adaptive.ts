@@ -1,9 +1,10 @@
-import { html, nothing } from '../libs/lit-html'
 import { iif_, argPlaceholder } from '../libs/mobius-utils'
+import { html, nothing } from '../libs/lit-html'
 import { createElementMaker } from '../helpers/index'
 
-import type { ElementOptions } from '../helpers/index'
+import type { ClassUnion } from '../libs/mobius-utils'
 import type { TemplateResult } from '../libs/lit-html'
+import type { ElementOptions } from '../helpers/index'
 
 const iifNothing = iif_(argPlaceholder, argPlaceholder, nothing)
 
@@ -27,7 +28,7 @@ const makeBottom = (bottom: any): TemplateResult | typeof nothing => iifNothing(
 
 export interface MiddleRowAdaptiveLayoutElementOptions extends ElementOptions {
   styles?: {
-    rootClasses?: string
+    rootClasses?: ClassUnion
     top?: any
     middle?: any
     bottom?: any

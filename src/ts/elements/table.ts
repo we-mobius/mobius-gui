@@ -1,8 +1,8 @@
-import { createElementMaker } from '../helpers/index'
 import { html } from '../libs/lit-html'
+import { createElementMaker } from '../helpers/index'
 
-import type { ElementOptions } from '../helpers/index'
 import type { TemplateResult } from '../libs/lit-html'
+import type { ElementOptions } from '../helpers/index'
 
 export type TableElementData = [any[], ...any[][]]
 

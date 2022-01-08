@@ -1,9 +1,10 @@
-import { html, nothing } from '../libs/lit-html'
 import { iif_, argPlaceholder } from '../libs/mobius-utils'
+import { html, nothing } from '../libs/lit-html'
 import { createElementMaker } from '../helpers/index'
 
-import type { ElementOptions } from '../helpers/index'
+import type { ClassUnion } from '../libs/mobius-utils'
 import type { TemplateResult } from '../libs/lit-html'
+import type { ElementOptions } from '../helpers/index'
 
 const iifNothing = iif_(argPlaceholder, argPlaceholder, nothing)
 
@@ -27,6 +28,7 @@ const makeRight = (right: any): TemplateResult | typeof nothing => iifNothing(ri
 
 export interface MiddleColAdaptiveLayoutElementOptions extends ElementOptions {
   styles?: {
+    rootClasses?: ClassUnion
     left?: any
     middle?: any
     right?: any
@@ -41,6 +43,7 @@ export interface MiddleColAdaptiveLayoutElementOptions extends ElementOptions {
 export const makeMiddleColAdaptiveLayoutE = createElementMaker<MiddleColAdaptiveLayoutElementOptions>({
   marks: {},
   styles: {
+    rootClasses: '',
     left: nothing,
     middle: nothing,
     right: nothing

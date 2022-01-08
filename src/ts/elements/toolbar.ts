@@ -2,8 +2,8 @@ import { isArray, isUndefined } from '../libs/mobius-utils'
 import { html } from '../libs/lit-html'
 import { createElementMaker } from '../helpers/index'
 
-import type { ElementOptions } from '../helpers/index'
 import type { TemplateResult } from '../libs/lit-html'
+import type { ElementOptions } from '../helpers/index'
 
 const TOOLBAR_ITEM_TEMPLATE_FACTORY = {
   normal: (normalItem: ToolbarElementNormalItem): TemplateResult => {
