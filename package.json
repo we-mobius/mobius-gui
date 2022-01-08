@@ -190,7 +190,7 @@
   },
   "dependencies": {
     "@types/wechat-miniprogram": "^3.4.0",
-    "lit-html": "^2.0.2"
+    "lit-html": "^2.1.0"
   },
   "jsdelivr": "./release/modules/umd/main.js",
   "files": [
