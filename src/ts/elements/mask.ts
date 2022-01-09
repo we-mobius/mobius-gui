@@ -4,7 +4,7 @@ import {
 } from '../libs/mobius-utils'
 import { createElementMaker } from '../helpers/index'
 
-import type { ClassUnion } from '../libs/mobius-utils'
+import type { EventHandler, ClassUnion } from '../libs/mobius-utils'
 import type { ElementOptions } from '../helpers/index'
 
 interface Setters {
@@ -43,7 +43,7 @@ export interface MaskElementOptions extends ElementOptions {
     content?: string
   }
   actuations?: {
-    clickHandler?: (event: Event) => void
+    clickHandler?: EventHandler<HTMLDivElement>
   }
 }
 

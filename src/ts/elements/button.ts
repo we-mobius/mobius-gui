@@ -1,5 +1,6 @@
 import { createElementMaker } from '../helpers/index'
 
+import type { EventHandler } from '../libs/mobius-utils'
 import type { ElementOptions } from '../helpers/index'
 
 export type ButtonElementType = 'Button'
@@ -10,7 +11,7 @@ export interface ButtonElementOptions extends ElementOptions {
     label: string
   }
   actuations?: {
-    clickHandler?: (event: Event) => void
+    clickHandler?: EventHandler<HTMLButtonElement>
   }
 }
 
@@ -28,7 +29,7 @@ export const makeButtonE = createElementMaker<ButtonElementOptions>({
     label: ''
   },
   actuations: {
-    clickHandler: (event: Event): Event => event
+    clickHandler: event => event
   },
   configs: {},
   prepareTemplate: (view) => {

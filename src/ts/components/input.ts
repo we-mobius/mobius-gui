@@ -2,6 +2,7 @@ import { Data, replayWithLatest, makeGeneralEventHandler } from '../libs/mobius-
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
 import { makeInputE } from '../elements/input'
 
+import type { EventHandler } from '../libs/mobius-utils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
 import type { InputElementType } from '../elements/input'
@@ -19,7 +20,7 @@ export interface InputDCSingletonLevelContexts extends GUIDriverSingletonLevelCo
       inputType: string
     }
     actuations: {
-      changeHandler: (event: Event) => void
+      changeHandler: EventHandler<HTMLInputElement>
     }
   }
 }
@@ -36,7 +37,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, InputDCSingl
     const inputTypeD = Data.empty<string>()
     const inputTypeRD = replayWithLatest(1, inputTypeD)
 
-    const [changeHandlerRD, , changeD] = makeGeneralEventHandler()
+    const [changeHandlerRD, , changeD] = makeGeneralEventHandler<HTMLInputElement>()
     const changeRD = replayWithLatest(1, changeD)
 
     return {

@@ -2,6 +2,7 @@ import { isArray, isUndefined } from '../libs/mobius-utils'
 import { html } from '../libs/lit-html'
 import { createElementMaker } from '../helpers/index'
 
+import type { EventHandler } from '../libs/mobius-utils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { ElementOptions } from '../helpers/index'
 
@@ -92,7 +93,7 @@ export interface ToolbarElementNormalItem {
   opType: string
   icon: string
   title: string
-  eventHandler?: (event: Event) => void
+  eventHandler?: EventHandler<HTMLDivElement>
 }
 export interface ToolbarElementDividerItem {
   type: 'divider'
@@ -108,7 +109,7 @@ export interface ToolbarElementOptions extends ElementOptions {
     items?: Array<ToolbarElementItem | ToolbarElementItem[]>
   }
   actuations?: {
-    eventHandler?: (event: Event) => void
+    eventHandler?: EventHandler<HTMLDivElement>
   }
 }
 

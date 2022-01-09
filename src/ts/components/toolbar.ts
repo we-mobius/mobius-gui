@@ -8,6 +8,7 @@ import {
 } from '../helpers/index'
 import { makeToolbarE } from '../elements/index'
 
+import type { EventHandler, SynthesizeEvent } from '../libs/mobius-utils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
 import type { ToolbarElementDirection, ToolbarElementItem } from '../elements/index'
@@ -27,11 +28,18 @@ export interface ToolbarDCSingletonLevelContexts extends GUIDriverSingletonLevel
       items: Array<ToolbarElementItem | ToolbarElementItem[]>
     }
     actuations: {
-      eventHandler: (event: Event) => void
+      eventHandler: EventHandler<HTMLDivElement>
     }
   }
   outputs: {
-    event: any
+    event: ToolbarDCEvent
+  }
+}
+
+export interface ToolbarDCEvent {
+  event: SynthesizeEvent<HTMLDivElement>
+  payload: {
+    opType?: string
   }
 }
 
@@ -48,8 +56,8 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ToolbarDCSin
     const itemsD = Data.empty<Array<ToolbarElementItem | ToolbarElementItem[]>>()
     const itemsRD = replayWithLatest(1, itemsD)
 
-    const [eventHandlerRD, , eventD] = makeGeneralEventHandler(event => ({
-      event: event, payload: { ...(event?.target as HTMLDivElement)?.dataset }
+    const [eventHandlerRD, , eventD] = makeGeneralEventHandler<HTMLDivElement, ToolbarDCEvent>((event) => ({
+      event: event, payload: { ...event.target.dataset }
     }))
     const eventRD = replayWithLatest(1, eventD)
 

@@ -9,6 +9,7 @@ import {
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
 import { makeFileInputE } from '../elements/input__file'
 
+import type { EventHandler } from '../libs/mobius-utils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
 import type { FileInputElementType } from '../elements/input__file'
@@ -45,7 +46,7 @@ export interface FileInputDCSingletonLevelContexts extends GUIDriverSingletonLev
       multiple: boolean
     }
     actuations: {
-      changeHandler: (event: Event) => void
+      changeHandler: EventHandler<HTMLInputElement>
     }
   }
   outputs: {
@@ -79,7 +80,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, FileInputDCS
     const multipleRD = replayWithLatest(1, multipleD)
 
     // 组件核心逻辑
-    const [changeHandlerRD, , changeD] = makeGeneralEventHandler()
+    const [changeHandlerRD, , changeD] = makeGeneralEventHandler<HTMLInputElement>()
     const changeRD = replayWithLatest(1, changeD)
 
     const filesD: Data<FileList> = pluckT('target.files', changeD)

@@ -8,6 +8,7 @@ import {
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
 import { makeButtonE } from '../elements/index'
 
+import type { EventHandler, SynthesizeEvent } from '../libs/mobius-utils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
 import type { ButtonElementType } from '../elements/index'
@@ -34,11 +35,11 @@ export interface ButtonDCSingletonLevelContexts extends GUIDriverSingletonLevelC
       label: string
     }
     actuations: {
-      clickHandler: (event: Event) => void
+      clickHandler: EventHandler<HTMLButtonElement>
     }
   }
   outputs: {
-    click: Event
+    click: SynthesizeEvent<HTMLButtonElement>
     schema: ButtonDCSchema
   }
 }
@@ -65,7 +66,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ButtonDCSing
     const labelRD = replayWithLatest(1, labelD)
 
     // 组件核心逻辑
-    const [clickHandlerRD, , clickD] = makeGeneralEventHandler()
+    const [clickHandlerRD, , clickD] = makeGeneralEventHandler<HTMLButtonElement>()
     const clickRD = replayWithLatest(1, clickD)
 
     // 表单项约束

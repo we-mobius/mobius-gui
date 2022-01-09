@@ -8,6 +8,7 @@ import {
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
 import { makeMaskE } from '../elements/index'
 
+import type { EventHandler } from '../libs/mobius-utils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
 
@@ -33,7 +34,7 @@ export interface MaskDCSingletonLevelContexts extends GUIDriverSingletonLevelCon
       content: any
     }
     actuations: {
-      clickHandler: (event: Event) => void
+      clickHandler: EventHandler<HTMLDivElement>
     }
   }
   outputs: {
@@ -60,7 +61,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, MaskDCSingle
 
     const toggleSignalD = Data.empty<any>()
 
-    const [clickHandlerRD, , clickD] = makeGeneralEventHandler(e => false)
+    const [clickHandlerRD, , clickD] = makeGeneralEventHandler<HTMLDivElement, boolean>(event => false)
 
     const toggleD: Data<boolean> = convergeT(toggleSignalD, clickD)
 
