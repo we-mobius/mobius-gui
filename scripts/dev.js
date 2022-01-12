@@ -27,9 +27,10 @@ compiler.hooks.done.tap('MobiusCopyPlugin', () => {
 })
 const devServerOptions = Object.assign({}, {
   headers: { 'Access-Control-Allow-Origin': '*' },
-  https: true,
+  https: false,
   static: true,
   compress: true,
+  host: '127.0.0.1',
   port: 3000,
   open: true, // browser extension development do not need to open the page
   hot: true,
@@ -39,6 +40,9 @@ const devServerOptions = Object.assign({}, {
       errors: true,
       warnings: false
     }
+  },
+  devMiddleware: {
+    writeToDisk: true
   },
   watchFiles: {
     options: {
@@ -51,9 +55,9 @@ const devServerOptions = Object.assign({}, {
 console.info('【devServerOptions】' + JSON.stringify(devServerOptions))
 
 // init the devServer
-const server = new WebpackDevServer(compiler, devServerOptions)
+const server = new WebpackDevServer(devServerOptions, compiler)
 
 // launch the devServer
-server.listen(devServerOptions.port, '127.0.0.1', () => {
+server.startCallback(() => {
   console.info(`Starting server on http://localhost:${devServerOptions.port}`)
 })
