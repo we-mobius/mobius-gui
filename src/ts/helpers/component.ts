@@ -16,6 +16,7 @@ import { createGUIDriver } from './gui-driver'
 import { DEFAULT_COMPONENT_COMMON_OPTIONS } from './component.common'
 
 import type {
+  IsAny,
   Vacuo, Terminator,
   DataLike,
   ReplayDataMediator, AtomLikeOfOutput
@@ -108,7 +109,7 @@ const DEFAULT_INSTANT_COMPONENT_OPTIONS: Required<InstantComponentOptions> = {
 
 type CastAnyArray<T> = T extends any[] ? T : any[]
 
-type ValueOfAtom<T> = T extends AtomLikeOfOutput<infer V> ? V : never
+type ValueOfAtom<T> = IsAny<T> extends true ? T : (T extends AtomLikeOfOutput<infer V> ? V : never)
 type ValuesOfAtomArray<T extends Array<AtomLikeOfOutput<any>>> = T extends [] ? [] :
   T extends [infer U, ...infer Rest] ?
       [ValueOfAtom<U>, ...ValuesOfAtomArray<CastAnyArray<Rest>>] : T
