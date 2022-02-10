@@ -11,6 +11,8 @@ export * from './mask'
 
 export * from './toolbar'
 
+export * from './button__app-route'
+
 export * from './form'
 export * from './form-group'
 export * from './input'
