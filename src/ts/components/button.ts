@@ -35,19 +35,23 @@ export interface ButtonDCSingletonLevelContexts extends GUIDriverSingletonLevelC
       label: string
     }
     actuations: {
-      clickHandler: EventHandler<HTMLButtonElement>
+      clickHandler: EventHandler<HTMLDivElement>
     }
   }
   outputs: {
-    click: SynthesizeEvent<HTMLButtonElement>
+    click: SynthesizeEvent<HTMLDivElement>
     schema: ButtonDCSchema
   }
 }
 
 /**
+ * @param inputs.styles.classes Classes of button wrapper.
  * @param inputs.styles.type Constraint for the role form-group member.
  * @param inputs.styles.name Button name.
  * @param inputs.styles.label Button label.
+ * @param inputs.styles.title Button title.
+ * @param inputs.styles.value Button value.
+ * @param inputs.styles.content Content of button, default to string 'This is a button'.
  */
 export const makeButtonDC =
 makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ButtonDCSingletonLevelContexts, TemplateResult>({
@@ -66,7 +70,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ButtonDCSing
     const labelRD = replayWithLatest(1, labelD)
 
     // 组件核心逻辑
-    const [clickHandlerRD, , clickD] = makeGeneralEventHandler<HTMLButtonElement>()
+    const [clickHandlerRD, , clickD] = makeGeneralEventHandler<HTMLDivElement>()
     const clickRD = replayWithLatest(1, clickD)
 
     // 表单项约束
