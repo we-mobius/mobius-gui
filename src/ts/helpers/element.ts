@@ -2,7 +2,7 @@ import { Dirty, Marker, Plain } from './base'
 import { mark } from './mark'
 import { style, prefixClassWithMobius } from './style'
 import { actuate } from './actuate'
-import { html } from '../libs/lit-html'
+import { html, ref } from '../libs/lit-html'
 import { view } from './view'
 
 import type { AnyFunction } from '../libs/mobius-utils'
@@ -15,6 +15,7 @@ export const ELEMENT_MAKER_UTILS = {
   prefix: prefixClassWithMobius,
   actuate,
   html,
+  ref,
   view,
   dirty: Dirty.of,
   marker: Marker.of,
