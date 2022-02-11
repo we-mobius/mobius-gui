@@ -2,6 +2,7 @@ export * from './layout__middle-row-adaptive'
 export * from './layout__middle-col-adaptive'
 export * from './layout__infinite'
 export * from './layout__nine'
+export * from './layout__ladder'
 
 export * from './container__fixed-resizable'
 
