@@ -4,9 +4,13 @@ import { createElementMaker } from '../helpers/index'
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
 import type { ElementOptions } from '../helpers/index'
 
+export type CheckboxElementType = 'Checkbox'
 export interface CheckboxElementOptions extends ElementOptions {
-  styles?: {
+  marks?: {
     id?: string
+  }
+  styles?: {
+    type?: CheckboxElementType
     name?: string
     /**
      * @default ''
@@ -66,9 +70,11 @@ export interface CheckboxElementValue {
  * @todo TODO: add `description` to view
  */
 export const makeCheckboxE = createElementMaker<CheckboxElementOptions>({
-  marks: {},
+  marks: {
+    id: ''
+  },
   styles: {
-    id: '',
+    type: 'Checkbox',
     name: '',
     classes: '',
     label: '',
@@ -84,8 +90,9 @@ export const makeCheckboxE = createElementMaker<CheckboxElementOptions>({
     valueChangeHandler: value => value
   },
   configs: {},
-  prepareTemplate: (view, { styles, actuations, utils: { ref } }) => {
-    const { id, classes, direction } = styles
+  prepareTemplate: (view, { marks, styles, actuations, utils: { ref } }) => {
+    const { id } = marks
+    const { classes, direction } = styles
 
     const elementId = id !== '' ? id : makeUniqueString('mobius-checkbox')
     const inputId = `${elementId}__input`
