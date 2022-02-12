@@ -11,7 +11,7 @@ import { makeButtonE } from '../elements/index'
 import type { EventHandler, SynthesizeEvent } from '../libs/mobius-utils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { ButtonElementType } from '../elements/index'
+import type { ButtonElementType } from '../elements/button'
 
 export interface ButtonDCSchema {
   type: ButtonElementType
