@@ -10,7 +10,10 @@ export * from './mask'
 
 export * from './toolbar'
 
+export * from './checkbox'
+
 export * from './input'
+export * from './input__checkbox'
 export * from './input__file'
 export * from './button'
 
