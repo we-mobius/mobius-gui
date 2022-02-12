@@ -13,6 +13,8 @@ export * from './toolbar'
 
 export * from './button__app-route'
 
+export * from './checkbox'
+
 export * from './form'
 export * from './form-group'
 export * from './input'
