@@ -7,7 +7,7 @@ import type { ClassUnion } from 'MobiusUtils'
 import type { ElementOptions } from '../helpers/index'
 import type { CheckboxElementValue } from './checkbox'
 
-export type CheckboxInputElementType = 'Checkbox'
+export type CheckboxInputElementType = 'CheckboxInput'
 export interface CheckboxInputElementOptions extends ElementOptions {
   styles?: {
     /**
@@ -36,7 +36,7 @@ export type CheckboxInputElementValue = CheckboxElementValue[]
 export const makeCheckboxInputE = createElementMaker<CheckboxInputElementOptions>({
   marks: {},
   styles: {
-    type: 'Checkbox',
+    type: 'CheckboxInput',
     classes: '',
     direction: 'horizontal',
     name: '',
