@@ -18,6 +18,7 @@ export * from './checkbox'
 export * from './form'
 export * from './form-group'
 export * from './input'
+export * from './input__checkbox'
 export * from './input__file'
 export * from './button'
 
