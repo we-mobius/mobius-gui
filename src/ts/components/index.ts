@@ -16,6 +16,7 @@ export * from './button__app-route'
 export * from './checkbox'
 export * from './color-picker'
 export * from './date-picker'
+export * from './datetime-picker'
 
 export * from './form'
 export * from './form-group'
