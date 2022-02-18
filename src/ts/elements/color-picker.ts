@@ -89,7 +89,7 @@ export const makeColorPickerE = createElementMaker<ColorPickerElementOptions>({
         <label for="${inputId}" style="display: ${direction === 'rtl' ? 'unset' : 'none'};">${'label'}</label>
         <input
           id="${inputId}" type="color" value="${initialValue === value ? initialValue : value}"
-          @input=${inputHandlerDelegator} @change=${changeHandlerDelegator}  ?checked=${'checked'}
+          @input=${inputHandlerDelegator} @change=${changeHandlerDelegator} ?checked=${'checked'}
         >
         <label for="${inputId}" style="display: ${direction === 'ltr' ? 'unset' : 'none'};">${'label'}</label>
       </div>

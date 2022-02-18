@@ -37,9 +37,9 @@ export const makeCheckboxInputE = createElementMaker<CheckboxInputElementOptions
   marks: {},
   styles: {
     type: 'CheckboxInput',
+    name: '',
     classes: '',
     direction: 'horizontal',
-    name: '',
     label: '',
     title: '',
     description: '',
