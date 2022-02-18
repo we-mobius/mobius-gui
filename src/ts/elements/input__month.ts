@@ -1,19 +1,19 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../helpers/index'
 import { makeFormItemLayoutE } from './layout__form-item'
-import { makeDateTimePickerE } from './datetime-picker'
+import { makeMonthPickerE } from './month-picker'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../helpers/index'
-import type { DateTimePickerValue } from './datetime-picker'
+import type { MonthPickerValue } from './month-picker'
 
-export type DateTimeInputElementType = 'DateTimeInput'
-export interface DateTimeInputElementOptions extends ElementOptions {
+export type MonthInputElementType = 'MonthInput'
+export interface MonthInputElementOptions extends ElementOptions {
   styles?: {
     /**
      * FormGroup member constraint.
      */
-    type?: DateTimeInputElementType
+    type?: MonthInputElementType
     /**
      * FormGroup member constraint.
      */
@@ -33,15 +33,15 @@ export interface DateTimeInputElementOptions extends ElementOptions {
   actuations?: {
     inputHandler?: EventHandler<HTMLInputElement>
     changeHandler?: EventHandler<HTMLInputElement>
-    valueChangeHandler?: (value: DateTimeInputValue) => void
+    valueChangeHandler?: (value: MonthInputValue) => void
   }
 }
-export type DateTimeInputValue = DateTimePickerValue
+export type MonthInputValue = MonthPickerValue
 
-export const makeDateTimeInputE = createElementMaker<DateTimeInputElementOptions>({
+export const makeMonthInputE = createElementMaker<MonthInputElementOptions>({
   marks: {},
   styles: {
-    type: 'DateTimeInput',
+    type: 'MonthInput',
     name: '',
     classes: '',
     direction: 'horizontal',
@@ -50,7 +50,7 @@ export const makeDateTimeInputE = createElementMaker<DateTimeInputElementOptions
     description: '',
     information: '',
     instructions: [],
-    value: '1970-01-01T00:00',
+    value: '1970-01',
     min: '',
     max: '',
     step: 'any'
@@ -77,7 +77,7 @@ export const makeDateTimeInputE = createElementMaker<DateTimeInputElementOptions
           direction: 'horizontal',
           label: labelPart,
           description: descriptionPart,
-          input: makeDateTimePickerE({
+          input: makeMonthPickerE({
             styles: { name, title, value, min, max, step },
             actuations: { inputHandler, changeHandler, valueChangeHandler }
           }),
@@ -98,7 +98,7 @@ export const makeDateTimeInputE = createElementMaker<DateTimeInputElementOptions
           direction: 'vertical',
           label: labelPart,
           description: descriptionPart,
-          input: makeDateTimePickerE({
+          input: makeMonthPickerE({
             styles: { name, title, value, min, max, step },
             actuations: { inputHandler, changeHandler, valueChangeHandler }
           }),
