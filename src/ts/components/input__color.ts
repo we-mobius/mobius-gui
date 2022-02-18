@@ -60,7 +60,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorInputDC
     const descriptionD = Data.of('')
     const informationD = Data.of('')
     const instructionsD = Data.of<any[]>([])
-    const valueD = Data.of('')
+    const valueD = Data.of('#000000')
 
     const typeRD = replayWithLatest(1, typeD)
     const nameRD = replayWithLatest(1, nameD)

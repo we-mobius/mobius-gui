@@ -59,7 +59,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorPickerD
     const titleD = Data.of('')
     const descriptionD = Data.of('')
     const directionD = Data.of<'ltr' | 'rtl'>('ltr')
-    const valueD = Data.of('')
+    const valueD = Data.of('#000000')
 
     const idRD = replayWithLatest(1, idD)
     const typeRD = replayWithLatest(1, typeD)
