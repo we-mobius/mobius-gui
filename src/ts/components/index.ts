@@ -14,11 +14,13 @@ export * from './toolbar'
 export * from './button__app-route'
 
 export * from './checkbox'
+export * from './color-picker'
 
 export * from './form'
 export * from './form-group'
 export * from './input'
 export * from './input__checkbox'
+export * from './input__color'
 export * from './input__file'
 export * from './button'
 
