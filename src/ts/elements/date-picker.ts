@@ -91,8 +91,9 @@ export const makeDatePickerE = createElementMaker<DatePickerElementOptions>({
       <div id="${elementId}" class="mobius-layout__horizontal ${toClassString(classes)}" title="${'title'}">
         <label for="${inputId}" style="display: ${direction === 'rtl' ? 'unset' : 'none'};">${'label'}</label>
         <input
-          id="${inputId}" type="date" value="${value}" min="${min}" max="${max}" step="${step}"
-          @input=${inputHandlerDelegator} @change=${changeHandlerDelegator} ?checked=${'checked'}
+          id="${inputId}" type="date"
+          name="${name}" value="${value}" min="${min}" max="${max}" step="${step}"
+          @input=${inputHandlerDelegator} @change=${changeHandlerDelegator}
         >
         <label for="${inputId}" style="display: ${direction === 'ltr' ? 'unset' : 'none'};">${'label'}</label>
       </div>

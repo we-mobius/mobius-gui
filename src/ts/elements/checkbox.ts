@@ -92,7 +92,7 @@ export const makeCheckboxE = createElementMaker<CheckboxElementOptions>({
   configs: {},
   prepareTemplate: (view, { marks, styles, actuations, utils: { ref } }) => {
     const { id } = marks
-    const { classes, direction } = styles
+    const { name, classes, direction } = styles
 
     const elementId = id !== '' ? id : makeUniqueString('mobius-checkbox')
     const inputId = `${elementId}__input`
@@ -123,6 +123,7 @@ export const makeCheckboxE = createElementMaker<CheckboxElementOptions>({
         <input
           id="${inputId}" type="checkbox"
           style="appearance: checkbox;"
+          name="${name}"
           @change=${changeHandlerDelegator} ?checked=${'checked'} ${ref(initialize)}
         >
         <label for="${inputId}" style="display: ${direction === 'ltr' ? 'unset' : 'none'};">${'label'}</label>

@@ -85,8 +85,9 @@ export const makeColorPickerE = createElementMaker<ColorPickerElementOptions>({
       <div id="${elementId}" class="mobius-layout__horizontal ${toClassString(classes)}" title="${'title'}">
         <label for="${inputId}" style="display: ${direction === 'rtl' ? 'unset' : 'none'};">${'label'}</label>
         <input
-          id="${inputId}" type="color" value="${value}"
-          @input=${inputHandlerDelegator} @change=${changeHandlerDelegator} ?checked=${'checked'}
+          id="${inputId}" type="color"
+          name="${name}" value="${value}"
+          @input=${inputHandlerDelegator} @change=${changeHandlerDelegator}
         >
         <label for="${inputId}" style="display: ${direction === 'ltr' ? 'unset' : 'none'};">${'label'}</label>
       </div>
