@@ -1,7 +1,7 @@
-import { toClassString, makeUniqueString } from 'MobiusUtils'
+import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../helpers/index'
 import { makeCheckboxE } from './checkbox'
-import { makeMiddleColAdaptiveLayoutE } from './layout__middle-col-adaptive'
+import { makeFormItemLayoutE } from './layout__form-item'
 
 import type { ClassUnion } from 'MobiusUtils'
 import type { ElementOptions } from '../helpers/index'
@@ -52,7 +52,7 @@ export const makeCheckboxInputE = createElementMaker<CheckboxInputElementOptions
   },
   configs: {},
   prepareTemplate: (view, { styles, actuations, utils: { html } }) => {
-    const { name, classes, title, information, instructions, options } = styles
+    const { name, classes, title, options } = styles
 
     const preparedOptions = options.map((option, index) => {
       return { ...option, name, id: index.toString() }
@@ -80,43 +80,42 @@ export const makeCheckboxInputE = createElementMaker<CheckboxInputElementOptions
         ${checkboxs}
       </div>
     `
-    const informationPart = html`${information}`
-    const inputArea = makeMiddleColAdaptiveLayoutE({
-      styles: {
-        rootClasses: 'mobius-width--fullpct',
-        middle: checkboxGroup,
-        right: informationPart
-      }
-    })
-    const instructionsPart = html`<div class="mobius-width--fullpct">${instructions.toString()}</div>`
 
     const { direction } = styles
     if (direction === 'horizontal') {
-      const { label, description } = styles
+      const { label, description, information, instructions } = styles
       const labelPart = html`<div class="mobius-padding-x--r-base" title="${title}">${label}</div>`
       const descriptionPart = html`<div class="mobius-width--fullpct">${description}</div>`
-      const wholeView = makeMiddleColAdaptiveLayoutE({
+      const informationPart = html`${information}`
+      const instructionsPart = html`<div class="mobius-width--fullpct">${instructions.toString()}</div>`
+      return makeFormItemLayoutE({
         styles: {
-          rootClasses: toClassString(classes),
-          left: labelPart,
-          middle: html`
-            <div class="mobius-width--fullpct mobius-layout__vertical">
-              ${[descriptionPart, inputArea, instructionsPart]}
-            </div>
-          `
+          classes: classes,
+          direction: 'horizontal',
+          label: labelPart,
+          description: descriptionPart,
+          input: checkboxGroup,
+          information: informationPart,
+          instructions: instructionsPart
         }
       })
-      return wholeView
     } else {
-      const { label, description } = styles
+      const { label, description, information, instructions } = styles
       const labelPart = html`<div class="" title="${title}">${label}</div>`
       const descriptionPart = html`<div class="mobius-width--fullpct">${description}</div>`
-      const wholeView = html`
-        <div class="mobius-layout__vertical mobius-flex-items--stretch">
-          ${[labelPart, descriptionPart, inputArea, instructionsPart]}
-        </div>
-      `
-      return wholeView
+      const informationPart = html`${information}`
+      const instructionsPart = html`<div class="mobius-width--fullpct">${instructions.toString()}</div>`
+      return makeFormItemLayoutE({
+        styles: {
+          classes: classes,
+          direction: 'vertical',
+          label: labelPart,
+          description: descriptionPart,
+          input: checkboxGroup,
+          information: informationPart,
+          instructions: instructionsPart
+        }
+      })
     }
   }
 })
