@@ -2,17 +2,17 @@ import {
   Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback
 } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeDateInputE } from '../elements/input__date'
+import { makeDateTimeInputE } from '../elements/input__datetime'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
 import type { TemplateResult } from '../libs/lit-html'
-import type { DateInputElementType, DateInputValue } from '../elements/input__date'
+import type { DateTimeInputElementType, DateTimeInputValue } from '../elements/input__datetime'
 
-export interface DateInputDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+export interface DateTimeInputDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {
     styles: {
-      type: DateInputElementType
+      type: DateTimeInputElementType
       name: string
       classes: ClassUnion
       direction: 'horizontal' | 'vertical'
@@ -29,7 +29,7 @@ export interface DateInputDCSingletonLevelContexts extends GUIDriverSingletonLev
   }
   _internals: {
     styles: {
-      type: DateInputElementType
+      type: DateTimeInputElementType
       name: string
       classes: ClassUnion
       direction: 'horizontal' | 'vertical'
@@ -46,18 +46,18 @@ export interface DateInputDCSingletonLevelContexts extends GUIDriverSingletonLev
     actuations: {
       inputHandler: EventHandler<HTMLInputElement>
       changeHandler: EventHandler<HTMLInputElement>
-      valueChangeHandler: (value: DateInputValue) => void
+      valueChangeHandler: (value: DateTimeInputValue) => void
     }
   }
   outputs: {
-    value: DateInputValue
+    value: DateTimeInputValue
   }
 }
 
-export const makeDateInputDC =
-makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, DateInputDCSingletonLevelContexts, TemplateResult>({
+export const makeDateTimeInputDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, DateTimeInputDCSingletonLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
-    const typeD = Data.of<DateInputElementType>('DateInput')
+    const typeD = Data.of<DateTimeInputElementType>('DateTimeInput')
     const nameD = Data.of('')
     const classesD = Data.of<ClassUnion>('')
     const directionD = Data.of<'horizontal' | 'vertical'>('horizontal')
@@ -66,7 +66,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, DateInputDCS
     const descriptionD = Data.of('')
     const informationD = Data.of('')
     const instructionsD = Data.of<any[]>([])
-    const valueD = Data.of('1970-01-01')
+    const valueD = Data.of('1970-01-01T00:00')
     const minD = Data.of('')
     const maxD = Data.of('')
     const stepD = Data.of<number | 'any'>('any')
@@ -88,7 +88,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, DateInputDCS
     const [inputHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
     const [changeHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
 
-    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<DateInputValue>()
+    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<DateTimeInputValue>()
     const inputValueRD = replayWithLatest(1, inputValueD)
 
     return {
@@ -137,11 +137,11 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, DateInputDCS
     }
   },
   prepareTemplate: ({ marks, styles, actuations }) => {
-    return makeDateInputE({ marks, styles, actuations })
+    return makeDateTimeInputE({ marks, styles, actuations })
   }
 })
 
 /**
- * @see {@link makeDateInputDC}
+ * @see {@link makeDateTimeInputDC}
  */
-export const useDateInputDC = useGUIDriver_(makeDateInputDC)
+export const useDateTimeInputDC = useGUIDriver_(makeDateTimeInputDC)
