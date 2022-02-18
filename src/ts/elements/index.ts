@@ -12,6 +12,7 @@ export * from './toolbar'
 
 export * from './checkbox'
 export * from './color-picker'
+export * from './date-picker'
 
 export * from './input'
 export * from './input__checkbox'
