@@ -20,7 +20,6 @@ export interface ColorPickerDCSingletonLevelContexts extends GUIDriverSingletonL
       title: string
       description: string
       direction: 'ltr' | 'rtl'
-      initialValue: string
       value: string
     }
   }
@@ -36,7 +35,6 @@ export interface ColorPickerDCSingletonLevelContexts extends GUIDriverSingletonL
       title: string
       description: string
       direction: 'ltr' | 'rtl'
-      initialValue: string
       value: string
     }
     actuations: {
@@ -61,7 +59,6 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorPickerD
     const titleD = Data.of('')
     const descriptionD = Data.of('')
     const directionD = Data.of<'ltr' | 'rtl'>('ltr')
-    const initialValueD = Data.of('')
     const valueD = Data.of('')
 
     const idRD = replayWithLatest(1, idD)
@@ -72,7 +69,6 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorPickerD
     const titleRD = replayWithLatest(1, titleD)
     const descriptionRD = replayWithLatest(1, descriptionD)
     const directionRD = replayWithLatest(1, directionD)
-    const initialValueRD = replayWithLatest(1, initialValueD)
     const valueRD = replayWithLatest(1, valueD)
 
     const [inputHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
@@ -93,7 +89,6 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorPickerD
           title: titleD,
           description: descriptionD,
           direction: directionD,
-          initialValue: initialValueD,
           value: valueD
         }
       },
@@ -109,7 +104,6 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorPickerD
           title: titleRD,
           description: descriptionRD,
           direction: directionRD,
-          initialValue: initialValueRD,
           value: valueRD
         },
         actuations: {

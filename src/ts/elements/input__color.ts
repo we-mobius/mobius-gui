@@ -25,7 +25,6 @@ export interface ColorInputElementOptions extends ElementOptions {
     description?: string
     information?: string
     instructions?: any[]
-    initialValue?: string
     value?: string
   }
   actuations?: {
@@ -48,7 +47,6 @@ export const makeColorInputE = createElementMaker<ColorInputElementOptions>({
     description: '',
     information: '',
     instructions: [],
-    initialValue: '#000000',
     value: '#000000'
   },
   actuations: {
@@ -61,7 +59,7 @@ export const makeColorInputE = createElementMaker<ColorInputElementOptions>({
     const { classes, direction } = styles
 
     if (direction === 'horizontal') {
-      const { name, label, title, description, information, instructions, initialValue, value } = styles
+      const { name, label, title, description, information, instructions, value } = styles
       const { inputHandler, changeHandler, valueChangeHandler } = actuations
       const labelPart = html`<div class="mobius-padding-x--r-base" title="${title}">${label}</div>`
       const descriptionPart = html`<div class="mobius-width--fullpct">${description}</div>`
@@ -74,7 +72,7 @@ export const makeColorInputE = createElementMaker<ColorInputElementOptions>({
           label: labelPart,
           description: descriptionPart,
           input: makeColorPickerE({
-            styles: { name, title, initialValue, value },
+            styles: { name, title, value },
             actuations: { inputHandler, changeHandler, valueChangeHandler }
           }),
           information: informationPart,
@@ -82,7 +80,7 @@ export const makeColorInputE = createElementMaker<ColorInputElementOptions>({
         }
       })
     } else {
-      const { name, label, title, description, information, instructions, initialValue, value } = styles
+      const { name, label, title, description, information, instructions, value } = styles
       const { inputHandler, changeHandler, valueChangeHandler } = actuations
       const labelPart = html`<div class="" title="${title}">${label}</div>`
       const descriptionPart = html`<div class="mobius-width--fullpct">${description}</div>`
@@ -95,7 +93,7 @@ export const makeColorInputE = createElementMaker<ColorInputElementOptions>({
           label: labelPart,
           description: descriptionPart,
           input: makeColorPickerE({
-            styles: { name, title, initialValue, value },
+            styles: { name, title, value },
             actuations: { inputHandler, changeHandler, valueChangeHandler }
           }),
           information: informationPart,

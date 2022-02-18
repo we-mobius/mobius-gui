@@ -21,7 +21,6 @@ export interface ColorInputDCSingletonLevelContexts extends GUIDriverSingletonLe
       description: string
       information: string
       instructions: any[]
-      initialValue: string
       value: string
     }
   }
@@ -36,7 +35,6 @@ export interface ColorInputDCSingletonLevelContexts extends GUIDriverSingletonLe
       description: string
       information: string
       instructions: any[]
-      initialValue: string
       value: string
     }
     actuations: {
@@ -62,7 +60,6 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorInputDC
     const descriptionD = Data.of('')
     const informationD = Data.of('')
     const instructionsD = Data.of<any[]>([])
-    const initialValueD = Data.of('')
     const valueD = Data.of('')
 
     const typeRD = replayWithLatest(1, typeD)
@@ -74,7 +71,6 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorInputDC
     const descriptionRD = replayWithLatest(1, descriptionD)
     const informationRD = replayWithLatest(1, informationD)
     const instructionsRD = replayWithLatest(1, instructionsD)
-    const initialValueRD = replayWithLatest(1, initialValueD)
     const valueRD = replayWithLatest(1, valueD)
 
     const [inputHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
@@ -95,7 +91,6 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorInputDC
           description: descriptionD,
           information: informationD,
           instructions: instructionsD,
-          initialValue: initialValueD,
           value: valueD
         }
       },
@@ -110,7 +105,6 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorInputDC
           description: descriptionRD,
           information: informationRD,
           instructions: instructionsRD,
-          initialValue: initialValueRD,
           value: valueRD
         },
         actuations: {
