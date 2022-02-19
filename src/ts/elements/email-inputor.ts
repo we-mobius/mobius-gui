@@ -91,7 +91,7 @@ export const makeEmailInputorE = createElementMaker<EmailInputorElementOptions>(
       <div id="${elementId}" class="mobius-layout__horizontal ${toClassString(classes)}" title="${'title'}">
         <label for="${inputId}" style="display: ${direction === 'rtl' ? 'unset' : 'none'};">${'label'}</label>
         <input
-          id="${inputId}" type="email"
+          id="${inputId}" type="email" inputmode="email"
           name="${name}" value="${value}" minlength="${minlength}" maxlength="${maxlength}" placeholder="${placeholder}"
           @input=${inputHandlerDelegator} @change=${changeHandlerDelegator} ?multiple=${multiple}
         >
