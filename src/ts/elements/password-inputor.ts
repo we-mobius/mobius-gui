@@ -72,7 +72,7 @@ export const makePasswordInputorE = createElementMaker<PasswordInputorElementOpt
     const { id } = marks
     const { name, label, classes, direction, value, minlength, maxlength, placeholder } = styles
 
-    const elementId = id !== '' ? id : makeUniqueString('mobius-email-inputor')
+    const elementId = id !== '' ? id : makeUniqueString('mobius-password-inputor')
     const inputId = `${elementId}__input`
 
     const { inputHandler, changeHandler, valueChangeHandler } = actuations
