@@ -28,7 +28,7 @@ export interface RangeInputElementOptions extends ElementOptions {
     value?: number
     min?: number
     max?: number
-    step?: number
+    step?: number | 'any'
   }
   actuations?: {
     inputHandler?: EventHandler<HTMLInputElement>
