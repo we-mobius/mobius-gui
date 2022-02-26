@@ -11,7 +11,7 @@ import { ELEMENT_MAKER_UTILS } from './element'
 import { DEFAULT_COMPONENT_COMMON_OPTIONS } from './component.common'
 
 import type {
-  AnyStringRecord, IsAny,
+  AnyStringRecord, IsAny, FlipOptional,
   Terminator,
   DataLike, AtomLike, AtomLikeOfOutput,
   ReplayDataMediator,
@@ -225,7 +225,7 @@ export type PrepareGUIDriverSingletonLevelContexts<
   DLC extends DriverLevelContexts = DriverLevelContexts,
   DSLC extends DriverSingletonLevelContexts = DriverSingletonLevelContexts
 > =
-  (options: Options, driverLevelContexts: PrepareGUIDLC<DLC>) => PrepareGUIDSLC<DSLC>
+  (options: Required<Options>, driverLevelContexts: PrepareGUIDLC<DLC>) => PrepareGUIDSLC<DSLC>
 type PrepareGUIDriverInstance<
   DSLC extends GUIDriverSingletonLevelContexts = GUIDriverSingletonLevelContexts,
   Template = TemplateResult
@@ -240,18 +240,18 @@ export interface GUIDriverCreateOptions<
   DSLC extends GUIDriverSingletonLevelContexts = GUIDriverSingletonLevelContexts,
   Template = TemplateResult
 > {
-  defaultOptions?: Options
-  prepareOptions?: (options: Options) => Options
+  defaultOptions?: FlipOptional<Options>
+  prepareOptions?: (options: Required<Options>) => Required<Options>
   prepareDriverLevelContexts?: () => PrepareGUIDLC<DLC>
   prepareSingletonLevelContexts?: PrepareGUIDriverSingletonLevelContexts<Options, DLC, DSLC>
   prepareTemplate: (
     templateOptions: ChildrenRequired<DeepMergeDefault<GUIDriverSingletonLevelContexts, DSLC>['_internals']>,
     prevTemplate: Template,
     mutation: Mutation<any, Template>,
-    contexts: ElementMakerUtils & { driverOptions: Options }
+    contexts: ElementMakerUtils & { driverOptions: Required<Options> }
   ) => Template
   prepareInstance?: (
-    options: Options, instance: PrepareGUIDriverInstance<DSLC, Template>
+    options: Required<Options>, instance: PrepareGUIDriverInstance<DSLC, Template>
   ) => PrepareGUIDriverInstance<DSLC, Template>
 }
 
@@ -290,7 +290,7 @@ export const createGUIDriver = <
   Template = TemplateResult
 >(
     createOptions: GUIDriverCreateOptions<Options, DLC, DSLC, Template> |
-    PrepareGUIDriverSingletonLevelContexts<Options, DLC, DSLC> = DEFAULT_GUI_DRIVER_CREATE_OPTIONS
+    PrepareGUIDriverSingletonLevelContexts<Options, DLC, DSLC> = DEFAULT_GUI_DRIVER_CREATE_OPTIONS as any
   ): GUIDriverMaker<Options, DSLC, Template> => {
   if (!isPlainObject(createOptions) && !isFunction(createOptions)) {
     throw (new TypeError('"createOptions" is expected to be type of "PlainObject" | "Function".'))
@@ -298,9 +298,9 @@ export const createGUIDriver = <
 
   let preparedCreateOptions: Required<GUIDriverCreateOptions<Options, DLC, DSLC, Template>>
   if (isFunction(createOptions)) {
-    preparedCreateOptions = { ...DEFAULT_GUI_DRIVER_CREATE_OPTIONS, prepareSingletonLevelContexts: createOptions }
+    preparedCreateOptions = { ...DEFAULT_GUI_DRIVER_CREATE_OPTIONS as any, prepareSingletonLevelContexts: createOptions }
   } else {
-    preparedCreateOptions = { ...DEFAULT_GUI_DRIVER_CREATE_OPTIONS, ...createOptions }
+    preparedCreateOptions = { ...DEFAULT_GUI_DRIVER_CREATE_OPTIONS as any, ...createOptions }
   }
 
   const {
