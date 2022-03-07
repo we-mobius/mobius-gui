@@ -9,6 +9,8 @@ export * from './container__fixed-resizable'
 export * from './mask'
 
 export * from './toolbar'
+export * from './tip'
+export * from './dock__left'
 
 // export * from './radio'
 export * from './checkbox'
@@ -52,5 +54,3 @@ export * from './inputs/input__file'
 export * from './button'
 
 export * from './table'
-
-export * from './tip'
