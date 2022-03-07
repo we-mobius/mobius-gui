@@ -1,10 +1,10 @@
 import { useFormGroupDC } from './form-group'
 import { useInputDC } from './input'
-import { useFileInputDC } from './input__file'
+import { useFileInputDC } from './inputs/input__file'
 import { useButtonDC } from './button'
 
 import type { FormGroupDCType } from './form-group'
-import type { FileInputElementType } from '../elements/input__file'
+import type { FileInputElementType } from '../elements/inputs/input__file'
 import type { ButtonElementType } from '../elements/button'
 
 import type { IPartialUseGUIDriver_ } from '../helpers/index'
