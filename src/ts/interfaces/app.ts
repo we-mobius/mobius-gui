@@ -1,4 +1,4 @@
-import { replayWithLatest, Data } from '../libs/mobius-utils'
+import { replayWithLatest, Data } from 'MobiusUtils'
 import { html } from '../../main'
 
 export const appTemplateRD = replayWithLatest(1, Data.of(html`
