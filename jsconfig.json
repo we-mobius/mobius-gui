@@ -25,6 +25,15 @@
       "Libs/*": [
         "./src/ts/libs/*"
       ],
+      "Elements/*": [
+        "./src/ts/elements/*"
+      ],
+      "Components/*": [
+        "./src/ts/components/*"
+      ],
+      "Helpers/*": [
+        "./src/ts/helpers/*"
+      ],
       "Statics/*": [
         "./src/statics/*"
       ],
