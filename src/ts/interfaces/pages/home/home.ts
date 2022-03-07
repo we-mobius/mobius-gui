@@ -1,6 +1,6 @@
 import { makeInstantComponent } from 'Helpers/component'
 
-import { appNameRD } from 'Interfaces/services/app-route'
+import { appNameRD } from 'Interfaces/page-services/app-route'
 
 export const homeRD = makeInstantComponent(
   [appNameRD],
