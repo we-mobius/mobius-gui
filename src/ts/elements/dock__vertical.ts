@@ -18,7 +18,7 @@ export interface DockItem {
 export interface LeftDockElementOptions extends ElementOptions {
   styles?: {
     classes?: ClassUnion
-    direction?: 'horizontal' | 'vertical'
+    itemDirection?: 'horizontal' | 'vertical'
     isShow?: boolean
     isTitleShow?: boolean
     items?: DockItem[]
@@ -30,7 +30,7 @@ export interface LeftDockElementOptions extends ElementOptions {
 interface DockItemMakeOptions extends DockItem {
   clickHandler: EventHandler<HTMLDivElement>
   isTitleShow: boolean
-  direction: 'horizontal' | 'vertical'
+  itemDirection: 'horizontal' | 'vertical'
 }
 
 const formatItemIcon = (icon: DockItem['icon'], isSmall: boolean): TemplateResult => {
@@ -54,7 +54,7 @@ const formatItemIcon = (icon: DockItem['icon'], isSmall: boolean): TemplateResul
   }
 }
 const makeDockItem = (itemInfo: DockItemMakeOptions): HTMLTemplateResult => {
-  const { icon, title, direction, isTitleShow, route, clickHandler, isSelected = false } = itemInfo
+  const { icon, title, itemDirection: direction, isTitleShow, route, clickHandler, isSelected = false } = itemInfo
   const view = html`
     <div
       class="mobius-layout__${direction} mobius-padding--r-base mobius-cursor--pointer ${isSelected ? 'mobius-text--primary' : ''}"
@@ -73,11 +73,11 @@ const makeDockItem = (itemInfo: DockItemMakeOptions): HTMLTemplateResult => {
  * @param styles.isTitleShow Whether to show the item"s title.
  * @param styles.items Items options of dock.
  */
-export const makeLeftDockE = createElementMaker<LeftDockElementOptions>({
+export const makeVerticalDockE = createElementMaker<LeftDockElementOptions>({
   marks: {},
   styles: {
     classes: '',
-    direction: 'vertical',
+    itemDirection: 'vertical',
     isShow: true,
     isTitleShow: false,
     items: []
@@ -87,11 +87,11 @@ export const makeLeftDockE = createElementMaker<LeftDockElementOptions>({
   },
   configs: {},
   prepareTemplate: (view, { styles, actuations, utils: { html } }) => {
-    const { classes, direction, isShow, isTitleShow, items } = styles
+    const { classes, itemDirection, isShow, isTitleShow, items } = styles
     const { clickHandler } = actuations
 
     const dockItems = items
-      .map(itemInfo => ({ ...itemInfo, direction, isTitleShow, clickHandler }))
+      .map(itemInfo => ({ ...itemInfo, itemDirection, isTitleShow, clickHandler }))
       .map(makeDockItem)
 
     return html`

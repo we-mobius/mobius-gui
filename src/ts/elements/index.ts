@@ -10,7 +10,7 @@ export * from './mask'
 
 export * from './toolbar'
 export * from './tip'
-export * from './dock__left'
+export * from './dock__vertical'
 
 // export * from './radio'
 export * from './checkbox'
