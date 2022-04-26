@@ -1,0 +1,14 @@
+/*! purgecss start ignore */
+
+.mobius-input__text input {
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--fg-color-base);
+
+  &:focus {
+    border: 2px solid var(--fg-color-primary);
+    color: var(--fg-color-primary);
+  }
+}
+
+/*! purgecss end ignore */

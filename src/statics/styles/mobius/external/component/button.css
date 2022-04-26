@@ -1,0 +1,30 @@
+/*! purgecss start ignore */
+
+.mobius-button {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid var(--fg-color-base);
+  border-radius: 0.25rem;
+  font-weight: bold;
+
+  &:hover {
+    border-color: var(--fg-color-primary);
+    color: var(--fg-color-primary);
+  }
+}
+
+.mobius-button--disabled {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid var(--fg-color-mean);
+  border-radius: 0.25rem;
+  font-weight: bold;
+
+  border-color: var(--fg-color-mean);
+  color: var(--fg-color-mean);
+  cursor: not-allowed;
+  &:hover {
+    border-color: var(--fg-color-mean);
+    color: var(--fg-color-mean);
+  }
+}
+
+/*! purgecss end ignore */
