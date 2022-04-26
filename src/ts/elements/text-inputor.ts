@@ -1,4 +1,4 @@
-import { toClassString, makeUniqueString } from 'MobiusUtils'
+import { toClassString, makeUniqueString, debounceS } from 'MobiusUtils'
 import { createElementMaker } from '../helpers/index'
 
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
@@ -76,20 +76,21 @@ export const makeTextInputorE = createElementMaker<TextInputorElementOptions>({
     const inputId = `${elementId}__input`
 
     const { inputHandler, changeHandler, valueChangeHandler } = actuations
+    const debouncedValueChangeHandler = debounceS(valueChangeHandler, 200)
     const changeHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
       changeHandler(event)
     }
     const inputHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
       const { value } = event.target
       inputHandler(event)
-      valueChangeHandler({ name, label, value, valueAsString: value })
+      debouncedValueChangeHandler({ name, label, value, valueAsString: value })
     }
 
     return view`
       <div id="${elementId}" class="mobius-layout__horizontal ${toClassString(classes)}" title="${'title'}">
         <label for="${inputId}" style="display: ${direction === 'rtl' ? 'unset' : 'none'};">${'label'}</label>
         <input
-          id="${inputId}" type="text" inputmode="text"
+          id="${inputId}" class="mobius-width--fullpct" type="text" inputmode="text"
           name="${name}" value="${value}" minlength="${minlength}" maxlength="${maxlength}" placeholder="${placeholder}"
           @input=${inputHandlerDelegator} @change=${changeHandlerDelegator}
         >
