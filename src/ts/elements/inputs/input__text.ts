@@ -78,7 +78,7 @@ export const makeTextInputE = createElementMaker<TextInputElementOptions>({
           label: labelPart,
           description: descriptionPart,
           input: makeTextInputorE({
-            styles: { name, title, value, minlength, maxlength, placeholder },
+            styles: { classes: 'mobius-width--fullpct', name, title, value, minlength, maxlength, placeholder },
             actuations: { inputHandler, changeHandler, valueChangeHandler }
           }),
           information: informationPart,
@@ -99,7 +99,7 @@ export const makeTextInputE = createElementMaker<TextInputElementOptions>({
           label: labelPart,
           description: descriptionPart,
           input: makeTextInputorE({
-            styles: { name, title, value, minlength, maxlength, placeholder },
+            styles: { classes: 'mobius-width--fullpct', name, title, value, minlength, maxlength, placeholder },
             actuations: { inputHandler, changeHandler, valueChangeHandler }
           }),
           information: informationPart,
