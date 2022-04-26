@@ -1,19 +1,19 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
-import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeTextInputorE } from '../elements/inputors/text-inputor'
+import { makeDriverFormatComponent, useGUIDriver_ } from '../../helpers/index'
+import { makePasswordInputorE } from '../../elements/inputors/password-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
-import type { TemplateResult } from '../libs/lit-html'
-import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { TextInputorElementType, TextInputorValue } from '../elements/inputors/text-inputor'
+import type { TemplateResult } from '../../libs/lit-html'
+import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../../helpers/index'
+import type { PasswordInputorElementType, PasswordInputorValue } from '../../elements/inputors/password-inputor'
 
-export interface TextInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+export interface PasswordInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {
     marks: {
       id: string
     }
     styles: {
-      type: TextInputorElementType
+      type: PasswordInputorElementType
       name: string
       classes: ClassUnion
       label: string
@@ -31,7 +31,7 @@ export interface TextInputorDCSingletonLevelContexts extends GUIDriverSingletonL
       id: string
     }
     styles: {
-      type: TextInputorElementType
+      type: PasswordInputorElementType
       name: string
       classes: ClassUnion
       label: string
@@ -46,19 +46,19 @@ export interface TextInputorDCSingletonLevelContexts extends GUIDriverSingletonL
     actuations: {
       inputHandler: EventHandler<HTMLInputElement>
       changeHandler: EventHandler<HTMLInputElement>
-      valueChangeHandler: (value: TextInputorValue) => void
+      valueChangeHandler: (value: PasswordInputorValue) => void
     }
   }
   outputs: {
-    value: TextInputorValue
+    value: PasswordInputorValue
   }
 }
 
-export const makeTextInputorDC =
-makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, TextInputorDCSingletonLevelContexts, TemplateResult>({
+export const makePasswordInputorDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, PasswordInputorDCSingletonLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
     const idD = Data.of('')
-    const typeD = Data.of<TextInputorElementType>('TextInputor')
+    const typeD = Data.of<PasswordInputorElementType>('PasswordInputor')
     const nameD = Data.of('')
     const classesD = Data.of<ClassUnion>('')
     const labelD = Data.of('')
@@ -85,7 +85,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, TextInputorD
 
     const [inputHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
     const [changeHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
-    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<TextInputorValue>()
+    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<PasswordInputorValue>()
     const inputValueRD = replayWithLatest(1, inputValueD)
 
     return {
@@ -136,11 +136,11 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, TextInputorD
     }
   },
   prepareTemplate: ({ marks, styles, actuations }) => {
-    return makeTextInputorE({ marks, styles, actuations })
+    return makePasswordInputorE({ marks, styles, actuations })
   }
 })
 
 /**
- * @see {@link makeTextInputorDC}
+ * @see {@link makePasswordInputorDC}
  */
-export const useTextInputorDC = useGUIDriver_(makeTextInputorDC)
+export const usePasswordInputorDC = useGUIDriver_(makePasswordInputorDC)

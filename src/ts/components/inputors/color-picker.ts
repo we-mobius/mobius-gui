@@ -1,19 +1,19 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
-import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeTimePickerE } from '../elements/inputors/time-picker'
+import { makeDriverFormatComponent, useGUIDriver_ } from '../../helpers/index'
+import { makeColorPickerE } from '../../elements/inputors/color-picker'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
-import type { TemplateResult } from '../libs/lit-html'
-import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { TimePickerElementType, TimePickerValue } from '../elements/inputors/time-picker'
+import type { TemplateResult } from '../../libs/lit-html'
+import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../../helpers/index'
+import type { ColorPickerElementType, ColorPickerValue } from '../../elements/inputors/color-picker'
 
-export interface TimePickerDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+export interface ColorPickerDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {
     marks: {
       id: string
     }
     styles: {
-      type: TimePickerElementType
+      type: ColorPickerElementType
       name: string
       classes: ClassUnion
       label: string
@@ -21,9 +21,6 @@ export interface TimePickerDCSingletonLevelContexts extends GUIDriverSingletonLe
       description: string
       direction: 'ltr' | 'rtl'
       value: string
-      min: string
-      max: string
-      step: number | 'any'
     }
   }
   _internals: {
@@ -31,7 +28,7 @@ export interface TimePickerDCSingletonLevelContexts extends GUIDriverSingletonLe
       id: string
     }
     styles: {
-      type: TimePickerElementType
+      type: ColorPickerElementType
       name: string
       classes: ClassUnion
       label: string
@@ -39,36 +36,30 @@ export interface TimePickerDCSingletonLevelContexts extends GUIDriverSingletonLe
       description: string
       direction: 'ltr' | 'rtl'
       value: string
-      min: string
-      max: string
-      step: number | 'any'
     }
     actuations: {
       inputHandler: EventHandler<HTMLInputElement>
       changeHandler: EventHandler<HTMLInputElement>
-      valueChangeHandler: (value: TimePickerValue) => void
+      valueChangeHandler: (value: ColorPickerValue) => void
     }
   }
   outputs: {
-    value: TimePickerValue
+    value: ColorPickerValue
   }
 }
 
-export const makeTimePickerDC =
-makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, TimePickerDCSingletonLevelContexts, TemplateResult>({
+export const makeColorPickerDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorPickerDCSingletonLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
     const idD = Data.of('')
-    const typeD = Data.of<TimePickerElementType>('TimePicker')
+    const typeD = Data.of<ColorPickerElementType>('ColorPicker')
     const nameD = Data.of('')
     const classesD = Data.of<ClassUnion>('')
     const labelD = Data.of('')
     const titleD = Data.of('')
     const descriptionD = Data.of('')
     const directionD = Data.of<'ltr' | 'rtl'>('ltr')
-    const valueD = Data.of('00:00:00')
-    const minD = Data.of('')
-    const maxD = Data.of('')
-    const stepD = Data.of<number | 'any'>('any')
+    const valueD = Data.of('#000000')
 
     const idRD = replayWithLatest(1, idD)
     const typeRD = replayWithLatest(1, typeD)
@@ -79,13 +70,10 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, TimePickerDC
     const descriptionRD = replayWithLatest(1, descriptionD)
     const directionRD = replayWithLatest(1, directionD)
     const valueRD = replayWithLatest(1, valueD)
-    const minRD = replayWithLatest(1, minD)
-    const maxRD = replayWithLatest(1, maxD)
-    const stepRD = replayWithLatest(1, stepD)
 
     const [inputHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
     const [changeHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
-    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<TimePickerValue>()
+    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<ColorPickerValue>()
     const inputValueRD = replayWithLatest(1, inputValueD)
 
     return {
@@ -101,10 +89,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, TimePickerDC
           title: titleD,
           description: descriptionD,
           direction: directionD,
-          value: valueD,
-          min: minD,
-          max: maxD,
-          step: stepD
+          value: valueD
         }
       },
       _internals: {
@@ -119,10 +104,7 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, TimePickerDC
           title: titleRD,
           description: descriptionRD,
           direction: directionRD,
-          value: valueRD,
-          min: minRD,
-          max: maxRD,
-          step: stepRD
+          value: valueRD
         },
         actuations: {
           inputHandler: inputHandlerRD,
@@ -136,11 +118,11 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, TimePickerDC
     }
   },
   prepareTemplate: ({ marks, styles, actuations }) => {
-    return makeTimePickerE({ marks, styles, actuations })
+    return makeColorPickerE({ marks, styles, actuations })
   }
 })
 
 /**
- * @see {@link makeTimeInputDC}
+ * @see {@link makeColorInputDC}
  */
-export const useTimePickerDC = useGUIDriver_(makeTimePickerDC)
+export const useColorPickerDC = useGUIDriver_(makeColorPickerDC)

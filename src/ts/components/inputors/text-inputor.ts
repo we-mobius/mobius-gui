@@ -1,29 +1,29 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
-import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeRangeSliderE } from '../elements/inputors/range-slider'
+import { makeDriverFormatComponent, useGUIDriver_ } from '../../helpers/index'
+import { makeTextInputorE } from '../../elements/inputors/text-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
-import type { TemplateResult } from '../libs/lit-html'
-import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { RangeSliderElementType, RangeSliderValue } from '../elements/inputors/range-slider'
+import type { TemplateResult } from '../../libs/lit-html'
+import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../../helpers/index'
+import type { TextInputorElementType, TextInputorValue } from '../../elements/inputors/text-inputor'
 
-export interface RangeSliderDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+export interface TextInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {
     marks: {
       id: string
     }
     styles: {
-      type: RangeSliderElementType
+      type: TextInputorElementType
       name: string
       classes: ClassUnion
       label: string
       title: string
       description: string
       direction: 'ltr' | 'rtl'
-      value: number
-      min: number
-      max: number
-      step: number | 'any'
+      value: string
+      minlength: number
+      maxlength: number
+      placeholder: string
     }
   }
   _internals: {
@@ -31,44 +31,44 @@ export interface RangeSliderDCSingletonLevelContexts extends GUIDriverSingletonL
       id: string
     }
     styles: {
-      type: RangeSliderElementType
+      type: TextInputorElementType
       name: string
       classes: ClassUnion
       label: string
       title: string
       description: string
       direction: 'ltr' | 'rtl'
-      value: number
-      min: number
-      max: number
-      step: number | 'any'
+      value: string
+      minlength: number
+      maxlength: number
+      placeholder: string
     }
     actuations: {
       inputHandler: EventHandler<HTMLInputElement>
       changeHandler: EventHandler<HTMLInputElement>
-      valueChangeHandler: (value: RangeSliderValue) => void
+      valueChangeHandler: (value: TextInputorValue) => void
     }
   }
   outputs: {
-    value: RangeSliderValue
+    value: TextInputorValue
   }
 }
 
-export const makeRangeSliderDC =
-makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, RangeSliderDCSingletonLevelContexts, TemplateResult>({
+export const makeTextInputorDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, TextInputorDCSingletonLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
     const idD = Data.of('')
-    const typeD = Data.of<RangeSliderElementType>('RangeSlider')
+    const typeD = Data.of<TextInputorElementType>('TextInputor')
     const nameD = Data.of('')
     const classesD = Data.of<ClassUnion>('')
     const labelD = Data.of('')
     const titleD = Data.of('')
     const descriptionD = Data.of('')
     const directionD = Data.of<'ltr' | 'rtl'>('ltr')
-    const valueD = Data.of(0)
-    const minD = Data.of(-Infinity)
-    const maxD = Data.of(Infinity)
-    const stepD = Data.of<number | 'any'>(1)
+    const valueD = Data.of('')
+    const minlengthD = Data.of(0)
+    const maxlengthD = Data.of(999)
+    const placeholderD = Data.of('')
 
     const idRD = replayWithLatest(1, idD)
     const typeRD = replayWithLatest(1, typeD)
@@ -79,13 +79,13 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, RangeSliderD
     const descriptionRD = replayWithLatest(1, descriptionD)
     const directionRD = replayWithLatest(1, directionD)
     const valueRD = replayWithLatest(1, valueD)
-    const minRD = replayWithLatest(1, minD)
-    const maxRD = replayWithLatest(1, maxD)
-    const stepRD = replayWithLatest(1, stepD)
+    const minlengthRD = replayWithLatest(1, minlengthD)
+    const maxlengthRD = replayWithLatest(1, maxlengthD)
+    const placeholderRD = replayWithLatest(1, placeholderD)
 
     const [inputHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
     const [changeHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
-    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<RangeSliderValue>()
+    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<TextInputorValue>()
     const inputValueRD = replayWithLatest(1, inputValueD)
 
     return {
@@ -102,9 +102,9 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, RangeSliderD
           description: descriptionD,
           direction: directionD,
           value: valueD,
-          min: minD,
-          max: maxD,
-          step: stepD
+          minlength: minlengthD,
+          maxlength: maxlengthD,
+          placeholder: placeholderD
         }
       },
       _internals: {
@@ -120,9 +120,9 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, RangeSliderD
           description: descriptionRD,
           direction: directionRD,
           value: valueRD,
-          min: minRD,
-          max: maxRD,
-          step: stepRD
+          minlength: minlengthRD,
+          maxlength: maxlengthRD,
+          placeholder: placeholderRD
         },
         actuations: {
           inputHandler: inputHandlerRD,
@@ -136,11 +136,11 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, RangeSliderD
     }
   },
   prepareTemplate: ({ marks, styles, actuations }) => {
-    return makeRangeSliderE({ marks, styles, actuations })
+    return makeTextInputorE({ marks, styles, actuations })
   }
 })
 
 /**
- * @see {@link makeRangeSliderDC}
+ * @see {@link makeTextInputorDC}
  */
-export const useRangeSliderDC = useGUIDriver_(makeRangeSliderDC)
+export const useTextInputorDC = useGUIDriver_(makeTextInputorDC)

@@ -3,28 +3,27 @@ import {
   replayWithLatest,
   makeGeneralEventHandler, makeGeneralCallback
 } from 'MobiusUtils'
-import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeCheckboxE } from '../elements/inputors/checkbox'
+import { makeDriverFormatComponent, useGUIDriver_ } from '../../helpers/index'
+import { makeRadioE } from '../../elements/inputors/radio'
 
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
-import type { TemplateResult } from '../libs/lit-html'
-import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { CheckboxElementType, CheckboxElementValue } from '../elements/inputors/checkbox'
+import type { TemplateResult } from '../../libs/lit-html'
+import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../../helpers/index'
+import type { RadioElementType, RadioElementValue } from '../../elements/inputors/radio'
 
-export interface CheckboxDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+export interface RadioDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {
     marks: {
       id: string
     }
     styles: {
-      type: CheckboxElementType
+      type: RadioElementType
       name: string
       classes: ClassUnion
       label: string
       title: string
       description: string
       checked: boolean
-      indeterminate: boolean
       direction: 'ltr' | 'rtl'
       value: string
     }
@@ -34,40 +33,38 @@ export interface CheckboxDCSingletonLevelContexts extends GUIDriverSingletonLeve
       id: string
     }
     styles: {
-      type: CheckboxElementType
+      type: RadioElementType
       name: string
       classes: ClassUnion
       label: string
       title: string
       description: string
       checked: boolean
-      indeterminate: boolean
       direction: 'ltr' | 'rtl'
       value: string
     }
     actuations: {
       changeHandler: EventHandler<HTMLInputElement>
-      valueChangeHandler: (value: CheckboxElementValue) => void
+      valueChangeHandler: (value: RadioElementValue) => void
     }
   }
   outputs: {
     change: SynthesizeEvent<HTMLInputElement>
-    value: CheckboxElementValue
+    value: RadioElementValue
   }
 }
 
-export const makeCheckboxDC =
-makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, CheckboxDCSingletonLevelContexts, TemplateResult>({
+export const makeRadioDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, RadioDCSingletonLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
     const idD = Data.of('')
-    const typeD = Data.of<CheckboxElementType>('Checkbox')
+    const typeD = Data.of<RadioElementType>('Radio')
     const nameD = Data.of('')
     const classesD = Data.of<ClassUnion>('')
     const labelD = Data.of('')
     const titleD = Data.of('')
     const descriptionD = Data.of('')
     const checkedD = Data.of(false)
-    const indeterminateD = Data.of(false)
     const directionD = Data.of<'ltr' | 'rtl'>('ltr')
     const valueD = Data.of('on')
 
@@ -79,14 +76,13 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, CheckboxDCSi
     const titleRD = replayWithLatest(1, titleD)
     const descriptionRD = replayWithLatest(1, descriptionD)
     const checkedRD = replayWithLatest(1, checkedD)
-    const indeterminateRD = replayWithLatest(1, indeterminateD)
     const directionRD = replayWithLatest(1, directionD)
     const valueRD = replayWithLatest(1, valueD)
 
     const [changeHandlerRD, ,changeD] = makeGeneralEventHandler<HTMLInputElement>()
     const changeRD = replayWithLatest(1, changeD)
-    const [valueChangeHandlerRD, ,valueChangeD] = makeGeneralCallback<CheckboxElementValue>()
-    const checkboxValueRD = replayWithLatest(1, valueChangeD)
+    const [valueChangeHandlerRD, ,valueChangeD] = makeGeneralCallback<RadioElementValue>()
+    const radioValueRD = replayWithLatest(1, valueChangeD)
 
     return {
       inputs: {
@@ -101,7 +97,6 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, CheckboxDCSi
           title: titleD,
           description: descriptionD,
           checked: checkedD,
-          indeterminate: indeterminateD,
           direction: directionD,
           value: valueD
         }
@@ -118,7 +113,6 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, CheckboxDCSi
           title: titleRD,
           description: descriptionRD,
           checked: checkedRD,
-          indeterminate: indeterminateRD,
           direction: directionRD,
           value: valueRD
         },
@@ -129,16 +123,16 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, CheckboxDCSi
       },
       outputs: {
         change: changeRD,
-        value: checkboxValueRD
+        value: radioValueRD
       }
     }
   },
   prepareTemplate: ({ marks, styles, actuations }, template, mutation, contexts) => {
-    return makeCheckboxE({ marks, styles, actuations })
+    return makeRadioE({ marks, styles, actuations })
   }
 })
 
 /**
- * @see {@link makeCheckboxDC}
+ * @see {@link makeRadioDC}
  */
-export const useCheckboxDC = useGUIDriver_(makeCheckboxDC)
+export const useRadioDC = useGUIDriver_(makeRadioDC)

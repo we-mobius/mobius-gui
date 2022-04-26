@@ -1,29 +1,28 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
-import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeNumberInputorE } from '../elements/inputors/number-inputor'
+import { makeDriverFormatComponent, useGUIDriver_ } from '../../helpers/index'
+import { makeURLInputorE } from '../../elements/inputors/url-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
-import type { TemplateResult } from '../libs/lit-html'
-import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { NumberInputorElementType, NumberInputorValue } from '../elements/inputors/number-inputor'
+import type { TemplateResult } from '../../libs/lit-html'
+import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../../helpers/index'
+import type { URLInputorElementType, URLInputorValue } from '../../elements/inputors/url-inputor'
 
-export interface NumberInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+export interface URLInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {
     marks: {
       id: string
     }
     styles: {
-      type: NumberInputorElementType
+      type: URLInputorElementType
       name: string
       classes: ClassUnion
       label: string
       title: string
       description: string
       direction: 'ltr' | 'rtl'
-      value: number
-      min: number
-      max: number
-      step: number
+      value: string
+      minlength: number
+      maxlength: number
       placeholder: string
     }
   }
@@ -32,45 +31,43 @@ export interface NumberInputorDCSingletonLevelContexts extends GUIDriverSingleto
       id: string
     }
     styles: {
-      type: NumberInputorElementType
+      type: URLInputorElementType
       name: string
       classes: ClassUnion
       label: string
       title: string
       description: string
       direction: 'ltr' | 'rtl'
-      value: number
-      min: number
-      max: number
-      step: number
+      value: string
+      minlength: number
+      maxlength: number
       placeholder: string
     }
     actuations: {
       inputHandler: EventHandler<HTMLInputElement>
       changeHandler: EventHandler<HTMLInputElement>
-      valueChangeHandler: (value: NumberInputorValue) => void
+      valueChangeHandler: (value: URLInputorValue) => void
     }
   }
   outputs: {
-    value: NumberInputorValue
+    value: URLInputorValue
   }
 }
 
-export const makeNumberInputorDC =
-makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, NumberInputorDCSingletonLevelContexts, TemplateResult>({
+export const makeURLInputorDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, URLInputorDCSingletonLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
     const idD = Data.of('')
-    const typeD = Data.of<NumberInputorElementType>('NumberInputor')
+    const typeD = Data.of<URLInputorElementType>('URLInputor')
     const nameD = Data.of('')
     const classesD = Data.of<ClassUnion>('')
     const labelD = Data.of('')
     const titleD = Data.of('')
     const descriptionD = Data.of('')
     const directionD = Data.of<'ltr' | 'rtl'>('ltr')
-    const valueD = Data.of(0)
-    const minD = Data.of(-Infinity)
-    const maxD = Data.of(Infinity)
-    const stepD = Data.of(1)
+    const valueD = Data.of('')
+    const minlengthD = Data.of(0)
+    const maxlengthD = Data.of(999)
     const placeholderD = Data.of('')
 
     const idRD = replayWithLatest(1, idD)
@@ -82,14 +79,13 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, NumberInputo
     const descriptionRD = replayWithLatest(1, descriptionD)
     const directionRD = replayWithLatest(1, directionD)
     const valueRD = replayWithLatest(1, valueD)
-    const minRD = replayWithLatest(1, minD)
-    const maxRD = replayWithLatest(1, maxD)
-    const stepRD = replayWithLatest(1, stepD)
+    const minlengthRD = replayWithLatest(1, minlengthD)
+    const maxlengthRD = replayWithLatest(1, maxlengthD)
     const placeholderRD = replayWithLatest(1, placeholderD)
 
     const [inputHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
     const [changeHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
-    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<NumberInputorValue>()
+    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<URLInputorValue>()
     const inputValueRD = replayWithLatest(1, inputValueD)
 
     return {
@@ -106,9 +102,8 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, NumberInputo
           description: descriptionD,
           direction: directionD,
           value: valueD,
-          min: minD,
-          max: maxD,
-          step: stepD,
+          minlength: minlengthD,
+          maxlength: maxlengthD,
           placeholder: placeholderD
         }
       },
@@ -125,9 +120,8 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, NumberInputo
           description: descriptionRD,
           direction: directionRD,
           value: valueRD,
-          min: minRD,
-          max: maxRD,
-          step: stepRD,
+          minlength: minlengthRD,
+          maxlength: maxlengthRD,
           placeholder: placeholderRD
         },
         actuations: {
@@ -142,11 +136,11 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, NumberInputo
     }
   },
   prepareTemplate: ({ marks, styles, actuations }) => {
-    return makeNumberInputorE({ marks, styles, actuations })
+    return makeURLInputorE({ marks, styles, actuations })
   }
 })
 
 /**
- * @see {@link makeNumberInputorDC}
+ * @see {@link makeURLInputorDC}
  */
-export const useNumberInputorDC = useGUIDriver_(makeNumberInputorDC)
+export const useURLInputorDC = useGUIDriver_(makeURLInputorDC)

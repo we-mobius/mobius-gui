@@ -1,19 +1,19 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
-import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeURLInputorE } from '../elements/inputors/url-inputor'
+import { makeDriverFormatComponent, useGUIDriver_ } from '../../helpers/index'
+import { makeDatePickerE } from '../../elements/inputors/date-picker'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
-import type { TemplateResult } from '../libs/lit-html'
-import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { URLInputorElementType, URLInputorValue } from '../elements/inputors/url-inputor'
+import type { TemplateResult } from '../../libs/lit-html'
+import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../../helpers/index'
+import type { DatePickerElementType, DatePickerValue } from '../../elements/inputors/date-picker'
 
-export interface URLInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+export interface DatePickerDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {
     marks: {
       id: string
     }
     styles: {
-      type: URLInputorElementType
+      type: DatePickerElementType
       name: string
       classes: ClassUnion
       label: string
@@ -21,9 +21,9 @@ export interface URLInputorDCSingletonLevelContexts extends GUIDriverSingletonLe
       description: string
       direction: 'ltr' | 'rtl'
       value: string
-      minlength: number
-      maxlength: number
-      placeholder: string
+      min: string
+      max: string
+      step: number | 'any'
     }
   }
   _internals: {
@@ -31,7 +31,7 @@ export interface URLInputorDCSingletonLevelContexts extends GUIDriverSingletonLe
       id: string
     }
     styles: {
-      type: URLInputorElementType
+      type: DatePickerElementType
       name: string
       classes: ClassUnion
       label: string
@@ -39,36 +39,36 @@ export interface URLInputorDCSingletonLevelContexts extends GUIDriverSingletonLe
       description: string
       direction: 'ltr' | 'rtl'
       value: string
-      minlength: number
-      maxlength: number
-      placeholder: string
+      min: string
+      max: string
+      step: number | 'any'
     }
     actuations: {
       inputHandler: EventHandler<HTMLInputElement>
       changeHandler: EventHandler<HTMLInputElement>
-      valueChangeHandler: (value: URLInputorValue) => void
+      valueChangeHandler: (value: DatePickerValue) => void
     }
   }
   outputs: {
-    value: URLInputorValue
+    value: DatePickerValue
   }
 }
 
-export const makeURLInputorDC =
-makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, URLInputorDCSingletonLevelContexts, TemplateResult>({
+export const makeDatePickerDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, DatePickerDCSingletonLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
     const idD = Data.of('')
-    const typeD = Data.of<URLInputorElementType>('URLInputor')
+    const typeD = Data.of<DatePickerElementType>('DatePicker')
     const nameD = Data.of('')
     const classesD = Data.of<ClassUnion>('')
     const labelD = Data.of('')
     const titleD = Data.of('')
     const descriptionD = Data.of('')
     const directionD = Data.of<'ltr' | 'rtl'>('ltr')
-    const valueD = Data.of('')
-    const minlengthD = Data.of(0)
-    const maxlengthD = Data.of(999)
-    const placeholderD = Data.of('')
+    const valueD = Data.of('1970-01-01')
+    const minD = Data.of('')
+    const maxD = Data.of('')
+    const stepD = Data.of<number | 'any'>('any')
 
     const idRD = replayWithLatest(1, idD)
     const typeRD = replayWithLatest(1, typeD)
@@ -79,13 +79,13 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, URLInputorDC
     const descriptionRD = replayWithLatest(1, descriptionD)
     const directionRD = replayWithLatest(1, directionD)
     const valueRD = replayWithLatest(1, valueD)
-    const minlengthRD = replayWithLatest(1, minlengthD)
-    const maxlengthRD = replayWithLatest(1, maxlengthD)
-    const placeholderRD = replayWithLatest(1, placeholderD)
+    const minRD = replayWithLatest(1, minD)
+    const maxRD = replayWithLatest(1, maxD)
+    const stepRD = replayWithLatest(1, stepD)
 
     const [inputHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
     const [changeHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
-    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<URLInputorValue>()
+    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<DatePickerValue>()
     const inputValueRD = replayWithLatest(1, inputValueD)
 
     return {
@@ -102,9 +102,9 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, URLInputorDC
           description: descriptionD,
           direction: directionD,
           value: valueD,
-          minlength: minlengthD,
-          maxlength: maxlengthD,
-          placeholder: placeholderD
+          min: minD,
+          max: maxD,
+          step: stepD
         }
       },
       _internals: {
@@ -120,9 +120,9 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, URLInputorDC
           description: descriptionRD,
           direction: directionRD,
           value: valueRD,
-          minlength: minlengthRD,
-          maxlength: maxlengthRD,
-          placeholder: placeholderRD
+          min: minRD,
+          max: maxRD,
+          step: stepRD
         },
         actuations: {
           inputHandler: inputHandlerRD,
@@ -136,11 +136,11 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, URLInputorDC
     }
   },
   prepareTemplate: ({ marks, styles, actuations }) => {
-    return makeURLInputorE({ marks, styles, actuations })
+    return makeDatePickerE({ marks, styles, actuations })
   }
 })
 
 /**
- * @see {@link makeURLInputorDC}
+ * @see {@link makeDateInputDC}
  */
-export const useURLInputorDC = useGUIDriver_(makeURLInputorDC)
+export const useDatePickerDC = useGUIDriver_(makeDatePickerDC)

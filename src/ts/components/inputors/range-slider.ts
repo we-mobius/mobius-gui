@@ -1,30 +1,29 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
-import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeEmailInputorE } from '../elements/inputors/email-inputor'
+import { makeDriverFormatComponent, useGUIDriver_ } from '../../helpers/index'
+import { makeRangeSliderE } from '../../elements/inputors/range-slider'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
-import type { TemplateResult } from '../libs/lit-html'
-import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { EmailInputorElementType, EmailInputorValue } from '../elements/inputors/email-inputor'
+import type { TemplateResult } from '../../libs/lit-html'
+import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../../helpers/index'
+import type { RangeSliderElementType, RangeSliderValue } from '../../elements/inputors/range-slider'
 
-export interface EmailInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+export interface RangeSliderDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {
     marks: {
       id: string
     }
     styles: {
-      type: EmailInputorElementType
+      type: RangeSliderElementType
       name: string
       classes: ClassUnion
       label: string
       title: string
       description: string
       direction: 'ltr' | 'rtl'
-      value: string
-      minlength: number
-      maxlength: number
-      multiple: boolean
-      placeholder: string
+      value: number
+      min: number
+      max: number
+      step: number | 'any'
     }
   }
   _internals: {
@@ -32,46 +31,44 @@ export interface EmailInputorDCSingletonLevelContexts extends GUIDriverSingleton
       id: string
     }
     styles: {
-      type: EmailInputorElementType
+      type: RangeSliderElementType
       name: string
       classes: ClassUnion
       label: string
       title: string
       description: string
       direction: 'ltr' | 'rtl'
-      value: string
-      minlength: number
-      maxlength: number
-      multiple: boolean
-      placeholder: string
+      value: number
+      min: number
+      max: number
+      step: number | 'any'
     }
     actuations: {
       inputHandler: EventHandler<HTMLInputElement>
       changeHandler: EventHandler<HTMLInputElement>
-      valueChangeHandler: (value: EmailInputorValue) => void
+      valueChangeHandler: (value: RangeSliderValue) => void
     }
   }
   outputs: {
-    value: EmailInputorValue
+    value: RangeSliderValue
   }
 }
 
-export const makeEmailInputorDC =
-makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, EmailInputorDCSingletonLevelContexts, TemplateResult>({
+export const makeRangeSliderDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, RangeSliderDCSingletonLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
     const idD = Data.of('')
-    const typeD = Data.of<EmailInputorElementType>('EmailInputor')
+    const typeD = Data.of<RangeSliderElementType>('RangeSlider')
     const nameD = Data.of('')
     const classesD = Data.of<ClassUnion>('')
     const labelD = Data.of('')
     const titleD = Data.of('')
     const descriptionD = Data.of('')
     const directionD = Data.of<'ltr' | 'rtl'>('ltr')
-    const valueD = Data.of('')
-    const minlengthD = Data.of(0)
-    const maxlengthD = Data.of(999)
-    const multipleD = Data.of(false)
-    const placeholderD = Data.of('')
+    const valueD = Data.of(0)
+    const minD = Data.of(-Infinity)
+    const maxD = Data.of(Infinity)
+    const stepD = Data.of<number | 'any'>(1)
 
     const idRD = replayWithLatest(1, idD)
     const typeRD = replayWithLatest(1, typeD)
@@ -82,14 +79,13 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, EmailInputor
     const descriptionRD = replayWithLatest(1, descriptionD)
     const directionRD = replayWithLatest(1, directionD)
     const valueRD = replayWithLatest(1, valueD)
-    const minlengthRD = replayWithLatest(1, minlengthD)
-    const maxlengthRD = replayWithLatest(1, maxlengthD)
-    const multipleRD = replayWithLatest(1, multipleD)
-    const placeholderRD = replayWithLatest(1, placeholderD)
+    const minRD = replayWithLatest(1, minD)
+    const maxRD = replayWithLatest(1, maxD)
+    const stepRD = replayWithLatest(1, stepD)
 
     const [inputHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
     const [changeHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
-    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<EmailInputorValue>()
+    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<RangeSliderValue>()
     const inputValueRD = replayWithLatest(1, inputValueD)
 
     return {
@@ -106,10 +102,9 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, EmailInputor
           description: descriptionD,
           direction: directionD,
           value: valueD,
-          minlength: minlengthD,
-          maxlength: maxlengthD,
-          multiple: multipleD,
-          placeholder: placeholderD
+          min: minD,
+          max: maxD,
+          step: stepD
         }
       },
       _internals: {
@@ -125,10 +120,9 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, EmailInputor
           description: descriptionRD,
           direction: directionRD,
           value: valueRD,
-          minlength: minlengthRD,
-          maxlength: maxlengthRD,
-          multiple: multipleRD,
-          placeholder: placeholderRD
+          min: minRD,
+          max: maxRD,
+          step: stepRD
         },
         actuations: {
           inputHandler: inputHandlerRD,
@@ -142,11 +136,11 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, EmailInputor
     }
   },
   prepareTemplate: ({ marks, styles, actuations }) => {
-    return makeEmailInputorE({ marks, styles, actuations })
+    return makeRangeSliderE({ marks, styles, actuations })
   }
 })
 
 /**
- * @see {@link makeEmailInputorDC}
+ * @see {@link makeRangeSliderDC}
  */
-export const useEmailInputorDC = useGUIDriver_(makeEmailInputorDC)
+export const useRangeSliderDC = useGUIDriver_(makeRangeSliderDC)

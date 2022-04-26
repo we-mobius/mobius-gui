@@ -1,19 +1,19 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
-import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeColorPickerE } from '../elements/inputors/color-picker'
+import { makeDriverFormatComponent, useGUIDriver_ } from '../../helpers/index'
+import { makeWeekPickerE } from '../../elements/inputors/week-picker'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
-import type { TemplateResult } from '../libs/lit-html'
-import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { ColorPickerElementType, ColorPickerValue } from '../elements/inputors/color-picker'
+import type { TemplateResult } from '../../libs/lit-html'
+import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../../helpers/index'
+import type { WeekPickerElementType, WeekPickerValue } from '../../elements/inputors/week-picker'
 
-export interface ColorPickerDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
+export interface WeekPickerDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {
     marks: {
       id: string
     }
     styles: {
-      type: ColorPickerElementType
+      type: WeekPickerElementType
       name: string
       classes: ClassUnion
       label: string
@@ -21,6 +21,9 @@ export interface ColorPickerDCSingletonLevelContexts extends GUIDriverSingletonL
       description: string
       direction: 'ltr' | 'rtl'
       value: string
+      min: string
+      max: string
+      step: number | 'any'
     }
   }
   _internals: {
@@ -28,7 +31,7 @@ export interface ColorPickerDCSingletonLevelContexts extends GUIDriverSingletonL
       id: string
     }
     styles: {
-      type: ColorPickerElementType
+      type: WeekPickerElementType
       name: string
       classes: ClassUnion
       label: string
@@ -36,30 +39,36 @@ export interface ColorPickerDCSingletonLevelContexts extends GUIDriverSingletonL
       description: string
       direction: 'ltr' | 'rtl'
       value: string
+      min: string
+      max: string
+      step: number | 'any'
     }
     actuations: {
       inputHandler: EventHandler<HTMLInputElement>
       changeHandler: EventHandler<HTMLInputElement>
-      valueChangeHandler: (value: ColorPickerValue) => void
+      valueChangeHandler: (value: WeekPickerValue) => void
     }
   }
   outputs: {
-    value: ColorPickerValue
+    value: WeekPickerValue
   }
 }
 
-export const makeColorPickerDC =
-makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorPickerDCSingletonLevelContexts, TemplateResult>({
+export const makeWeekPickerDC =
+makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, WeekPickerDCSingletonLevelContexts, TemplateResult>({
   prepareSingletonLevelContexts: (options, driverLevelContexts) => {
     const idD = Data.of('')
-    const typeD = Data.of<ColorPickerElementType>('ColorPicker')
+    const typeD = Data.of<WeekPickerElementType>('WeekPicker')
     const nameD = Data.of('')
     const classesD = Data.of<ClassUnion>('')
     const labelD = Data.of('')
     const titleD = Data.of('')
     const descriptionD = Data.of('')
     const directionD = Data.of<'ltr' | 'rtl'>('ltr')
-    const valueD = Data.of('#000000')
+    const valueD = Data.of('1970-W01')
+    const minD = Data.of('')
+    const maxD = Data.of('')
+    const stepD = Data.of<number | 'any'>('any')
 
     const idRD = replayWithLatest(1, idD)
     const typeRD = replayWithLatest(1, typeD)
@@ -70,10 +79,13 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorPickerD
     const descriptionRD = replayWithLatest(1, descriptionD)
     const directionRD = replayWithLatest(1, directionD)
     const valueRD = replayWithLatest(1, valueD)
+    const minRD = replayWithLatest(1, minD)
+    const maxRD = replayWithLatest(1, maxD)
+    const stepRD = replayWithLatest(1, stepD)
 
     const [inputHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
     const [changeHandlerRD] = makeGeneralEventHandler<HTMLInputElement>()
-    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<ColorPickerValue>()
+    const [valueChangeHandlerRD, , inputValueD] = makeGeneralCallback<WeekPickerValue>()
     const inputValueRD = replayWithLatest(1, inputValueD)
 
     return {
@@ -89,7 +101,10 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorPickerD
           title: titleD,
           description: descriptionD,
           direction: directionD,
-          value: valueD
+          value: valueD,
+          min: minD,
+          max: maxD,
+          step: stepD
         }
       },
       _internals: {
@@ -104,7 +119,10 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorPickerD
           title: titleRD,
           description: descriptionRD,
           direction: directionRD,
-          value: valueRD
+          value: valueRD,
+          min: minRD,
+          max: maxRD,
+          step: stepRD
         },
         actuations: {
           inputHandler: inputHandlerRD,
@@ -118,11 +136,11 @@ makeDriverFormatComponent<GUIDriverOptions, GUIDriverLevelContexts, ColorPickerD
     }
   },
   prepareTemplate: ({ marks, styles, actuations }) => {
-    return makeColorPickerE({ marks, styles, actuations })
+    return makeWeekPickerE({ marks, styles, actuations })
   }
 })
 
 /**
- * @see {@link makeColorInputDC}
+ * @see {@link makeWeekInputDC}
  */
-export const useColorPickerDC = useGUIDriver_(makeColorPickerDC)
+export const useWeekPickerDC = useGUIDriver_(makeWeekPickerDC)
