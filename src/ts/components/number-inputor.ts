@@ -1,11 +1,11 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeNumberInputorE } from '../elements/number-inputor'
+import { makeNumberInputorE } from '../elements/inputors/number-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { NumberInputorElementType, NumberInputorValue } from '../elements/number-inputor'
+import type { NumberInputorElementType, NumberInputorValue } from '../elements/inputors/number-inputor'
 
 export interface NumberInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

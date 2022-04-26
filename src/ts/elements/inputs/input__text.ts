@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makeTextInputorE } from '../text-inputor'
+import { makeTextInputorE } from '../inputors/text-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { TextInputorValue } from '../text-inputor'
+import type { TextInputorValue } from '../inputors/text-inputor'
 
 export type TextInputElementType = 'TextInput'
 export interface TextInputElementOptions extends ElementOptions {

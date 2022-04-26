@@ -1,11 +1,11 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeLongTextInputorE } from '../elements/longtext-inputor'
+import { makeLongTextInputorE } from '../elements/inputors/longtext-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { LongTextInputorElementType, LongTextInputorValue } from '../elements/longtext-inputor'
+import type { LongTextInputorElementType, LongTextInputorValue } from '../elements/inputors/longtext-inputor'
 
 export interface LongTextInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

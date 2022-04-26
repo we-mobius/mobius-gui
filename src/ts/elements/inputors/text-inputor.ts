@@ -1,16 +1,16 @@
-import { toClassString, makeUniqueString } from 'MobiusUtils'
-import { createElementMaker } from '../helpers/index'
+import { toClassString, makeUniqueString, debounceS } from 'MobiusUtils'
+import { createElementMaker } from '../../helpers/index'
 
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
-import type { ElementOptions } from '../helpers/index'
+import type { ElementOptions } from '../../helpers/index'
 
-export type TelInputorElementType = 'TelInputor'
-export interface TelInputorElementOptions extends ElementOptions {
+export type TextInputorElementType = 'TextInputor'
+export interface TextInputorElementOptions extends ElementOptions {
   marks?: {
     id?: string
   }
   styles?: {
-    type?: TelInputorElementType
+    type?: TextInputorElementType
     name?: string
     classes?: ClassUnion
     label?: string
@@ -32,10 +32,10 @@ export interface TelInputorElementOptions extends ElementOptions {
   actuations?: {
     inputHandler?: EventHandler<HTMLInputElement>
     changeHandler?: EventHandler<HTMLInputElement>
-    valueChangeHandler?: (value: TelInputorValue) => void
+    valueChangeHandler?: (value: TextInputorValue) => void
   }
 }
-export interface TelInputorValue {
+export interface TextInputorValue {
   name: string
   label: string
   value: string
@@ -43,14 +43,14 @@ export interface TelInputorValue {
 }
 
 /**
- * @todo TODO: add more date format to `TelInputorValue`.
+ * @todo TODO: add more date format to `TextInputorValue`.
  */
-export const makeTelInputorE = createElementMaker<TelInputorElementOptions>({
+export const makeTextInputorE = createElementMaker<TextInputorElementOptions>({
   marks: {
     id: ''
   },
   styles: {
-    type: 'TelInputor',
+    type: 'TextInputor',
     name: '',
     classes: '',
     label: '',
@@ -72,24 +72,25 @@ export const makeTelInputorE = createElementMaker<TelInputorElementOptions>({
     const { id } = marks
     const { name, label, classes, direction, value, minlength, maxlength, placeholder } = styles
 
-    const elementId = id !== '' ? id : makeUniqueString('mobius-tel-inputor')
+    const elementId = id !== '' ? id : makeUniqueString('mobius-text-inputor')
     const inputId = `${elementId}__input`
 
     const { inputHandler, changeHandler, valueChangeHandler } = actuations
+    const debouncedValueChangeHandler = debounceS(valueChangeHandler, 200)
     const changeHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
       changeHandler(event)
     }
     const inputHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
       const { value } = event.target
       inputHandler(event)
-      valueChangeHandler({ name, label, value, valueAsString: value })
+      debouncedValueChangeHandler({ name, label, value, valueAsString: value })
     }
 
     return view`
       <div id="${elementId}" class="mobius-layout__horizontal ${toClassString(classes)}" title="${'title'}">
         <label for="${inputId}" style="display: ${direction === 'rtl' ? 'unset' : 'none'};">${'label'}</label>
         <input
-          id="${inputId}" type="tel" inputmode="tel"
+          id="${inputId}" class="mobius-width--fullpct" type="text" inputmode="text"
           name="${name}" value="${value}" minlength="${minlength}" maxlength="${maxlength}" placeholder="${placeholder}"
           @input=${inputHandlerDelegator} @change=${changeHandlerDelegator}
         >

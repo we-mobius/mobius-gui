@@ -1,11 +1,11 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeTimePickerE } from '../elements/time-picker'
+import { makeTimePickerE } from '../elements/inputors/time-picker'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { TimePickerElementType, TimePickerValue } from '../elements/time-picker'
+import type { TimePickerElementType, TimePickerValue } from '../elements/inputors/time-picker'
 
 export interface TimePickerDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

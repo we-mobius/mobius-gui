@@ -1,16 +1,16 @@
 import { toClassString, makeUniqueString } from 'MobiusUtils'
-import { createElementMaker } from '../helpers/index'
+import { createElementMaker } from '../../helpers/index'
 
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
-import type { ElementOptions } from '../helpers/index'
+import type { ElementOptions } from '../../helpers/index'
 
-export type MonthPickerElementType = 'MonthPicker'
-export interface MonthPickerElementOptions extends ElementOptions {
+export type WeekPickerElementType = 'WeekPicker'
+export interface WeekPickerElementOptions extends ElementOptions {
   marks?: {
     id?: string
   }
   styles?: {
-    type?: MonthPickerElementType
+    type?: WeekPickerElementType
     name?: string
     classes?: ClassUnion
     label?: string
@@ -32,32 +32,34 @@ export interface MonthPickerElementOptions extends ElementOptions {
   actuations?: {
     inputHandler?: EventHandler<HTMLInputElement>
     changeHandler?: EventHandler<HTMLInputElement>
-    valueChangeHandler?: (value: MonthPickerValue) => void
+    valueChangeHandler?: (value: WeekPickerValue) => void
   }
 }
-export interface MonthPickerValue {
+export interface WeekPickerValue {
   name: string
   label: string
   value: string
   valueAsString: string
+  valueAsDate: Date | null
+  valueAsNumber: number
 }
 
 /**
- * @todo TODO: add more date format to `MonthPickerValue`.
+ * @todo TODO: add more date format to `WeekPickerValue`.
  */
-export const makeMonthPickerE = createElementMaker<MonthPickerElementOptions>({
+export const makeWeekPickerE = createElementMaker<WeekPickerElementOptions>({
   marks: {
     id: ''
   },
   styles: {
-    type: 'MonthPicker',
+    type: 'WeekPicker',
     name: '',
     classes: '',
     label: '',
     title: '',
     description: '',
     direction: 'rtl',
-    value: '1970-01',
+    value: '1970-W01',
     min: '',
     max: '',
     step: 'any'
@@ -72,14 +74,14 @@ export const makeMonthPickerE = createElementMaker<MonthPickerElementOptions>({
     const { id } = marks
     const { name, label, classes, direction, value, min, max, step } = styles
 
-    const elementId = id !== '' ? id : makeUniqueString('mobius-month-picker')
+    const elementId = id !== '' ? id : makeUniqueString('mobius-week-picker')
     const inputId = `${elementId}__input`
 
     const { inputHandler, changeHandler, valueChangeHandler } = actuations
     const changeHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
-      const { value } = event.target
+      const { value, valueAsDate, valueAsNumber } = event.target
       changeHandler(event)
-      valueChangeHandler({ name, label, value, valueAsString: value })
+      valueChangeHandler({ name, label, value, valueAsString: value, valueAsDate, valueAsNumber })
     }
     const inputHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
       inputHandler(event)
@@ -89,7 +91,7 @@ export const makeMonthPickerE = createElementMaker<MonthPickerElementOptions>({
       <div id="${elementId}" class="mobius-layout__horizontal ${toClassString(classes)}" title="${'title'}">
         <label for="${inputId}" style="display: ${direction === 'rtl' ? 'unset' : 'none'};">${'label'}</label>
         <input
-          id="${inputId}" type="month"
+          id="${inputId}" type="week"
           name="${name}" value="${value}" min="${min}" max="${max}" step="${step}"
           @input=${inputHandlerDelegator} @change=${changeHandlerDelegator}
         >

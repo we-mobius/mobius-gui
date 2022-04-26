@@ -1,68 +1,66 @@
 import { toClassString, makeUniqueString } from 'MobiusUtils'
-import { createElementMaker } from '../helpers/index'
+import { createElementMaker } from '../../helpers/index'
 
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
-import type { ElementOptions } from '../helpers/index'
+import type { ElementOptions } from '../../helpers/index'
 
-export type DateTimePickerElementType = 'DateTimePicker'
-export interface DateTimePickerElementOptions extends ElementOptions {
+export type URLInputorElementType = 'URLInputor'
+export interface URLInputorElementOptions extends ElementOptions {
   marks?: {
     id?: string
   }
   styles?: {
-    type?: DateTimePickerElementType
+    type?: URLInputorElementType
     name?: string
     classes?: ClassUnion
     label?: string
     title?: string
     description?: string
     /**
-     * Indicate the order of the picker and its label.
-     * Set to `ltr` means the picker is on the left of the label.
-     * Set to `rtl` means the picker is on the right of the label.
+     * Indicate the order of the inputor and its label.
+     * Set to `ltr` means the inputor is on the left of the label.
+     * Set to `rtl` means the inputor is on the right of the label.
      *
      * @default 'rtl'
      */
     direction?: 'ltr' | 'rtl'
     value?: string
-    min?: string
-    max?: string
-    step?: number | 'any'
+    minlength?: number
+    maxlength?: number
+    placeholder?: string
   }
   actuations?: {
     inputHandler?: EventHandler<HTMLInputElement>
     changeHandler?: EventHandler<HTMLInputElement>
-    valueChangeHandler?: (value: DateTimePickerValue) => void
+    valueChangeHandler?: (value: URLInputorValue) => void
   }
 }
-export interface DateTimePickerValue {
+export interface URLInputorValue {
   name: string
   label: string
   value: string
   valueAsString: string
-  valueAsDate: Date
-  valueAsNumber: number
 }
 
 /**
- * @todo TODO: add more date format to `DateTimePickerValue`.
+ * @todo TODO: add more date format to `URLInputorValue`.
  */
-export const makeDateTimePickerE = createElementMaker<DateTimePickerElementOptions>({
+export const makeURLInputorE = createElementMaker<URLInputorElementOptions>({
   marks: {
     id: ''
   },
   styles: {
-    type: 'DateTimePicker',
+    type: 'URLInputor',
     name: '',
     classes: '',
     label: '',
     title: '',
     description: '',
     direction: 'rtl',
-    value: '1970-01-01T00:00',
-    min: '',
-    max: '',
-    step: 'any'
+    value: '',
+    minlength: 0,
+    maxlength: 999,
+    placeholder: 'https://example.com'
   },
   actuations: {
     inputHandler: event => event,
@@ -72,30 +70,27 @@ export const makeDateTimePickerE = createElementMaker<DateTimePickerElementOptio
   configs: {},
   prepareTemplate: (view, { marks, styles, actuations, utils }) => {
     const { id } = marks
-    const { name, label, classes, direction, value, min, max, step } = styles
+    const { name, label, classes, direction, value, minlength, maxlength, placeholder } = styles
 
-    const elementId = id !== '' ? id : makeUniqueString('mobius-datetime-picker')
+    const elementId = id !== '' ? id : makeUniqueString('mobius-url-inputor')
     const inputId = `${elementId}__input`
 
-    /**
-     * datetime-local type of input element's `input` and `change` event are not act like date type of input element.
-     */
     const { inputHandler, changeHandler, valueChangeHandler } = actuations
     const changeHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
       changeHandler(event)
     }
     const inputHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
-      const { value, valueAsNumber } = event.target
+      const { value } = event.target
       inputHandler(event)
-      valueChangeHandler({ name, label, value, valueAsString: value, valueAsDate: new Date(value), valueAsNumber })
+      valueChangeHandler({ name, label, value, valueAsString: value })
     }
 
     return view`
       <div id="${elementId}" class="mobius-layout__horizontal ${toClassString(classes)}" title="${'title'}">
         <label for="${inputId}" style="display: ${direction === 'rtl' ? 'unset' : 'none'};">${'label'}</label>
         <input
-          id="${inputId}" type="datetime-local"
-          name="${name}" value="${value}" min="${min}" max="${max}" step="${step}"
+          id="${inputId}" type="url" inputmode="url"
+          name="${name}" value="${value}" minlength="${minlength}" maxlength="${maxlength}" placeholder="${placeholder}"
           @input=${inputHandlerDelegator} @change=${changeHandlerDelegator}
         >
         <label for="${inputId}" style="display: ${direction === 'ltr' ? 'unset' : 'none'};">${'label'}</label>

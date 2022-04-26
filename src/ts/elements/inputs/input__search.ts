@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makeSearchInputorE } from '../search-inputor'
+import { makeSearchInputorE } from '../inputors/search-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { SearchInputorValue } from '../search-inputor'
+import type { SearchInputorValue } from '../inputors/search-inputor'
 
 export type SearchInputElementType = 'SearchInput'
 export interface SearchInputElementOptions extends ElementOptions {

@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makeRangeSliderE } from '../range-slider'
+import { makeRangeSliderE } from '../inputors/range-slider'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { RangeSliderValue } from '../range-slider'
+import type { RangeSliderValue } from '../inputors/range-slider'
 
 export type RangeInputElementType = 'RangeInput'
 export interface RangeInputElementOptions extends ElementOptions {

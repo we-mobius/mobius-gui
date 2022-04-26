@@ -4,12 +4,12 @@ import {
   makeGeneralEventHandler, makeGeneralCallback
 } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeCheckboxE } from '../elements/checkbox'
+import { makeCheckboxE } from '../elements/inputors/checkbox'
 
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { CheckboxElementType, CheckboxElementValue } from '../elements/checkbox'
+import type { CheckboxElementType, CheckboxElementValue } from '../elements/inputors/checkbox'
 
 export interface CheckboxDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

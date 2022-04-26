@@ -1,11 +1,11 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeColorPickerE } from '../elements/color-picker'
+import { makeColorPickerE } from '../elements/inputors/color-picker'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { ColorPickerElementType, ColorPickerValue } from '../elements/color-picker'
+import type { ColorPickerElementType, ColorPickerValue } from '../elements/inputors/color-picker'
 
 export interface ColorPickerDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

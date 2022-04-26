@@ -1,11 +1,11 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeTelInputorE } from '../elements/tel-inputor'
+import { makeTelInputorE } from '../elements/inputors/tel-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { TelInputorElementType, TelInputorValue } from '../elements/tel-inputor'
+import type { TelInputorElementType, TelInputorValue } from '../elements/inputors/tel-inputor'
 
 export interface TelInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

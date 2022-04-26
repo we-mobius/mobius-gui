@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makeWeekPickerE } from '../week-picker'
+import { makeWeekPickerE } from '../inputors/week-picker'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { WeekPickerValue } from '../week-picker'
+import type { WeekPickerValue } from '../inputors/week-picker'
 
 export type WeekInputElementType = 'WeekInput'
 export interface WeekInputElementOptions extends ElementOptions {

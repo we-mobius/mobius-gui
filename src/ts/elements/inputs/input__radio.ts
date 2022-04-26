@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
-import { makeRadioE } from '../radio'
+import { makeRadioE } from '../inputors/radio'
 import { makeFormItemLayoutE } from '../layout__form-item'
 
 import type { ClassUnion } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { RadioElementValue } from '../radio'
+import type { RadioElementValue } from '../inputors/radio'
 
 export type RadioInputElementType = 'RadioInput'
 export interface RadioInputElementOptions extends ElementOptions {

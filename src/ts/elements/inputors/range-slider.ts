@@ -1,67 +1,66 @@
 import { toClassString, makeUniqueString } from 'MobiusUtils'
-import { createElementMaker } from '../helpers/index'
+import { createElementMaker } from '../../helpers/index'
 
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
-import type { ElementOptions } from '../helpers/index'
+import type { ElementOptions } from '../../helpers/index'
 
-export type TimePickerElementType = 'TimePicker'
-export interface TimePickerElementOptions extends ElementOptions {
+export type RangeSliderElementType = 'RangeSlider'
+export interface RangeSliderElementOptions extends ElementOptions {
   marks?: {
     id?: string
   }
   styles?: {
-    type?: TimePickerElementType
+    type?: RangeSliderElementType
     name?: string
     classes?: ClassUnion
     label?: string
     title?: string
     description?: string
     /**
-     * Indicate the order of the picker and its label.
-     * Set to `ltr` means the picker is on the left of the label.
-     * Set to `rtl` means the picker is on the right of the label.
+     * Indicate the order of the inputor and its label.
+     * Set to `ltr` means the inputor is on the left of the label.
+     * Set to `rtl` means the inputor is on the right of the label.
      *
      * @default 'rtl'
      */
     direction?: 'ltr' | 'rtl'
-    value?: string
-    min?: string
-    max?: string
+    value?: number
+    min?: number
+    max?: number
     step?: number | 'any'
   }
   actuations?: {
     inputHandler?: EventHandler<HTMLInputElement>
     changeHandler?: EventHandler<HTMLInputElement>
-    valueChangeHandler?: (value: TimePickerValue) => void
+    valueChangeHandler?: (value: RangeSliderValue) => void
   }
 }
-export interface TimePickerValue {
+export interface RangeSliderValue {
   name: string
   label: string
   value: string
   valueAsString: string
-  valueAsDate: Date | null
   valueAsNumber: number
 }
 
 /**
- * @todo TODO: add more date format to `TimePickerValue`.
+ * @todo TODO: add more date format to `RangeSliderValue`.
  */
-export const makeTimePickerE = createElementMaker<TimePickerElementOptions>({
+export const makeRangeSliderE = createElementMaker<RangeSliderElementOptions>({
   marks: {
     id: ''
   },
   styles: {
-    type: 'TimePicker',
+    type: 'RangeSlider',
     name: '',
     classes: '',
     label: '',
     title: '',
     description: '',
     direction: 'rtl',
-    value: '00:00:00',
-    min: '',
-    max: '',
+    value: 0,
+    min: -Infinity,
+    max: Infinity,
     step: 'any'
   },
   actuations: {
@@ -74,7 +73,7 @@ export const makeTimePickerE = createElementMaker<TimePickerElementOptions>({
     const { id } = marks
     const { name, label, classes, direction, value, min, max, step } = styles
 
-    const elementId = id !== '' ? id : makeUniqueString('mobius-time-picker')
+    const elementId = id !== '' ? id : makeUniqueString('mobius-range-slider')
     const inputId = `${elementId}__input`
 
     const { inputHandler, changeHandler, valueChangeHandler } = actuations
@@ -82,16 +81,16 @@ export const makeTimePickerE = createElementMaker<TimePickerElementOptions>({
       changeHandler(event)
     }
     const inputHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
-      const { value, valueAsDate, valueAsNumber } = event.target
+      const { value, valueAsNumber } = event.target
       inputHandler(event)
-      valueChangeHandler({ name, label, value, valueAsString: value, valueAsDate, valueAsNumber })
+      valueChangeHandler({ name, label, value, valueAsString: value, valueAsNumber })
     }
 
     return view`
       <div id="${elementId}" class="mobius-layout__horizontal ${toClassString(classes)}" title="${'title'}">
         <label for="${inputId}" style="display: ${direction === 'rtl' ? 'unset' : 'none'};">${'label'}</label>
         <input
-          id="${inputId}" type="time"
+          id="${inputId}" type="range" inputmode="none"
           name="${name}" value="${value}" min="${min}" max="${max}" step="${step}"
           @input=${inputHandlerDelegator} @change=${changeHandlerDelegator}
         >

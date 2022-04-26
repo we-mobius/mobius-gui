@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makeURLInputorE } from '../url-inputor'
+import { makeURLInputorE } from '../inputors/url-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { URLInputorValue } from '../url-inputor'
+import type { URLInputorValue } from '../inputors/url-inputor'
 
 export type URLInputElementType = 'URLInput'
 export interface URLInputElementOptions extends ElementOptions {

@@ -1,11 +1,11 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeEmailInputorE } from '../elements/email-inputor'
+import { makeEmailInputorE } from '../elements/inputors/email-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { EmailInputorElementType, EmailInputorValue } from '../elements/email-inputor'
+import type { EmailInputorElementType, EmailInputorValue } from '../elements/inputors/email-inputor'
 
 export interface EmailInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

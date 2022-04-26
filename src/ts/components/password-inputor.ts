@@ -1,11 +1,11 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makePasswordInputorE } from '../elements/password-inputor'
+import { makePasswordInputorE } from '../elements/inputors/password-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { PasswordInputorElementType, PasswordInputorValue } from '../elements/password-inputor'
+import type { PasswordInputorElementType, PasswordInputorValue } from '../elements/inputors/password-inputor'
 
 export interface PasswordInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

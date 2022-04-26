@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makeTimePickerE } from '../time-picker'
+import { makeTimePickerE } from '../inputors/time-picker'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { TimePickerValue } from '../time-picker'
+import type { TimePickerValue } from '../inputors/time-picker'
 
 export type TimeInputElementType = 'TimeInput'
 export interface TimeInputElementOptions extends ElementOptions {

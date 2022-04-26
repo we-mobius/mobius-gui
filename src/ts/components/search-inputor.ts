@@ -1,11 +1,11 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeSearchInputorE } from '../elements/search-inputor'
+import { makeSearchInputorE } from '../elements/inputors/search-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { SearchInputorElementType, SearchInputorValue } from '../elements/search-inputor'
+import type { SearchInputorElementType, SearchInputorValue } from '../elements/inputors/search-inputor'
 
 export interface SearchInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

@@ -1,11 +1,11 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeURLInputorE } from '../elements/url-inputor'
+import { makeURLInputorE } from '../elements/inputors/url-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { URLInputorElementType, URLInputorValue } from '../elements/url-inputor'
+import type { URLInputorElementType, URLInputorValue } from '../elements/inputors/url-inputor'
 
 export interface URLInputorDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

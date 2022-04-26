@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makeColorPickerE } from '../color-picker'
+import { makeColorPickerE } from '../inputors/color-picker'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { ColorPickerValue } from '../color-picker'
+import type { ColorPickerValue } from '../inputors/color-picker'
 
 export type ColorInputElementType = 'ColorInput'
 export interface ColorInputElementOptions extends ElementOptions {

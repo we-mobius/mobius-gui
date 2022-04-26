@@ -1,18 +1,18 @@
-import { toClassString, makeUniqueString, debounceS } from 'MobiusUtils'
-import { createElementMaker } from '../helpers/index'
+import { toClassString, makeUniqueString } from 'MobiusUtils'
+import { createElementMaker } from '../../helpers/index'
 
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
-import type { ElementOptions } from '../helpers/index'
+import type { ElementOptions } from '../../helpers/index'
 
-export type LongTextInputorElementType = 'LongTextInputor'
-export interface LongTextInputorElementOptions extends ElementOptions {
+export type PasswordInputorElementType = 'PasswordInputor'
+export interface PasswordInputorElementOptions extends ElementOptions {
   marks?: {
     id?: string
   }
   styles?: {
-    type?: LongTextInputorElementType
-    classes?: ClassUnion
+    type?: PasswordInputorElementType
     name?: string
+    classes?: ClassUnion
     label?: string
     title?: string
     description?: string
@@ -25,7 +25,6 @@ export interface LongTextInputorElementOptions extends ElementOptions {
      */
     direction?: 'ltr' | 'rtl'
     value?: string
-    rows?: number
     minlength?: number
     maxlength?: number
     placeholder?: string
@@ -33,10 +32,10 @@ export interface LongTextInputorElementOptions extends ElementOptions {
   actuations?: {
     inputHandler?: EventHandler<HTMLInputElement>
     changeHandler?: EventHandler<HTMLInputElement>
-    valueChangeHandler?: (value: LongTextInputorValue) => void
+    valueChangeHandler?: (value: PasswordInputorValue) => void
   }
 }
-export interface LongTextInputorValue {
+export interface PasswordInputorValue {
   name: string
   label: string
   value: string
@@ -44,22 +43,21 @@ export interface LongTextInputorValue {
 }
 
 /**
- * @todo TODO: add more date format to `LongTextInputorValue`.
+ * @todo TODO: add more date format to `PasswordInputorValue`.
  */
-export const makeLongTextInputorE = createElementMaker<LongTextInputorElementOptions>({
+export const makePasswordInputorE = createElementMaker<PasswordInputorElementOptions>({
   marks: {
     id: ''
   },
   styles: {
-    type: 'LongTextInputor',
-    classes: '',
+    type: 'PasswordInputor',
     name: '',
+    classes: '',
     label: '',
     title: '',
     description: '',
     direction: 'rtl',
     value: '',
-    rows: 3,
     minlength: 0,
     maxlength: 999,
     placeholder: ''
@@ -72,30 +70,29 @@ export const makeLongTextInputorE = createElementMaker<LongTextInputorElementOpt
   configs: {},
   prepareTemplate: (view, { marks, styles, actuations, utils }) => {
     const { id } = marks
-    const { name, label, classes, direction, value, rows, minlength, maxlength, placeholder } = styles
+    const { name, label, classes, direction, value, minlength, maxlength, placeholder } = styles
 
-    const elementId = id !== '' ? id : makeUniqueString('mobius-longtext-inputor')
+    const elementId = id !== '' ? id : makeUniqueString('mobius-password-inputor')
     const inputId = `${elementId}__input`
 
     const { inputHandler, changeHandler, valueChangeHandler } = actuations
-    const debouncedValueChangeHandler = debounceS(valueChangeHandler, 200)
     const changeHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
       changeHandler(event)
     }
     const inputHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
       const { value } = event.target
       inputHandler(event)
-      debouncedValueChangeHandler({ name, label, value, valueAsString: value })
+      valueChangeHandler({ name, label, value, valueAsString: value })
     }
 
     return view`
       <div id="${elementId}" class="mobius-layout__horizontal ${toClassString(classes)}" title="${'title'}">
         <label for="${inputId}" style="display: ${direction === 'rtl' ? 'unset' : 'none'};">${'label'}</label>
-        <textarea
-          id="${inputId}" class="mobius-width--fullpct" rows="${rows}"
-          name="${name}" minlength="${minlength}" maxlength="${maxlength}" placeholder="${placeholder}"
+        <input
+          id="${inputId}" type="password"
+          name="${name}" value="${value}" minlength="${minlength}" maxlength="${maxlength}" placeholder="${placeholder}"
           @input=${inputHandlerDelegator} @change=${changeHandlerDelegator}
-        >${value}</textarea>
+        >
         <label for="${inputId}" style="display: ${direction === 'ltr' ? 'unset' : 'none'};">${'label'}</label>
       </div>
     `

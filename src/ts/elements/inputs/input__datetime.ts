@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makeDateTimePickerE } from '../datetime-picker'
+import { makeDateTimePickerE } from '../inputors/datetime-picker'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { DateTimePickerValue } from '../datetime-picker'
+import type { DateTimePickerValue } from '../inputors/datetime-picker'
 
 export type DateTimeInputElementType = 'DateTimeInput'
 export interface DateTimeInputElementOptions extends ElementOptions {

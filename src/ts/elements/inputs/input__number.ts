@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makeNumberInputorE } from '../number-inputor'
+import { makeNumberInputorE } from '../inputors/number-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { NumberInputorValue } from '../number-inputor'
+import type { NumberInputorValue } from '../inputors/number-inputor'
 
 export type NumberInputElementType = 'NumberInput'
 export interface NumberInputElementOptions extends ElementOptions {

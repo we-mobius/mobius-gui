@@ -1,68 +1,68 @@
 import { toClassString, makeUniqueString } from 'MobiusUtils'
-import { createElementMaker } from '../helpers/index'
+import { createElementMaker } from '../../helpers/index'
 
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
-import type { ElementOptions } from '../helpers/index'
+import type { ElementOptions } from '../../helpers/index'
 
-export type DatePickerElementType = 'DatePicker'
-export interface DatePickerElementOptions extends ElementOptions {
+export type EmailInputorElementType = 'EmailInputor'
+export interface EmailInputorElementOptions extends ElementOptions {
   marks?: {
     id?: string
   }
   styles?: {
-    type?: DatePickerElementType
+    type?: EmailInputorElementType
     name?: string
     classes?: ClassUnion
     label?: string
     title?: string
     description?: string
     /**
-     * Indicate the order of the picker and its label.
-     * Set to `ltr` means the picker is on the left of the label.
-     * Set to `rtl` means the picker is on the right of the label.
+     * Indicate the order of the inputor and its label.
+     * Set to `ltr` means the inputor is on the left of the label.
+     * Set to `rtl` means the inputor is on the right of the label.
      *
      * @default 'rtl'
      */
     direction?: 'ltr' | 'rtl'
     value?: string
-    min?: string
-    max?: string
-    step?: number | 'any'
+    minlength?: number
+    maxlength?: number
+    multiple?: boolean
+    placeholder?: string
   }
   actuations?: {
     inputHandler?: EventHandler<HTMLInputElement>
     changeHandler?: EventHandler<HTMLInputElement>
-    valueChangeHandler?: (value: DatePickerValue) => void
+    valueChangeHandler?: (value: EmailInputorValue) => void
   }
 }
-export interface DatePickerValue {
+export interface EmailInputorValue {
   name: string
   label: string
   value: string
   valueAsString: string
-  valueAsDate: Date | null
-  valueAsNumber: number
 }
 
 /**
- * @todo TODO: add more date format to `DatePickerValue`.
+ * @todo TODO: add more date format to `EmailInputorValue`.
  */
-export const makeDatePickerE = createElementMaker<DatePickerElementOptions>({
+export const makeEmailInputorE = createElementMaker<EmailInputorElementOptions>({
   marks: {
     id: ''
   },
   styles: {
-    type: 'DatePicker',
+    type: 'EmailInputor',
     name: '',
     classes: '',
     label: '',
     title: '',
     description: '',
     direction: 'rtl',
-    value: '1970-01-01',
-    min: '',
-    max: '',
-    step: 'any'
+    value: '',
+    minlength: 0,
+    maxlength: 999,
+    multiple: false,
+    placeholder: ''
   },
   actuations: {
     inputHandler: event => event,
@@ -72,28 +72,28 @@ export const makeDatePickerE = createElementMaker<DatePickerElementOptions>({
   configs: {},
   prepareTemplate: (view, { marks, styles, actuations, utils }) => {
     const { id } = marks
-    const { name, label, classes, direction, value, min, max, step } = styles
+    const { name, label, classes, direction, value, minlength, maxlength, multiple, placeholder } = styles
 
-    const elementId = id !== '' ? id : makeUniqueString('mobius-date-picker')
+    const elementId = id !== '' ? id : makeUniqueString('mobius-email-inputor')
     const inputId = `${elementId}__input`
 
     const { inputHandler, changeHandler, valueChangeHandler } = actuations
     const changeHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
-      const { value, valueAsDate, valueAsNumber } = event.target
       changeHandler(event)
-      valueChangeHandler({ name, label, value, valueAsString: value, valueAsDate, valueAsNumber })
     }
     const inputHandlerDelegator = (event: SynthesizeEvent<HTMLInputElement>): void => {
+      const { value } = event.target
       inputHandler(event)
+      valueChangeHandler({ name, label, value, valueAsString: value })
     }
 
     return view`
       <div id="${elementId}" class="mobius-layout__horizontal ${toClassString(classes)}" title="${'title'}">
         <label for="${inputId}" style="display: ${direction === 'rtl' ? 'unset' : 'none'};">${'label'}</label>
         <input
-          id="${inputId}" type="date"
-          name="${name}" value="${value}" min="${min}" max="${max}" step="${step}"
-          @input=${inputHandlerDelegator} @change=${changeHandlerDelegator}
+          id="${inputId}" type="email" inputmode="email"
+          name="${name}" value="${value}" minlength="${minlength}" maxlength="${maxlength}" placeholder="${placeholder}"
+          @input=${inputHandlerDelegator} @change=${changeHandlerDelegator} ?multiple=${multiple}
         >
         <label for="${inputId}" style="display: ${direction === 'ltr' ? 'unset' : 'none'};">${'label'}</label>
       </div>

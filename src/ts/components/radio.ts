@@ -4,12 +4,12 @@ import {
   makeGeneralEventHandler, makeGeneralCallback
 } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeRadioE } from '../elements/radio'
+import { makeRadioE } from '../elements/inputors/radio'
 
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { RadioElementType, RadioElementValue } from '../elements/radio'
+import type { RadioElementType, RadioElementValue } from '../elements/inputors/radio'
 
 export interface RadioDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
-import { makeCheckboxE } from '../checkbox'
+import { makeCheckboxE } from '../inputors/checkbox'
 import { makeFormItemLayoutE } from '../layout__form-item'
 
 import type { ClassUnion } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { CheckboxElementValue } from '../checkbox'
+import type { CheckboxElementValue } from '../inputors/checkbox'
 
 export type CheckboxInputElementType = 'CheckboxInput'
 export interface CheckboxInputElementOptions extends ElementOptions {

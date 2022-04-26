@@ -1,11 +1,11 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeRangeSliderE } from '../elements/range-slider'
+import { makeRangeSliderE } from '../elements/inputors/range-slider'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { RangeSliderElementType, RangeSliderValue } from '../elements/range-slider'
+import type { RangeSliderElementType, RangeSliderValue } from '../elements/inputors/range-slider'
 
 export interface RangeSliderDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

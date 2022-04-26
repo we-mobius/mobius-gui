@@ -1,11 +1,11 @@
 import { Data, replayWithLatest, makeGeneralEventHandler, makeGeneralCallback } from 'MobiusUtils'
 import { makeDriverFormatComponent, useGUIDriver_ } from '../helpers/index'
-import { makeWeekPickerE } from '../elements/week-picker'
+import { makeWeekPickerE } from '../elements/inputors/week-picker'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { TemplateResult } from '../libs/lit-html'
 import type { GUIDriverOptions, GUIDriverLevelContexts, GUIDriverSingletonLevelContexts } from '../helpers/index'
-import type { WeekPickerElementType, WeekPickerValue } from '../elements/week-picker'
+import type { WeekPickerElementType, WeekPickerValue } from '../elements/inputors/week-picker'
 
 export interface WeekPickerDCSingletonLevelContexts extends GUIDriverSingletonLevelContexts {
   inputs: {

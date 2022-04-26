@@ -1,8 +1,8 @@
 import { toClassString, makeUniqueString } from 'MobiusUtils'
-import { createElementMaker } from '../helpers/index'
+import { createElementMaker } from '../../helpers/index'
 
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
-import type { ElementOptions } from '../helpers/index'
+import type { ElementOptions } from '../../helpers/index'
 
 export type ColorPickerElementType = 'ColorPicker'
 export interface ColorPickerElementOptions extends ElementOptions {

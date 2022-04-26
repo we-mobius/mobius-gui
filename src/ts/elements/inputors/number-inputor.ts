@@ -1,16 +1,16 @@
 import { toClassString, makeUniqueString } from 'MobiusUtils'
-import { createElementMaker } from '../helpers/index'
+import { createElementMaker } from '../../helpers/index'
 
 import type { ClassUnion, EventHandler, SynthesizeEvent } from 'MobiusUtils'
-import type { ElementOptions } from '../helpers/index'
+import type { ElementOptions } from '../../helpers/index'
 
-export type RangeSliderElementType = 'RangeSlider'
-export interface RangeSliderElementOptions extends ElementOptions {
+export type NumberInputorElementType = 'NumberInputor'
+export interface NumberInputorElementOptions extends ElementOptions {
   marks?: {
     id?: string
   }
   styles?: {
-    type?: RangeSliderElementType
+    type?: NumberInputorElementType
     name?: string
     classes?: ClassUnion
     label?: string
@@ -27,15 +27,16 @@ export interface RangeSliderElementOptions extends ElementOptions {
     value?: number
     min?: number
     max?: number
-    step?: number | 'any'
+    step?: number
+    placeholder?: string
   }
   actuations?: {
     inputHandler?: EventHandler<HTMLInputElement>
     changeHandler?: EventHandler<HTMLInputElement>
-    valueChangeHandler?: (value: RangeSliderValue) => void
+    valueChangeHandler?: (value: NumberInputorValue) => void
   }
 }
-export interface RangeSliderValue {
+export interface NumberInputorValue {
   name: string
   label: string
   value: string
@@ -44,14 +45,14 @@ export interface RangeSliderValue {
 }
 
 /**
- * @todo TODO: add more date format to `RangeSliderValue`.
+ * @todo TODO: add more date format to `NumberInputorValue`.
  */
-export const makeRangeSliderE = createElementMaker<RangeSliderElementOptions>({
+export const makeNumberInputorE = createElementMaker<NumberInputorElementOptions>({
   marks: {
     id: ''
   },
   styles: {
-    type: 'RangeSlider',
+    type: 'NumberInputor',
     name: '',
     classes: '',
     label: '',
@@ -61,7 +62,8 @@ export const makeRangeSliderE = createElementMaker<RangeSliderElementOptions>({
     value: 0,
     min: -Infinity,
     max: Infinity,
-    step: 'any'
+    step: 1,
+    placeholder: ''
   },
   actuations: {
     inputHandler: event => event,
@@ -71,9 +73,9 @@ export const makeRangeSliderE = createElementMaker<RangeSliderElementOptions>({
   configs: {},
   prepareTemplate: (view, { marks, styles, actuations, utils }) => {
     const { id } = marks
-    const { name, label, classes, direction, value, min, max, step } = styles
+    const { name, label, classes, direction, value, min, max, step, placeholder } = styles
 
-    const elementId = id !== '' ? id : makeUniqueString('mobius-range-slider')
+    const elementId = id !== '' ? id : makeUniqueString('mobius-number-inputor')
     const inputId = `${elementId}__input`
 
     const { inputHandler, changeHandler, valueChangeHandler } = actuations
@@ -90,8 +92,8 @@ export const makeRangeSliderE = createElementMaker<RangeSliderElementOptions>({
       <div id="${elementId}" class="mobius-layout__horizontal ${toClassString(classes)}" title="${'title'}">
         <label for="${inputId}" style="display: ${direction === 'rtl' ? 'unset' : 'none'};">${'label'}</label>
         <input
-          id="${inputId}" type="range" inputmode="none"
-          name="${name}" value="${value}" min="${min}" max="${max}" step="${step}"
+          id="${inputId}" type="number"
+          name="${name}" value="${value}" min="${min}" max="${max}" step="${step}" placeholder="${placeholder}"
           @input=${inputHandlerDelegator} @change=${changeHandlerDelegator}
         >
         <label for="${inputId}" style="display: ${direction === 'ltr' ? 'unset' : 'none'};">${'label'}</label>

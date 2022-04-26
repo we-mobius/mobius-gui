@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makeTelInputorE } from '../tel-inputor'
+import { makeTelInputorE } from '../inputors/tel-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { TelInputorValue } from '../tel-inputor'
+import type { TelInputorValue } from '../inputors/tel-inputor'
 
 export type TelInputElementType = 'TelInput'
 export interface TelInputElementOptions extends ElementOptions {

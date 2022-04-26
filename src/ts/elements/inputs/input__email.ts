@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makeEmailInputorE } from '../email-inputor'
+import { makeEmailInputorE } from '../inputors/email-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { EmailInputorValue } from '../email-inputor'
+import type { EmailInputorValue } from '../inputors/email-inputor'
 
 export type EmailInputElementType = 'EmailInput'
 export interface EmailInputElementOptions extends ElementOptions {

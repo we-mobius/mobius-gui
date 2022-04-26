@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makePasswordInputorE } from '../password-inputor'
+import { makePasswordInputorE } from '../inputors/password-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { PasswordInputorValue } from '../password-inputor'
+import type { PasswordInputorValue } from '../inputors/password-inputor'
 
 export type PasswordInputElementType = 'PasswordInput'
 export interface PasswordInputElementOptions extends ElementOptions {

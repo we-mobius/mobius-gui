@@ -1,11 +1,11 @@
 import { makeUniqueString } from 'MobiusUtils'
 import { createElementMaker } from '../../helpers/index'
 import { makeFormItemLayoutE } from '../layout__form-item'
-import { makeLongTextInputorE } from '../longtext-inputor'
+import { makeLongTextInputorE } from '../inputors/longtext-inputor'
 
 import type { ClassUnion, EventHandler } from 'MobiusUtils'
 import type { ElementOptions } from '../../helpers/index'
-import type { LongTextInputorValue } from '../longtext-inputor'
+import type { LongTextInputorValue } from '../inputors/longtext-inputor'
 
 export type LongTextInputElementType = 'LongTextInput'
 export interface LongTextInputElementOptions extends ElementOptions {
