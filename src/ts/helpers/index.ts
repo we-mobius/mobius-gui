@@ -8,6 +8,7 @@ export * from './view'
 export * from './template'
 
 export * from './element'
+export * from './element-runtime'
 
 export * from './gui-tache'
 export * from './gui-driver'
