@@ -3,6 +3,9 @@
 .mobius-input__long-text textarea {
   padding: 0.5rem 1rem;
   border: 2px solid var(--fg-color-base);
+  border-radius: 0.25rem;
+  background-color: transparent;
+  color: var(--fg-color-base);
 
   &:focus {
     border: 2px solid var(--fg-color-primary);
