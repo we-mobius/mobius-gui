@@ -9,6 +9,9 @@ import type { TemplatePieces } from './view'
 export const prefixClassWithMobius = prefixClassWith('mobius-')
 export const removeMobiusPrefixOfClass = removePrefixOfClass('mobius-')
 
+/**
+ * @todo TODO: detect attribute bindings
+ */
 const processValue = (
   prevString: string, value: any, styles: Record<string, any>, configs: Record<string, any>
 ): any => {
@@ -68,6 +71,7 @@ const processValue = (
 export const style = (styles: Record<string, any>, configs: Record<string, any>) =>
   (templatePieces: TemplatePieces): TemplatePieces => {
     const { strings, values } = templatePieces
+
     const result = values.reduce<{ newValues: any[], prevString: string }>(
       (acc, value, index) => {
         // placeholder should comply with the valid classname format.
@@ -84,6 +88,7 @@ export const style = (styles: Record<string, any>, configs: Record<string, any>)
 
         acc.prevString = acc.prevString + placeholder
         acc.newValues.push(newValue)
+
         return acc
       }, { newValues: [], prevString: '' }
     )
