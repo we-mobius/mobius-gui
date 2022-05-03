@@ -102,7 +102,7 @@ export const makeCheckboxE = createElementMaker<CheckboxElementOptions>({
       if (input === undefined) return
       // set `indeterminate` state
       // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#:~:text=Note%3A%20No%20browser%20currently%20supports%C2%A0indeterminate%C2%A0as%20an%20attribute.%20It%20must%20be%20set%20via%20JavaScript.%20See%20Indeterminate%20state%20checkboxes%20for%20details.
-      (input as HTMLInputElement).indeterminate = indeterminate
+      ;(input as HTMLInputElement).indeterminate = indeterminate
     }
 
     const { changeHandler, valueChangeHandler } = actuations
