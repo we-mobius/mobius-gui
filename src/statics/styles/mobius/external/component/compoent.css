@@ -3,6 +3,8 @@
 @import "./button.css";
 @import "./input__text.css";
 @import "./input__long-text.css";
+@import "./tag.css";
+@import "./tags.css";
 
 /*! purgecss start ignore */
 

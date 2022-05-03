@@ -1,0 +1,41 @@
+/*! purgecss start ignore */
+
+.mobius-tags {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+
+  padding: calc(0rem + 2px) calc(0.75rem + 2px);
+
+  border: 2px solid var(--fg-color-base);
+  border-radius: 0.25rem;
+
+  background-color: transparent;
+}
+
+.mobius-tags .mobius-tag {
+  margin: 0.25rem;
+}
+
+.mobius-tags .mobius-tags__add {
+  min-width: calc(4rem + 2px + 2px);
+  height: calc(2rem + 2px + 2px);
+  padding: 0.25rem 1rem;
+  border: 2px dashed var(--fg-color-third);
+  border-radius: 0.25rem;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  margin: 0.25rem;
+  color: var(--fg-color-third);
+
+  &:hover {
+    font-weight: bold;
+    color: var(--fg-color-primary);
+    border-color: var(--fg-color-primary);
+  }
+}
+
+/*! purgecss end ignore */

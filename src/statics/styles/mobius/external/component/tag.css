@@ -1,0 +1,133 @@
+/*! purgecss start ignore */
+
+.mobius-tag {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  border: 2px solid var(--bg-color-third);
+  border-radius: 0.25rem;
+
+  background-color: var(--bg-color-third);
+  cursor: pointer;
+
+  transition: all 0.1s ease-in-out;
+}
+
+/* ----------------------------------------------------------------- */
+%mobius-tag__text--empathize {
+  font-weight: bold;
+  color: var(--fg-color-primary);
+}
+%mobius-tag__text--hidden {
+  visibility: hidden;
+}
+.mobius-tag .mobius-tag__text {
+  min-width: 4.5rem;
+  height: 2rem;
+  padding: 0.25rem 1.25rem;
+  line-height: 1.5rem;
+  text-align: center;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    @extend %mobius-tag__text--empathize;
+  }
+}
+
+/* ----------------------------------------------------------------- */
+%mobius-tag__input--hidden {
+  display: none;
+  font-weight: bold;
+  color: var(--fg-color-primary);
+}
+%mobius-tag__input--visible {
+  display: block;
+  font-weight: normal;
+  color: var(--fg-color-base);
+}
+.mobius-tag .mobius-tag__input {
+  @extend %mobius-tag__input--hidden;
+  position: absolute;
+  padding: 0.25rem 1.25rem;
+  line-height: 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  caret-color: var(--fg-color-primary);
+}
+
+/* ----------------------------------------------------------------- */
+%mobius-tag__delete--hidden {
+  visibility: hidden;
+  opacity: 0;
+  right: calc(-0.5rem - 2px);
+}
+%mobius-tag__delete--visible {
+  visibility: visible;
+  opacity: 1;
+  right: 0;
+}
+%mobius-tag__delete--empathize {
+  font-weight: bold;
+  color: var(--fg-color-red);
+}
+.mobius-tag .mobius-tag__delete {
+  @extend %mobius-tag__delete--hidden;
+  position: absolute;
+  width: 1.5rem;
+  padding: 0 0.25rem 0 0;
+  line-height: 2rem;
+  font-size: 1.25rem;
+  text-align: center;
+
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+
+  &.mobius-tag__delete--visible {
+    @extend %mobius-tag__delete--visible;
+  }
+
+  &:hover {
+    @extend %mobius-tag__delete--empathize;
+  }
+}
+
+/* ----------------------------------------------------------------- */
+.mobius-tag.mobius-tag--editing,
+.mobius-tag:focus-within {
+  border: 2px solid var(--fg-color-primary);
+}
+.mobius-tag.mobius-tag--editing {
+  & .mobius-tag__text {
+    @extend %mobius-tag__text--hidden;
+  }
+  & .mobius-tag__input {
+    @extend %mobius-tag__input--visible;
+  }
+}
+
+/* ----------------------------------------------------------------- */
+.mobius-tag.mobius-tag--invalid {
+  background-color: var(--bg-color-red);
+  border-color: var(--bg-color-red);
+}
+
+/* ----------------------------------------------------------------- */
+.mobius-tag.mobius-tag--deletable:hover,
+.mobius-tag.mobius-tag--deletable:focus-within,
+.mobius-tag.mobius-tag--show-delete {
+  & .mobius-tag__text {
+    padding: 0.25rem 1.75rem 0.25rem 0.75rem;
+  }
+  & .mobius-tag__input {
+    padding: 0.25rem 1.75rem 0.25rem 0.75rem;
+  }
+  & .mobius-tag__delete {
+    @extend %mobius-tag__delete--visible;
+  }
+}
+
+/*! purgecss end ignore */
