@@ -11,7 +11,7 @@ import { ELEMENT_MAKER_UTILS } from './element'
 import { DEFAULT_COMPONENT_COMMON_OPTIONS } from './component.common'
 
 import type {
-  AnyStringRecord, IsAny, FlipOptional,
+  AnyStringRecord, IsAny, ReverseOptional,
   Terminator,
   DataLike, AtomLike, AtomLikeOfOutput,
   ReplayDataMediator,
@@ -240,7 +240,7 @@ export interface GUIDriverCreateOptions<
   DSLC extends GUIDriverSingletonLevelContexts = GUIDriverSingletonLevelContexts,
   Template = TemplateResult
 > {
-  defaultOptions?: FlipOptional<Options>
+  defaultOptions?: ReverseOptional<Options>
   prepareOptions?: (options: Required<Options>) => Required<Options>
   prepareDriverLevelContexts?: () => PrepareGUIDLC<DLC>
   prepareSingletonLevelContexts?: PrepareGUIDriverSingletonLevelContexts<Options, DLC, DSLC>
